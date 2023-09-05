@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class CharacterStats : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private Image healthBar;
-    [SerializeField] private Image healthFill;
+    [SerializeField] private Image healthBarBattlefield;
+    [SerializeField] private Image healthFillBattlefield;
+    [SerializeField] private Image healthBarSecond;
+    [SerializeField] private Image healthFillSecond;
 
     [Header("Stats")]
     public float maxHealth;
@@ -23,13 +25,23 @@ public class CharacterStats : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-        healthFill.fillAmount = health / maxHealth;
+
+        healthFillBattlefield.fillAmount = health / maxHealth;
+        if (healthFillSecond != null )
+        {
+            healthFillSecond.fillAmount = health / maxHealth; //player second hp bar
+        }
     }
 
     public void TakeDamage(float damage)
     {
         health -= damage;
-        healthFill.fillAmount = health / maxHealth;
+
+        healthFillBattlefield.fillAmount = health / maxHealth;
+        if (healthFillSecond != null)
+        {
+            healthFillSecond.fillAmount = health / maxHealth; //player second hp bar
+        }
         //animator.Play("Damage");
 
         //set damage text
@@ -38,7 +50,7 @@ public class CharacterStats : MonoBehaviour
             Debug.Log("Character is now dead");
             dead = true;
             gameObject.tag = "Dead";
-            healthBar.gameObject.SetActive(false);
+            healthBarBattlefield.gameObject.SetActive(false);
         }
     }
 }

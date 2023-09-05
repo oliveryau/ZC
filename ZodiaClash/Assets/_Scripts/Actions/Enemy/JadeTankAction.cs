@@ -38,7 +38,7 @@ public class JadeTankAction : _EnemyAction
             }
             else if (selectedSkillPrefab == skill2Prefab)
             {
-                Debug.Log("AOE Attack Player Team");
+                Debug.Log("Stunning");
             }
 
             StartCoroutine(EnemyAnimationDelay(1f));

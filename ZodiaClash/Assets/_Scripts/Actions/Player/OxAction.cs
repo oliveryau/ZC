@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatAction : _PlayerAction
+public class OxAction : _PlayerAction
 {
     private void Update() //place in specific player child classes
     {
@@ -31,7 +31,7 @@ public class CatAction : _PlayerAction
 
     public override void UseSkill(GameObject target)
     {
-        if (selectedSkillPrefab != null) 
+        if (selectedSkillPrefab != null)
         {
             playerAttacking = true;
 
@@ -40,16 +40,13 @@ public class CatAction : _PlayerAction
                 movingToTarget = true;
                 selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(target);
             }
-            else if (selectedSkillPrefab == skill2Prefab) //aoe target
+            else if (selectedSkillPrefab == skill2Prefab)
             {
-                GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy");
-
-                movingToTarget = true;
-                selectedSkillPrefab.GetComponent<AoeAttack>().Attack(targets);
+                //stun
             }
             else if (selectedSkillPrefab == skill3Prefab)
             {
-                //Another skill
+                //taunt
             }
 
             StartCoroutine(AnimationDelay(2f));

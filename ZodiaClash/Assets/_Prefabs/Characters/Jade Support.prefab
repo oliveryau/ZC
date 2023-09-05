@@ -137,12 +137,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  healthBar: {fileID: 0}
-  healthFill: {fileID: 0}
+  healthBarBattlefield: {fileID: 0}
+  healthFillBattlefield: {fileID: 0}
+  healthBarSecond: {fileID: 0}
+  healthFillSecond: {fileID: 0}
   maxHealth: 20
   health: 20
   attack: 15
-  defense: 5
+  defense: 15
   speed: 3
   nextActTurn: 0
 --- !u!114 &510903256024436315

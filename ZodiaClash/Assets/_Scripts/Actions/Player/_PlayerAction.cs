@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class _CharacterAction : MonoBehaviour
+public class _PlayerAction : MonoBehaviour
 {
     [Header("HUD")]
     [SerializeField] protected GameObject characterUi;
@@ -15,15 +15,26 @@ public class _CharacterAction : MonoBehaviour
     [SerializeField] protected GameObject skill3Prefab;
     protected GameObject selectedSkillPrefab;
 
+    [Header("Movements")]
+    [SerializeField] protected float moveSpeed;
+    [SerializeField] protected Vector3 startPosition;
+    [SerializeField] protected Transform targetPosition;
+
     protected GameManager gameManager;
-    public bool playerAttacking;
+    protected bool playerAttacking;
+    protected bool movingToTarget;
+    protected bool movingToStart;
     protected bool playerTurnComplete;
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
 
+        startPosition = transform.position;
+
         playerAttacking = false;
+        movingToTarget = false;
+        movingToStart = false;
         playerTurnComplete = false;
     }
 
@@ -36,6 +47,33 @@ public class _CharacterAction : MonoBehaviour
         else
         {
             characterUi.SetActive(false);
+        }
+    }
+
+    public void PlayerMovement()
+    {
+        if (movingToTarget && !movingToStart)
+        {
+            float step = moveSpeed * Time.deltaTime;
+            transform.position = Vector3.Lerp(transform.position, targetPosition.position, step);
+
+            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
+            {
+                Debug.Log("Moved to Attack Targets");
+                movingToTarget = false;
+                movingToStart = true;
+            }
+        }
+        else if (movingToStart && !movingToTarget)
+        {
+            float step = moveSpeed * Time.deltaTime;
+            transform.position = Vector3.Lerp(transform.position, startPosition, step);
+
+            if (Vector3.Distance(transform.position, startPosition) <= 0.1f)
+            {
+                Debug.Log("Moved to Start Pos");
+                movingToStart = false;
+            }
         }
     }
 

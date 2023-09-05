@@ -116,10 +116,4 @@ public class GameManager : MonoBehaviour
 
         state = BattleState.NEXTTURN;
     }
-
-    public IEnumerator NextTurnDelay(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        Debug.Log("Next Turn Delay Complete");
-    }
 }

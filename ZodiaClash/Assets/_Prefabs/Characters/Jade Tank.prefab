@@ -137,12 +137,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  healthBar: {fileID: 0}
-  healthFill: {fileID: 0}
+  healthBarBattlefield: {fileID: 0}
+  healthFillBattlefield: {fileID: 0}
+  healthBarSecond: {fileID: 0}
+  healthFillSecond: {fileID: 0}
   maxHealth: 30
   health: 30
   attack: 15
-  defense: 15
+  defense: 25
   speed: 1
   nextActTurn: 0
 --- !u!114 &3626542358512428669
@@ -160,6 +162,7 @@ MonoBehaviour:
   skill1Prefab: {fileID: 3674971781593567307}
   skill2Prefab: {fileID: 4511200816529941841}
   skill3Prefab: {fileID: 0}
+  selectedSkillPrefab: {fileID: 0}
 --- !u!1001 &3641486167989420892
 PrefabInstance:
   m_ObjectHideFlags: 0

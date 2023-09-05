@@ -38,7 +38,7 @@ public class JadeSupportAction : _EnemyAction
             }
             else if (selectedSkillPrefab == skill2Prefab)
             {
-                Debug.Log("AOE Attack Player Team");
+                Debug.Log("Healing Enemy");
             }
 
             StartCoroutine(EnemyAnimationDelay(1f));

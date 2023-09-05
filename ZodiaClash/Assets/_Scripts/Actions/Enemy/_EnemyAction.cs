@@ -25,7 +25,6 @@ public class _EnemyAction : MonoBehaviour
 
     public void EnemySelectSkill()
     {
-        Debug.Log(selectedSkillPrefab);
         if (selectedSkillPrefab == null)
         {
             selectedSkillPrefab = Random.Range(0, 2) == 0 ? skill1Prefab : skill2Prefab;
@@ -36,6 +35,7 @@ public class _EnemyAction : MonoBehaviour
 
     public void EnemySelectTarget()
     {
+        //check if its certain type of enemy via gameManager.activeEnemy first, then run special target selection, else proceed
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
         if (players.Length > 0)
