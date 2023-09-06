@@ -15,17 +15,19 @@ public class _PlayerAction : MonoBehaviour
     [SerializeField] protected GameObject skill3Prefab;
     protected GameObject selectedSkillPrefab;
     protected GameObject selectedTarget;
-    protected GameObject[] enemyTargets; //all enemies
+    [SerializeField] protected GameObject[] enemyTargets; //all enemies
 
     [Header("Movements")]
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected Vector3 startPosition;
     [SerializeField] protected Transform targetPosition;
+    protected bool movingToTarget;
+    protected bool movingToStart;
+    protected bool reachedTarget;
+    protected bool reachedStart;
 
     protected GameManager gameManager;
     protected bool playerAttacking;
-    protected bool movingToTarget;
-    protected bool movingToStart;
     protected bool playerTurnComplete;
 
     private void Start()
@@ -33,11 +35,13 @@ public class _PlayerAction : MonoBehaviour
         enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
 
         startPosition = transform.position;
+        movingToTarget = false;
+        movingToStart = false;
+        reachedTarget = false;
+        reachedStart = false;
 
         gameManager = FindObjectOfType<GameManager>();
         playerAttacking = false;
-        movingToTarget = false;
-        movingToStart = false;
         playerTurnComplete = false;
     }
 
@@ -55,29 +59,35 @@ public class _PlayerAction : MonoBehaviour
 
     public void PlayerMovement()
     {
+        if (transform.position == startPosition)
+        {
+            reachedStart = true;
+            reachedTarget = false;
+        }
+        
+        if (transform.position == targetPosition.position)
+        {
+            reachedTarget = true;
+            reachedStart = false;
+        }
+
         if (movingToTarget && !movingToStart)
         {
-            float step = moveSpeed * Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, targetPosition.position, step);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, moveSpeed * Time.deltaTime);
 
-            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.01f)
+            if (reachedTarget)
             {
-                Debug.Log("Moved to Attack Targets");
                 movingToTarget = false;
 
-                ApplySkill();
-
-                movingToStart = true;
+                StartCoroutine(AttackDelay(0.5f));
             }
         }
         else if (movingToStart && !movingToTarget)
         {
-            float step = moveSpeed * Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, startPosition, step);
+            transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
 
-            if (Vector3.Distance(transform.position, startPosition) <= 0.01f)
+            if (reachedStart)
             {
-                Debug.Log("Moved to Start Pos");
                 movingToStart = false;
             }
         }
@@ -103,7 +113,7 @@ public class _PlayerAction : MonoBehaviour
             {
                 selectedSkillPrefab = skill3Prefab;
             }
-            Debug.Log(selectedSkillPrefab.name);
+            Debug.Log("Player Skill: " + selectedSkillPrefab.name);
         }
     }
 
@@ -123,7 +133,16 @@ public class _PlayerAction : MonoBehaviour
         }
     }
 
-    public IEnumerator AnimationDelay(float seconds)
+    public IEnumerator AttackDelay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        ApplySkill();
+
+        movingToStart = true;
+    }
+
+    public IEnumerator EndTurnDelay(float seconds)
     {
         yield return new WaitForSeconds(seconds);
 

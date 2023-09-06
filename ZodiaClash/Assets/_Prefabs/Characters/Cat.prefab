@@ -135,7 +135,7 @@ MonoBehaviour:
   healthFillSecond: {fileID: 0}
   maxHealth: 50
   health: 50
-  attack: 15
+  attack: 10
   defense: 10
   speed: 5
   nextActTurn: 0
@@ -156,9 +156,11 @@ MonoBehaviour:
   skill1Prefab: {fileID: 7601538499357730313}
   skill2Prefab: {fileID: 4664854013163135867}
   skill3Prefab: {fileID: 0}
-  moveSpeed: 10
+  moveSpeed: 20
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}
+  reachedTarget: 0
+  reachedStart: 0
 --- !u!1001 &6536178077640086785
 PrefabInstance:
   m_ObjectHideFlags: 0

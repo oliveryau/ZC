@@ -21,6 +21,8 @@ public class _EnemyAction : MonoBehaviour
     protected bool enemyAttacking;
     protected bool movingToTarget;
     protected bool movingToStart;
+    protected bool reachedTarget;
+    protected bool reachedStart;
     protected bool enemyTurnComplete;
 
     private void Start()
@@ -28,40 +30,47 @@ public class _EnemyAction : MonoBehaviour
         playerTargets = GameObject.FindGameObjectsWithTag("Player");
 
         startPosition = transform.position;
+        movingToTarget = false;
+        movingToStart = false;
+        reachedTarget = false;
+        reachedStart = false;
 
         gameManager = FindObjectOfType<GameManager>();
         enemyAttacking = false;
-        movingToTarget = false;
-        movingToStart = false;
         enemyTurnComplete = false;
     }
 
     public void EnemyMovement()
     {
+        if (transform.position == startPosition)
+        {
+            reachedStart = true;
+            reachedTarget = false;
+        }
+
+        if (transform.position == targetPosition.position)
+        {
+            reachedTarget = true;
+            reachedStart = false;
+        }
+
         if (movingToTarget && !movingToStart)
         {
-            Debug.Log("Moving");
-            float step = moveSpeed * Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, targetPosition.position, step);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, moveSpeed * Time.deltaTime);
 
-            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.01f)
+            if (reachedTarget)
             {
-                Debug.Log("Moved to Attack Player");
                 movingToTarget = false;
 
-                EnemyApplySkill();
-
-                movingToStart = true;
+                StartCoroutine(EnemyAttackDelay(0.5f));
             }
         }
         else if (movingToStart && !movingToTarget)
         {
-            float step = moveSpeed * Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, startPosition, step);
+            transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
 
-            if (Vector3.Distance(transform.position, startPosition) <= 0.01f)
+            if (reachedStart)
             {
-                Debug.Log("Moved to Start Pos");
                 movingToStart = false;
             }
         }
@@ -80,7 +89,7 @@ public class _EnemyAction : MonoBehaviour
         {
             int randomIndex = Random.Range(0, playerTargets.Length);
             selectedTarget = playerTargets[randomIndex];
-            Debug.Log("Enemy selected target: " + selectedTarget.name);
+            Debug.Log("Enemy target: " + selectedTarget.name);
 
             EnemyUseSkill();
         }
@@ -91,7 +100,16 @@ public class _EnemyAction : MonoBehaviour
         }
     }
 
-    public IEnumerator EnemyAnimationDelay(float seconds)
+    public IEnumerator EnemyAttackDelay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        EnemyApplySkill();
+
+        movingToStart = true;
+    }
+
+    public IEnumerator EnemyEndTurnDelay(float seconds)
     {
         yield return new WaitForSeconds(seconds);
 

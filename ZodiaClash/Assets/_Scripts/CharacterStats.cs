@@ -18,7 +18,6 @@ public class CharacterStats : MonoBehaviour
     public float defense;
     public float speed;
 
-    [HideInInspector] public int nextActTurn;
     private bool dead = false;
     private float maxChi = 2;
 
@@ -47,10 +46,11 @@ public class CharacterStats : MonoBehaviour
         //set damage text
         if (health <= 0)
         {
-            Debug.Log("Character is now dead");
+            Debug.Log(gameObject.name + " is dead");
             dead = true;
             gameObject.tag = "Dead";
             healthBarBattlefield.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }

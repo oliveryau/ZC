@@ -34,15 +34,13 @@ public class OxAction : _PlayerAction
 
             if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab)
             {
-                //single target or stun
+                //single target and stun
                 movingToTarget = true;
             }
             else if (selectedSkillPrefab == skill3Prefab)
             {
                 //taunt
             }
-
-            StartCoroutine(AnimationDelay(2f));
         }
     }
 
@@ -51,26 +49,19 @@ public class OxAction : _PlayerAction
         if (selectedSkillPrefab == skill1Prefab)
         {
             //single target skill
-            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
-            {
-                selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget);
-            }
+            selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget);
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
             //stun target skill
-            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
-            {
-                selectedSkillPrefab.GetComponent<AoeAttack>().Attack(enemyTargets); //temporary
-            }
+            selectedSkillPrefab.GetComponent<AoeAttack>().Attack(enemyTargets); //temporary
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
             //taunt skill
-            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
-            {
-                selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget); //temporary
-            }
+            selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget); //temporary
         }
+
+        StartCoroutine(EndTurnDelay(1f));
     }
 }

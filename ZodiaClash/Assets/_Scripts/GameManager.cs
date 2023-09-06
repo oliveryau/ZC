@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
 
         foreach (CharacterStats chara in charactersList)
         {
-            Debug.Log(chara.gameObject.name + ", Speed: " + chara.speed);
+            Debug.Log("Name: " + chara.gameObject.name + ", Speed: " + chara.speed);
         }
     }
 
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         DetermineTurnOrder();
 
         yield return new WaitForSeconds(seconds);
-        Debug.Log("New Round Delay Complete");
+        Debug.Log("New Round Time Delayed");
 
         state = BattleState.NEXTTURN;
     }

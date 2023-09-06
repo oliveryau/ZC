@@ -9,7 +9,7 @@ public class _NormalAttack : _BaseAttack
         CalculateDamage(target);
 
         //owner.GetComponent<Animator>().Play(animationName);
-        Debug.Log("Attacked: " + target.name);
+        Debug.Log("Attacked " + target.name);
         targetStats.TakeDamage(damage);
     }
 }

@@ -11,7 +11,7 @@ public class AoeAttack : _BaseAttack
         foreach (GameObject target in targets)
         {
             CalculateDamage(target);
-            Debug.Log("Attacked: " + target.name);
+            Debug.Log("Attacked " + target.name);
             targetStats.TakeDamage(damage);
         }
     }

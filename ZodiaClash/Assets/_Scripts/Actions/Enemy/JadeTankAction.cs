@@ -17,10 +17,11 @@ public class JadeTankAction : _EnemyAction
 
             if (enemyTurnComplete)
             {
-                Debug.Log("Jade Tank attacked");
+                Debug.Log("Jade Tank End Turn");
                 gameManager.state = BattleState.NEXTTURN;
 
                 selectedSkillPrefab = null;
+                selectedTarget = null;
                 enemyAttacking = false;
                 enemyTurnComplete = false;
             }
@@ -31,8 +32,9 @@ public class JadeTankAction : _EnemyAction
     {
         if (selectedSkillPrefab == null)
         {
-            selectedSkillPrefab = Random.Range(0, 2) == 0 ? skill1Prefab : skill2Prefab;
-            Debug.Log("Enemy chose skill: " + selectedSkillPrefab.name);
+            //selectedSkillPrefab = Random.Range(0, 2) == 0 ? skill1Prefab : skill2Prefab;
+            selectedSkillPrefab = skill1Prefab;
+            Debug.Log("Enemy Skill: " + selectedSkillPrefab.name);
 
             EnemySelectTarget();
         }
@@ -45,8 +47,6 @@ public class JadeTankAction : _EnemyAction
             enemyAttacking = true;
 
             movingToTarget = true;
-
-            StartCoroutine(EnemyAnimationDelay(1f));
         }
     }
 
@@ -55,20 +55,15 @@ public class JadeTankAction : _EnemyAction
         if (selectedSkillPrefab == skill1Prefab)
         {
             //single target skill
-            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
-            {
-                selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget);
-            }
+
+            selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget);
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
             //stun target skill
-            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
-            {
-                selectedSkillPrefab.GetComponent<AoeAttack>().Attack(playerTargets); //temporary
-            }
+
         }
 
-        enemyAttacking = false;
+        StartCoroutine(EnemyEndTurnDelay(1f));
     }
 }

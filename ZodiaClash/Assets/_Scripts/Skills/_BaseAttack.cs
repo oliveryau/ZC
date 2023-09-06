@@ -33,13 +33,14 @@ public class _BaseAttack : MonoBehaviour
 
         //critical hit chance
         float randomValue = Random.Range(0f, 1f);
-        Debug.Log("Random Value: " + randomValue);
+        Debug.Log("Crit Roll: " + randomValue);
 
         totalBuff = (skillAttackPercent + extraAttackPercent) / 100;
 
         if (randomValue <= critRate)
         {
             //critical hit
+            Debug.Log("Crit Hit!");
             damage = Mathf.RoundToInt(
                 Mathf.Max(1, minAttackMultiplier, maxAttackMultiplier) *
                 totalBuff * (attackerStats.attack * (100f / (100f + targetStats.defense)))
