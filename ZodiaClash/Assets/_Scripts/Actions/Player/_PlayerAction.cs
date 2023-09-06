@@ -14,6 +14,8 @@ public class _PlayerAction : MonoBehaviour
     [SerializeField] protected GameObject skill2Prefab;
     [SerializeField] protected GameObject skill3Prefab;
     protected GameObject selectedSkillPrefab;
+    protected GameObject selectedTarget;
+    protected GameObject[] enemyTargets; //all enemies
 
     [Header("Movements")]
     [SerializeField] protected float moveSpeed;
@@ -28,10 +30,11 @@ public class _PlayerAction : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
 
         startPosition = transform.position;
 
+        gameManager = FindObjectOfType<GameManager>();
         playerAttacking = false;
         movingToTarget = false;
         movingToStart = false;
@@ -57,10 +60,13 @@ public class _PlayerAction : MonoBehaviour
             float step = moveSpeed * Time.deltaTime;
             transform.position = Vector3.Lerp(transform.position, targetPosition.position, step);
 
-            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
+            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.01f)
             {
                 Debug.Log("Moved to Attack Targets");
                 movingToTarget = false;
+
+                ApplySkill();
+
                 movingToStart = true;
             }
         }
@@ -69,7 +75,7 @@ public class _PlayerAction : MonoBehaviour
             float step = moveSpeed * Time.deltaTime;
             transform.position = Vector3.Lerp(transform.position, startPosition, step);
 
-            if (Vector3.Distance(transform.position, startPosition) <= 0.1f)
+            if (Vector3.Distance(transform.position, startPosition) <= 0.01f)
             {
                 Debug.Log("Moved to Start Pos");
                 movingToStart = false;
@@ -111,7 +117,8 @@ public class _PlayerAction : MonoBehaviour
 
             if (hit.collider != null && hit.collider.CompareTag("Enemy"))
             {
-                UseSkill(hit.collider.gameObject); //use the selected skill on the enemy
+                selectedTarget = hit.collider.gameObject;
+                UseSkill();
             }
         }
     }
@@ -123,7 +130,12 @@ public class _PlayerAction : MonoBehaviour
         playerTurnComplete = true;
     }
 
-    public virtual void UseSkill(GameObject target)
+    public virtual void UseSkill()
+    {
+        //do nothing
+    }
+
+    public virtual void ApplySkill()
     {
         //do nothing
     }

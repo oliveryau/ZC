@@ -156,7 +156,7 @@ MonoBehaviour:
   skill1Prefab: {fileID: 7601538499357730313}
   skill2Prefab: {fileID: 4664854013163135867}
   skill3Prefab: {fileID: 0}
-  moveSpeed: 5
+  moveSpeed: 10
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}
 --- !u!1001 &6536178077640086785

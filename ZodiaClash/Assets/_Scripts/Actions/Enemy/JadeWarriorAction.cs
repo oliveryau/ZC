@@ -13,35 +13,65 @@ public class JadeWarriorAction : _EnemyAction
                 EnemySelectSkill();
             }
 
+            if (movingToTarget)
+            {
+                EnemyMovement();
+            }
+
             if (enemyTurnComplete)
             {
-                //change to nextturn state after completing attack
                 Debug.Log("Jade Warrior attacked");
                 gameManager.state = BattleState.NEXTTURN;
 
                 selectedSkillPrefab = null;
-                enemyAttacking = false;
+                selectedTarget = null;
                 enemyTurnComplete = false;
             }
         }
     }
 
-    public override void EnemyUseSkill(GameObject target)
+    public override void EnemySelectSkill()
+    {
+        if (selectedSkillPrefab == null)
+        {
+            selectedSkillPrefab = Random.Range(0, 2) == 0 ? skill1Prefab : skill2Prefab;
+            Debug.Log("Enemy chose skill: " + selectedSkillPrefab.name);
+
+            EnemySelectTarget();
+        }
+    }
+
+    public override void EnemyUseSkill()
     {
         if (selectedSkillPrefab != null)
         {
             enemyAttacking = true;
 
-            if (selectedSkillPrefab == skill1Prefab) //single target
-            {
-                selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(target);
-            }
-            else if (selectedSkillPrefab == skill2Prefab)
-            {
-                Debug.Log("AOE Attack Player Team");
-            }
+            movingToTarget = true;
 
             StartCoroutine(EnemyAnimationDelay(1f));
         }
+    }
+
+    public override void EnemyApplySkill()
+    {
+        if (selectedSkillPrefab == skill1Prefab)
+        {
+            //single target skill
+            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
+            {
+                selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget);
+            }
+        }
+        else if (selectedSkillPrefab == skill2Prefab)
+        {
+            //aoe target skill
+            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
+            {
+                selectedSkillPrefab.GetComponent<AoeAttack>().Attack(playerTargets);
+            }
+        }
+
+        enemyAttacking = false;
     }
 }

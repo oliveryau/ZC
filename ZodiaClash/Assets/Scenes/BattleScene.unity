@@ -2481,11 +2481,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156180953}
   m_CullTransparentMesh: 1
---- !u!1 &1178381374 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7212366318642619022, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
-  m_PrefabInstance: {fileID: 3759505839934237974}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1342839538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
@@ -2632,6 +2627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  roundCounter: 0
   currentPlayerIndex: 0
   activePlayer: 
   activeEnemy: 
@@ -4202,11 +4198,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124555277}
   m_CullTransparentMesh: 1
---- !u!1 &2143033593 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8753840758023904936, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
-  m_PrefabInstance: {fileID: 3759505839934237974}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2408959627236691733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4215,6 +4206,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1555967428}
     m_Modifications:
+    - target: {fileID: 510903256024436315, guid: be917483acc4cb54f871c0ae088c9941, type: 3}
+      propertyPath: targetPosition
+      value: 
+      objectReference: {fileID: 1447076001}
     - target: {fileID: 3865888240721577519, guid: be917483acc4cb54f871c0ae088c9941, type: 3}
       propertyPath: m_Name
       value: Heal
@@ -4313,13 +4308,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 1555967428}
     m_Modifications:
     - target: {fileID: 1387766248315115033, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
-      propertyPath: skill1Prefab
+      propertyPath: targetPosition
       value: 
-      objectReference: {fileID: 1178381374}
-    - target: {fileID: 1387766248315115033, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
-      propertyPath: skill2Prefab
-      value: 
-      objectReference: {fileID: 2143033593}
+      objectReference: {fileID: 1447076001}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBar
       value: 
@@ -4486,10 +4477,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7746928854530086524, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
-      propertyPath: critRate
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8279118524424343439, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: healthBar
       value: 
@@ -4514,10 +4501,6 @@ PrefabInstance:
       propertyPath: healthFillBattlefield
       value: 
       objectReference: {fileID: 963791887}
-    - target: {fileID: 8825712973627782770, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
-      propertyPath: critRate
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3781126246109744406, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
     m_RemovedGameObjects: []
@@ -4688,6 +4671,10 @@ PrefabInstance:
       propertyPath: minAttackMultiplier
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 3626542358512428669, guid: bd4a57b9daa64224c981bc43bd6ccfa6, type: 3}
+      propertyPath: targetPosition
+      value: 
+      objectReference: {fileID: 1447076001}
     - target: {fileID: 4511200816529941841, guid: bd4a57b9daa64224c981bc43bd6ccfa6, type: 3}
       propertyPath: m_Name
       value: Stun Attack

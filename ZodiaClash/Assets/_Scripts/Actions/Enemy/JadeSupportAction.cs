@@ -15,7 +15,6 @@ public class JadeSupportAction : _EnemyAction
 
             if (enemyTurnComplete)
             {
-                //change to nextturn state after completing attack
                 Debug.Log("Jade Support attacked");
                 gameManager.state = BattleState.NEXTTURN;
 
@@ -26,22 +25,48 @@ public class JadeSupportAction : _EnemyAction
         }
     }
 
-    public override void EnemyUseSkill(GameObject target)
+    public override void EnemySelectSkill()
+    {
+        if (selectedSkillPrefab == null)
+        {
+            selectedSkillPrefab = Random.Range(0, 2) == 0 ? skill1Prefab : skill2Prefab;
+            Debug.Log("Enemy chose skill: " + selectedSkillPrefab.name);
+
+            EnemySelectTarget();
+        }
+    }
+
+    public override void EnemyUseSkill()
     {
         if (selectedSkillPrefab != null)
         {
             enemyAttacking = true;
 
-            if (selectedSkillPrefab == skill1Prefab) //single target
-            {
-                selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(target);
-            }
-            else if (selectedSkillPrefab == skill2Prefab)
-            {
-                Debug.Log("Healing Enemy");
-            }
+            EnemyApplySkill();
 
             StartCoroutine(EnemyAnimationDelay(1f));
         }
+    }
+
+    public override void EnemyApplySkill()
+    {
+        if (selectedSkillPrefab == skill1Prefab)
+        {
+            //single target skill
+            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
+            {
+                selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget);
+            }
+        }
+        else if (selectedSkillPrefab == skill2Prefab)
+        {
+            //heal skill
+            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
+            {
+                selectedSkillPrefab.GetComponent<AoeAttack>().Attack(playerTargets); //temporary
+            }
+        }
+
+        enemyAttacking = false;
     }
 }

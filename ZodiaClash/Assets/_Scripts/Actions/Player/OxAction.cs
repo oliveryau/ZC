@@ -19,30 +19,23 @@ public class OxAction : _PlayerAction
                 gameManager.state = BattleState.NEXTTURN;
 
                 selectedSkillPrefab = null;
+                selectedTarget = null;
                 playerAttacking = false;
                 playerTurnComplete = false;
             }
         }
-        else
-        {
-            characterUi.SetActive(false);
-        }
     }
 
-    public override void UseSkill(GameObject target)
+    public override void UseSkill()
     {
         if (selectedSkillPrefab != null)
         {
             playerAttacking = true;
 
-            if (selectedSkillPrefab == skill1Prefab) //single target
+            if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab)
             {
+                //single target or stun
                 movingToTarget = true;
-                selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(target);
-            }
-            else if (selectedSkillPrefab == skill2Prefab)
-            {
-                //stun
             }
             else if (selectedSkillPrefab == skill3Prefab)
             {
@@ -50,6 +43,34 @@ public class OxAction : _PlayerAction
             }
 
             StartCoroutine(AnimationDelay(2f));
+        }
+    }
+
+    public override void ApplySkill()
+    {
+        if (selectedSkillPrefab == skill1Prefab)
+        {
+            //single target skill
+            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
+            {
+                selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget);
+            }
+        }
+        else if (selectedSkillPrefab == skill2Prefab)
+        {
+            //stun target skill
+            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
+            {
+                selectedSkillPrefab.GetComponent<AoeAttack>().Attack(enemyTargets); //temporary
+            }
+        }
+        else if (selectedSkillPrefab == skill3Prefab)
+        {
+            //taunt skill
+            if (Vector3.Distance(transform.position, targetPosition.position) <= 0.1f)
+            {
+                selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget); //temporary
+            }
         }
     }
 }

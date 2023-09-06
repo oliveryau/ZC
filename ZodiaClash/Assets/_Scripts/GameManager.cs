@@ -10,12 +10,14 @@ public enum BattleState
 public class GameManager : MonoBehaviour
 {
     public BattleState state;
-    public int currentPlayerIndex;
     
     private List<CharacterStats> charactersList = new List<CharacterStats>();
     private CharacterStats currentCharacter;
     private bool roundInProgress;
 
+    [Header("Turn Management")]
+    public int roundCounter;
+    public int currentPlayerIndex;
     public string activePlayer;
     public string activeEnemy;
 
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
             RegisterCharacter(chara);
         }
 
+        roundCounter = 0;
         roundInProgress = false;
         state = BattleState.NEWROUND;
     }
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour
             {
                 //introduce UI for a new round and any other conditions for a new round need to be met
                 roundInProgress = true;
+                ++roundCounter;
 
                 StartCoroutine(NewRoundDelay(1f)); //delay and switch states
             }
