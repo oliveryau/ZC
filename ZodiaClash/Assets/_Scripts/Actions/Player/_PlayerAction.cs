@@ -7,14 +7,16 @@ public class _PlayerAction : MonoBehaviour
     [Header("HUD")]
     [SerializeField] protected GameObject characterUi;
     [SerializeField] protected Sprite avatar;
+    [SerializeField] protected GameObject indicator;
 
     //animations
     [Header("Skill Selection")]
     [SerializeField] protected GameObject skill1Prefab;
     [SerializeField] protected GameObject skill2Prefab;
     [SerializeField] protected GameObject skill3Prefab;
-    protected GameObject selectedSkillPrefab;
+    [SerializeField] protected GameObject selectedSkillPrefab;
     protected GameObject selectedTarget;
+    protected bool reinitialiseEnemyTargets;
     [SerializeField] protected GameObject[] enemyTargets; //all enemies
 
     [Header("Movements")]
@@ -32,7 +34,7 @@ public class _PlayerAction : MonoBehaviour
 
     private void Start()
     {
-        enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
+        reinitialiseEnemyTargets = false;
 
         startPosition = transform.position;
         movingToTarget = false;
@@ -45,7 +47,15 @@ public class _PlayerAction : MonoBehaviour
         playerTurnComplete = false;
     }
 
-    public void DisplayUi()
+    protected void RefreshEnemyTargets()
+    {
+        //find all enemies that are present again
+        reinitialiseEnemyTargets = true;
+
+        enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
+    }
+
+    protected void DisplayUi()
     {
         if (!playerAttacking)
         {
@@ -55,9 +65,17 @@ public class _PlayerAction : MonoBehaviour
         {
             characterUi.SetActive(false);
         }
+
+        if (selectedTarget != null) //after selecting target, hide all player and enemy indicators
+        {
+            foreach (GameObject enemy in enemyTargets)
+            {
+                enemy.GetComponent<_EnemyAction>().indicator.SetActive(false);
+            }
+        }
     }
 
-    public void PlayerMovement()
+    protected void PlayerMovement()
     {
         if (transform.position == startPosition)
         {
@@ -79,7 +97,7 @@ public class _PlayerAction : MonoBehaviour
             {
                 movingToTarget = false;
 
-                StartCoroutine(AttackDelay(0.5f));
+                AttackAnimation();
             }
         }
         else if (movingToStart && !movingToTarget)
@@ -93,69 +111,72 @@ public class _PlayerAction : MonoBehaviour
         }
     }
 
-    public void SelectSkill(string btn)
+    public virtual void SelectSkill(string btn)
     {
-        if (gameManager.state != BattleState.PLAYERTURN)
+        //show specific target indicators based on skillPrefab
+        if (btn.CompareTo("skill1") == 0)
         {
-            return;
+            selectedSkillPrefab = skill1Prefab;
         }
-        else
+        else if (btn.CompareTo("skill2") == 0)
         {
-            if (btn.CompareTo("skill1") == 0)
-            {
-                selectedSkillPrefab = skill1Prefab;
-            }
-            else if (btn.CompareTo("skill2") == 0)
-            {
-                selectedSkillPrefab = skill2Prefab;
-            }
-            else if (btn.CompareTo("skill3") == 0)
-            {
-                selectedSkillPrefab = skill3Prefab;
-            }
-            Debug.Log("Player Skill: " + selectedSkillPrefab.name);
+            selectedSkillPrefab = skill2Prefab;
         }
+        else if (btn.CompareTo("skill3") == 0)
+        {
+            selectedSkillPrefab = skill3Prefab;
+        }
+
+        Debug.Log("Player Skill Chosen: " + selectedSkillPrefab.name);
     }
 
-    protected void SelectTarget()
+    protected virtual void SelectTarget()
     {
-        if (Input.GetMouseButtonDown(0) && selectedSkillPrefab != null)
-        {
-            //raycasting mousePosition
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-
-            if (hit.collider != null && hit.collider.CompareTag("Enemy"))
-            {
-                selectedTarget = hit.collider.gameObject;
-                UseSkill();
-            }
-        }
+        //check for specific skillPrefab, then userInput
     }
 
-    public IEnumerator AttackDelay(float seconds)
+    protected virtual void UseSkill()
     {
-        yield return new WaitForSeconds(seconds);
+        //check if movement is needed, else play AttackAnimation()
+    }
+
+    protected virtual void AttackAnimation()
+    {
+        //play different attack animation timings for different skillPrefabs
+    }
+
+    protected virtual void ApplySkill()
+    {
+        //apply actual damage and effects
+    }
+
+    protected IEnumerator AttackStartDelay(float startDelay, float endDelay)
+    {
+        yield return new WaitForSeconds(startDelay); //delay before attacking
 
         ApplySkill();
+
+        yield return new WaitForSeconds(endDelay); //delay to play animation
 
         movingToStart = true;
     }
 
-    public IEnumerator EndTurnDelay(float seconds)
+    protected IEnumerator BuffStartDelay(float startDelay, float endDelay)
     {
+        yield return new WaitForSeconds(startDelay); //delay before buff
+
+        ApplySkill();
+
+        yield return new WaitForSeconds(endDelay); //delay to play animation
+    }
+
+    protected IEnumerator EndTurnDelay(float seconds)
+    {
+        yield return new WaitUntil(() => reachedStart);
+        //check for skills that do not require movement
+
         yield return new WaitForSeconds(seconds);
 
         playerTurnComplete = true;
-    }
-
-    public virtual void UseSkill()
-    {
-        //do nothing
-    }
-
-    public virtual void ApplySkill()
-    {
-        //do nothing
     }
 }

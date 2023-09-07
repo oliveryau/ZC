@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class _NormalAttack : _BaseAttack
+public class NormalAttack : _BaseAttack
 {
-    public void Attack(GameObject target)
+    public virtual void Attack(GameObject target)
     {
         CalculateDamage(target);
 

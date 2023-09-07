@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class _EnemyAction : MonoBehaviour
 {
+    [Header("HUD")]
+    public GameObject indicator;
+
     [Header("Skill Selection")]
     [SerializeField] protected GameObject skill1Prefab;
     [SerializeField] protected GameObject skill2Prefab;
     [SerializeField] protected GameObject skill3Prefab;
     protected GameObject selectedSkillPrefab;
     protected GameObject selectedTarget;
-    protected GameObject[] playerTargets; //all players
+    protected bool reinitialisePlayerTargets;
+    [SerializeField] protected GameObject[] playerTargets; //all players
 
     [Header("Movements")]
     [SerializeField] protected float moveSpeed;
@@ -25,9 +29,12 @@ public class _EnemyAction : MonoBehaviour
     protected bool reachedStart;
     protected bool enemyTurnComplete;
 
+    [Header("Status Effects")]
+    [HideInInspector] public int bleedCounts;
+
     private void Start()
     {
-        playerTargets = GameObject.FindGameObjectsWithTag("Player");
+        reinitialisePlayerTargets = false;
 
         startPosition = transform.position;
         movingToTarget = false;
@@ -40,7 +47,15 @@ public class _EnemyAction : MonoBehaviour
         enemyTurnComplete = false;
     }
 
-    public void EnemyMovement()
+    protected void RefreshPlayerTargets()
+    {
+        //find all players that are present again
+        reinitialisePlayerTargets = true;
+
+        playerTargets = GameObject.FindGameObjectsWithTag("Player");
+    }
+
+    protected void EnemyMovement()
     {
         if (transform.position == startPosition)
         {
@@ -62,7 +77,7 @@ public class _EnemyAction : MonoBehaviour
             {
                 movingToTarget = false;
 
-                StartCoroutine(EnemyAttackDelay(0.5f));
+                EnemyAttackAnimation();
             }
         }
         else if (movingToStart && !movingToTarget)
@@ -76,53 +91,58 @@ public class _EnemyAction : MonoBehaviour
         }
     }
 
-    public virtual void EnemySelectSkill()
+    protected virtual void EnemySelectSkill()
     {
         //do nothing
     }
 
-    public void EnemySelectTarget()
+    protected virtual void EnemySelectTarget()
     {
-        //virtual method
-        //check if its certain type of enemy via gameManager.activeEnemy first, then run special target selection, else proceed
-        if (playerTargets.Length > 0)
-        {
-            int randomIndex = Random.Range(0, playerTargets.Length);
-            selectedTarget = playerTargets[randomIndex];
-            Debug.Log("Enemy target: " + selectedTarget.name);
-
-            EnemyUseSkill();
-        }
-        else
-        {
-            //no players found
-            Debug.LogError("No players found, supposedly return to BattleState.NEXTTURN");
-        }
+        //check for specific skill prefab, then proceed
     }
 
-    public IEnumerator EnemyAttackDelay(float seconds)
+    protected virtual void EnemyUseSkill()
     {
-        yield return new WaitForSeconds(seconds);
+        //check if movement is needed, else play EnemyAttackAnimation()
+    }
+
+    protected virtual void EnemyAttackAnimation()
+    {
+        //play different attack animation timings for different skillPrefabs
+    }
+
+    protected virtual void EnemyApplySkill()
+    {
+        //apply actual damage and effects
+    }
+
+    protected IEnumerator EnemyAttackStartDelay(float startDelay, float endDelay)
+    {
+        yield return new WaitForSeconds(startDelay); //delay before attacking
 
         EnemyApplySkill();
+
+        yield return new WaitForSeconds(endDelay); //delay to play animation
 
         movingToStart = true;
     }
 
-    public IEnumerator EnemyEndTurnDelay(float seconds)
+    protected IEnumerator EnemyBuffStartDelay(float startDelay, float endDelay)
     {
+        yield return new WaitForSeconds(startDelay); //delay before buff
+
+        EnemyApplySkill();
+
+        yield return new WaitForSeconds(endDelay); //delay to play animation
+    }
+
+    protected IEnumerator EnemyEndTurnDelay(float seconds)
+    {
+        yield return new WaitUntil(() => reachedStart);
+        //check for skills that do not require movement
+
         yield return new WaitForSeconds(seconds);
 
         enemyTurnComplete = true;
-    }
-
-    public virtual void EnemyUseSkill()
-    {
-        //do nothing
-    }
-
-    public virtual void EnemyApplySkill()
-    {
-        //do nothing
     }
 }

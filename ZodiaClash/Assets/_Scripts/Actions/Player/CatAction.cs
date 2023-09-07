@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class CatAction : _PlayerAction
 {
-    private void Update() //place in specific player child classes
+    private void Update()
     {
         if (gameManager.state == BattleState.PLAYERTURN && gameManager.activePlayer == gameObject.name)
         {
+            if (!reinitialiseEnemyTargets)
+            {
+                RefreshEnemyTargets();
+            }
+
             DisplayUi();
 
             SelectTarget();
-
             PlayerMovement();
 
             if (playerTurnComplete)
@@ -20,40 +24,85 @@ public class CatAction : _PlayerAction
 
                 selectedSkillPrefab = null;
                 selectedTarget = null;
+                reinitialiseEnemyTargets = false;
+                enemyTargets = null;
                 playerAttacking = false;
                 playerTurnComplete = false;
             }
         }
     }
 
-    public override void UseSkill()
+    public override void SelectSkill(string btn)
     {
-        if (selectedSkillPrefab != null) 
-        {
-            playerAttacking = true;
+        base.SelectSkill(btn);
 
-            movingToTarget = true;
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
+        {
+            foreach (GameObject enemy in enemyTargets)
+            {
+                enemy.GetComponent<_EnemyAction>().indicator.SetActive(true);
+            }
         }
     }
 
-    public override void ApplySkill()
+    protected override void SelectTarget()
+    {
+        if (Input.GetMouseButtonDown(0) && selectedSkillPrefab != null)
+        {
+            if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that targets enemies
+            {
+                //raycasting mousePosition
+                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
+                if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                {
+                    selectedTarget = hit.collider.gameObject;
+                    UseSkill();
+                }                
+            }
+        }
+    }
+
+    protected override void UseSkill()
+    {
+        playerAttacking = true;
+
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab) //skills that require movement
+        {
+            movingToTarget = true; //movement is triggered
+        }
+        //else //skills that do not require movement
+        //{
+        //    AttackAnimation();
+        //}
+    }
+
+    protected override void AttackAnimation()
+    {
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
+        {
+            StartCoroutine(AttackStartDelay(0.5f, 1f));
+        }
+    }
+
+    protected override void ApplySkill()
     {
         if (selectedSkillPrefab == skill1Prefab)
         {
-            //single target skill
-            selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget);
+            //single target DoT skill
+            selectedSkillPrefab.GetComponent<NormalAttack>().Attack(selectedTarget);
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
-            //aoe target skill
+            //aoe target DoT skill
             selectedSkillPrefab.GetComponent<AoeAttack>().Attack(enemyTargets);
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
-            //DoT skill
-            selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget); //temporary
+            //strong single target DoT skill
         }
 
-        StartCoroutine(EndTurnDelay(1f));
+        StartCoroutine(EndTurnDelay(0.5f));
     }
 }

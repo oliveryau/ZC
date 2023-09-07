@@ -53,10 +53,12 @@ public class GameManager : MonoBehaviour
             //check if battle has ended
             if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0) //no enemies left
             {
+                Debug.Log("State: Win");
                 state = BattleState.WIN;
             }
             else if (GameObject.FindGameObjectsWithTag("Player").Length <= 0) //no players left
             {
+                Debug.Log("State: Lose");
                 state = BattleState.LOSE;
             }
             else

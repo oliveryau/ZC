@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class CharacterStats : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+
+    [Header("HUD")]
     [SerializeField] private Image healthBarBattlefield;
     [SerializeField] private Image healthFillBattlefield;
     [SerializeField] private Image healthBarSecond;
@@ -24,11 +26,18 @@ public class CharacterStats : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-
         healthFillBattlefield.fillAmount = health / maxHealth;
         if (healthFillSecond != null )
         {
             healthFillSecond.fillAmount = health / maxHealth; //player second hp bar
+        }
+    }
+
+    private void Update()
+    {
+        if (health > maxHealth)
+        {
+            health = maxHealth;
         }
     }
 
@@ -41,14 +50,17 @@ public class CharacterStats : MonoBehaviour
         {
             healthFillSecond.fillAmount = health / maxHealth; //player second hp bar
         }
-        //animator.Play("Damage");
+        //animator.Play("Damaged");
 
         //set damage text
         if (health <= 0)
         {
             Debug.Log(gameObject.name + " is dead");
+
+            health = 0;
             dead = true;
             gameObject.tag = "Dead";
+
             healthBarBattlefield.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }

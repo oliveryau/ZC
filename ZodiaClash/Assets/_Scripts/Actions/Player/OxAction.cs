@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class OxAction : _PlayerAction
 {
-    private void Update() //place in specific player child classes
+    private void Update()
     {
         if (gameManager.state == BattleState.PLAYERTURN && gameManager.activePlayer == gameObject.name)
         {
+            if (!reinitialiseEnemyTargets)
+            {
+                RefreshEnemyTargets();
+            }
+
             DisplayUi();
 
             SelectTarget();
-
             PlayerMovement();
 
             if (playerTurnComplete)
@@ -20,48 +24,92 @@ public class OxAction : _PlayerAction
 
                 selectedSkillPrefab = null;
                 selectedTarget = null;
+                reinitialiseEnemyTargets = false;
+                enemyTargets = null;
                 playerAttacking = false;
                 playerTurnComplete = false;
             }
         }
     }
 
-    public override void UseSkill()
+    public override void SelectSkill(string btn)
     {
-        if (selectedSkillPrefab != null)
-        {
-            playerAttacking = true;
+        base.SelectSkill(btn);
 
-            if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab)
+        if (selectedSkillPrefab == skill1Prefab)
+        {
+            foreach (GameObject enemy in enemyTargets)
             {
-                //single target and stun
-                movingToTarget = true;
-            }
-            else if (selectedSkillPrefab == skill3Prefab)
-            {
-                //taunt
+                enemy.GetComponent<_EnemyAction>().indicator.SetActive(true);
             }
         }
     }
 
-    public override void ApplySkill()
+    protected override void SelectTarget()
+    {
+        if (Input.GetMouseButtonDown(0) && selectedSkillPrefab != null)
+        {
+            if (selectedSkillPrefab == skill1Prefab) //skills that targets enemies
+            {
+                //raycasting mousePosition
+                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
+                if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                {
+                    selectedTarget = hit.collider.gameObject;
+                    UseSkill();
+                }
+            }
+        }
+    }
+
+    protected override void UseSkill()
+    {
+        playerAttacking = true;
+
+        if (selectedSkillPrefab == skill1Prefab) //skills that require movement
+        {
+            movingToTarget = true; //movement is triggered
+        }
+        //else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that do not require movement
+        //{
+        //    AttackAnimation();
+        //}
+    }
+
+    protected override void AttackAnimation()
     {
         if (selectedSkillPrefab == skill1Prefab)
         {
-            //single target skill
-            selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget);
+            StartCoroutine(AttackStartDelay(0.5f, 1f));
+        }
+        //else if (selectedSkillPrefab == skill2Prefab)
+        //{
+        //    StartCoroutine(AttackStartDelay(0.5f, 1f));
+        //}
+        //else if (selectedSkillPrefab == skill3Prefab)
+        //{
+        //    StartCoroutine(AttackStartDelay(0.5f, 1f));
+        //}
+    }
+
+    protected override void ApplySkill()
+    {
+        if (selectedSkillPrefab == skill1Prefab)
+        {
+            //single target stun skill
+            selectedSkillPrefab.GetComponent<NormalAttack>().Attack(selectedTarget);
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
-            //stun target skill
-            selectedSkillPrefab.GetComponent<AoeAttack>().Attack(enemyTargets); //temporary
+            //defense buff skill
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
-            //taunt skill
-            selectedSkillPrefab.GetComponent<_NormalAttack>().Attack(selectedTarget); //temporary
+            //single target taunt skill
         }
 
-        StartCoroutine(EndTurnDelay(1f));
+        StartCoroutine(EndTurnDelay(0.5f));
     }
 }

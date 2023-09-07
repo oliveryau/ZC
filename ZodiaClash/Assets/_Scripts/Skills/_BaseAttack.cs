@@ -18,7 +18,6 @@ public class _BaseAttack : MonoBehaviour
     [SerializeField] protected float critRate;
     [SerializeField] protected float critMultiplier;
 
-    //[SerializeField] private bool magicAttack;
     //[SerializeField] private float magicCost; //character chi
 
     protected CharacterStats attackerStats;
