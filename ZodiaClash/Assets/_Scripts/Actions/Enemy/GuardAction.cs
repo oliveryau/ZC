@@ -8,35 +8,57 @@ public class GuardAction : _EnemyAction
     {
         if (gameManager.state == BattleState.ENEMYTURN && gameManager.activeEnemy == gameObject.name)
         {
-            if (!characterStats.checkedStatus)
+            if (enemyState == EnemyState.WAITING)
             {
-                characterStats.StartCoroutine(characterStats.CheckStatusEffects());
+                enemyState = EnemyState.CHECKSTATUS;
             }
 
-            if (!reinitialisePlayerTargets)
+            else if (enemyState == EnemyState.CHECKSTATUS)
+            {
+                if (!characterStats.checkedStatus)
+                {
+                    characterStats.CheckStatusEffects();
+                }
+                else if (characterStats.checkedStatus)
+                {
+                    enemyState = EnemyState.SKILLSELECT;
+                }
+            }
+
+            else if (enemyState == EnemyState.SKILLSELECT)
             {
                 RefreshPlayerTargets();
-            }
 
-            if (!enemyAttacking)
-            {
                 EnemySelectSkill();
             }
 
-            EnemyMovement();
+            else if (enemyState == EnemyState.TARGETING)
+            {
+                EnemySelectTarget();
+            }
 
-            if (enemyTurnComplete)
+            else if (enemyState == EnemyState.ATTACKING)
+            {
+                if (!enemyAttacking)
+                {
+                    EnemyUseSkill();
+                }
+
+                EnemyMovement();
+            }
+
+            else if (enemyState == EnemyState.ENDING)
             {
                 gameManager.state = BattleState.NEXTTURN;
 
                 selectedSkillPrefab = null;
                 selectedTarget = null;
-                reinitialisePlayerTargets = false;
                 playerTargets = null;
 
-                characterStats.checkedStatus = false;
                 enemyAttacking = false;
-                enemyTurnComplete = false;
+                characterStats.checkedStatus = false;
+
+                enemyState = EnemyState.WAITING;
             }
         }
     }
@@ -47,7 +69,7 @@ public class GuardAction : _EnemyAction
         {
             selectedSkillPrefab = skill1Prefab;
 
-            EnemySelectTarget();
+            enemyState = EnemyState.TARGETING;
         }
     }
 
@@ -61,7 +83,7 @@ public class GuardAction : _EnemyAction
                 selectedTarget = playerTargets[randomIndex];
                 Debug.Log("Enemy Selected Target: " + selectedTarget.name);
 
-                EnemyUseSkill();
+                enemyState = EnemyState.ATTACKING;
             }
         }
     }

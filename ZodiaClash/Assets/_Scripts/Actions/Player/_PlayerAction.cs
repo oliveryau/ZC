@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerState
+{
+    WAITING, CHECKSTATUS, PLAYERSELECTION, ATTACKING, ENDING
+}
+
 public class _PlayerAction : MonoBehaviour
 {
+    public PlayerState playerState;
+
     [Header("HUD")]
     [SerializeField] protected GameObject characterUi;
     [SerializeField] protected Sprite avatar;
-    [SerializeField] protected GameObject indicator;
+    public GameObject indicator;
 
     //animations
     [Header("Skill Selection")]
@@ -16,11 +23,11 @@ public class _PlayerAction : MonoBehaviour
     [SerializeField] protected GameObject skill3Prefab;
     [SerializeField] protected GameObject selectedSkillPrefab;
     protected GameObject selectedTarget;
-    protected bool reinitialiseEnemyTargets;
-    [SerializeField] protected GameObject[] enemyTargets; //all enemies
+    [SerializeField] protected GameObject[] playerTargets;
+    [SerializeField] protected GameObject[] enemyTargets;
 
     [Header("Movements")]
-    [SerializeField] protected float moveSpeed;
+    protected float moveSpeed;
     [SerializeField] protected Vector3 startPosition;
     [SerializeField] protected Transform targetPosition;
     protected bool movingToTarget;
@@ -29,13 +36,17 @@ public class _PlayerAction : MonoBehaviour
     protected bool reachedStart;
 
     protected GameManager gameManager;
+    protected CharacterStats characterStats;
     protected bool playerAttacking;
-    protected bool playerTurnComplete;
+
+    [Header("Status Effects")]
+    [HideInInspector] public int bleedCounts;
 
     private void Start()
     {
-        reinitialiseEnemyTargets = false;
+        playerState = PlayerState.WAITING;
 
+        moveSpeed = 30f;
         startPosition = transform.position;
         movingToTarget = false;
         movingToStart = false;
@@ -43,34 +54,42 @@ public class _PlayerAction : MonoBehaviour
         reachedStart = false;
 
         gameManager = FindObjectOfType<GameManager>();
+        characterStats = GetComponent<CharacterStats>();
         playerAttacking = false;
-        playerTurnComplete = false;
     }
 
-    protected void RefreshEnemyTargets()
+    protected void RefreshTargets()
     {
-        //find all enemies that are present again
-        reinitialiseEnemyTargets = true;
-
+        playerTargets = GameObject.FindGameObjectsWithTag("Player");
         enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
-    protected void DisplayUi()
+    protected void ToggleUi(bool value)
     {
-        if (!playerAttacking)
+        if (value == true)
         {
             characterUi.SetActive(true);
         }
-        else
+        else if (value == false)
         {
             characterUi.SetActive(false);
         }
 
         if (selectedTarget != null) //after selecting target, hide all player and enemy indicators
         {
-            foreach (GameObject enemy in enemyTargets)
+            if (selectedTarget.gameObject.CompareTag("Enemy"))
             {
-                enemy.GetComponent<_EnemyAction>().indicator.SetActive(false);
+                foreach (GameObject enemy in enemyTargets)
+                {
+                    enemy.GetComponent<_EnemyAction>().indicator.SetActive(false);
+                }
+            }
+            else if (selectedTarget.gameObject.CompareTag("Player"))
+            {
+                foreach (GameObject player in playerTargets)
+                {
+                    player.GetComponent<_PlayerAction>().indicator.SetActive(false);
+                }
             }
         }
     }
@@ -113,7 +132,8 @@ public class _PlayerAction : MonoBehaviour
 
     public virtual void SelectSkill(string btn)
     {
-        //show specific target indicators based on skillPrefab
+        //show specific target ui for specific skillPrefabs in override methods
+
         if (btn.CompareTo("skill1") == 0)
         {
             selectedSkillPrefab = skill1Prefab;
@@ -172,11 +192,14 @@ public class _PlayerAction : MonoBehaviour
 
     protected IEnumerator EndTurnDelay(float seconds)
     {
+        //if (!movingToTarget) //check for skills that do not require movement
+        //{
+
+        //}
         yield return new WaitUntil(() => reachedStart);
-        //check for skills that do not require movement
 
         yield return new WaitForSeconds(seconds);
 
-        playerTurnComplete = true;
+        playerState = PlayerState.ENDING;
     }
 }

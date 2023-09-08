@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        state = BattleState.NEWROUND;
+
         CharacterStats[] characters = FindObjectsOfType<CharacterStats>();
         foreach (CharacterStats chara in characters)
         {
@@ -31,7 +33,6 @@ public class GameManager : MonoBehaviour
 
         roundCounter = 0;
         roundInProgress = false;
-        state = BattleState.NEWROUND;
     }
 
     private void Update()

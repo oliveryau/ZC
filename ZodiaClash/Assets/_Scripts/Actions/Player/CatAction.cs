@@ -8,26 +8,56 @@ public class CatAction : _PlayerAction
     {
         if (gameManager.state == BattleState.PLAYERTURN && gameManager.activePlayer == gameObject.name)
         {
-            if (!reinitialiseEnemyTargets)
+            if (playerState == PlayerState.WAITING)
             {
-                RefreshEnemyTargets();
+                playerState = PlayerState.CHECKSTATUS;
             }
 
-            DisplayUi();
+            else if (playerState == PlayerState.CHECKSTATUS)
+            {
+                if (!characterStats.checkedStatus)
+                {
+                    characterStats.CheckStatusEffects();
+                }
+                else if (characterStats.checkedStatus)
+                {
+                    playerState = PlayerState.PLAYERSELECTION;
+                }
+            }
 
-            SelectTarget();
-            PlayerMovement();
+            else if (playerState == PlayerState.PLAYERSELECTION)
+            {
+                RefreshTargets();
 
-            if (playerTurnComplete)
+                ToggleUi(true);
+
+                SelectTarget();
+            }
+
+            else if (playerState == PlayerState.ATTACKING)
+            {
+                ToggleUi(false);
+
+                if (!playerAttacking)
+                {
+                    UseSkill();
+                }
+
+                PlayerMovement();
+            }
+
+            else if (playerState == PlayerState.ENDING)
             {
                 gameManager.state = BattleState.NEXTTURN;
 
                 selectedSkillPrefab = null;
                 selectedTarget = null;
-                reinitialiseEnemyTargets = false;
                 enemyTargets = null;
+
                 playerAttacking = false;
-                playerTurnComplete = false;
+                characterStats.checkedStatus = false;
+
+                playerState = PlayerState.WAITING;
             }
         }
     }
@@ -41,6 +71,11 @@ public class CatAction : _PlayerAction
             foreach (GameObject enemy in enemyTargets)
             {
                 enemy.GetComponent<_EnemyAction>().indicator.SetActive(true);
+            }
+
+            foreach (GameObject player in playerTargets)
+            {
+                player.GetComponent<_PlayerAction>().indicator.SetActive(false);
             }
         }
     }
@@ -58,7 +93,8 @@ public class CatAction : _PlayerAction
                 if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                 {
                     selectedTarget = hit.collider.gameObject;
-                    UseSkill();
+
+                    playerState = PlayerState.ATTACKING;
                 }                
             }
         }
@@ -68,14 +104,10 @@ public class CatAction : _PlayerAction
     {
         playerAttacking = true;
 
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab) //skills that require movement
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that require movement
         {
             movingToTarget = true; //movement is triggered
         }
-        //else //skills that do not require movement
-        //{
-        //    AttackAnimation();
-        //}
     }
 
     protected override void AttackAnimation()

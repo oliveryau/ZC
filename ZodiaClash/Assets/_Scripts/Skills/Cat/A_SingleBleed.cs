@@ -19,17 +19,16 @@ public class A_SingleBleed : NormalAttack
         if (randomValue <= bleedRate)
         {
             //apply bleed status effect to character
-            targetStats.gameObject.GetComponent<CharacterStats>().bleedCounts += bleedCount;
+            Debug.Log("Single Bleed: " + targetStats.gameObject.name);
+            target.GetComponent<CharacterStats>().bleedList.Add(bleedCount);
         }
     }
 
-    public void ApplyBleed(CharacterStats bleedTarget)
+    public void ApplyBleed(CharacterStats bleedTarget) //universal bleed formula
     {
-        Debug.LogError(bleedTarget.gameObject.name);
         //calculate and apply bleed per turn
-        float value = 0.05f * bleedTarget.maxHealth;
-
-        bleedDamage = Mathf.Round(value * 10.0f) * 0.1f;
+        bleedDamage = Mathf.RoundToInt(
+            0.1f * bleedTarget.maxHealth);
 
         bleedTarget.TakeDamage(bleedDamage);
     }

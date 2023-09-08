@@ -39,19 +39,17 @@ public class _BaseAttack : MonoBehaviour
         if (randomValue <= critRate)
         {
             //critical hit
-            Debug.Log("Crit Hit!");
-            float value = Mathf.Max(1, minAttackMultiplier, maxAttackMultiplier) *
+            Debug.Log("Critical Hit");
+            damage = Mathf.RoundToInt(
+                Mathf.Max(1, minAttackMultiplier, maxAttackMultiplier) *
                 totalBuff * (attackerStats.attack * (100f / (100f + targetStats.defense)))
-                * critMultiplier;
-
-            damage = Mathf.Round(value * 10.0f) * 0.1f;
+                * critMultiplier);
         }
         else
         {
-            float value = Mathf.Max(1, minAttackMultiplier, maxAttackMultiplier) * 
-                totalBuff * (attackerStats.attack * (100f / (100f + targetStats.defense)));
-
-            damage = Mathf.Round(value * 10.0f) * 0.1f;
+            damage = Mathf.RoundToInt(
+                Mathf.Max(1, minAttackMultiplier, maxAttackMultiplier) * 
+                totalBuff * (attackerStats.attack * (100f / (100f + targetStats.defense))));
         }
         
         Debug.Log("Damage: " + damage);

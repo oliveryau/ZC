@@ -10,6 +10,6 @@ public class NormalAttack : _BaseAttack
 
         //owner.GetComponent<Animator>().Play(animationName);
         Debug.Log("Attacked " + target.name);
-        targetStats.TakeDamage(damage);
+        target.GetComponent<CharacterStats>().TakeDamage(damage);
     }
 }

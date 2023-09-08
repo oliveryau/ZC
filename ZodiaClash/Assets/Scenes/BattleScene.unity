@@ -1989,8 +1989,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2062510875}
   - {fileID: 524892229}
+  - {fileID: 2062510875}
   - {fileID: 1439850446}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2212,7 +2212,7 @@ GameObject:
   - component: {fileID: 2062510875}
   - component: {fileID: 2062510874}
   m_Layer: 0
-  m_Name: Horse
+  m_Name: Goat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AoeAttack : _BaseAttack
 {
-    public void Attack(GameObject[] targets)
+    public virtual void Attack(GameObject[] targets)
     {
         //owner.GetComponent<Animator>().Play(animationName);
 
@@ -12,7 +12,7 @@ public class AoeAttack : _BaseAttack
         {
             CalculateDamage(target);
             Debug.Log("Attacked " + target.name);
-            targetStats.TakeDamage(damage);
+            target.GetComponent<CharacterStats>().TakeDamage(damage);
         }
     }
 }

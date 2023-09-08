@@ -8,26 +8,56 @@ public class OxAction : _PlayerAction
     {
         if (gameManager.state == BattleState.PLAYERTURN && gameManager.activePlayer == gameObject.name)
         {
-            if (!reinitialiseEnemyTargets)
+            if (playerState == PlayerState.WAITING)
             {
-                RefreshEnemyTargets();
+                playerState = PlayerState.CHECKSTATUS;
             }
 
-            DisplayUi();
+            else if (playerState == PlayerState.CHECKSTATUS)
+            {
+                if (!characterStats.checkedStatus)
+                {
+                    characterStats.CheckStatusEffects();
+                }
+                else if (characterStats.checkedStatus)
+                {
+                    playerState = PlayerState.PLAYERSELECTION;
+                }
+            }
 
-            SelectTarget();
-            PlayerMovement();
+            else if (playerState == PlayerState.PLAYERSELECTION)
+            {
+                RefreshTargets();
 
-            if (playerTurnComplete)
+                ToggleUi(true);
+
+                SelectTarget();
+            }
+
+            else if (playerState == PlayerState.ATTACKING)
+            {
+                ToggleUi(false);
+
+                if (!playerAttacking)
+                {
+                    UseSkill();
+                }
+
+                PlayerMovement();
+            }
+
+            else if (playerState == PlayerState.ENDING)
             {
                 gameManager.state = BattleState.NEXTTURN;
 
                 selectedSkillPrefab = null;
                 selectedTarget = null;
-                reinitialiseEnemyTargets = false;
                 enemyTargets = null;
+
                 playerAttacking = false;
-                playerTurnComplete = false;
+                characterStats.checkedStatus = false;
+
+                playerState = PlayerState.WAITING;
             }
         }
     }
@@ -36,11 +66,28 @@ public class OxAction : _PlayerAction
     {
         base.SelectSkill(btn);
 
-        if (selectedSkillPrefab == skill1Prefab)
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill3Prefab)
         {
             foreach (GameObject enemy in enemyTargets)
             {
                 enemy.GetComponent<_EnemyAction>().indicator.SetActive(true);
+            }
+
+            foreach (GameObject player in playerTargets)
+            {
+                player.GetComponent<_PlayerAction>().indicator.SetActive(false);
+            }
+        }
+        else if (selectedSkillPrefab == skill2Prefab)
+        {
+            foreach (GameObject player in playerTargets)
+            {
+                player.GetComponent<_PlayerAction>().indicator.SetActive(true);
+            }
+
+            foreach (GameObject enemy in enemyTargets)
+            {
+                enemy.GetComponent<_EnemyAction>().indicator.SetActive(false);
             }
         }
     }
@@ -58,7 +105,20 @@ public class OxAction : _PlayerAction
                 if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                 {
                     selectedTarget = hit.collider.gameObject;
-                    UseSkill();
+
+                    playerState = PlayerState.ATTACKING;
+                }
+            }
+            else if (selectedSkillPrefab == skill2Prefab)
+            {
+                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
+                if (hit.collider != null && hit.collider.CompareTag("Player"))
+                {
+                    selectedTarget = hit.collider.gameObject;
+
+                    playerState = PlayerState.ATTACKING;
                 }
             }
         }
@@ -103,7 +163,7 @@ public class OxAction : _PlayerAction
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
-            //defense buff skill
+            //aoe defense buff skill
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {

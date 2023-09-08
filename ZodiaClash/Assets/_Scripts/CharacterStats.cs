@@ -22,10 +22,9 @@ public class CharacterStats : MonoBehaviour
 
     [Header("Status Effects")]
     public bool checkedStatus;
-    public int bleedCounts;
+    public List<int> bleedList;
 
     //private float maxChi = 2;
-    private bool dead = false;
 
     private void Start()
     {
@@ -47,20 +46,6 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public IEnumerator CheckStatusEffects()
-    {
-        if (bleedCounts > 0)
-        {
-            A_SingleBleed bleed = FindObjectOfType<A_SingleBleed>();
-            bleed.ApplyBleed(this);
-            --bleedCounts;
-        }
-
-        yield return new WaitForSeconds(1f); //delay after apply effects
-
-        checkedStatus = true;
-    }
-
     public void TakeDamage(float damage)
     {
         health -= damage;
@@ -70,19 +55,58 @@ public class CharacterStats : MonoBehaviour
         {
             healthFillSecond.fillAmount = health / maxHealth; //player second hp bar
         }
-        //animator.Play("Damaged");
 
         //set damage text
         if (health <= 0)
         {
-            Debug.Log(gameObject.name + " is dead");
+            Debug.Log(gameObject.name + " Died");
+
+            if (gameObject.CompareTag("Player"))
+            {
+                _PlayerAction player = GetComponent<_PlayerAction>();
+                player.playerState = PlayerState.ENDING;
+            }
+            else if (gameObject.CompareTag("Enemy"))
+            {
+                _EnemyAction enemy = GetComponent<_EnemyAction>();
+                enemy.enemyState = EnemyState.ENDING;
+            }
 
             health = 0;
-            dead = true;
             gameObject.tag = "Dead";
 
             healthBarBattlefield.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
+        else
+        {
+            //animator.Play("Damaged");
+        }
+    }
+
+    public void CheckStatusEffects()
+    {
+        if (bleedList.Count != 0) //bleed status
+        {
+            for (int i = 0; i < bleedList.Count; i++)
+            {
+                if (bleedList[i] > 0) //apply bleed
+                {
+                    A_SingleBleed bleed = FindObjectOfType<A_SingleBleed>();
+                    bleed.ApplyBleed(this);
+                    --bleedList[i];
+                }
+            }
+
+            for (int j = 0;  j < bleedList.Count; j++)
+            {
+                if (bleedList[j] <= 0) //remove bleed status
+                {
+                    bleedList.RemoveAt(j);
+                }
+            }
+        }
+
+        checkedStatus = true;
     }
 }

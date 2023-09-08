@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyState
+{
+    WAITING, CHECKSTATUS, SKILLSELECT, TARGETING, ATTACKING, ENDING
+}
+
 public class _EnemyAction : MonoBehaviour
 {
+    public EnemyState enemyState;
+
     [Header("HUD")]
     public GameObject indicator;
 
@@ -11,13 +18,12 @@ public class _EnemyAction : MonoBehaviour
     [SerializeField] protected GameObject skill1Prefab;
     [SerializeField] protected GameObject skill2Prefab;
     [SerializeField] protected GameObject skill3Prefab;
-    protected GameObject selectedSkillPrefab;
+    [SerializeField] protected GameObject selectedSkillPrefab;
     protected GameObject selectedTarget;
-    protected bool reinitialisePlayerTargets;
     [SerializeField] protected GameObject[] playerTargets; //all players
 
     [Header("Movements")]
-    [SerializeField] protected float moveSpeed;
+    protected float moveSpeed;
     [SerializeField] protected Vector3 startPosition;
     [SerializeField] protected Transform targetPosition;
     protected bool movingToTarget;
@@ -28,15 +34,15 @@ public class _EnemyAction : MonoBehaviour
     protected GameManager gameManager;
     protected CharacterStats characterStats;
     protected bool enemyAttacking;
-    protected bool enemyTurnComplete;
 
     [Header("Status Effects")]
     [HideInInspector] public int bleedCounts;
 
     private void Start()
     {
-        reinitialisePlayerTargets = false;
+        enemyState = EnemyState.WAITING;
 
+        moveSpeed = 30f;
         startPosition = transform.position;
         movingToTarget = false;
         movingToStart = false;
@@ -46,14 +52,10 @@ public class _EnemyAction : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         characterStats = GetComponent<CharacterStats>();
         enemyAttacking = false;
-        enemyTurnComplete = false;
     }
 
     protected void RefreshPlayerTargets()
     {
-        //find all players that are present again
-        reinitialisePlayerTargets = true;
-
         playerTargets = GameObject.FindGameObjectsWithTag("Player");
     }
 
@@ -120,7 +122,7 @@ public class _EnemyAction : MonoBehaviour
 
     protected IEnumerator EnemyAttackStartDelay(float startDelay, float endDelay)
     {
-        yield return new WaitForSeconds(startDelay); //delay before attacking
+        yield return new WaitForSeconds(startDelay); //walk delay before attacking
 
         EnemyApplySkill();
 
@@ -140,11 +142,14 @@ public class _EnemyAction : MonoBehaviour
 
     protected IEnumerator EnemyEndTurnDelay(float seconds)
     {
-        yield return new WaitUntil(() => reachedStart);
-        //check for skills that do not require movement
+        //if (!movingToTarget) //check for skills that do not require movement
+        //{
 
+        //}
+        yield return new WaitUntil(() => reachedStart);
+        
         yield return new WaitForSeconds(seconds);
 
-        enemyTurnComplete = true;
+        enemyState = EnemyState.ENDING;
     }
 }
