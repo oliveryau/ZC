@@ -20,13 +20,14 @@ public class _EnemyAction : MonoBehaviour
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected Vector3 startPosition;
     [SerializeField] protected Transform targetPosition;
-
-    protected GameManager gameManager;
-    protected bool enemyAttacking;
     protected bool movingToTarget;
     protected bool movingToStart;
     protected bool reachedTarget;
     protected bool reachedStart;
+
+    protected GameManager gameManager;
+    protected CharacterStats characterStats;
+    protected bool enemyAttacking;
     protected bool enemyTurnComplete;
 
     [Header("Status Effects")]
@@ -43,6 +44,7 @@ public class _EnemyAction : MonoBehaviour
         reachedStart = false;
 
         gameManager = FindObjectOfType<GameManager>();
+        characterStats = GetComponent<CharacterStats>();
         enemyAttacking = false;
         enemyTurnComplete = false;
     }

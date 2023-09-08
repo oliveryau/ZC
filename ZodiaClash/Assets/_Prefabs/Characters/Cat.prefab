@@ -147,6 +147,7 @@ MonoBehaviour:
   attack: 10
   defense: 10
   speed: 5
+  bleedCounts: 0
 --- !u!114 &748038080333493805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,3 +492,5 @@ MonoBehaviour:
   maxAttackMultiplier: 1.2
   critRate: 0.5
   critMultiplier: 1.5
+  bleedRate: 1
+  bleedCount: 2

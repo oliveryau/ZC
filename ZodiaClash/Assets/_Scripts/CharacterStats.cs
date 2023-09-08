@@ -20,8 +20,12 @@ public class CharacterStats : MonoBehaviour
     public float defense;
     public float speed;
 
+    [Header("Status Effects")]
+    public bool checkedStatus;
+    public int bleedCounts;
+
+    //private float maxChi = 2;
     private bool dead = false;
-    private float maxChi = 2;
 
     private void Start()
     {
@@ -31,6 +35,8 @@ public class CharacterStats : MonoBehaviour
         {
             healthFillSecond.fillAmount = health / maxHealth; //player second hp bar
         }
+
+        checkedStatus = false;
     }
 
     private void Update()
@@ -39,6 +45,20 @@ public class CharacterStats : MonoBehaviour
         {
             health = maxHealth;
         }
+    }
+
+    public IEnumerator CheckStatusEffects()
+    {
+        if (bleedCounts > 0)
+        {
+            A_SingleBleed bleed = FindObjectOfType<A_SingleBleed>();
+            bleed.ApplyBleed(this);
+            --bleedCounts;
+        }
+
+        yield return new WaitForSeconds(1f); //delay after apply effects
+
+        checkedStatus = true;
     }
 
     public void TakeDamage(float damage)

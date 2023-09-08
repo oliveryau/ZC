@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
                         activeEnemy = currentCharacter.gameObject.name;
 
                         Debug.Log("State: Enemy Turn");
+                        Debug.Log("Active Character: " + activeEnemy);
                         state = BattleState.ENEMYTURN;
                     }
                     else if (currentCharacter.tag == "Player")
@@ -79,6 +80,7 @@ public class GameManager : MonoBehaviour
                         activePlayer = currentCharacter.gameObject.name;
 
                         Debug.Log("State: Player Turn");
+                        Debug.Log("Active Character: " + activePlayer);
                         state = BattleState.PLAYERTURN;
                     }
                     currentPlayerIndex++;
@@ -109,7 +111,7 @@ public class GameManager : MonoBehaviour
 
         foreach (CharacterStats chara in charactersList)
         {
-            Debug.Log("Name: " + chara.gameObject.name + ", Speed: " + chara.speed);
+            Debug.Log("Character: " + chara.gameObject.name + ", Speed: " + chara.speed);
         }
     }
 
@@ -118,7 +120,7 @@ public class GameManager : MonoBehaviour
         DetermineTurnOrder();
 
         yield return new WaitForSeconds(seconds);
-        Debug.Log("New Round Time Delayed");
+        Debug.Log("New Round Delay");
 
         state = BattleState.NEXTTURN;
     }

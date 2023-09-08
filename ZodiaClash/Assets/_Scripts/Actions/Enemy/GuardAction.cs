@@ -8,6 +8,11 @@ public class GuardAction : _EnemyAction
     {
         if (gameManager.state == BattleState.ENEMYTURN && gameManager.activeEnemy == gameObject.name)
         {
+            if (!characterStats.checkedStatus)
+            {
+                characterStats.StartCoroutine(characterStats.CheckStatusEffects());
+            }
+
             if (!reinitialisePlayerTargets)
             {
                 RefreshPlayerTargets();
@@ -22,13 +27,14 @@ public class GuardAction : _EnemyAction
 
             if (enemyTurnComplete)
             {
-                Debug.Log("Guard End Turn");
                 gameManager.state = BattleState.NEXTTURN;
 
                 selectedSkillPrefab = null;
                 selectedTarget = null;
                 reinitialisePlayerTargets = false;
                 playerTargets = null;
+
+                characterStats.checkedStatus = false;
                 enemyAttacking = false;
                 enemyTurnComplete = false;
             }
