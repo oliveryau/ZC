@@ -9,8 +9,7 @@ public class _BaseAttack : MonoBehaviour
     [SerializeField] protected string animationName;
 
     [Header("Integer")]
-    [SerializeField] protected float skillAttackPercent;
-    [SerializeField] protected float extraAttackPercent;
+    [SerializeField] protected int skillAttackPercent;
 
     [Header("Decimal")]
     [SerializeField] protected float minAttackMultiplier;
@@ -18,11 +17,8 @@ public class _BaseAttack : MonoBehaviour
     [SerializeField] protected float critRate;
     [SerializeField] protected float critMultiplier;
 
-    //[SerializeField] private float magicCost; //character chi
-
     protected CharacterStats attackerStats;
     protected CharacterStats targetStats;
-    protected float totalBuff;
     protected float damage;
 
     public void CalculateDamage(GameObject target)
@@ -32,24 +28,21 @@ public class _BaseAttack : MonoBehaviour
 
         //critical hit chance
         float randomValue = Random.Range(0f, 1f);
-        Debug.Log("Crit Roll: " + randomValue);
-
-        totalBuff = (skillAttackPercent + extraAttackPercent) / 100;
 
         if (randomValue <= critRate)
         {
             //critical hit
             Debug.Log("Critical Hit");
             damage = Mathf.RoundToInt(
-                Mathf.Max(1, minAttackMultiplier, maxAttackMultiplier) *
-                totalBuff * (attackerStats.attack * (100f / (100f + targetStats.defense)))
+                Mathf.Max(minAttackMultiplier, maxAttackMultiplier) *
+                (skillAttackPercent / 100) * (attackerStats.attack * (100f / (100f + targetStats.defense)))
                 * critMultiplier);
         }
         else
         {
             damage = Mathf.RoundToInt(
-                Mathf.Max(1, minAttackMultiplier, maxAttackMultiplier) * 
-                totalBuff * (attackerStats.attack * (100f / (100f + targetStats.defense))));
+                Mathf.Max(minAttackMultiplier, maxAttackMultiplier) * 
+                (skillAttackPercent / 100) * (attackerStats.attack * (100f / (100f + targetStats.defense))));
         }
         
         Debug.Log("Damage: " + damage);

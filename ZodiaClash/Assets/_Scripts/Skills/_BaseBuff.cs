@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class _BaseBuff : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Character")]
+    [SerializeField] protected GameObject owner;
+    [SerializeField] protected string animationName;
 
-    // Update is called once per frame
-    void Update()
+    [Header("Integer")]
+    public int skillBuffPercent;
+
+    protected CharacterStats ownerStats;
+    protected CharacterStats targetStats;
+
+    public virtual void CalculateBuff(GameObject target)
     {
-        
+        ownerStats = owner.GetComponent<CharacterStats>();
+        targetStats = target.GetComponent<CharacterStats>();
     }
 }

@@ -51,6 +51,7 @@ public class SkillButtons : MonoBehaviour
                 }
 
                 break;
+
             case "Ox":
 
                 if (btn.CompareTo("Skill1Btn") == 0)
@@ -67,6 +68,23 @@ public class SkillButtons : MonoBehaviour
                 }
 
                 break;
+
+            case "Goat":
+
+                if (btn.CompareTo("Skill1Btn") == 0)
+                {
+                    currentPlayer.GetComponent<GoatAction>().SelectSkill("skill1");
+                }
+                else if (btn.CompareTo("Skill2Btn") == 0)
+                {
+                    currentPlayer.GetComponent<GoatAction>().SelectSkill("skill2");
+                }
+                else if (btn.CompareTo("Skill3Btn") == 0)
+                {
+                    currentPlayer.GetComponent<GoatAction>().SelectSkill("skill3");
+                }
+                break;
+
             default:
 
                 Debug.Log("No current player found, BUG");

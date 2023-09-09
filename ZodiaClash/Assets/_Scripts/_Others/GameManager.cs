@@ -50,16 +50,16 @@ public class GameManager : MonoBehaviour
         }
         else if (state == BattleState.NEXTTURN)
         {
-            Debug.Log("State: Next Turn");
+            Debug.LogWarning("State: Next Turn");
             //check if battle has ended
             if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0) //no enemies left
             {
-                Debug.Log("State: Win");
+                Debug.LogWarning("State: Win");
                 state = BattleState.WIN;
             }
             else if (GameObject.FindGameObjectsWithTag("Player").Length <= 0) //no players left
             {
-                Debug.Log("State: Lose");
+                Debug.LogWarning("State: Lose");
                 state = BattleState.LOSE;
             }
             else
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
                     {
                         activeEnemy = currentCharacter.gameObject.name;
 
-                        Debug.Log("State: Enemy Turn");
+                        Debug.LogWarning("State: Enemy Turn");
                         Debug.Log("Active Character: " + activeEnemy);
                         state = BattleState.ENEMYTURN;
                     }
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
                     {
                         activePlayer = currentCharacter.gameObject.name;
 
-                        Debug.Log("State: Player Turn");
+                        Debug.LogWarning("State: Player Turn");
                         Debug.Log("Active Character: " + activePlayer);
                         state = BattleState.PLAYERTURN;
                     }
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("State: End Round");
+                    Debug.LogWarning("State: End Round");
                     state = BattleState.NEWROUND;
                     currentPlayerIndex = 0; //reset the index for the next round
                     roundInProgress = false;

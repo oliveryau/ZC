@@ -7,7 +7,6 @@ public class B_AoeBleed : AoeAttack
     [Header("Effects")]
     [SerializeField] private float bleedRate; //bleed chance
     [SerializeField] private int bleedCount; //number of turns to bleed
-    private float bleedDamage; //damage of bleed
 
     public override void Attack(GameObject[] targets)
     {
@@ -17,12 +16,11 @@ public class B_AoeBleed : AoeAttack
         foreach (GameObject target in targets)
         {
             float randomValue = Random.Range(0f, 1f);
-            Debug.Log("Bleed Roll: " + randomValue);
 
             if (randomValue <= bleedRate)
             {
-                Debug.Log("AOE Bleed: " + target.gameObject.name);
-                target.GetComponent<CharacterStats>().bleedList.Add(bleedCount);
+                Debug.Log("Bleed Applied");
+                target.GetComponent<CharacterStats>().bleedStack.Add(bleedCount);
             }
         }
     }

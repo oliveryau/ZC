@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OxAction : _PlayerAction
+public class GoatAction : _PlayerAction
 {
     private void Update()
     {
@@ -48,6 +48,8 @@ public class OxAction : _PlayerAction
 
             else if (playerState == PlayerState.ENDING)
             {
+                characterStats.CheckEndStatusEffects();
+
                 gameManager.state = BattleState.NEXTTURN;
 
                 selectedSkillPrefab = null;
@@ -66,7 +68,7 @@ public class OxAction : _PlayerAction
     {
         base.SelectSkill(btn);
 
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill3Prefab)
+        if (selectedSkillPrefab == skill1Prefab)
         {
             foreach (GameObject enemy in enemyTargets)
             {
@@ -78,7 +80,7 @@ public class OxAction : _PlayerAction
                 player.GetComponent<_PlayerAction>().indicator.SetActive(false);
             }
         }
-        else if (selectedSkillPrefab == skill2Prefab)
+        else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
             foreach (GameObject player in playerTargets)
             {
@@ -110,7 +112,7 @@ public class OxAction : _PlayerAction
                     playerState = PlayerState.ATTACKING;
                 }
             }
-            else if (selectedSkillPrefab == skill2Prefab) //skills that targets allies
+            else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that targets allies
             {
                 if (hit.collider != null && hit.collider.CompareTag("Player"))
                 {
@@ -130,10 +132,10 @@ public class OxAction : _PlayerAction
         {
             movingToTarget = true; //movement is triggered
         }
-        //else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that do not require movement
-        //{
-        //    AttackAnimation();
-        //}
+        else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
+        {
+            AttackAnimation();
+        }
     }
 
     protected override void AttackAnimation()
@@ -142,30 +144,32 @@ public class OxAction : _PlayerAction
         {
             StartCoroutine(AttackStartDelay(0.5f, 1f));
         }
-        //else if (selectedSkillPrefab == skill2Prefab)
-        //{
-        //    StartCoroutine(AttackStartDelay(0.5f, 1f));
-        //}
-        //else if (selectedSkillPrefab == skill3Prefab)
-        //{
-        //    StartCoroutine(AttackStartDelay(0.5f, 1f));
-        //}
+        else if (selectedSkillPrefab == skill2Prefab)
+        {
+            StartCoroutine(AttackStartDelay(0.5f, 1f));
+        }
+        else if (selectedSkillPrefab == skill3Prefab)
+        {
+            StartCoroutine(BuffStartDelay(0.5f, 1f));
+        }
     }
 
     protected override void ApplySkill()
     {
         if (selectedSkillPrefab == skill1Prefab)
         {
-            //single target stun skill
+            //single target DoT skill
             selectedSkillPrefab.GetComponent<NormalAttack>().Attack(selectedTarget);
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
-            //ally shield buff skill
+            //ally attack buff skill
+            selectedSkillPrefab.GetComponent<B_AttackBuff>().AttackBuff(selectedTarget);
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
-            //single target taunt skill
+            //ally heal cleanse skill
+            selectedSkillPrefab.GetComponent<C_SingleHeal>().Heal(selectedTarget);
         }
 
         StartCoroutine(EndTurnDelay(0.5f));

@@ -84,11 +84,12 @@ public class CatAction : _PlayerAction
     {
         if (Input.GetMouseButtonDown(0) && selectedSkillPrefab != null)
         {
+            //raycasting mousePosition
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
             if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that targets enemies
             {
-                //raycasting mousePosition
-                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
                 if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                 {
@@ -123,16 +124,17 @@ public class CatAction : _PlayerAction
         if (selectedSkillPrefab == skill1Prefab)
         {
             //single target DoT skill
-            selectedSkillPrefab.GetComponent<NormalAttack>().Attack(selectedTarget);
+            selectedSkillPrefab.GetComponent<A_SingleBleed>().Attack(selectedTarget);
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
             //aoe target DoT skill
-            selectedSkillPrefab.GetComponent<AoeAttack>().Attack(enemyTargets);
+            selectedSkillPrefab.GetComponent<B_AoeBleed>().Attack(enemyTargets);
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
             //strong single target DoT skill
+            selectedSkillPrefab.GetComponent<A_SingleBleed>().Attack(selectedTarget);
         }
 
         StartCoroutine(EndTurnDelay(0.5f));

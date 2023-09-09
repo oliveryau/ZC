@@ -19,13 +19,15 @@ public class _EnemyAction : MonoBehaviour
     [SerializeField] protected GameObject skill2Prefab;
     [SerializeField] protected GameObject skill3Prefab;
     [SerializeField] protected GameObject selectedSkillPrefab;
+
+    [Header("Target Selection")]
+    [SerializeField] protected GameObject[] playerTargets;
     protected GameObject selectedTarget;
-    [SerializeField] protected GameObject[] playerTargets; //all players
 
     [Header("Movements")]
-    protected float moveSpeed;
     [SerializeField] protected Vector3 startPosition;
     [SerializeField] protected Transform targetPosition;
+    protected float moveSpeed;
     protected bool movingToTarget;
     protected bool movingToStart;
     protected bool reachedTarget;
