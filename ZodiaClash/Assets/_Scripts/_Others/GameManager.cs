@@ -121,7 +121,6 @@ public class GameManager : MonoBehaviour
         DetermineTurnOrder();
 
         yield return new WaitForSeconds(seconds);
-        Debug.Log("New Round Delay");
 
         state = BattleState.NEXTTURN;
     }

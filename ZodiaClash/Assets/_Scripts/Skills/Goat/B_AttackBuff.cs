@@ -7,18 +7,22 @@ public class B_AttackBuff : _BaseBuff
     [Header("Effects")]
     [SerializeField] private int buffCount;
 
-    private int buffAmount;
+    private float buffAmount;
 
     public void AttackBuff(GameObject target)
     {
-        CalculateBuff(target);
+        GetTargets(target);
 
-        buffAmount = Mathf.RoundToInt((skillBuffPercent / 100) *
-            targetStats.attack);
+        buffAmount = Mathf.RoundToInt(
+            (skillBuffPercent / 100f) * targetStats.attack);
 
-        Debug.Log("Attack Buff: " + buffAmount);
+        Debug.LogError("Attack Buff: " + buffAmount);
 
-        targetStats.attackBuffCounter += buffCount;
-        targetStats.attack += buffAmount;
+        if (targetStats.attackBuffCounter <= 0)
+        {
+            targetStats.attack += buffAmount;
+        }
+
+        targetStats.attackBuffCounter = buffCount;
     }
 }

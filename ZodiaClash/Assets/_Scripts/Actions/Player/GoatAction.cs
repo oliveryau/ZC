@@ -10,6 +10,8 @@ public class GoatAction : _PlayerAction
         {
             if (playerState == PlayerState.WAITING)
             {
+                turnIndicator.SetActive(true);
+
                 playerState = PlayerState.CHECKSTATUS;
             }
 
@@ -17,7 +19,7 @@ public class GoatAction : _PlayerAction
             {
                 if (!characterStats.checkedStatus)
                 {
-                    characterStats.CheckStatusEffects();
+                    StartCoroutine(characterStats.CheckStatusEffects());
                 }
                 else if (characterStats.checkedStatus)
                 {
@@ -52,6 +54,8 @@ public class GoatAction : _PlayerAction
 
                 gameManager.state = BattleState.NEXTTURN;
 
+                turnIndicator.SetActive(false);
+
                 selectedSkillPrefab = null;
                 selectedTarget = null;
                 enemyTargets = null;
@@ -72,24 +76,24 @@ public class GoatAction : _PlayerAction
         {
             foreach (GameObject enemy in enemyTargets)
             {
-                enemy.GetComponent<_EnemyAction>().indicator.SetActive(true);
+                enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
             }
 
             foreach (GameObject player in playerTargets)
             {
-                player.GetComponent<_PlayerAction>().indicator.SetActive(false);
+                player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
             }
         }
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
             foreach (GameObject player in playerTargets)
             {
-                player.GetComponent<_PlayerAction>().indicator.SetActive(true);
+                player.GetComponent<_PlayerAction>().targetIndicator.SetActive(true);
             }
 
             foreach (GameObject enemy in enemyTargets)
             {
-                enemy.GetComponent<_EnemyAction>().indicator.SetActive(false);
+                enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
             }
         }
     }
@@ -146,7 +150,7 @@ public class GoatAction : _PlayerAction
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
-            StartCoroutine(AttackStartDelay(0.5f, 1f));
+            StartCoroutine(BuffStartDelay(0.5f, 1f));
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
@@ -172,6 +176,6 @@ public class GoatAction : _PlayerAction
             selectedSkillPrefab.GetComponent<C_SingleHeal>().Heal(selectedTarget);
         }
 
-        StartCoroutine(EndTurnDelay(0.5f));
+        StartCoroutine(EndTurnDelay(1f));
     }
 }

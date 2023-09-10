@@ -350,6 +350,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &146275848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1272216578475992362, guid: 76fe8cdf80788bd40ba89ed64f64875b, type: 3}
+  m_PrefabInstance: {fileID: 5673854262049053375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &159293937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
@@ -607,6 +618,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4139341375599024164}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
+      propertyPath: floatingText
+      value: 
+      objectReference: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
+    - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBarBattlefield
       value: 
       objectReference: {fileID: 694591440}
@@ -701,6 +716,10 @@ PrefabInstance:
       propertyPath: healthFill
       value: 
       objectReference: {fileID: 4139341375599024164}
+    - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
+      propertyPath: floatingText
+      value: 
+      objectReference: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBarBattlefield
       value: 
@@ -1036,7 +1055,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000007d9ac76921f85099
+  m_ApplyToSortingLayers: 000000007d9ac76921f85099d7d9ae59
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1283,7 +1302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.59183884, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1381,6 +1400,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
   m_PrefabInstance: {fileID: 285776933}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &797842794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6927981609377560222, guid: 76fe8cdf80788bd40ba89ed64f64875b, type: 3}
+  m_PrefabInstance: {fileID: 5673854262049053375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &841525083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2418,6 +2448,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4139341375599024164}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
+      propertyPath: floatingText
+      value: 
+      objectReference: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
+    - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBarBattlefield
       value: 
       objectReference: {fileID: 4139341375599024165}
@@ -3137,11 +3171,11 @@ PrefabInstance:
     - target: {fileID: 3835756840090538757, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: healthBarSecond
       value: 
-      objectReference: {fileID: 1543609978}
+      objectReference: {fileID: 146275848}
     - target: {fileID: 3835756840090538757, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: healthFillSecond
       value: 
-      objectReference: {fileID: 2084694673}
+      objectReference: {fileID: 797842794}
     - target: {fileID: 3835756840090538757, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: healthBarBattlefield
       value: 
@@ -3201,6 +3235,10 @@ PrefabInstance:
     - target: {fileID: 5381734240096825297, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: m_Name
       value: Goat
+      objectReference: {fileID: 0}
+    - target: {fileID: 9098528027693558229, guid: fdb930144ad93e4469b58404268777cd, type: 3}
+      propertyPath: defBreakRate
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

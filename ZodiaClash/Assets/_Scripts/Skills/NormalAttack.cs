@@ -9,6 +9,8 @@ public class NormalAttack : _BaseAttack
         //owner.GetComponent<Animator>().Play(animationName);
 
         CalculateDamage(target);
-        target.GetComponent<CharacterStats>().TakeDamage(damage);
+        target.GetComponent<CharacterStats>().TakeDamage(damage, critCheck);
+
+        critCheck = false;
     }
 }

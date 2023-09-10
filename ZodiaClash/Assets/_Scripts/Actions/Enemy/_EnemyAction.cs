@@ -12,7 +12,8 @@ public class _EnemyAction : MonoBehaviour
     public EnemyState enemyState;
 
     [Header("HUD")]
-    public GameObject indicator;
+    public GameObject turnIndicator;
+    public GameObject targetIndicator;
 
     [Header("Skill Selection")]
     [SerializeField] protected GameObject skill1Prefab;
@@ -59,6 +60,11 @@ public class _EnemyAction : MonoBehaviour
     protected void RefreshPlayerTargets()
     {
         playerTargets = GameObject.FindGameObjectsWithTag("Player");
+    }
+
+    protected void EnemyToggleUi()
+    {
+        turnIndicator.SetActive(true);
     }
 
     protected void EnemyMovement()

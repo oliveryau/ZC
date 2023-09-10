@@ -10,6 +10,8 @@ public class CatAction : _PlayerAction
         {
             if (playerState == PlayerState.WAITING)
             {
+                turnIndicator.SetActive(true);
+
                 playerState = PlayerState.CHECKSTATUS;
             }
 
@@ -17,7 +19,7 @@ public class CatAction : _PlayerAction
             {
                 if (!characterStats.checkedStatus)
                 {
-                    characterStats.CheckStatusEffects();
+                    StartCoroutine(characterStats.CheckStatusEffects());
                 }
                 else if (characterStats.checkedStatus)
                 {
@@ -48,7 +50,11 @@ public class CatAction : _PlayerAction
 
             else if (playerState == PlayerState.ENDING)
             {
+                characterStats.CheckEndStatusEffects();
+
                 gameManager.state = BattleState.NEXTTURN;
+
+                turnIndicator.SetActive(false);
 
                 selectedSkillPrefab = null;
                 selectedTarget = null;
@@ -70,12 +76,12 @@ public class CatAction : _PlayerAction
         {
             foreach (GameObject enemy in enemyTargets)
             {
-                enemy.GetComponent<_EnemyAction>().indicator.SetActive(true);
+                enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
             }
 
             foreach (GameObject player in playerTargets)
             {
-                player.GetComponent<_PlayerAction>().indicator.SetActive(false);
+                player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
             }
         }
     }
@@ -137,6 +143,6 @@ public class CatAction : _PlayerAction
             selectedSkillPrefab.GetComponent<A_SingleBleed>().Attack(selectedTarget);
         }
 
-        StartCoroutine(EndTurnDelay(0.5f));
+        StartCoroutine(EndTurnDelay(1f));
     }
 }

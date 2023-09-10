@@ -14,7 +14,8 @@ public class _PlayerAction : MonoBehaviour
     [Header("HUD")]
     [SerializeField] protected GameObject characterUi;
     [SerializeField] protected Sprite avatar;
-    public GameObject indicator;
+    public GameObject turnIndicator;
+    public GameObject targetIndicator;
 
     //animations
     [Header("Skill Selection")]
@@ -40,9 +41,6 @@ public class _PlayerAction : MonoBehaviour
     protected GameManager gameManager;
     protected CharacterStats characterStats;
     protected bool playerAttacking;
-
-    [Header("Status Effects")]
-    [HideInInspector] public int bleedCounts;
 
     private void Start()
     {
@@ -83,14 +81,14 @@ public class _PlayerAction : MonoBehaviour
             {
                 foreach (GameObject enemy in enemyTargets)
                 {
-                    enemy.GetComponent<_EnemyAction>().indicator.SetActive(false);
+                    enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
                 }
             }
             else if (selectedTarget.gameObject.CompareTag("Player"))
             {
                 foreach (GameObject player in playerTargets)
                 {
-                    player.GetComponent<_PlayerAction>().indicator.SetActive(false);
+                    player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
                 }
             }
         }
@@ -149,7 +147,7 @@ public class _PlayerAction : MonoBehaviour
             selectedSkillPrefab = skill3Prefab;
         }
 
-        Debug.Log("Player Skill Chosen: " + selectedSkillPrefab.name);
+        Debug.LogError("Player Skill Chosen: " + selectedSkillPrefab.name);
     }
 
     protected virtual void SelectTarget()
@@ -194,7 +192,7 @@ public class _PlayerAction : MonoBehaviour
 
     protected IEnumerator EndTurnDelay(float seconds)
     {
-        //if (!movingToTarget) //check for skills that do not require movement
+        //if (!movingToTarget && !movingToStart) //check for skills that do not require movement
         //{
 
         //}

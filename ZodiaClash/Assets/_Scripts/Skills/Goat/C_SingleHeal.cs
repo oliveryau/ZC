@@ -9,10 +9,10 @@ public class C_SingleHeal : _BaseBuff
 
     public void Heal(GameObject target)
     {
-        CalculateBuff(target);
+        GetTargets(target);
 
-        healAmount = Mathf.RoundToInt((skillBuffPercent / 100) *
-            targetStats.maxHealth);
+        healAmount = Mathf.RoundToInt
+            ((skillBuffPercent / 100f) * targetStats.maxHealth);
 
         Debug.Log("Heal Amount: " + healAmount);
 
@@ -22,9 +22,19 @@ public class C_SingleHeal : _BaseBuff
 
     private void ResetStatus()
     {
+        //dispel all negative effects here
+        #region Bleed
         if (targetStats.bleedStack.Count > 0)
         {
             targetStats.bleedStack.Clear();
         }
+        #endregion
+
+        #region Defense Break
+        if (targetStats.defBreakCounter > 0)
+        {
+            targetStats.defBreakCounter = 0;            
+        }
+        #endregion
     }
 }

@@ -18,7 +18,7 @@ public class A_SingleBleed : NormalAttack
 
         if (randomValue <= bleedRate)
         {
-            Debug.Log("Bleed Applied");
+            Debug.LogError("Bleed Applied");
 
             targetStats.bleedStack.Add(bleedCount);
         }
@@ -29,6 +29,6 @@ public class A_SingleBleed : NormalAttack
         //calculate and apply bleed per turn
         bleedDamage = 0.1f * bleedTarget.maxHealth;
 
-        bleedTarget.TakeDamage((int)bleedDamage);
+        bleedTarget.TakeDamage((int)bleedDamage, false);
     }
 }

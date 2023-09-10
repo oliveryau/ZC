@@ -43,9 +43,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Back HUD
+    uniqueID: 1504631255
+    locked: 0
   - name: Characters
     uniqueID: 2572220449
     locked: 0
-  - name: HUD UI
+  - name: Front HUD
     uniqueID: 1774688893
     locked: 0

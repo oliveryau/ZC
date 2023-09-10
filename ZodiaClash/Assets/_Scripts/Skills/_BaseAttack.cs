@@ -5,7 +5,7 @@ using UnityEngine;
 public class _BaseAttack : MonoBehaviour
 {
     [Header("Character")]
-    public GameObject owner;
+    [SerializeField] protected GameObject owner;
     [SerializeField] protected string animationName;
 
     [Header("Integer")]
@@ -21,6 +21,13 @@ public class _BaseAttack : MonoBehaviour
     protected CharacterStats targetStats;
     protected float damage;
 
+    [SerializeField] protected bool critCheck;
+
+    private void Start()
+    {
+        critCheck = false;
+    }
+
     public void CalculateDamage(GameObject target)
     {
         attackerStats = owner.GetComponent<CharacterStats>();
@@ -32,19 +39,18 @@ public class _BaseAttack : MonoBehaviour
         if (randomValue <= critRate)
         {
             //critical hit
-            Debug.Log("Critical Hit");
+            critCheck = true;
+
             damage = Mathf.RoundToInt(
                 Mathf.Max(minAttackMultiplier, maxAttackMultiplier) *
-                (skillAttackPercent / 100) * (attackerStats.attack * (100f / (100f + targetStats.defense)))
+                (skillAttackPercent / 100f) * (attackerStats.attack * (100f / (100f + targetStats.defense)))
                 * critMultiplier);
         }
         else
         {
             damage = Mathf.RoundToInt(
                 Mathf.Max(minAttackMultiplier, maxAttackMultiplier) * 
-                (skillAttackPercent / 100) * (attackerStats.attack * (100f / (100f + targetStats.defense))));
+                (skillAttackPercent / 100f) * (attackerStats.attack * (100f / (100f + targetStats.defense))));
         }
-        
-        Debug.Log("Damage: " + damage);
     }
 }

@@ -10,6 +10,8 @@ public class GuardAction : _EnemyAction
         {
             if (enemyState == EnemyState.WAITING)
             {
+                turnIndicator.SetActive(true);
+
                 enemyState = EnemyState.CHECKSTATUS;
             }
 
@@ -17,7 +19,7 @@ public class GuardAction : _EnemyAction
             {
                 if (!characterStats.checkedStatus)
                 {
-                    characterStats.CheckStatusEffects();
+                    StartCoroutine(characterStats.CheckStatusEffects());
                 }
                 else if (characterStats.checkedStatus)
                 {
@@ -28,6 +30,8 @@ public class GuardAction : _EnemyAction
             else if (enemyState == EnemyState.SKILLSELECT)
             {
                 RefreshPlayerTargets();
+
+                EnemyToggleUi();
 
                 EnemySelectSkill();
             }
@@ -49,7 +53,11 @@ public class GuardAction : _EnemyAction
 
             else if (enemyState == EnemyState.ENDING)
             {
+                characterStats.CheckEndStatusEffects();
+
                 gameManager.state = BattleState.NEXTTURN;
+
+                turnIndicator.SetActive(false);
 
                 selectedSkillPrefab = null;
                 selectedTarget = null;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private Image healthFillBattlefield;
     [SerializeField] private Image healthBarSecond;
     [SerializeField] private Image healthFillSecond;
+    public GameObject floatingText;
 
     [Header("Stats")]
     public float maxHealth;
@@ -29,6 +31,7 @@ public class CharacterStats : MonoBehaviour
     public int attackBuffCounter;
     private float initialAttack;
 
+    [Header("Others")]
     [HideInInspector] public bool checkedStatus;
 
     //private float maxChi = 2;
@@ -55,33 +58,39 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    private IEnumerator Death()
+    {
+        if (gameObject.CompareTag("Player"))
+        {
+            _PlayerAction player = GetComponent<_PlayerAction>();
+            player.playerState = PlayerState.ENDING;
+        }
+        else if (gameObject.CompareTag("Enemy"))
+        {
+            _EnemyAction enemy = GetComponent<_EnemyAction>();
+            enemy.enemyState = EnemyState.ENDING;
+        }
+
+        health = 0;
+        gameObject.tag = "Dead";
+
+        healthBarBattlefield.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+        //animator.Play("Death");
+        gameObject.SetActive(false);
+    }
+
+    public void TakeDamage(float damage, bool critCheck)
     {
         health -= damage;
+
+        ShowFloatingText(damage, critCheck);
 
         //set damage text
         if (health <= 0)
         {
-            Debug.Log(gameObject.name + " Died");
-
-            if (gameObject.CompareTag("Player"))
-            {
-                _PlayerAction player = GetComponent<_PlayerAction>();
-                player.playerState = PlayerState.ENDING;
-            }
-            else if (gameObject.CompareTag("Enemy"))
-            {
-                _EnemyAction enemy = GetComponent<_EnemyAction>();
-                enemy.enemyState = EnemyState.ENDING;
-            }
-
-            health = 0;
-            gameObject.tag = "Dead";
-
-            healthBarBattlefield.gameObject.SetActive(false);
-
-            //add delay, play death animation, then gameObject.SetActive(false)
-            gameObject.SetActive(false);
+            StartCoroutine(Death());
         }
         else
         {
@@ -112,7 +121,23 @@ public class CharacterStats : MonoBehaviour
 
     }
 
-    public void CheckStatusEffects()
+    public void ShowFloatingText(float value, bool critCheck)
+    {
+        floatingText.GetComponent<TextMeshPro>().text = value.ToString();
+
+        if (critCheck)
+        {
+            floatingText.GetComponent<TextMeshPro>().color = Color.red;
+        }
+        else if (!critCheck)
+        {
+            floatingText.GetComponent<TextMeshPro>().color = Color.white;
+        }
+
+        Instantiate(floatingText, transform.position, Quaternion.identity, transform);
+    }
+
+    public IEnumerator CheckStatusEffects()
     {
         //debuffs
         #region Bleed
@@ -152,13 +177,7 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
 
-        //buffs
-        #region Attack Buff
-        if (attackBuffCounter > 0)
-        {
-            --attackBuffCounter;
-        }
-        #endregion
+        yield return new WaitForSeconds(0.5f);
 
         checkedStatus = true;
     }
@@ -167,11 +186,16 @@ public class CharacterStats : MonoBehaviour
     {
         //usually for buffs
         #region Attack Buff
-        if (attackBuffCounter <= 0)
+        if (attackBuffCounter > 0)
         {
-            if (attack != initialAttack)
+            --attackBuffCounter;
+
+            if (attackBuffCounter <= 0)
             {
-                attack = initialAttack;
+                if (attack != initialAttack)
+                {
+                    attack = initialAttack;
+                }
             }
         }
         #endregion

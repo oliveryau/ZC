@@ -17,10 +17,13 @@ public class A_AttackDefBreak : NormalAttack
 
         if (randomValue <= defBreakRate)
         {
-            Debug.Log("Defense Break");
+            Debug.LogError("Defense Break");
 
-            targetStats.defense *= 1 - (defBreakPercent / 100f);
-            targetStats.defBreakCounter += defBreakCount;
+            if (targetStats.defBreakCounter <= 0)
+            {
+                targetStats.defense *= 1 - (defBreakPercent / 100f);
+                targetStats.defBreakCounter += defBreakCount;
+            }
         }
     }
 }
