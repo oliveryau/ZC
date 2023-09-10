@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class B_AoeBleed : AoeAttack
 {
@@ -10,18 +11,25 @@ public class B_AoeBleed : AoeAttack
 
     public override void Attack(GameObject[] targets)
     {
-        base.Attack(targets);
+        //owner.GetComponent<Animator>().Play(animationName);
 
-        //apply bleed status effect to every character
         foreach (GameObject target in targets)
         {
-            float randomValue = Random.Range(0f, 1f);
+            CalculateDamage(target);
 
+            float randomValue = Random.Range(0f, 1f);
             if (randomValue <= bleedRate)
             {
-                Debug.Log("Bleed Applied");
+                target.GetComponent<CharacterStats>().TakeDamage(damage, critCheck, "bleed");
+
                 target.GetComponent<CharacterStats>().bleedStack.Add(bleedCount);
             }
+            else
+            {
+                target.GetComponent<CharacterStats>().TakeDamage(damage, critCheck, null);
+            }
         }
+
+        critCheck = false;
     }
 }

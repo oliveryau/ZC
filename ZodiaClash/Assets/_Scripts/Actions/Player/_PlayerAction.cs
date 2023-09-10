@@ -41,6 +41,7 @@ public class _PlayerAction : MonoBehaviour
     protected GameManager gameManager;
     protected CharacterStats characterStats;
     protected bool playerAttacking;
+    protected bool endingTurn;
 
     private void Start()
     {
@@ -56,6 +57,7 @@ public class _PlayerAction : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         characterStats = GetComponent<CharacterStats>();
         playerAttacking = false;
+        endingTurn = false;
     }
 
     protected void RefreshTargets()
@@ -126,6 +128,8 @@ public class _PlayerAction : MonoBehaviour
             if (reachedStart)
             {
                 movingToStart = false;
+
+                endingTurn = true;
             }
         }
     }
@@ -188,6 +192,8 @@ public class _PlayerAction : MonoBehaviour
         ApplySkill();
 
         yield return new WaitForSeconds(endDelay); //delay to play animation
+
+        endingTurn = true;
     }
 
     protected IEnumerator EndTurnDelay(float seconds)
@@ -196,7 +202,7 @@ public class _PlayerAction : MonoBehaviour
         //{
 
         //}
-        yield return new WaitUntil(() => reachedStart);
+        yield return new WaitUntil(() => endingTurn);
 
         yield return new WaitForSeconds(seconds);
 

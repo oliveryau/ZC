@@ -148,11 +148,7 @@ public class GoatAction : _PlayerAction
         {
             StartCoroutine(AttackStartDelay(0.5f, 1f));
         }
-        else if (selectedSkillPrefab == skill2Prefab)
-        {
-            StartCoroutine(BuffStartDelay(0.5f, 1f));
-        }
-        else if (selectedSkillPrefab == skill3Prefab)
+        else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
             StartCoroutine(BuffStartDelay(0.5f, 1f));
         }

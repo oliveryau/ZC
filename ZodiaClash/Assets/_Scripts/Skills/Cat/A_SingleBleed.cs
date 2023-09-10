@@ -12,16 +12,23 @@ public class A_SingleBleed : NormalAttack
 
     public override void Attack(GameObject target)
     {
-        base.Attack(target);
+        //owner.GetComponent<Animator>().Play(animationName);
+
+        CalculateDamage(target);
 
         float randomValue = Random.Range(0f, 1f);
-
         if (randomValue <= bleedRate)
         {
-            Debug.LogError("Bleed Applied");
+            targetStats.TakeDamage(damage, critCheck, "bleed");
 
             targetStats.bleedStack.Add(bleedCount);
         }
+        else
+        {
+            targetStats.TakeDamage(damage, critCheck, null);
+        }
+
+        critCheck = false;
     }
 
     public void ApplyBleed(CharacterStats bleedTarget) //universal bleed formula
@@ -29,6 +36,6 @@ public class A_SingleBleed : NormalAttack
         //calculate and apply bleed per turn
         bleedDamage = 0.1f * bleedTarget.maxHealth;
 
-        bleedTarget.TakeDamage((int)bleedDamage, false);
+        bleedTarget.TakeDamage((int)bleedDamage, false, "bleed");
     }
 }

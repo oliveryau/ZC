@@ -14,8 +14,6 @@ public class C_SingleHeal : _BaseBuff
         healAmount = Mathf.RoundToInt
             ((skillBuffPercent / 100f) * targetStats.maxHealth);
 
-        Debug.Log("Heal Amount: " + healAmount);
-
         targetStats.HealBuff(healAmount);
         ResetStatus();
     }

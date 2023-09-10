@@ -3236,10 +3236,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goat
       objectReference: {fileID: 0}
-    - target: {fileID: 9098528027693558229, guid: fdb930144ad93e4469b58404268777cd, type: 3}
-      propertyPath: defBreakRate
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6931691468341685720, guid: fdb930144ad93e4469b58404268777cd, type: 3}

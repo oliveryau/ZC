@@ -150,11 +150,11 @@ public class OxAction : _PlayerAction
         }
         //else if (selectedSkillPrefab == skill2Prefab)
         //{
-        //    StartCoroutine(AttackStartDelay(0.5f, 1f));
+        //    StartCoroutine(BuffStartDelay(0.5f, 1f));
         //}
         //else if (selectedSkillPrefab == skill3Prefab)
         //{
-        //    StartCoroutine(AttackStartDelay(0.5f, 1f));
+        //    StartCoroutine(BuffStartDelay(0.5f, 1f));
         //}
     }
 

@@ -81,11 +81,11 @@ public class CharacterStats : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void TakeDamage(float damage, bool critCheck)
+    public void TakeDamage(float damage, bool critCheck, string debuff)
     {
         health -= damage;
 
-        ShowFloatingText(damage, critCheck);
+        DamageText(damage, critCheck, debuff);
 
         //set damage text
         if (health <= 0)
@@ -104,9 +104,13 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public void HealBuff(float buff)
+    #region Buffs
+
+    public void HealBuff(float buffAmount)
     {
-        health += buff;
+        health += buffAmount;
+
+        BuffText(buffAmount, "heal");
 
         if (health >= maxHealth)
         {
@@ -118,20 +122,58 @@ public class CharacterStats : MonoBehaviour
         {
             healthFillSecond.fillAmount = health / maxHealth; //player second hp bar
         }
-
     }
 
-    public void ShowFloatingText(float value, bool critCheck)
+    public void AttackBuff(float buffAmount)
     {
-        floatingText.GetComponent<TextMeshPro>().text = value.ToString();
+        BuffText(buffAmount, "strengthen");
+    }
+
+    #endregion
+
+    public void DamageText(float value, bool critCheck, string effect)
+    {
+        TextMeshPro popup = floatingText.GetComponent<TextMeshPro>();
+        popup.color = Color.red;
 
         if (critCheck)
         {
-            floatingText.GetComponent<TextMeshPro>().color = Color.red;
+            popup.text = "CRITICAL HIT\n\n";
         }
-        else if (!critCheck)
+
+        switch (effect)
         {
-            floatingText.GetComponent<TextMeshPro>().color = Color.white;
+            case "bleed":
+                popup.text += "BLEED\n" + value.ToString();
+                break;
+            case "break":
+                popup.text += "BREAK\n" + value.ToString();
+                break;
+            default:
+                Debug.LogError("No debuff text");
+                popup.text += value.ToString();
+                break;
+        }
+
+        Instantiate(floatingText, transform.position, Quaternion.identity, transform);
+    }
+
+    public void BuffText(float value, string effect)
+    {
+        TextMeshPro popup = floatingText.GetComponent<TextMeshPro>();
+        popup.color = Color.green;
+
+        switch (effect)
+        {
+            case "heal":
+                popup.text = "CLEANSE\n" + value.ToString();
+                break;
+            case "strengthen":
+                popup.text = "STRENGTHEN\n+" + value.ToString() + "% ATK";
+                break;
+            default:
+                Debug.LogError("No buff text, BUG");
+                break;
         }
 
         Instantiate(floatingText, transform.position, Quaternion.identity, transform);

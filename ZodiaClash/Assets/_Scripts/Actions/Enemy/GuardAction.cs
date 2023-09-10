@@ -104,10 +104,6 @@ public class GuardAction : _EnemyAction
         {
             movingToTarget = true; //movement is triggered
         }
-        //else //skills that do not require movement
-        //{
-        //    EnemyAttackAnimation();
-        //}
     }
 
     protected override void EnemyAttackAnimation()

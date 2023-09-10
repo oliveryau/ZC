@@ -11,19 +11,27 @@ public class A_AttackDefBreak : NormalAttack
 
     public override void Attack(GameObject target)
     {
-        base.Attack(target);
+        //owner.GetComponent<Animator>().Play(animationName);
+
+        CalculateDamage(target);
 
         float randomValue = Random.Range(0f, 1f);
-
         if (randomValue <= defBreakRate)
         {
-            Debug.LogError("Defense Break");
-
             if (targetStats.defBreakCounter <= 0)
             {
+                targetStats.TakeDamage(damage, critCheck, "break");
+                
                 targetStats.defense *= 1 - (defBreakPercent / 100f);
-                targetStats.defBreakCounter += defBreakCount;
             }
+
+            targetStats.defBreakCounter = defBreakCount;
         }
+        else
+        {
+            targetStats.TakeDamage(damage, critCheck, null);
+        }
+
+        critCheck = false;
     }
 }

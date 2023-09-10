@@ -61,6 +61,8 @@ public class CatAction : _PlayerAction
                 enemyTargets = null;
 
                 playerAttacking = false;
+                endingTurn = false;
+
                 characterStats.checkedStatus = false;
 
                 playerState = PlayerState.WAITING;

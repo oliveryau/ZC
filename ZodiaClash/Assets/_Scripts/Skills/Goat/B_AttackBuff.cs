@@ -16,13 +16,12 @@ public class B_AttackBuff : _BaseBuff
         buffAmount = Mathf.RoundToInt(
             (skillBuffPercent / 100f) * targetStats.attack);
 
-        Debug.LogError("Attack Buff: " + buffAmount);
-
         if (targetStats.attackBuffCounter <= 0)
         {
             targetStats.attack += buffAmount;
         }
 
+        targetStats.AttackBuff(skillBuffPercent);
         targetStats.attackBuffCounter = buffCount;
     }
 }

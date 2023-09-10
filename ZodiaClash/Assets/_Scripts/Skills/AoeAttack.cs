@@ -12,7 +12,7 @@ public class AoeAttack : _BaseAttack
         {
             CalculateDamage(target);
 
-            target.GetComponent<CharacterStats>().TakeDamage(damage, critCheck);
+            target.GetComponent<CharacterStats>().TakeDamage(damage, critCheck, null);
         }
 
         critCheck = false;
