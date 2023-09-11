@@ -150,8 +150,7 @@ MonoBehaviour:
   attack: 15
   defense: 20
   speed: 5
-  bleedStack: 
-  bleedLimit: 0
+  bleedStack: 0
   defBreakCounter: 0
   attackBuffCounter: 0
   checkedStatus: 0
@@ -249,12 +248,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
+      propertyPath: bleedTurns
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
       propertyPath: critMultiplier
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
       propertyPath: skillAttackPercent
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
       propertyPath: maxAttackMultiplier
@@ -301,11 +304,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: bleedRate
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: bleedCount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
+      propertyPath: bleedTurns
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: critMultiplier
@@ -313,7 +320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: skillAttackPercent
-      value: 80
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: maxAttackMultiplier
@@ -447,12 +454,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
+      propertyPath: bleedTurns
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
       propertyPath: critMultiplier
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
       propertyPath: skillAttackPercent
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
       propertyPath: maxAttackMultiplier

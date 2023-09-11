@@ -5,50 +5,31 @@ using UnityEngine;
 public class C_AoeActivateBleed : AoeAttack
 {
     [Header("Effects")]
-    [SerializeField] private int bleedCount; //number of turns to bleed
+    [SerializeField] private int bleedTurns;
 
     public override void Attack(GameObject[] targets)
     {
         //owner.GetComponent<Animator>().Play(animationName);
 
+        _Bleed bleed = FindObjectOfType<_Bleed>();
+
         foreach (GameObject target in targets)
         {
             CalculateDamage(target);
 
-            CharacterStats enemy = target.GetComponent<CharacterStats>();
+            CharacterStats currentTarget = target.GetComponent<CharacterStats>();
 
-            enemy.TakeDamage(damage, critCheck, null);
-
-            if (enemy.bleedStack.Count > 0)
+            if (currentTarget.bleedStack > 0)
             {
-                if (enemy.bleedStack.Count < targetStats.bleedLimit)
-                {
-                    //add bleed count
-                    enemy.bleedStack.Add(bleedCount);
-                }
+                bleed.AoeBleedCalculation(currentTarget, currentTarget.bleedStack);
+                currentTarget.TakeDamage(damage + bleed.bleedDamage, critCheck, "rend");
 
-                for (int i = 0; i < enemy.bleedStack.Count; i++)
-                {
-                    if (enemy.bleedStack[i] > 0) //apply bleed if there is bleed stack
-                    {
-                        A_SingleBleed bleed = FindObjectOfType<A_SingleBleed>();
-                        bleed.ApplyBleed(enemy);
-
-                        --enemy.bleedStack[i];
-                    }
-                }
-
-                for (int j = 0; j < enemy.bleedStack.Count; j++)
-                {
-                    if (enemy.bleedStack[j] <= 0) //remove bleed status
-                    {
-                        enemy.bleedStack.RemoveAt(j);
-                    }
-                }
+                currentTarget.bleedStack = 0;
             }
             else
             {
-                enemy.TakeDamage(damage, critCheck, null); //aoe damage if no bleed stacks
+                currentTarget.bleedStack += bleedTurns;
+                currentTarget.TakeDamage(damage, critCheck, "bleed");
             }
         }
 

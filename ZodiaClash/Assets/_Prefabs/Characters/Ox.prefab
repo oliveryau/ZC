@@ -151,6 +151,7 @@ MonoBehaviour:
   defense: 25
   speed: 4
   bleedStack: 
+  bleedLimit: 0
   defBreakCounter: 0
   attackBuffCounter: 0
   checkedStatus: 0
@@ -442,7 +443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2715427919934904291, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
       propertyPath: skillAttackPercent
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3938976782827014040, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
       propertyPath: m_Name

@@ -42,6 +42,7 @@ public class _PlayerAction : MonoBehaviour
     protected CharacterStats characterStats;
     protected bool playerAttacking;
     protected bool endingTurn;
+    protected bool checkingStatus;
 
     private void Start()
     {
@@ -58,6 +59,7 @@ public class _PlayerAction : MonoBehaviour
         characterStats = GetComponent<CharacterStats>();
         playerAttacking = false;
         endingTurn = false;
+        checkingStatus = false;
     }
 
     protected void RefreshTargets()

@@ -17,13 +17,15 @@ public class GuardAction : _EnemyAction
 
             else if (enemyState == EnemyState.CHECKSTATUS)
             {
-                if (!characterStats.checkedStatus)
+                if (!characterStats.checkedStatus && !checkingStatus)
                 {
                     StartCoroutine(characterStats.CheckStatusEffects());
+                    checkingStatus = true;
                 }
                 else if (characterStats.checkedStatus)
                 {
                     enemyState = EnemyState.SKILLSELECT;
+                    checkingStatus = false;
                 }
             }
 

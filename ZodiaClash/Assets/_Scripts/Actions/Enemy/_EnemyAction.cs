@@ -38,6 +38,7 @@ public class _EnemyAction : MonoBehaviour
     protected CharacterStats characterStats;
     protected bool enemyAttacking;
     protected bool enemyEndingTurn;
+    protected bool checkingStatus;
 
     [Header("Status Effects")]
     [HideInInspector] public int bleedCounts;
@@ -57,6 +58,7 @@ public class _EnemyAction : MonoBehaviour
         characterStats = GetComponent<CharacterStats>();
         enemyAttacking = false;
         enemyEndingTurn = false;
+        checkingStatus = false;
     }
 
     protected void RefreshPlayerTargets()

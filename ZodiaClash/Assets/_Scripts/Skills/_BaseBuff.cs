@@ -14,7 +14,7 @@ public class _BaseBuff : MonoBehaviour
     protected CharacterStats ownerStats;
     protected CharacterStats targetStats;
 
-    public virtual void GetTargets(GameObject target)
+    public void GetTargets(GameObject target)
     {
         ownerStats = owner.GetComponent<CharacterStats>();
         targetStats = target.GetComponent<CharacterStats>();

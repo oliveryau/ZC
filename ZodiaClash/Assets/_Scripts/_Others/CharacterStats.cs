@@ -23,8 +23,9 @@ public class CharacterStats : MonoBehaviour
     public int speed;
 
     [Header("Debuffs")]
-    public List<int> bleedStack;
-    [HideInInspector] public int bleedLimit;
+    //public List<int> bleedStack;
+    public int bleedStack;
+    //[HideInInspector] public int bleedLimit;
     public int defBreakCounter;
     private float initialDefense;
 
@@ -42,13 +43,12 @@ public class CharacterStats : MonoBehaviour
         //hp
         health = maxHealth;
         healthFillBattlefield.fillAmount = health / maxHealth;
-        if (healthFillSecond != null )
+        if (healthFillSecond != null)
         {
             healthFillSecond.fillAmount = health / maxHealth; //player second hp bar
         }
 
         //status effects
-        bleedLimit = 3;
         initialDefense = defense;
         initialAttack = attack;
 
@@ -151,6 +151,9 @@ public class CharacterStats : MonoBehaviour
             case "bleed":
                 popup.text += "BLEED\n" + value.ToString();
                 break;
+            case "rend":
+                popup.text += "REND\n" + value.ToString();
+                break;
             case "break":
                 popup.text += "BREAK\n" + value.ToString();
                 break;
@@ -196,25 +199,14 @@ public class CharacterStats : MonoBehaviour
     {
         //debuffs
         #region Bleed
-        if (bleedStack.Count > 0)
+        if (bleedStack > 0)
         {
-            for (int i = 0; i < bleedStack.Count; i++)
-            {
-                if (bleedStack[i] > 0) //apply bleed if there is bleed stack
-                {
-                    A_SingleBleed bleed = FindObjectOfType<A_SingleBleed>();
-                    bleed.ApplyBleed(this);
-                    --bleedStack[i];
-                }
-            }
+            _Bleed bleed = FindObjectOfType<_Bleed>();
+            bleed.BleedCalculation(this);
 
-            for (int j = 0;  j < bleedStack.Count; j++)
-            {
-                if (bleedStack[j] <= 0) //remove bleed status
-                {
-                    bleedStack.RemoveAt(j);
-                }
-            }
+            Debug.Log("Hello");
+            TakeDamage(bleed.bleedDamage, false, "bleed");
+            --bleedStack;
         }
         #endregion
 

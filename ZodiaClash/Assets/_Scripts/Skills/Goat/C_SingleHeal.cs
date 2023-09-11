@@ -22,9 +22,9 @@ public class C_SingleHeal : _BaseBuff
     {
         //dispel all negative effects here
         #region Bleed
-        if (targetStats.bleedStack.Count > 0)
+        if (targetStats.bleedStack > 0)
         {
-            targetStats.bleedStack.Clear();
+            targetStats.bleedStack = 0;
         }
         #endregion
 

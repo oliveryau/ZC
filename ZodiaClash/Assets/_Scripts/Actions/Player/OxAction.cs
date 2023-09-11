@@ -17,13 +17,15 @@ public class OxAction : _PlayerAction
 
             else if (playerState == PlayerState.CHECKSTATUS)
             {
-                if (!characterStats.checkedStatus)
+                if (!characterStats.checkedStatus && !checkingStatus)
                 {
                     StartCoroutine(characterStats.CheckStatusEffects());
+                    checkingStatus = true;
                 }
                 else if (characterStats.checkedStatus)
                 {
                     playerState = PlayerState.PLAYERSELECTION;
+                    checkingStatus = false;
                 }
             }
 

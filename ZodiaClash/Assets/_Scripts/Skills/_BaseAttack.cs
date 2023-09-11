@@ -28,7 +28,7 @@ public class _BaseAttack : MonoBehaviour
         critCheck = false;
     }
 
-    public void CalculateDamage(GameObject target)
+    protected void CalculateDamage(GameObject target)
     {
         attackerStats = owner.GetComponent<CharacterStats>();
         targetStats = target.GetComponent<CharacterStats>();

@@ -5,10 +5,10 @@ using UnityEngine;
 public class A_SingleBleed : NormalAttack
 {
     [Header("Effects")]
-    [SerializeField] private float bleedRate; //bleed chance
-    [SerializeField] private int bleedCount; //number of turns to bleed
+    [SerializeField] private float bleedRate;
+    [SerializeField] private int bleedTurns;
 
-    private float bleedDamage; //damage of bleed
+    //private float bleedDamage; //damage of bleed
 
     public override void Attack(GameObject target)
     {
@@ -19,11 +19,17 @@ public class A_SingleBleed : NormalAttack
         float randomValue = Random.Range(0f, 1f);
         if (randomValue <= bleedRate)
         {
-            if (targetStats.bleedStack.Count < targetStats.bleedLimit)
+            _Bleed bleed = GetComponent<_Bleed>();
+
+            if (targetStats.bleedStack < bleed.bleedLimit)
             {
                 targetStats.TakeDamage(damage, critCheck, "bleed");
+                targetStats.bleedStack += bleedTurns;
 
-                targetStats.bleedStack.Add(bleedCount);
+                if (targetStats.bleedStack > bleed.bleedLimit)
+                {
+                    targetStats.bleedStack = bleed.bleedLimit;
+                }
             }
         }
         else
@@ -32,13 +38,5 @@ public class A_SingleBleed : NormalAttack
         }
 
         critCheck = false;
-    }
-
-    public void ApplyBleed(CharacterStats bleedTarget) //universal bleed formula
-    {
-        //calculate and apply bleed per turn
-        bleedDamage = 0.1f * bleedTarget.maxHealth;
-
-        bleedTarget.TakeDamage((int)bleedDamage, false, "bleed");
     }
 }
