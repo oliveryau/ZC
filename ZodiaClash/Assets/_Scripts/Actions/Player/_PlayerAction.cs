@@ -198,10 +198,6 @@ public class _PlayerAction : MonoBehaviour
 
     protected IEnumerator EndTurnDelay(float seconds)
     {
-        //if (!movingToTarget && !movingToStart) //check for skills that do not require movement
-        //{
-
-        //}
         yield return new WaitUntil(() => endingTurn);
 
         yield return new WaitForSeconds(seconds);

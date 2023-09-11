@@ -2596,7 +2596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6277926731226478307, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: m_Name
-      value: 3_Strong Attack Bleed
+      value: 3_Activate Bleed
       objectReference: {fileID: 0}
     - target: {fileID: 7601538499357730313, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: m_Name

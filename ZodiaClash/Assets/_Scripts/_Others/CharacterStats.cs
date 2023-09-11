@@ -24,6 +24,7 @@ public class CharacterStats : MonoBehaviour
 
     [Header("Debuffs")]
     public List<int> bleedStack;
+    [HideInInspector] public int bleedLimit;
     public int defBreakCounter;
     private float initialDefense;
 
@@ -38,6 +39,7 @@ public class CharacterStats : MonoBehaviour
 
     private void Start()
     {
+        //hp
         health = maxHealth;
         healthFillBattlefield.fillAmount = health / maxHealth;
         if (healthFillSecond != null )
@@ -45,9 +47,12 @@ public class CharacterStats : MonoBehaviour
             healthFillSecond.fillAmount = health / maxHealth; //player second hp bar
         }
 
-        checkedStatus = false;
+        //status effects
+        bleedLimit = 3;
         initialDefense = defense;
         initialAttack = attack;
+
+        checkedStatus = false;
     }
 
     private void Update()
@@ -150,12 +155,13 @@ public class CharacterStats : MonoBehaviour
                 popup.text += "BREAK\n" + value.ToString();
                 break;
             default:
-                Debug.LogError("No debuff text");
                 popup.text += value.ToString();
                 break;
         }
 
         Instantiate(floatingText, transform.position, Quaternion.identity, transform);
+
+        ResetText(popup);
     }
 
     public void BuffText(float value, string effect)
@@ -177,6 +183,13 @@ public class CharacterStats : MonoBehaviour
         }
 
         Instantiate(floatingText, transform.position, Quaternion.identity, transform);
+
+        ResetText(popup);
+    }
+
+    public void ResetText(TextMeshPro text)
+    {
+        text.text = null;
     }
 
     public IEnumerator CheckStatusEffects()

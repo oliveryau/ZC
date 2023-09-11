@@ -142,7 +142,7 @@ public class CatAction : _PlayerAction
         else if (selectedSkillPrefab == skill3Prefab)
         {
             //strong single target DoT skill
-            selectedSkillPrefab.GetComponent<A_SingleBleed>().Attack(selectedTarget);
+            selectedSkillPrefab.GetComponent<C_AoeActivateBleed>().Attack(enemyTargets);
         }
 
         StartCoroutine(EndTurnDelay(1f));

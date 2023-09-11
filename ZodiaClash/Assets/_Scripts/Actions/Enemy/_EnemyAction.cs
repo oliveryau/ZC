@@ -37,6 +37,7 @@ public class _EnemyAction : MonoBehaviour
     protected GameManager gameManager;
     protected CharacterStats characterStats;
     protected bool enemyAttacking;
+    protected bool enemyEndingTurn;
 
     [Header("Status Effects")]
     [HideInInspector] public int bleedCounts;
@@ -55,6 +56,7 @@ public class _EnemyAction : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         characterStats = GetComponent<CharacterStats>();
         enemyAttacking = false;
+        enemyEndingTurn = false;
     }
 
     protected void RefreshPlayerTargets()
@@ -99,6 +101,8 @@ public class _EnemyAction : MonoBehaviour
             if (reachedStart)
             {
                 movingToStart = false;
+
+                enemyEndingTurn = true;
             }
         }
     }
@@ -146,15 +150,13 @@ public class _EnemyAction : MonoBehaviour
         EnemyApplySkill();
 
         yield return new WaitForSeconds(endDelay); //delay to play animation
+
+        enemyEndingTurn = true;
     }
 
     protected IEnumerator EnemyEndTurnDelay(float seconds)
     {
-        //if (!movingToTarget) //check for skills that do not require movement
-        //{
-
-        //}
-        yield return new WaitUntil(() => reachedStart);
+        yield return new WaitUntil(() => enemyEndingTurn);
         
         yield return new WaitForSeconds(seconds);
 

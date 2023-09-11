@@ -19,9 +19,12 @@ public class A_SingleBleed : NormalAttack
         float randomValue = Random.Range(0f, 1f);
         if (randomValue <= bleedRate)
         {
-            targetStats.TakeDamage(damage, critCheck, "bleed");
+            if (targetStats.bleedStack.Count < targetStats.bleedLimit)
+            {
+                targetStats.TakeDamage(damage, critCheck, "bleed");
 
-            targetStats.bleedStack.Add(bleedCount);
+                targetStats.bleedStack.Add(bleedCount);
+            }
         }
         else
         {

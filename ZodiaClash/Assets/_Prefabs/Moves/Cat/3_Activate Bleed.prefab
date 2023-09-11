@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &295203627668593305
+--- !u!1 &1467018417481673863
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3192522632832567260}
-  - component: {fileID: 4270524195178422620}
+  - component: {fileID: 4327182109380047298}
+  - component: {fileID: 9109261761786833357}
   m_Layer: 0
-  m_Name: 3_Strong Attack Bleed
+  m_Name: 3_Activate Bleed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3192522632832567260
+--- !u!4 &4327182109380047298
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295203627668593305}
+  m_GameObject: {fileID: 1467018417481673863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,25 +32,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4270524195178422620
+--- !u!114 &9109261761786833357
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295203627668593305}
+  m_GameObject: {fileID: 1467018417481673863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc3f2b2ce351942438e8b7ac0c1f94d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9768983a1e7093649b9f9f4ee57693cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   animationName: 
   skillAttackPercent: 0
-  extraAttackPercent: 0
   minAttackMultiplier: 0
   maxAttackMultiplier: 0
   critRate: 0
   critMultiplier: 0
-  bleedRate: 0
+  critCheck: 0
   bleedCount: 0

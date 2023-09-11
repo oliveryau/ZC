@@ -64,6 +64,8 @@ public class GuardAction : _EnemyAction
                 playerTargets = null;
 
                 enemyAttacking = false;
+                enemyEndingTurn = false;
+
                 characterStats.checkedStatus = false;
 
                 enemyState = EnemyState.WAITING;
