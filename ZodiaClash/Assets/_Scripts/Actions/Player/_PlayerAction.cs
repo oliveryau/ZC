@@ -12,8 +12,7 @@ public class _PlayerAction : MonoBehaviour
     public PlayerState playerState;
 
     [Header("HUD")]
-    [SerializeField] protected GameObject characterUi;
-    [SerializeField] protected Sprite avatar;
+    [SerializeField] protected GameObject characterSkillUi;
     public GameObject turnIndicator;
     public GameObject targetIndicator;
 
@@ -48,7 +47,7 @@ public class _PlayerAction : MonoBehaviour
     {
         playerState = PlayerState.WAITING;
 
-        moveSpeed = 30f;
+        moveSpeed = 40f;
         startPosition = transform.position;
         movingToTarget = false;
         movingToStart = false;
@@ -68,35 +67,63 @@ public class _PlayerAction : MonoBehaviour
         enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
-    protected void ToggleUi(bool value)
+    #region UI Toggling
+    protected void ToggleSkillUi(bool value)
     {
         if (value == true)
         {
-            characterUi.SetActive(true);
+            characterSkillUi.SetActive(true);
         }
         else if (value == false)
         {
-            characterUi.SetActive(false);
+            characterSkillUi.SetActive(false);
         }
+    }
 
-        if (selectedTarget != null) //after selecting target, hide all player and enemy indicators
+    protected void TargetSelectionUi(bool value, string targets)
+    {
+        if (value)
         {
-            if (selectedTarget.gameObject.CompareTag("Enemy"))
+            if (targets == "ally") //show ally targeting
             {
+                foreach (GameObject player in playerTargets)
+                {
+                    player.GetComponent<_PlayerAction>().targetIndicator.SetActive(true);
+                }
+
                 foreach (GameObject enemy in enemyTargets)
                 {
                     enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
                 }
             }
-            else if (selectedTarget.gameObject.CompareTag("Player"))
+            else if (targets == "enemy") //show enemy targeting
             {
+                foreach (GameObject enemy in enemyTargets)
+                {
+                    enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
+                }
+
                 foreach (GameObject player in playerTargets)
                 {
                     player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
                 }
             }
         }
+        else if (!value)
+        {
+            //hide all targeting
+            foreach (GameObject enemy in enemyTargets)
+            {
+                enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
+            }
+
+            foreach (GameObject player in playerTargets)
+            {
+                player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
+            }
+        }
     }
+    #endregion
 
     protected void PlayerMovement()
     {
@@ -206,4 +233,18 @@ public class _PlayerAction : MonoBehaviour
 
         playerState = PlayerState.ENDING;
     }
+
+    #region Target UI
+    private void OnMouseEnter()
+    {
+        SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
+        targetSelect.color = Color.cyan;
+    }
+
+    private void OnMouseExit()
+    {
+        SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
+        targetSelect.color = Color.black;
+    }
+    #endregion
 }

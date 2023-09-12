@@ -9,11 +9,11 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private Animator animator;
 
     [Header("HUD")]
-    [SerializeField] private Image healthBarBattlefield;
-    [SerializeField] private Image healthFillBattlefield;
-    [SerializeField] private Image healthBarSecond;
-    [SerializeField] private Image healthFillSecond;
-    public GameObject floatingText;
+    public Sprite avatar;
+    [SerializeField] private TextMeshProUGUI healthName;
+    [SerializeField] private Image healthBar;
+    [SerializeField] private Image healthBarFill;
+    [SerializeField] private GameObject floatingText;
 
     [Header("Stats")]
     public float maxHealth;
@@ -23,9 +23,7 @@ public class CharacterStats : MonoBehaviour
     public int speed;
 
     [Header("Debuffs")]
-    //public List<int> bleedStack;
     public int bleedStack;
-    //[HideInInspector] public int bleedLimit;
     public int defBreakCounter;
     private float initialDefense;
 
@@ -41,12 +39,9 @@ public class CharacterStats : MonoBehaviour
     private void Start()
     {
         //hp
+        if (healthName != null) healthName.text = gameObject.name;
         health = maxHealth;
-        healthFillBattlefield.fillAmount = health / maxHealth;
-        if (healthFillSecond != null)
-        {
-            healthFillSecond.fillAmount = health / maxHealth; //player second hp bar
-        }
+        healthBarFill.fillAmount = health / maxHealth;
 
         //status effects
         initialDefense = defense;
@@ -79,7 +74,7 @@ public class CharacterStats : MonoBehaviour
         health = 0;
         gameObject.tag = "Dead";
 
-        healthBarBattlefield.gameObject.SetActive(false);
+        healthBarFill.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
         //animator.Play("Death");
@@ -102,14 +97,8 @@ public class CharacterStats : MonoBehaviour
             //animator.Play("Damaged");
         }
 
-        healthFillBattlefield.fillAmount = health / maxHealth;
-        if (healthFillSecond != null)
-        {
-            healthFillSecond.fillAmount = health / maxHealth; //player second hp bar
-        }
+        healthBarFill.fillAmount = health / maxHealth;
     }
-
-    #region Buffs
 
     public void HealBuff(float buffAmount)
     {
@@ -122,20 +111,15 @@ public class CharacterStats : MonoBehaviour
             health = maxHealth;
         }
 
-        healthFillBattlefield.fillAmount = health / maxHealth;
-        if (healthFillSecond != null)
-        {
-            healthFillSecond.fillAmount = health / maxHealth; //player second hp bar
-        }
+        healthBarFill.fillAmount = health / maxHealth;
     }
 
     public void AttackBuff(float buffAmount)
     {
-        BuffText(buffAmount, "strengthen");
+        BuffText(buffAmount, "atkBuff");
     }
 
-    #endregion
-
+    #region Text
     public void DamageText(float value, bool critCheck, string effect)
     {
         TextMeshPro popup = floatingText.GetComponent<TextMeshPro>();
@@ -154,8 +138,8 @@ public class CharacterStats : MonoBehaviour
             case "rend":
                 popup.text += "REND\n" + value.ToString();
                 break;
-            case "break":
-                popup.text += "BREAK\n" + value.ToString();
+            case "defBreak":
+                popup.text += "DEF DOWN\n" + value.ToString();
                 break;
             default:
                 popup.text += value.ToString();
@@ -164,7 +148,7 @@ public class CharacterStats : MonoBehaviour
 
         Instantiate(floatingText, transform.position, Quaternion.identity, transform);
 
-        ResetText(popup);
+        popup.text = null;
     }
 
     public void BuffText(float value, string effect)
@@ -177,8 +161,8 @@ public class CharacterStats : MonoBehaviour
             case "heal":
                 popup.text = "CLEANSE\n" + value.ToString();
                 break;
-            case "strengthen":
-                popup.text = "STRENGTHEN\n+" + value.ToString() + "% ATK";
+            case "atkBuff":
+                popup.text = "ATK UP\n+" + value.ToString() + "% ATK";
                 break;
             default:
                 Debug.LogError("No buff text, BUG");
@@ -187,13 +171,9 @@ public class CharacterStats : MonoBehaviour
 
         Instantiate(floatingText, transform.position, Quaternion.identity, transform);
 
-        ResetText(popup);
+        popup.text = null;
     }
-
-    public void ResetText(TextMeshPro text)
-    {
-        text.text = null;
-    }
+    #endregion
 
     public IEnumerator CheckStatusEffects()
     {
@@ -224,7 +204,7 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         checkedStatus = true;
     }

@@ -19,7 +19,7 @@ public class A_SingleBleed : NormalAttack
         float randomValue = Random.Range(0f, 1f);
         if (randomValue <= bleedRate)
         {
-            _Bleed bleed = GetComponent<_Bleed>();
+            _Bleed bleed = FindObjectOfType<_Bleed>();
 
             if (targetStats.bleedStack < bleed.bleedLimit)
             {

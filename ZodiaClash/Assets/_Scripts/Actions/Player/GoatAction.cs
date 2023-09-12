@@ -10,8 +10,6 @@ public class GoatAction : _PlayerAction
         {
             if (playerState == PlayerState.WAITING)
             {
-                turnIndicator.SetActive(true);
-
                 playerState = PlayerState.CHECKSTATUS;
             }
 
@@ -19,6 +17,8 @@ public class GoatAction : _PlayerAction
             {
                 if (!characterStats.checkedStatus && !checkingStatus)
                 {
+                    turnIndicator.SetActive(true);
+
                     StartCoroutine(characterStats.CheckStatusEffects());
                     checkingStatus = true;
                 }
@@ -33,14 +33,14 @@ public class GoatAction : _PlayerAction
             {
                 RefreshTargets();
 
-                ToggleUi(true);
+                ToggleSkillUi(true);
 
                 SelectTarget();
             }
 
             else if (playerState == PlayerState.ATTACKING)
             {
-                ToggleUi(false);
+                ToggleSkillUi(false);
 
                 if (!playerAttacking)
                 {
@@ -78,27 +78,11 @@ public class GoatAction : _PlayerAction
 
         if (selectedSkillPrefab == skill1Prefab)
         {
-            foreach (GameObject enemy in enemyTargets)
-            {
-                enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
-            }
-
-            foreach (GameObject player in playerTargets)
-            {
-                player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
-            }
+            TargetSelectionUi(true, "enemy");
         }
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
-            foreach (GameObject player in playerTargets)
-            {
-                player.GetComponent<_PlayerAction>().targetIndicator.SetActive(true);
-            }
-
-            foreach (GameObject enemy in enemyTargets)
-            {
-                enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
-            }
+            TargetSelectionUi(true, "ally");
         }
     }
 
@@ -118,6 +102,8 @@ public class GoatAction : _PlayerAction
                     selectedTarget = hit.collider.gameObject;
 
                     playerState = PlayerState.ATTACKING;
+
+                    TargetSelectionUi(false, null);
                 }
             }
             else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that targets allies
@@ -127,6 +113,8 @@ public class GoatAction : _PlayerAction
                     selectedTarget = hit.collider.gameObject;
 
                     playerState = PlayerState.ATTACKING;
+
+                    TargetSelectionUi(false, null);
                 }
             }
         }

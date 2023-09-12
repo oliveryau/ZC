@@ -10,8 +10,6 @@ public class CatAction : _PlayerAction
         {
             if (playerState == PlayerState.WAITING)
             {
-                turnIndicator.SetActive(true);
-
                 playerState = PlayerState.CHECKSTATUS;
             }
 
@@ -19,6 +17,8 @@ public class CatAction : _PlayerAction
             {
                 if (!characterStats.checkedStatus && !checkingStatus)
                 {
+                    turnIndicator.SetActive(true);
+
                     StartCoroutine(characterStats.CheckStatusEffects());
                     checkingStatus = true;
                 }
@@ -33,14 +33,14 @@ public class CatAction : _PlayerAction
             {
                 RefreshTargets();
 
-                ToggleUi(true);
+                ToggleSkillUi(true);
 
                 SelectTarget();
             }
 
             else if (playerState == PlayerState.ATTACKING)
             {
-                ToggleUi(false);
+                ToggleSkillUi(false);
 
                 if (!playerAttacking)
                 {
@@ -78,15 +78,7 @@ public class CatAction : _PlayerAction
 
         if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
-            foreach (GameObject enemy in enemyTargets)
-            {
-                enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
-            }
-
-            foreach (GameObject player in playerTargets)
-            {
-                player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
-            }
+            TargetSelectionUi(true, "enemy");
         }
     }
 
@@ -106,6 +98,8 @@ public class CatAction : _PlayerAction
                     selectedTarget = hit.collider.gameObject;
 
                     playerState = PlayerState.ATTACKING;
+
+                    TargetSelectionUi(false, null);
                 }                
             }
         }

@@ -138,18 +138,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  healthBarBattlefield: {fileID: 0}
-  healthFillBattlefield: {fileID: 0}
-  healthBarSecond: {fileID: 0}
-  healthFillSecond: {fileID: 0}
-  floatingText: {fileID: 392316290762747146, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
+  avatar: {fileID: 0}
+  healthName: {fileID: 0}
+  healthBar: {fileID: 0}
+  healthBarFill: {fileID: 0}
+  floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
   maxHealth: 50
   health: 50
   attack: 15
   defense: 20
   speed: 2
-  bleedStack: 
-  bleedLimit: 0
+  bleedStack: 0
   defBreakCounter: 0
   attackBuffCounter: 0
   checkedStatus: 0

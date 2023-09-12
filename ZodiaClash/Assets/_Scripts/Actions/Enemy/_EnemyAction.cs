@@ -47,7 +47,7 @@ public class _EnemyAction : MonoBehaviour
     {
         enemyState = EnemyState.WAITING;
 
-        moveSpeed = 30f;
+        moveSpeed = 40f;
         startPosition = transform.position;
         movingToTarget = false;
         movingToStart = false;
@@ -164,4 +164,18 @@ public class _EnemyAction : MonoBehaviour
 
         enemyState = EnemyState.ENDING;
     }
+
+    #region Target UI
+    private void OnMouseEnter()
+    {
+        SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
+        targetSelect.color = Color.red;
+    }
+
+    private void OnMouseExit()
+    {
+        SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
+        targetSelect.color = Color.black;
+    }
+    #endregion
 }

@@ -140,10 +140,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  healthBarBattlefield: {fileID: 0}
-  healthFillBattlefield: {fileID: 0}
-  healthBarSecond: {fileID: 0}
-  healthFillSecond: {fileID: 0}
+  healthName: {fileID: 0}
+  healthBar: {fileID: 0}
+  healthBarFill: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
   maxHealth: 50
   health: 50
@@ -167,8 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerState: 0
-  characterUi: {fileID: 0}
-  avatar: {fileID: 0}
+  characterSkillUi: {fileID: 0}
   turnIndicator: {fileID: 8434711378409804290}
   targetIndicator: {fileID: 6741899399230050745}
   skill1Prefab: {fileID: 7601538499357730313}
@@ -241,7 +239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
       propertyPath: bleedRate
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
       propertyPath: bleedCount
@@ -304,7 +302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: bleedRate
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: bleedCount

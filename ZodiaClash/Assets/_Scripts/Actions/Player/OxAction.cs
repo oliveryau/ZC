@@ -10,8 +10,6 @@ public class OxAction : _PlayerAction
         {
             if (playerState == PlayerState.WAITING)
             {
-                turnIndicator.SetActive(true);
-
                 playerState = PlayerState.CHECKSTATUS;
             }
 
@@ -19,6 +17,8 @@ public class OxAction : _PlayerAction
             {
                 if (!characterStats.checkedStatus && !checkingStatus)
                 {
+                    turnIndicator.SetActive(true);
+
                     StartCoroutine(characterStats.CheckStatusEffects());
                     checkingStatus = true;
                 }
@@ -33,14 +33,14 @@ public class OxAction : _PlayerAction
             {
                 RefreshTargets();
 
-                ToggleUi(true);
+                ToggleSkillUi(true);
 
                 SelectTarget();
             }
 
             else if (playerState == PlayerState.ATTACKING)
             {
-                ToggleUi(false);
+                ToggleSkillUi(false);
 
                 if (!playerAttacking)
                 {
@@ -76,29 +76,9 @@ public class OxAction : _PlayerAction
     {
         base.SelectSkill(btn);
 
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill3Prefab)
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
-            foreach (GameObject enemy in enemyTargets)
-            {
-                enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
-            }
-
-            foreach (GameObject player in playerTargets)
-            {
-                player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
-            }
-        }
-        else if (selectedSkillPrefab == skill2Prefab)
-        {
-            foreach (GameObject player in playerTargets)
-            {
-                player.GetComponent<_PlayerAction>().targetIndicator.SetActive(true);
-            }
-
-            foreach (GameObject enemy in enemyTargets)
-            {
-                enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
-            }
+            TargetSelectionUi(true, "enemy");
         }
     }
 
@@ -110,7 +90,7 @@ public class OxAction : _PlayerAction
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-            if (selectedSkillPrefab == skill1Prefab) //skills that targets enemies
+            if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that targets enemies
             {
 
                 if (hit.collider != null && hit.collider.CompareTag("Enemy"))
@@ -118,15 +98,8 @@ public class OxAction : _PlayerAction
                     selectedTarget = hit.collider.gameObject;
 
                     playerState = PlayerState.ATTACKING;
-                }
-            }
-            else if (selectedSkillPrefab == skill2Prefab) //skills that targets allies
-            {
-                if (hit.collider != null && hit.collider.CompareTag("Player"))
-                {
-                    selectedTarget = hit.collider.gameObject;
 
-                    playerState = PlayerState.ATTACKING;
+                    TargetSelectionUi(false, null);
                 }
             }
         }
@@ -166,12 +139,12 @@ public class OxAction : _PlayerAction
     {
         if (selectedSkillPrefab == skill1Prefab)
         {
-            //single target stun skill
+            //aoe target def break skill
             selectedSkillPrefab.GetComponent<NormalAttack>().Attack(selectedTarget);
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
-            //ally shield buff skill
+            //single target stun skill
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
