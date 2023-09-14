@@ -88,33 +88,54 @@ public class GoatAction : _PlayerAction
 
     protected override void SelectTarget()
     {
-        if (Input.GetMouseButtonDown(0) && selectedSkillPrefab != null)
+        if (selectedSkillPrefab != null)
         {
-            //raycasting mousePosition
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-            if (selectedSkillPrefab == skill1Prefab) //skills that targets enemies
+            if (selectedSkillPrefab == skill1Prefab) //single targeting
             {
-
                 if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                 {
-                    selectedTarget = hit.collider.gameObject;
+                    hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
 
-                    playerState = PlayerState.ATTACKING;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        selectedTarget = hit.collider.gameObject;
 
-                    TargetSelectionUi(false, null);
+                        playerState = PlayerState.ATTACKING;
+
+                        TargetSelectionUi(false, null);
+                    }
                 }
             }
-            else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that targets allies
+            else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //ally targeting
             {
                 if (hit.collider != null && hit.collider.CompareTag("Player"))
                 {
-                    selectedTarget = hit.collider.gameObject;
+                    hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(true);
 
-                    playerState = PlayerState.ATTACKING;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        selectedTarget = hit.collider.gameObject;
 
-                    TargetSelectionUi(false, null);
+                        playerState = PlayerState.ATTACKING;
+
+                        TargetSelectionUi(false, null);
+                    }
+                }
+            }
+
+            if (hit.collider == null)
+            {
+                foreach (GameObject enemy in enemyTargets)
+                {
+                    enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
+                }
+
+                foreach (GameObject player in playerTargets)
+                {
+                    player.GetComponent<_PlayerAction>().HighlightTargetIndicator(false);
                 }
             }
         }
@@ -138,11 +159,11 @@ public class GoatAction : _PlayerAction
     {
         if (selectedSkillPrefab == skill1Prefab)
         {
-            StartCoroutine(AttackStartDelay(0.5f, 1f));
+            StartCoroutine(AttackStartDelay(0.5f, 0.5f));
         }
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
-            StartCoroutine(BuffStartDelay(0.5f, 1f));
+            StartCoroutine(BuffStartDelay(0.5f, 0.5f));
         }
     }
 

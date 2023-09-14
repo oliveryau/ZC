@@ -59,8 +59,8 @@ public class CatAction : _PlayerAction
                 turnIndicator.SetActive(false);
 
                 selectedSkillPrefab = null;
-                selectedTarget = null;
                 enemyTargets = null;
+                selectedTarget = null;
 
                 playerAttacking = false;
                 endingTurn = false;
@@ -76,31 +76,71 @@ public class CatAction : _PlayerAction
     {
         base.SelectSkill(btn);
 
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
+        if (selectedSkillPrefab == skill1Prefab)
         {
+            aoeSkillSelected = false;
+
+            TargetSelectionUi(true, "enemy");
+        }
+        else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe
+        {
+            aoeSkillSelected = true;
+
             TargetSelectionUi(true, "enemy");
         }
     }
 
     protected override void SelectTarget()
     {
-        if (Input.GetMouseButtonDown(0) && selectedSkillPrefab != null)
+        if (selectedSkillPrefab != null)
         {
-            //raycasting mousePosition
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-            if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that targets enemies
+            if (selectedSkillPrefab == skill1Prefab) //single targeting
             {
+                aoeSkillSelected = false;
 
                 if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                 {
-                    selectedTarget = hit.collider.gameObject;
+                    hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
 
-                    playerState = PlayerState.ATTACKING;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        selectedTarget = hit.collider.gameObject;
 
-                    TargetSelectionUi(false, null);
-                }                
+                        playerState = PlayerState.ATTACKING;
+
+                        TargetSelectionUi(false, null);
+                    }
+                }
+            }
+            else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe targeting
+            {
+                aoeSkillSelected = true;
+
+                if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                {
+                    foreach (GameObject enemy in enemyTargets)
+                    {
+                        enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                    }
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        playerState = PlayerState.ATTACKING;
+
+                        TargetSelectionUi(false, null);
+                    }
+                }
+            }
+                
+            if (hit.collider == null)
+            {
+                foreach (GameObject enemy in enemyTargets)
+                {
+                    enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
+                }
             }
         }
     }
@@ -109,9 +149,13 @@ public class CatAction : _PlayerAction
     {
         playerAttacking = true;
 
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that require movement
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab) //skills that require movement
         {
             movingToTarget = true; //movement is triggered
+        }
+        else if (selectedSkillPrefab == skill3Prefab)
+        {
+            AttackAnimation();
         }
     }
 
@@ -119,7 +163,7 @@ public class CatAction : _PlayerAction
     {
         if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
-            StartCoroutine(AttackStartDelay(0.5f, 1f));
+            StartCoroutine(AttackStartDelay(0.5f, 0.5f));
         }
     }
 

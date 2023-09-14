@@ -84,22 +84,54 @@ public class OxAction : _PlayerAction
 
     protected override void SelectTarget()
     {
-        if (Input.GetMouseButtonDown(0) && selectedSkillPrefab != null)
+        if (selectedSkillPrefab != null)
         {
-            //raycasting mousePosition
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-            if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that targets enemies
+            if (selectedSkillPrefab == skill1Prefab) //aoe targeting
             {
+                aoeSkillSelected = true;
 
                 if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                 {
-                    selectedTarget = hit.collider.gameObject;
+                    foreach (GameObject enemy in enemyTargets)
+                    {
+                        enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                    }
 
-                    playerState = PlayerState.ATTACKING;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        playerState = PlayerState.ATTACKING;
 
-                    TargetSelectionUi(false, null);
+                        TargetSelectionUi(false, null);
+                    }
+                }
+            }
+            else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //single targeting
+            {
+                aoeSkillSelected = false;
+
+                if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                {
+                    hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        selectedTarget = hit.collider.gameObject;
+
+                        playerState = PlayerState.ATTACKING;
+
+                        TargetSelectionUi(false, null);
+                    }
+                }
+            }
+
+            if (hit.collider == null)
+            {
+                foreach (GameObject enemy in enemyTargets)
+                {
+                    enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
                 }
             }
         }
@@ -123,7 +155,7 @@ public class OxAction : _PlayerAction
     {
         if (selectedSkillPrefab == skill1Prefab)
         {
-            StartCoroutine(AttackStartDelay(0.5f, 1f));
+            StartCoroutine(AttackStartDelay(0.5f, 0.5f));
         }
         //else if (selectedSkillPrefab == skill2Prefab)
         //{
@@ -139,8 +171,8 @@ public class OxAction : _PlayerAction
     {
         if (selectedSkillPrefab == skill1Prefab)
         {
-            //aoe target def break skill
-            selectedSkillPrefab.GetComponent<NormalAttack>().Attack(selectedTarget);
+            //aoe target skill
+            selectedSkillPrefab.GetComponent<AoeAttack>().Attack(enemyTargets);
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {

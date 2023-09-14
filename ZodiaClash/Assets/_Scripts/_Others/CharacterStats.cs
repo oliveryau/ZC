@@ -10,7 +10,6 @@ public class CharacterStats : MonoBehaviour
 
     [Header("HUD")]
     public Sprite avatar;
-    [SerializeField] private TextMeshProUGUI healthName;
     [SerializeField] private Image healthBar;
     [SerializeField] private Image healthBarFill;
     [SerializeField] private GameObject floatingText;
@@ -39,7 +38,6 @@ public class CharacterStats : MonoBehaviour
     private void Start()
     {
         //hp
-        if (healthName != null) healthName.text = gameObject.name;
         health = maxHealth;
         healthBarFill.fillAmount = health / maxHealth;
 
@@ -184,7 +182,6 @@ public class CharacterStats : MonoBehaviour
             _Bleed bleed = FindObjectOfType<_Bleed>();
             bleed.BleedCalculation(this);
 
-            Debug.Log("Hello");
             TakeDamage(bleed.bleedDamage, false, "bleed");
             --bleedStack;
         }
@@ -204,7 +201,7 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         checkedStatus = true;
     }

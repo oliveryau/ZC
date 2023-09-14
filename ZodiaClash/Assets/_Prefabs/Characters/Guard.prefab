@@ -139,7 +139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   avatar: {fileID: 0}
-  healthName: {fileID: 0}
   healthBar: {fileID: 0}
   healthBarFill: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}

@@ -22,8 +22,10 @@ public class _EnemyAction : MonoBehaviour
     [SerializeField] protected GameObject selectedSkillPrefab;
 
     [Header("Target Selection")]
+    [SerializeField] protected GameObject[] enemyTargets;
     [SerializeField] protected GameObject[] playerTargets;
     protected GameObject selectedTarget;
+    protected _PlayerAction playerAction;
 
     [Header("Movements")]
     [SerializeField] protected Vector3 startPosition;
@@ -47,7 +49,7 @@ public class _EnemyAction : MonoBehaviour
     {
         enemyState = EnemyState.WAITING;
 
-        moveSpeed = 40f;
+        moveSpeed = 50f;
         startPosition = transform.position;
         movingToTarget = false;
         movingToStart = false;
@@ -59,10 +61,13 @@ public class _EnemyAction : MonoBehaviour
         enemyAttacking = false;
         enemyEndingTurn = false;
         checkingStatus = false;
+
+        playerAction = FindObjectOfType<_PlayerAction>();
     }
 
-    protected void RefreshPlayerTargets()
+    protected void EnemyRefreshTargets()
     {
+        enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
         playerTargets = GameObject.FindGameObjectsWithTag("Player");
     }
 
@@ -166,16 +171,10 @@ public class _EnemyAction : MonoBehaviour
     }
 
     #region Target UI
-    private void OnMouseEnter()
+    public void EnemyHighlightTargetIndicator(bool highlight)
     {
         SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
-        targetSelect.color = Color.red;
-    }
-
-    private void OnMouseExit()
-    {
-        SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
-        targetSelect.color = Color.black;
+        targetSelect.color = highlight ? Color.red : Color.black;
     }
     #endregion
 }

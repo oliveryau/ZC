@@ -27,6 +27,7 @@ public class _PlayerAction : MonoBehaviour
     [SerializeField] protected GameObject[] playerTargets;
     [SerializeField] protected GameObject[] enemyTargets;
     protected GameObject selectedTarget;
+    protected bool aoeSkillSelected;
 
     [Header("Movements")]
     [SerializeField] protected Vector3 startPosition;
@@ -47,7 +48,7 @@ public class _PlayerAction : MonoBehaviour
     {
         playerState = PlayerState.WAITING;
 
-        moveSpeed = 40f;
+        moveSpeed = 50f;
         startPosition = transform.position;
         movingToTarget = false;
         movingToStart = false;
@@ -195,7 +196,7 @@ public class _PlayerAction : MonoBehaviour
 
     protected virtual void AttackAnimation()
     {
-        //play different attack animation timings for different skillPrefabs
+        //customised attack animation timings for different skills
     }
 
     protected virtual void ApplySkill()
@@ -235,16 +236,10 @@ public class _PlayerAction : MonoBehaviour
     }
 
     #region Target UI
-    private void OnMouseEnter()
+    public void HighlightTargetIndicator(bool highlight)
     {
         SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
-        targetSelect.color = Color.cyan;
-    }
-
-    private void OnMouseExit()
-    {
-        SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
-        targetSelect.color = Color.black;
+        targetSelect.color = highlight ? Color.cyan : Color.black;
     }
     #endregion
 }

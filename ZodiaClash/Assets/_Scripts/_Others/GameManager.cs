@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
                 roundInProgress = true;
                 ++roundCounter;
 
-                StartCoroutine(NewRoundDelay(1f)); //delay and switch states
+                StartCoroutine(NewRoundDelay(0.5f)); //delay and switch states
             }
         }
         else if (state == BattleState.NEXTTURN)
@@ -101,7 +101,6 @@ public class GameManager : MonoBehaviour
                         state = BattleState.PLAYERTURN;
                     }
                     currentCharacterIndex++;
-                    ManageTurnOrder();
                 }
                 else
                 {
@@ -131,30 +130,6 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Character: " + chara.gameObject.name + ", Speed: " + chara.speed);
         }
-    }
-
-    public void ManageTurnOrder()
-    {
-        List<string> turnOrderList = new List<string>();
-        foreach (CharacterStats character in charactersList)
-        {
-            turnOrderList.Add(character.gameObject.name);
-        }
-
-        if (currentCharacterIndex > 0)
-        {
-            turnOrderList.RemoveAt(currentCharacterIndex - 1);
-            turnOrderList.Insert(0, currentCharacter.gameObject.name);
-            Debug.LogWarning("Inserting " + currentCharacter.gameObject.name);
-        }
-
-        string turnOrderListString = "";
-        for (int i = 0; i < turnOrderList.Count; i++)
-        {
-            turnOrderListString += turnOrderList[i] + "\n";
-        }
-
-        turnOrder.text = turnOrderListString;
     }
 
     public IEnumerator NewRoundDelay(float seconds)

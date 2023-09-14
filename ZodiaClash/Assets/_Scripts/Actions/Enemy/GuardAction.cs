@@ -31,7 +31,7 @@ public class GuardAction : _EnemyAction
 
             else if (enemyState == EnemyState.SKILLSELECT)
             {
-                RefreshPlayerTargets();
+                EnemyRefreshTargets();
 
                 EnemyToggleUi();
 
