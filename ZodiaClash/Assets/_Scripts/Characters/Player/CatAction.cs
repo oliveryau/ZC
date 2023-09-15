@@ -22,6 +22,13 @@ public class CatAction : _PlayerAction
                     StartCoroutine(characterStats.CheckStatusEffects());
                     checkingStatus = true;
                 }
+                else if (characterStats.stunCheck)
+                {
+                    playerState = PlayerState.ENDING;
+
+                    characterStats.stunCheck = false;
+                    checkingStatus = false;
+                }
                 else if (characterStats.checkedStatus)
                 {
                     playerState = PlayerState.PLAYERSELECTION;
@@ -97,44 +104,90 @@ public class CatAction : _PlayerAction
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-            if (selectedSkillPrefab == skill1Prefab) //single targeting
+            #region Taunted Behaviour
+            if (characterStats.tauntCheck)
             {
-                aoeSkillSelected = false;
-
-                if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                if (selectedSkillPrefab == skill1Prefab) //single targeting
                 {
-                    hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                    aoeSkillSelected = false;
 
-                    if (Input.GetMouseButtonDown(0))
+                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
-                        selectedTarget = hit.collider.gameObject;
+                        selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
 
-                        playerState = PlayerState.ATTACKING;
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            playerState = PlayerState.ATTACKING;
 
-                        TargetSelectionUi(false, null);
+                            TargetSelectionUi(false, null);
+                        }
+                    }
+                }
+                else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe targeting
+                {
+                    aoeSkillSelected = true;
+
+                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                    {
+                        foreach (GameObject enemy in enemyTargets)
+                        {
+                            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                        }
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            playerState = PlayerState.ATTACKING;
+
+                            TargetSelectionUi(false, null);
+                        }
                     }
                 }
             }
-            else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe targeting
+            #endregion
+            #region Normal Targeting Behaviour
+            else if (!characterStats.tauntCheck)
             {
-                aoeSkillSelected = true;
-
-                if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                if (selectedSkillPrefab == skill1Prefab) //single targeting
                 {
-                    foreach (GameObject enemy in enemyTargets)
+                    aoeSkillSelected = false;
+
+                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
-                        enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                        hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            selectedTarget = hit.collider.gameObject;
+
+                            playerState = PlayerState.ATTACKING;
+
+                            TargetSelectionUi(false, null);
+                        }
                     }
+                }
+                else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe targeting
+                {
+                    aoeSkillSelected = true;
 
-                    if (Input.GetMouseButtonDown(0))
+                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
-                        playerState = PlayerState.ATTACKING;
+                        foreach (GameObject enemy in enemyTargets)
+                        {
+                            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                        }
 
-                        TargetSelectionUi(false, null);
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            playerState = PlayerState.ATTACKING;
+
+                            TargetSelectionUi(false, null);
+                        }
                     }
                 }
             }
-                
+            #endregion
+
+            #region No Detection on Targets
             if (hit.collider == null)
             {
                 foreach (GameObject enemy in enemyTargets)
@@ -142,6 +195,7 @@ public class CatAction : _PlayerAction
                     enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
                 }
             }
+            #endregion
         }
     }
 

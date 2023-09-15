@@ -26,7 +26,7 @@ public class _PlayerAction : MonoBehaviour
     [Header("Target Selection")]
     [SerializeField] protected GameObject[] playerTargets;
     [SerializeField] protected GameObject[] enemyTargets;
-    protected GameObject selectedTarget;
+    public GameObject selectedTarget;
     protected bool aoeSkillSelected;
 
     [Header("Movements")]

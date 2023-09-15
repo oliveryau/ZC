@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2232895680322263773}
-  - component: {fileID: 2715427919934904291}
+  - component: {fileID: 7281113104915052964}
   m_Layer: 0
   m_Name: 1_AOE Attack
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2715427919934904291
+--- !u!114 &7281113104915052964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,14 +41,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3938976782827014040}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef1422c8f47538f42b68142328bbb45c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0347573554214c74d8c35c27ce110a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   animationName: 
-  skillAttackPercent: 120
-  extraAttackPercent: 0
-  minAttackMultiplier: 0.8
-  maxAttackMultiplier: 1.2
+  skillAttackPercent: 0
+  minAttackMultiplier: 0
+  maxAttackMultiplier: 0
   critRate: 0
-  critMultiplier: 1.5
+  critMultiplier: 0
+  critCheck: 0

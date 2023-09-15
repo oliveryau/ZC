@@ -11,7 +11,7 @@ public class FloatingText : MonoBehaviour
 
     private void Start()
     {
-        destroyTime = 1f;
+        destroyTime = 0.7f;
         offset = new Vector3(0, 1, 0);
         randomIntensity = new Vector3(0.2f, 0, 0);
 

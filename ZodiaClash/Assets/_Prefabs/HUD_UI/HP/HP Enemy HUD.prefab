@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1502866195234392014}
   m_Layer: 5
-  m_Name: _HP Enemy HUD
+  m_Name: HP Enemy HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

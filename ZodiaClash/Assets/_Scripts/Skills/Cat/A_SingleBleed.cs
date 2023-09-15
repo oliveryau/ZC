@@ -8,8 +8,6 @@ public class A_SingleBleed : NormalAttack
     [SerializeField] private float bleedRate;
     [SerializeField] private int bleedTurns;
 
-    //private float bleedDamage; //damage of bleed
-
     public override void Attack(GameObject target)
     {
         //owner.GetComponent<Animator>().Play(animationName);

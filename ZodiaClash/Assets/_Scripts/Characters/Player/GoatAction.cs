@@ -22,6 +22,13 @@ public class GoatAction : _PlayerAction
                     StartCoroutine(characterStats.CheckStatusEffects());
                     checkingStatus = true;
                 }
+                else if (characterStats.stunCheck)
+                {
+                    playerState = PlayerState.ENDING;
+
+                    characterStats.stunCheck = false;
+                    checkingStatus = false;
+                }
                 else if (characterStats.checkedStatus)
                 {
                     playerState = PlayerState.PLAYERSELECTION;
@@ -93,39 +100,64 @@ public class GoatAction : _PlayerAction
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-            if (selectedSkillPrefab == skill1Prefab) //single targeting
+            #region Taunted Behaviour
+            if (characterStats.tauntCheck)
             {
-                if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                if (selectedSkillPrefab == skill1Prefab) //single targeting
                 {
-                    hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
-                    if (Input.GetMouseButtonDown(0))
+                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
-                        selectedTarget = hit.collider.gameObject;
+                        selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
 
-                        playerState = PlayerState.ATTACKING;
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            playerState = PlayerState.ATTACKING;
 
-                        TargetSelectionUi(false, null);
+                            TargetSelectionUi(false, null);
+                        }
                     }
                 }
             }
-            else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //ally targeting
+            #endregion
+            #region Normal Targeting Behaviour
+            else if (!characterStats.tauntCheck)
             {
-                if (hit.collider != null && hit.collider.CompareTag("Player"))
+                if (selectedSkillPrefab == skill1Prefab) //single targeting
                 {
-                    hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(true);
-
-                    if (Input.GetMouseButtonDown(0))
+                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
-                        selectedTarget = hit.collider.gameObject;
+                        hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
 
-                        playerState = PlayerState.ATTACKING;
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            selectedTarget = hit.collider.gameObject;
 
-                        TargetSelectionUi(false, null);
+                            playerState = PlayerState.ATTACKING;
+
+                            TargetSelectionUi(false, null);
+                        }
+                    }
+                }
+                else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //ally targeting
+                {
+                    if (hit.collider != null && hit.collider.CompareTag("Player"))
+                    {
+                        hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(true);
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            selectedTarget = hit.collider.gameObject;
+
+                            playerState = PlayerState.ATTACKING;
+
+                            TargetSelectionUi(false, null);
+                        }
                     }
                 }
             }
+            #endregion
 
+            #region No Detections on Target
             if (hit.collider == null)
             {
                 foreach (GameObject enemy in enemyTargets)
@@ -138,6 +170,7 @@ public class GoatAction : _PlayerAction
                     player.GetComponent<_PlayerAction>().HighlightTargetIndicator(false);
                 }
             }
+            #endregion
         }
     }
 
@@ -171,8 +204,8 @@ public class GoatAction : _PlayerAction
     {
         if (selectedSkillPrefab == skill1Prefab)
         {
-            //single target DoT skill
-            selectedSkillPrefab.GetComponent<NormalAttack>().Attack(selectedTarget);
+            //single target def break skill
+            selectedSkillPrefab.GetComponent<A_AttackDefBreak>().Attack(selectedTarget);
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {

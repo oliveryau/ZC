@@ -22,6 +22,13 @@ public class GuardAction : _EnemyAction
                     StartCoroutine(characterStats.CheckStatusEffects());
                     checkingStatus = true;
                 }
+                else if (characterStats.stunCheck)
+                {
+                    enemyState = EnemyState.ENDING;
+
+                    characterStats.stunCheck = false;
+                    checkingStatus = false;
+                }
                 else if (characterStats.checkedStatus)
                 {
                     enemyState = EnemyState.SKILLSELECT;
@@ -40,7 +47,16 @@ public class GuardAction : _EnemyAction
 
             else if (enemyState == EnemyState.TARGETING)
             {
-                EnemySelectTarget();
+                if (!characterStats.tauntCheck)
+                {
+                    EnemySelectTarget();
+                }
+                else if (characterStats.tauntCheck)
+                {
+                    enemyState = EnemyState.ATTACKING;
+
+                    characterStats.tauntCheck = false;
+                }
             }
 
             else if (enemyState == EnemyState.ATTACKING)

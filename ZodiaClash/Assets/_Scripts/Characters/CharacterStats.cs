@@ -20,15 +20,18 @@ public class CharacterStats : MonoBehaviour
     public float attack;
     public float defense;
     public int speed;
+    private float initialAttack;
+    private float initialDefense;
 
     [Header("Debuffs")]
     public int bleedStack;
     public int defBreakCounter;
-    private float initialDefense;
+    public int stunCounter;
+    public bool stunCheck;
+    public bool tauntCheck;
 
     [Header("Buffs")]
     public int attackBuffCounter;
-    private float initialAttack;
 
     [Header("Others")]
     [SerializeField] private Animator animator;
@@ -48,6 +51,8 @@ public class CharacterStats : MonoBehaviour
         initialDefense = defense;
         initialAttack = attack;
 
+        stunCheck = false;
+        tauntCheck = false;
         checkedStatus = false;
     }
 
@@ -65,18 +70,15 @@ public class CharacterStats : MonoBehaviour
         {
             _PlayerAction player = GetComponent<_PlayerAction>();
             player.playerState = PlayerState.ENDING;
-            
-            healthBarFill.gameObject.SetActive(false);
         }
         else if (gameObject.CompareTag("Enemy"))
         {
             _EnemyAction enemy = GetComponent<_EnemyAction>();
             enemy.enemyState = EnemyState.ENDING;
-
-            healthBar.gameObject.SetActive(false);
         }
 
         health = 0;
+        healthBar.gameObject.SetActive(false);
         gameObject.tag = "Dead";
         //animator.Play("Death");
 
@@ -126,7 +128,7 @@ public class CharacterStats : MonoBehaviour
         BuffText(buffAmount, "atkBuff");
     }
 
-    #region Text
+    #region Text Effects
     public void DamageText(float value, bool critCheck, string effect)
     {
         TextMeshPro popup = floatingText.GetComponent<TextMeshPro>();
@@ -147,6 +149,15 @@ public class CharacterStats : MonoBehaviour
                 break;
             case "defBreak":
                 popup.text += "DEF DOWN\n" + value.ToString();
+                break;
+            case "stun":
+                popup.text += "STUN\n" + value.ToString();
+                break;
+            case "stun0":
+                popup.text += "STUN";
+                break;
+            case "taunt":
+                popup.text += "TAUNT";
                 break;
             default:
                 popup.text += value.ToString();
@@ -207,6 +218,22 @@ public class CharacterStats : MonoBehaviour
             {
                 defense = initialDefense;
             }
+        }
+        #endregion
+
+        #region Stun
+        if (stunCounter > 0)
+        {
+            DamageText(0, false, "stun0");
+            --stunCounter;
+            stunCheck = true;
+        }
+        #endregion
+
+        #region Taunt
+        if (tauntCheck)
+        {
+            DamageText(0, false, "taunt");
         }
         #endregion
 

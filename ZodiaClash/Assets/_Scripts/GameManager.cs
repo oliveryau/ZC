@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [Header("HUD")]
     [SerializeField] private GameObject playerHud;
+    [SerializeField] private GameObject skillChiHud;
     [SerializeField] private GameObject enemyHud;
     [SerializeField] private TextMeshProUGUI turnOrder;
 
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         roundInProgress = false;
 
         playerHud.SetActive(false);
+        skillChiHud.SetActive(false);
         enemyHud.SetActive(false);
     }
 
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour
                 state = BattleState.WIN;
 
                 playerHud.SetActive(false);
+                skillChiHud.SetActive(false);
                 enemyHud.SetActive(false);
             }
             else if (GameObject.FindGameObjectsWithTag("Player").Length <= 0) //no players left
@@ -81,6 +84,7 @@ public class GameManager : MonoBehaviour
                 state = BattleState.LOSE;
 
                 playerHud.SetActive(false);
+                skillChiHud.SetActive(false);
                 enemyHud.SetActive(false);
             }
             else
@@ -104,6 +108,7 @@ public class GameManager : MonoBehaviour
 
                         Debug.LogWarning("State: Player Turn");
                         UpdateTurnOrderUi();
+                        skillChiHud.SetActive(true);
 
                         state = BattleState.PLAYERTURN;
                     }

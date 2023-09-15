@@ -24,8 +24,7 @@ public class _EnemyAction : MonoBehaviour
     [Header("Target Selection")]
     [SerializeField] protected GameObject[] enemyTargets;
     [SerializeField] protected GameObject[] playerTargets;
-    protected GameObject selectedTarget;
-    protected _PlayerAction playerAction;
+    public GameObject selectedTarget;
 
     [Header("Movements")]
     [SerializeField] protected Vector3 startPosition;
@@ -61,8 +60,6 @@ public class _EnemyAction : MonoBehaviour
         enemyAttacking = false;
         enemyEndingTurn = false;
         checkingStatus = false;
-
-        playerAction = FindObjectOfType<_PlayerAction>();
     }
 
     protected void EnemyRefreshTargets()
