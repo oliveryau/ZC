@@ -149,13 +149,9 @@ public class CatAction : _PlayerAction
     {
         playerAttacking = true;
 
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab) //skills that require movement
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that require movement
         {
             movingToTarget = true; //movement is triggered
-        }
-        else if (selectedSkillPrefab == skill3Prefab)
-        {
-            AttackAnimation();
         }
     }
 

@@ -6,7 +6,7 @@ using TMPro;
 
 public class CharacterStats : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    private GameManager gameManager;
 
     [Header("HUD")]
     public Sprite avatar;
@@ -31,12 +31,15 @@ public class CharacterStats : MonoBehaviour
     private float initialAttack;
 
     [Header("Others")]
+    [SerializeField] private Animator animator;
     [HideInInspector] public bool checkedStatus;
 
     //private float maxChi = 2;
 
     private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         //hp
         health = maxHealth;
         healthBarFill.fillAmount = health / maxHealth;
@@ -62,20 +65,26 @@ public class CharacterStats : MonoBehaviour
         {
             _PlayerAction player = GetComponent<_PlayerAction>();
             player.playerState = PlayerState.ENDING;
+            
+            healthBarFill.gameObject.SetActive(false);
         }
         else if (gameObject.CompareTag("Enemy"))
         {
             _EnemyAction enemy = GetComponent<_EnemyAction>();
             enemy.enemyState = EnemyState.ENDING;
+
+            healthBar.gameObject.SetActive(false);
         }
 
         health = 0;
         gameObject.tag = "Dead";
+        //animator.Play("Death");
 
-        healthBarFill.gameObject.SetActive(false);
+        gameManager.turnOrderList.Remove(gameObject.name);
+        gameManager.UpdateTurnOrderUi();
 
         yield return new WaitForSeconds(0.5f);
-        //animator.Play("Death");
+
         gameObject.SetActive(false);
     }
 
