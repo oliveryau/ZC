@@ -9,7 +9,7 @@ public class CharacterStats : MonoBehaviour
     private GameManager gameManager;
 
     [Header("HUD")]
-    public Sprite avatar;
+    [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private Image healthBar;
     [SerializeField] private Image healthBarFill;
     [SerializeField] private GameObject floatingText;
@@ -42,6 +42,11 @@ public class CharacterStats : MonoBehaviour
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+
+        if (characterName != null)
+        {
+            characterName.text = gameObject.name.ToString();
+        }
 
         //hp
         health = maxHealth;

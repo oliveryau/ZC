@@ -9,6 +9,9 @@ public class B_AoeBleed : AoeAttack
     [SerializeField] private float bleedRate;
     [SerializeField] private int bleedTurns;
 
+    [Header("Chi Cost")]
+    [SerializeField] private int chiCost;
+
     public override void Attack(GameObject[] targets)
     {
         //owner.GetComponent<Animator>().Play(animationName);

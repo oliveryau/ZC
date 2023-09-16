@@ -40,6 +40,7 @@ public class _PlayerAction : MonoBehaviour
 
     protected GameManager gameManager;
     protected CharacterStats characterStats;
+    protected PlayerChi playerChi;
     protected bool playerAttacking;
     protected bool endingTurn;
     protected bool checkingStatus;
@@ -57,6 +58,7 @@ public class _PlayerAction : MonoBehaviour
 
         gameManager = FindObjectOfType<GameManager>();
         characterStats = GetComponent<CharacterStats>();
+        playerChi = FindObjectOfType<PlayerChi>();
         playerAttacking = false;
         endingTurn = false;
         checkingStatus = false;

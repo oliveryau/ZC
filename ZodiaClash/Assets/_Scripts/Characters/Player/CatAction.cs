@@ -117,6 +117,8 @@ public class CatAction : _PlayerAction
 
                         if (Input.GetMouseButtonDown(0))
                         {
+                            playerChi.RegainChi();
+
                             playerState = PlayerState.ATTACKING;
 
                             TargetSelectionUi(false, null);
@@ -136,6 +138,8 @@ public class CatAction : _PlayerAction
 
                         if (Input.GetMouseButtonDown(0))
                         {
+                            playerChi.UseChi(2);
+
                             playerState = PlayerState.ATTACKING;
 
                             TargetSelectionUi(false, null);
@@ -158,6 +162,7 @@ public class CatAction : _PlayerAction
                         if (Input.GetMouseButtonDown(0))
                         {
                             selectedTarget = hit.collider.gameObject;
+                            playerChi.RegainChi();
 
                             playerState = PlayerState.ATTACKING;
 
@@ -178,6 +183,8 @@ public class CatAction : _PlayerAction
 
                         if (Input.GetMouseButtonDown(0))
                         {
+                            playerChi.UseChi(2);
+
                             playerState = PlayerState.ATTACKING;
 
                             TargetSelectionUi(false, null);
