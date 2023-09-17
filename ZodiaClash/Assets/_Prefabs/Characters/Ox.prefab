@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: -1722746847
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f08ac7389bd2d404a8e50c3f5efa4f82, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2b93dabf5af14f4595e365a4229aad2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1304055b5b8c96f4b9742bc8508b25c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avatar: {fileID: 0}
+  characterName: {fileID: 0}
   healthBar: {fileID: 0}
   healthBarFill: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
@@ -176,6 +176,8 @@ MonoBehaviour:
   skill2Prefab: {fileID: 8251729790526515007}
   skill3Prefab: {fileID: 6768236369634637288}
   selectedSkillPrefab: {fileID: 0}
+  skill2ChiCost: 0
+  skill3ChiCost: 0
   playerTargets: []
   enemyTargets: []
   selectedTarget: {fileID: 0}
@@ -203,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3080394127348428447, guid: 8e3fd02902078ac4193171835980c559, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 3080394127348428447, guid: 8e3fd02902078ac4193171835980c559, type: 3}
       propertyPath: m_LocalPosition.z

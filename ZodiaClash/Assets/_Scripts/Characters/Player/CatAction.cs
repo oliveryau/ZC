@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -125,7 +126,7 @@ public class CatAction : _PlayerAction
                         }
                     }
                 }
-                else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe targeting
+                else if (selectedSkillPrefab == skill2Prefab) //aoe targeting
                 {
                     aoeSkillSelected = true;
 
@@ -138,11 +139,46 @@ public class CatAction : _PlayerAction
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            playerChi.UseChi(2);
+                            if (playerChi.currentChi < skill2ChiCost)
+                            {
+                                Debug.LogError("Cannot use skill!");
+                            }
+                            else if (playerChi.currentChi >= skill2ChiCost)
+                            {
+                                playerChi.UseChi(skill2ChiCost);
 
-                            playerState = PlayerState.ATTACKING;
+                                playerState = PlayerState.ATTACKING;
 
-                            TargetSelectionUi(false, null);
+                                TargetSelectionUi(false, null);
+                            }
+                        }
+                    }
+                }
+                else if (selectedSkillPrefab == skill3Prefab) //aoe targeting
+                {
+                    aoeSkillSelected = true;
+
+                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                    {
+                        foreach (GameObject enemy in enemyTargets)
+                        {
+                            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                        }
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            if (playerChi.currentChi < skill3ChiCost)
+                            {
+                                Debug.LogError("Cannot use skill!");
+                            }
+                            else if (playerChi.currentChi >= skill3ChiCost)
+                            {
+                                playerChi.UseChi(skill3ChiCost);
+
+                                playerState = PlayerState.ATTACKING;
+
+                                TargetSelectionUi(false, null);
+                            }
                         }
                     }
                 }
@@ -170,7 +206,7 @@ public class CatAction : _PlayerAction
                         }
                     }
                 }
-                else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe targeting
+                else if (selectedSkillPrefab == skill2Prefab) //aoe targeting
                 {
                     aoeSkillSelected = true;
 
@@ -183,11 +219,46 @@ public class CatAction : _PlayerAction
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            playerChi.UseChi(2);
+                            if (playerChi.currentChi < skill2ChiCost)
+                            {
+                                Debug.LogError("Cannot use skill!");
+                            }
+                            else if (playerChi.currentChi >= skill2ChiCost)
+                            {
+                                playerChi.UseChi(skill2ChiCost);
 
-                            playerState = PlayerState.ATTACKING;
+                                playerState = PlayerState.ATTACKING;
 
-                            TargetSelectionUi(false, null);
+                                TargetSelectionUi(false, null);
+                            }
+                        }
+                    }
+                }
+                else if (selectedSkillPrefab == skill3Prefab) //aoe targeting
+                {
+                    aoeSkillSelected = true;
+
+                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                    {
+                        foreach (GameObject enemy in enemyTargets)
+                        {
+                            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                        }
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            if (playerChi.currentChi < skill3ChiCost)
+                            {
+                                Debug.LogError("Cannot use skill!");
+                            }
+                            else if (playerChi.currentChi >= skill3ChiCost)
+                            {
+                                playerChi.UseChi(skill3ChiCost);
+
+                                playerState = PlayerState.ATTACKING;
+
+                                TargetSelectionUi(false, null);
+                            }
                         }
                     }
                 }

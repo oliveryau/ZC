@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateTurnOrderUi()
     {
-        turnOrder.text = null;
+        turnOrder.text = "TURN:\n";
         turnOrder.color = Color.white;
 
         if (turnOrderList.Count > 0)

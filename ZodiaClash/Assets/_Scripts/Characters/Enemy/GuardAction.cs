@@ -22,7 +22,7 @@ public class GuardAction : _EnemyAction
                     StartCoroutine(characterStats.CheckStatusEffects());
                     checkingStatus = true;
                 }
-                else if (characterStats.stunCheck)
+                else if (characterStats.checkedStatus && characterStats.stunCheck)
                 {
                     enemyState = EnemyState.ENDING;
 

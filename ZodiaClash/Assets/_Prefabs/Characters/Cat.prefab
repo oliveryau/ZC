@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: be288d77987f338448a0fb4e27b9f855, type: 3}
-  m_Color: {r: 0.99607843, g: 0, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.80349994, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -139,8 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1304055b5b8c96f4b9742bc8508b25c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  healthName: {fileID: 0}
+  characterName: {fileID: 0}
   healthBar: {fileID: 0}
   healthBarFill: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
@@ -151,7 +150,11 @@ MonoBehaviour:
   speed: 5
   bleedStack: 0
   defBreakCounter: 0
+  stunCounter: 0
+  stunCheck: 0
+  tauntCheck: 0
   attackBuffCounter: 0
+  animator: {fileID: 0}
   checkedStatus: 0
 --- !u!114 &748038080333493805
 MonoBehaviour:
@@ -173,8 +176,11 @@ MonoBehaviour:
   skill2Prefab: {fileID: 4664854013163135867}
   skill3Prefab: {fileID: 6277926731226478307}
   selectedSkillPrefab: {fileID: 0}
+  skill2ChiCost: 0
+  skill3ChiCost: 0
   playerTargets: []
   enemyTargets: []
+  selectedTarget: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}
 --- !u!1001 &3127307887441159695

@@ -23,6 +23,10 @@ public class _PlayerAction : MonoBehaviour
     [SerializeField] protected GameObject skill3Prefab;
     [SerializeField] protected GameObject selectedSkillPrefab;
 
+    [Header("Skill Chi Cost")]
+    [SerializeField] protected int skill2ChiCost;
+    [SerializeField] protected int skill3ChiCost;
+
     [Header("Target Selection")]
     [SerializeField] protected GameObject[] playerTargets;
     [SerializeField] protected GameObject[] enemyTargets;
@@ -183,7 +187,7 @@ public class _PlayerAction : MonoBehaviour
             selectedSkillPrefab = skill3Prefab;
         }
 
-        Debug.LogError("Player Skill Chosen: " + selectedSkillPrefab.name);
+        Debug.Log("Player Skill Chosen: " + selectedSkillPrefab.name);
     }
 
     protected virtual void SelectTarget()

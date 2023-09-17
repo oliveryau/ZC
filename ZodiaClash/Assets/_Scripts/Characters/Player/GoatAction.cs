@@ -111,6 +111,8 @@ public class GoatAction : _PlayerAction
 
                         if (Input.GetMouseButtonDown(0))
                         {
+                            playerChi.RegainChi();
+
                             playerState = PlayerState.ATTACKING;
 
                             TargetSelectionUi(false, null);
@@ -131,6 +133,7 @@ public class GoatAction : _PlayerAction
                         if (Input.GetMouseButtonDown(0))
                         {
                             selectedTarget = hit.collider.gameObject;
+                            playerChi.RegainChi();
 
                             playerState = PlayerState.ATTACKING;
 
@@ -138,7 +141,7 @@ public class GoatAction : _PlayerAction
                         }
                     }
                 }
-                else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //ally targeting
+                else if (selectedSkillPrefab == skill2Prefab) //ally targeting
                 {
                     if (hit.collider != null && hit.collider.CompareTag("Player"))
                     {
@@ -146,11 +149,43 @@ public class GoatAction : _PlayerAction
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            selectedTarget = hit.collider.gameObject;
+                            if (playerChi.currentChi < skill2ChiCost)
+                            {
+                                Debug.LogError("Cannot use skill!");
+                            }
+                            else if (playerChi.currentChi >= skill2ChiCost)
+                            {
+                                selectedTarget = hit.collider.gameObject;
+                                playerChi.UseChi(skill2ChiCost);
 
-                            playerState = PlayerState.ATTACKING;
+                                playerState = PlayerState.ATTACKING;
 
-                            TargetSelectionUi(false, null);
+                                TargetSelectionUi(false, null);
+                            }
+                        }
+                    }
+                }
+                else if (selectedSkillPrefab == skill3Prefab) //ally targeting
+                {
+                    if (hit.collider != null && hit.collider.CompareTag("Player"))
+                    {
+                        hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(true);
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            if (playerChi.currentChi < skill3ChiCost)
+                            {
+                                Debug.LogError("Cannot use skill!");
+                            }
+                            else if (playerChi.currentChi >= skill3ChiCost)
+                            {
+                                selectedTarget = hit.collider.gameObject;
+                                playerChi.UseChi(skill3ChiCost);
+
+                                playerState = PlayerState.ATTACKING;
+
+                                TargetSelectionUi(false, null);
+                            }
                         }
                     }
                 }

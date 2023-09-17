@@ -17,10 +17,8 @@ public class PlayerChi : MonoBehaviour
         currentChi = maxChi;
     }
 
-    public void UseChi(int amount)
+    private void UpdateChi()
     {
-        currentChi -= amount;
-
         for (int i = 0; i < chi.Length; i++)
         {
             if (i < currentChi)
@@ -43,6 +41,13 @@ public class PlayerChi : MonoBehaviour
         }
     }
 
+    public void UseChi(int amount)
+    {
+        currentChi -= amount;
+
+        UpdateChi();
+    }
+
     public void RegainChi()
     {
         currentChi += 1;
@@ -51,5 +56,7 @@ public class PlayerChi : MonoBehaviour
         {
             currentChi = maxChi;
         }
+
+        UpdateChi();
     }
 }
