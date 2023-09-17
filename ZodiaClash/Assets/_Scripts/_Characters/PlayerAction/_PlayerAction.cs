@@ -68,6 +68,86 @@ public class _PlayerAction : MonoBehaviour
         checkingStatus = false;
     }
 
+    protected void UpdatePlayerState()
+    {
+        if (gameManager.state == BattleState.PLAYERTURN && gameManager.activePlayer == gameObject.name)
+        {
+            if (playerState == PlayerState.WAITING)
+            {
+                playerState = PlayerState.CHECKSTATUS;
+            }
+
+            else if (playerState == PlayerState.CHECKSTATUS)
+            {
+                if (!characterStats.checkedStatus && !checkingStatus)
+                {
+                    turnIndicator.SetActive(true);
+
+                    StartCoroutine(characterStats.CheckStatusEffects());
+                    checkingStatus = true;
+                }
+                else if (characterStats.checkedStatus && characterStats.stunCheck)
+                {
+                    playerState = PlayerState.ENDING;
+                    checkingStatus = false;
+                }
+                else if (characterStats.checkedStatus)
+                {
+                    playerState = PlayerState.PLAYERSELECTION;
+                    checkingStatus = false;
+                }
+            }
+
+            else if (playerState == PlayerState.PLAYERSELECTION)
+            {
+                RefreshTargets();
+
+                ToggleSkillUi(true);
+
+                SelectTarget();
+            }
+
+            else if (playerState == PlayerState.ATTACKING)
+            {
+                ToggleSkillUi(false);
+
+                if (!playerAttacking)
+                {
+                    UseSkill();
+                }
+
+                PlayerMovement();
+            }
+
+            else if (playerState == PlayerState.ENDING)
+            {
+                characterStats.CheckEndStatusEffects();
+
+                gameManager.state = BattleState.NEXTTURN;
+
+                //hud
+                turnIndicator.SetActive(false);
+
+                //skill
+                selectedSkillPrefab = null;
+                if (!characterStats.tauntCheck)
+                {
+                    selectedTarget = null;
+                }
+
+                //target
+                enemyTargets = null;
+
+                //others
+                playerAttacking = false;
+                endingTurn = false;
+                characterStats.checkedStatus = false;
+
+                playerState = PlayerState.WAITING;
+            }
+        }
+    }
+
     protected void RefreshTargets()
     {
         playerTargets = GameObject.FindGameObjectsWithTag("Player");

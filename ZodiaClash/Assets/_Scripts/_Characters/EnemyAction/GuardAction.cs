@@ -25,8 +25,6 @@ public class GuardAction : _EnemyAction
                 else if (characterStats.checkedStatus && characterStats.stunCheck)
                 {
                     enemyState = EnemyState.ENDING;
-
-                    characterStats.stunCheck = false;
                     checkingStatus = false;
                 }
                 else if (characterStats.checkedStatus)
@@ -54,8 +52,6 @@ public class GuardAction : _EnemyAction
                 else if (characterStats.tauntCheck)
                 {
                     enemyState = EnemyState.ATTACKING;
-
-                    characterStats.tauntCheck = false;
                 }
             }
 
@@ -75,15 +71,22 @@ public class GuardAction : _EnemyAction
 
                 gameManager.state = BattleState.NEXTTURN;
 
+                //hud
                 turnIndicator.SetActive(false);
 
+                //skill
                 selectedSkillPrefab = null;
-                selectedTarget = null;
+                if (!characterStats.tauntCheck)
+                {
+                    selectedTarget = null;
+                }
+
+                //target
                 playerTargets = null;
 
+                //others
                 enemyAttacking = false;
                 enemyEndingTurn = false;
-
                 characterStats.checkedStatus = false;
 
                 enemyState = EnemyState.WAITING;

@@ -143,8 +143,8 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   healthBarFill: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
-  maxHealth: 70
-  health: 70
+  maxHealth: 100
+  health: 100
   attack: 10
   defense: 25
   speed: 4
@@ -152,6 +152,7 @@ MonoBehaviour:
   defBreakCounter: 0
   stunCounter: 0
   stunCheck: 0
+  tauntCounter: 0
   tauntCheck: 0
   attackBuffCounter: 0
   animator: {fileID: 0}
@@ -266,6 +267,10 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 9196513893604650534}
+    - target: {fileID: 471342081536651971, guid: c55e0172d1c56ad43bafee4f4c85f6ab, type: 3}
+      propertyPath: tauntTurns
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6909422217657556072, guid: c55e0172d1c56ad43bafee4f4c85f6ab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

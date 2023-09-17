@@ -28,6 +28,7 @@ public class CharacterStats : MonoBehaviour
     public int defBreakCounter;
     public int stunCounter;
     public bool stunCheck;
+    public int tauntCounter;
     public bool tauntCheck;
 
     [Header("Buffs")]
@@ -229,15 +230,15 @@ public class CharacterStats : MonoBehaviour
         #region Stun
         if (stunCounter > 0)
         {
-            DamageText(0, false, "stun0");
-            --stunCounter;
             stunCheck = true;
+            DamageText(0, false, "stun0");
         }
         #endregion
 
         #region Taunt
-        if (tauntCheck)
+        if (tauntCounter > 0)
         {
+            tauntCheck = true;
             DamageText(0, false, "taunt");
         }
         #endregion
@@ -249,7 +250,32 @@ public class CharacterStats : MonoBehaviour
 
     public void CheckEndStatusEffects()
     {
-        //usually for buffs
+        //debuffs
+        #region Stun
+        if (stunCounter > 0)
+        {
+            --stunCounter;
+
+            if (stunCounter <= 0)
+            {
+                stunCheck = false;
+            }
+        }
+        #endregion
+
+        #region Taunt
+        if (tauntCounter > 0)
+        {
+            --tauntCounter;
+
+            if (tauntCounter <= 0)
+            {
+                tauntCheck = false;
+            }
+        }
+        #endregion
+
+        //buffs
         #region Attack Buff
         if (attackBuffCounter > 0)
         {

@@ -7,77 +7,7 @@ public class CatAction : _PlayerAction
 {
     private void Update()
     {
-        if (gameManager.state == BattleState.PLAYERTURN && gameManager.activePlayer == gameObject.name)
-        {
-            if (playerState == PlayerState.WAITING)
-            {
-                playerState = PlayerState.CHECKSTATUS;
-            }
-
-            else if (playerState == PlayerState.CHECKSTATUS)
-            {
-                if (!characterStats.checkedStatus && !checkingStatus)
-                {
-                    turnIndicator.SetActive(true);
-
-                    StartCoroutine(characterStats.CheckStatusEffects());
-                    checkingStatus = true;
-                }
-                else if (characterStats.stunCheck)
-                {
-                    playerState = PlayerState.ENDING;
-
-                    characterStats.stunCheck = false;
-                    checkingStatus = false;
-                }
-                else if (characterStats.checkedStatus)
-                {
-                    playerState = PlayerState.PLAYERSELECTION;
-                    checkingStatus = false;
-                }
-            }
-
-            else if (playerState == PlayerState.PLAYERSELECTION)
-            {
-                RefreshTargets();
-
-                ToggleSkillUi(true);
-
-                SelectTarget();
-            }
-
-            else if (playerState == PlayerState.ATTACKING)
-            {
-                ToggleSkillUi(false);
-
-                if (!playerAttacking)
-                {
-                    UseSkill();
-                }
-
-                PlayerMovement();
-            }
-
-            else if (playerState == PlayerState.ENDING)
-            {
-                characterStats.CheckEndStatusEffects();
-
-                gameManager.state = BattleState.NEXTTURN;
-
-                turnIndicator.SetActive(false);
-
-                selectedSkillPrefab = null;
-                enemyTargets = null;
-                selectedTarget = null;
-
-                playerAttacking = false;
-                endingTurn = false;
-
-                characterStats.checkedStatus = false;
-
-                playerState = PlayerState.WAITING;
-            }
-        }
+        UpdatePlayerState();
     }
 
     public override void SelectSkill(string btn)

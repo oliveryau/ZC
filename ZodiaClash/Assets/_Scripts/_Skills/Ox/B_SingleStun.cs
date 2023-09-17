@@ -15,6 +15,7 @@ public class B_SingleStun : NormalAttack
 
         targetStats.TakeDamage(damage, critCheck, "stun");
         targetStats.stunCounter += stunTurns;
+        targetStats.stunCheck = true;
 
         critCheck = false;
     }

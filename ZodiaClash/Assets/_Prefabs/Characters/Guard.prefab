@@ -141,15 +141,16 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   healthBarFill: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
-  maxHealth: 50
+  maxHealth: 70
   health: 50
   attack: 15
-  defense: 20
+  defense: 15
   speed: 2
   bleedStack: 0
   defBreakCounter: 0
   stunCounter: 0
   stunCheck: 0
+  tauntCounter: 0
   tauntCheck: 0
   attackBuffCounter: 0
   animator: {fileID: 0}
