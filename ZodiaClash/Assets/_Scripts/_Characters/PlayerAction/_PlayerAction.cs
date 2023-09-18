@@ -77,6 +77,21 @@ public class _PlayerAction : MonoBehaviour
         {
             if (playerState == PlayerState.WAITING)
             {
+                turnIndicator.SetActive(true);
+
+                //taunt
+                if (characterStats.tauntCheck)
+                {
+                    //if taunt target is dead
+                    if (!selectedTarget.gameObject.activeSelf)
+                    {
+                        selectedTarget = null;
+
+                        characterStats.tauntCounter = 0;
+                        characterStats.tauntCheck = false;
+                    }
+                }
+
                 playerState = PlayerState.CHECKSTATUS;
             }
 
@@ -84,8 +99,6 @@ public class _PlayerAction : MonoBehaviour
             {
                 if (!characterStats.checkedStatus && !checkingStatus)
                 {
-                    turnIndicator.SetActive(true);
-
                     StartCoroutine(characterStats.CheckStatusEffects());
                     checkingStatus = true;
                 }
@@ -176,6 +189,12 @@ public class _PlayerAction : MonoBehaviour
         }
         else if (value == false)
         {
+            SkillButtons[] skillButtons = FindObjectsOfType<SkillButtons>();
+            foreach (SkillButtons skillButton in skillButtons)
+            {
+                skillButton.ResetSkillColor();
+            }
+
             characterSkillUi.SetActive(false);
 
             skill2Enable.interactable = true;

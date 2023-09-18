@@ -12,6 +12,7 @@ public class GuardAction : _EnemyAction
             {
                 turnIndicator.SetActive(true);
 
+                //taunt
                 if (characterStats.tauntCheck)
                 {
                     if (!selectedTarget.gameObject.activeSelf)
@@ -35,6 +36,7 @@ public class GuardAction : _EnemyAction
                 }
                 else if (characterStats.checkedStatus && characterStats.stunCheck)
                 {
+                    //stunCheck
                     enemyState = EnemyState.ENDING;
                     checkingStatus = false;
                 }
@@ -62,6 +64,7 @@ public class GuardAction : _EnemyAction
                 }
                 else if (characterStats.tauntCheck)
                 {
+                    //taunt
                     enemyState = EnemyState.ATTACKING;
                 }
             }

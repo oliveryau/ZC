@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using TMPro;
 
 public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -15,20 +14,20 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private GameObject[] players;
     private GameObject currentPlayer;
 
+    private Image skillImage;
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         skillDescription = skillPanel.GetComponentInChildren<TextMeshProUGUI>();
+        skillImage = GetComponent<Image>();
 
         if (gameManager.state == BattleState.PLAYERTURN)
         {
             string chosenSkill = gameObject.name;
-            Button button = gameObject.GetComponent<Button>();
-
-            button.onClick.AddListener(() => AttachCallback(chosenSkill));
+            gameObject.GetComponent<Button>().onClick.AddListener(() => AttachCallback(chosenSkill));
 
             players = GameObject.FindGameObjectsWithTag("Player");
-
             foreach (GameObject player in players)
             {
                 if (player.name == gameManager.activePlayer)
@@ -42,6 +41,8 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void AttachCallback(string btn)
     {
+        ResetSkillColor();
+
         switch (currentPlayer.name)
         {
             case "Cat":
@@ -49,14 +50,17 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 if (btn.CompareTo("CatSkill1Btn") == 0)
                 {
                     currentPlayer.GetComponent<CatAction>().SelectSkill("skill1");
+                    skillImage.color = Color.green;
                 }
                 else if (btn.CompareTo("CatSkill2Btn") == 0)
                 {
                     currentPlayer.GetComponent<CatAction>().SelectSkill("skill2");
+                    skillImage.color = Color.green;
                 }
                 else if (btn.CompareTo("CatSkill3Btn") == 0)
                 {
                     currentPlayer.GetComponent<CatAction>().SelectSkill("skill3");
+                    skillImage.color = Color.green;
                 }
 
                 break;
@@ -66,14 +70,17 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 if (btn.CompareTo("GoatSkill1Btn") == 0)
                 {
                     currentPlayer.GetComponent<GoatAction>().SelectSkill("skill1");
+                    skillImage.color = Color.green;
                 }
                 else if (btn.CompareTo("GoatSkill2Btn") == 0)
                 {
                     currentPlayer.GetComponent<GoatAction>().SelectSkill("skill2");
+                    skillImage.color = Color.green;
                 }
                 else if (btn.CompareTo("GoatSkill3Btn") == 0)
                 {
                     currentPlayer.GetComponent<GoatAction>().SelectSkill("skill3");
+                    skillImage.color = Color.green;
                 }
 
                 break;
@@ -83,14 +90,17 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 if (btn.CompareTo("OxSkill1Btn") == 0)
                 {
                     currentPlayer.GetComponent<OxAction>().SelectSkill("skill1");
+                    skillImage.color = Color.green;
                 }
                 else if (btn.CompareTo("OxSkill2Btn") == 0)
                 {
                     currentPlayer.GetComponent<OxAction>().SelectSkill("skill2");
+                    skillImage.color = Color.green;
                 }
                 else if (btn.CompareTo("OxSkill3Btn") == 0)
                 {
                     currentPlayer.GetComponent<OxAction>().SelectSkill("skill3");
+                    skillImage.color = Color.green;
                 }
 
                 break;
@@ -99,6 +109,15 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
                 Debug.LogError("No current player found, BUG");
                 break;
+        }
+    }
+
+    public void ResetSkillColor()
+    {
+        SkillButtons[] allSkills = FindObjectsOfType<SkillButtons>();
+        foreach (SkillButtons skill in allSkills)
+        {
+            skill.skillImage.color = Color.white;
         }
     }
 

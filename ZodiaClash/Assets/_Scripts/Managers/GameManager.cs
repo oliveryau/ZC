@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum BattleState
 {
@@ -17,10 +18,10 @@ public class GameManager : MonoBehaviour
     private bool roundInProgress;
 
     [Header("HUD")]
+    [SerializeField] private GameObject turnOrder;
     [SerializeField] private GameObject playerHud;
-    [SerializeField] private GameObject skillChiHud;
     [SerializeField] private GameObject enemyHud;
-    [SerializeField] private TextMeshProUGUI turnOrder;
+    public GameObject skillChiHud;
 
     [Header("Turn Management")]
     public int roundCounter;
@@ -36,13 +37,19 @@ public class GameManager : MonoBehaviour
         roundCounter = 0;
         roundInProgress = false;
 
+        turnOrder.SetActive(false);
         playerHud.SetActive(false);
-        skillChiHud.SetActive(false);
         enemyHud.SetActive(false);
+        skillChiHud.SetActive(false);
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            SceneManager.LoadScene(0);
+        }
+
         if (state == BattleState.NEWROUND)
         {
             if (!roundInProgress)
@@ -68,18 +75,20 @@ public class GameManager : MonoBehaviour
                 Debug.LogWarning("State: Win");
                 state = BattleState.WIN;
 
+                turnOrder.SetActive(false);
                 playerHud.SetActive(false);
-                skillChiHud.SetActive(false);
                 enemyHud.SetActive(false);
+                skillChiHud.SetActive(false);
             }
             else if (GameObject.FindGameObjectsWithTag("Player").Length <= 0) //no players left
             {
                 Debug.LogWarning("State: Lose");
                 state = BattleState.LOSE;
 
+                turnOrder.SetActive(false);
                 playerHud.SetActive(false);
-                skillChiHud.SetActive(false);
                 enemyHud.SetActive(false);
+                skillChiHud.SetActive(false);
             }
             else
             {
@@ -102,7 +111,6 @@ public class GameManager : MonoBehaviour
 
                         Debug.LogWarning("State: Player Turn");
                         UpdateTurnOrderUi();
-                        skillChiHud.SetActive(true);
 
                         state = BattleState.PLAYERTURN;
                     }
@@ -127,6 +135,7 @@ public class GameManager : MonoBehaviour
     
     public void DetermineTurnOrder()
     {
+        //charactersList
         CharacterStats[] characters = FindObjectsOfType<CharacterStats>();
 
         charactersList.Clear();
@@ -138,6 +147,7 @@ public class GameManager : MonoBehaviour
 
         charactersList.Sort((a, b) => b.speed.CompareTo(a.speed));
 
+        //turnOrderList
         turnOrderList.Clear();
 
         foreach (CharacterStats chara in charactersList)
@@ -148,8 +158,10 @@ public class GameManager : MonoBehaviour
 
     public void UpdateTurnOrderUi()
     {
-        turnOrder.text = "TURN:\n";
-        turnOrder.color = Color.white;
+        TextMeshProUGUI turnOrderText = turnOrder.GetComponentInChildren<TextMeshProUGUI>();
+
+        turnOrderText.text = "TURN:\n\n";
+        turnOrderText.color = Color.white;
 
         if (turnOrderList.Count > 0)
         {
@@ -157,15 +169,15 @@ public class GameManager : MonoBehaviour
             {
                 if (characterName == activePlayer) //player's turn
                 {
-                    turnOrder.text += "<color=green>" + characterName + "</color>\n";
+                    turnOrderText.text += "<color=green>" + characterName + "</color>\n";
                 }
                 else if (characterName == activeEnemy) //enemy's turn
                 {
-                    turnOrder.text += "<color=red>" + characterName + "</color>\n";
+                    turnOrderText.text += "<color=red>" + characterName + "</color>\n";
                 }
                 else
                 {
-                    turnOrder.text += characterName + "\n"; //other names
+                    turnOrderText.text += characterName + "\n"; //other characters
                 }
             }
         }
@@ -179,7 +191,9 @@ public class GameManager : MonoBehaviour
 
         state = BattleState.NEXTTURN;
 
+        turnOrder.SetActive(true);
         playerHud.SetActive(true);
         enemyHud.SetActive(true);
+        skillChiHud.SetActive(true);
     }
 }
