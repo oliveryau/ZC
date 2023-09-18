@@ -51,15 +51,15 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             case "Cat":
 
-                if (btn.CompareTo("Skill1Btn") == 0)
+                if (btn.CompareTo("CatSkill1Btn") == 0)
                 {
                     currentPlayer.GetComponent<CatAction>().SelectSkill("skill1");
                 }
-                else if (btn.CompareTo("Skill2Btn") == 0)
+                else if (btn.CompareTo("CatSkill2Btn") == 0)
                 {
                     currentPlayer.GetComponent<CatAction>().SelectSkill("skill2");
                 }
-                else if (btn.CompareTo("Skill3Btn") == 0)
+                else if (btn.CompareTo("CatSkill3Btn") == 0)
                 {
                     currentPlayer.GetComponent<CatAction>().SelectSkill("skill3");
                 }
@@ -68,15 +68,15 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
             case "Goat":
 
-                if (btn.CompareTo("Skill1Btn") == 0)
+                if (btn.CompareTo("GoatSkill1Btn") == 0)
                 {
                     currentPlayer.GetComponent<GoatAction>().SelectSkill("skill1");
                 }
-                else if (btn.CompareTo("Skill2Btn") == 0)
+                else if (btn.CompareTo("GoatSkill2Btn") == 0)
                 {
                     currentPlayer.GetComponent<GoatAction>().SelectSkill("skill2");
                 }
-                else if (btn.CompareTo("Skill3Btn") == 0)
+                else if (btn.CompareTo("GoatSkill3Btn") == 0)
                 {
                     currentPlayer.GetComponent<GoatAction>().SelectSkill("skill3");
                 }
@@ -85,15 +85,15 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
             case "Ox":
 
-                if (btn.CompareTo("Skill1Btn") == 0)
+                if (btn.CompareTo("OxSkill1Btn") == 0)
                 {
                     currentPlayer.GetComponent<OxAction>().SelectSkill("skill1");
                 }
-                else if (btn.CompareTo("Skill2Btn") == 0)
+                else if (btn.CompareTo("OxSkill2Btn") == 0)
                 {
                     currentPlayer.GetComponent<OxAction>().SelectSkill("skill2");
                 }
-                else if (btn.CompareTo("Skill3Btn") == 0)
+                else if (btn.CompareTo("OxSkill3Btn") == 0)
                 {
                     currentPlayer.GetComponent<OxAction>().SelectSkill("skill3");
                 }
@@ -115,65 +115,74 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             case "Cat":
 
-                if (gameObject.name == "Skill1Btn")
+                if (gameObject.name == "CatSkill1Btn")
                 {
-                    skillDescription.text = "<color=green>" + "Scarlet Claw" + "</color>\n\n" +
-                        "Deals damage to a" + "<color=orange>" + " Single Target" + "</color>\n\n" +
-                        "<color=orange>" + "Bleeds" + "</color>" + " the target";
+                    skillDescription.text = "<color=yellow>" + "Scarlet Claw" + "</color>\n\n" +
+                        "<color=orange>" + "Single Target" + "</color>\n" +
+                        "<color=red>" + "Bleeds" + "</color>";
                 }
-                else if (gameObject.name == "Skill2Btn")
+                else if (gameObject.name == "CatSkill2Btn")
                 {
-                    skillDescription.text = "<color=green>" + "Dancing Blades" + "</color>\n\n" +
-                        "Deals damage to" + "<color=orange>" + " All Enemy Targets" + "</color>\n\n" +
-                        "<color=orange>" + "Bleeds" + "</color>" + " all targets";
+                    skillDescription.text = "<color=yellow>" + "Dancing Blades" + "</color>\n" +
+                        "x2 Chi\n\n" +
+                        "<color=orange>" + "All Enemy Targets" + "</color>\n" +
+                        "<color=red>" + "Bleeds" + "</color>";
                 }
-                else if (gameObject.name == "Skill3Btn")
+                else if (gameObject.name == "CatSkill3Btn")
                 {
-                    skillDescription.text = "<color=green>" + "Bloodstorm Eclipse" + "</color>\n\n" +
-                        "Deals damage to" + "<color=orange>" + " All Enemy Targets" + "</color>" + " by" + "<color=orange>" + " consuming all stacks of bleed\n\n" +
-                        "<color=orange>" + "Bleeds" + "</color>" + " all targets";
+                    skillDescription.text = "<color=yellow>" + "Bloodstorm Eclipse" + "</color>\n" +
+                        "x3 Chi\n\n" +
+                        "<color=orange>" + "All Enemy Targets" + "</color>\n" +
+                        "<color=red>" + "Consumes All Bleed Stacks" + "</color>";
                 }
 
                 break;
 
             case "Goat":
 
-                if (gameObject.name == "Skill1Btn")
+                if (gameObject.name == "GoatSkill1Btn")
                 {
-                    skillDescription.text = "<color=green>" + "Yin-Yang Sunder" + "</color>\n\n" +
-                        "Deals damage to a" + "<color=orange>" + " Single Target" + "</color>\n" +
-                        "<color=orange>" + "Lowers Defense" + "</color>" + " of the target";
+                    skillDescription.text = "<color=yellow>" + "Yin-Yang Sunder" + "</color>\n\n" +
+                        "<color=orange>" + "Single Target" + "</color>\n" +
+                        "<color=red>" + "Lowers Defense Stat" + "</color>";
                 }
-                else if (gameObject.name == "Skill2Btn")
+                else if (gameObject.name == "GoatSkill2Btn")
                 {
-                    skillDescription.text = "<color=green>" + "Ancestral Blessing" + "</color>\n\n" +
-                        "Increases the attack of an" + "<color=orange>" + " Ally Single Target" + "</color>";
+                    skillDescription.text = "<color=yellow>" + "Ancestral Blessing" + "</color>\n" +
+                        "x2 Chi\n\n" +
+                        "<color=orange>" + "Ally Single Target" + "</color>\n" +
+                        "<color=green>" + "Increase Attack Stat" + "</color>";
                 }
-                else if (gameObject.name == "Skill3Btn")
+                else if (gameObject.name == "GoatSkill3Btn")
                 {
-                    skillDescription.text = "<color=green>" + "Celestial Renewal" + "</color>\n\n" +
-                        "Heals an" + "<color=orange>" + " Ally Single Target" + "</color>\n\n" +
-                        "<color=orange>" + "Dispels All Negative Effects" + "</color>" + " of the target";
+                    skillDescription.text = "<color=yellow>" + "Celestial Renewal" + "</color>\n" +
+                        "x3 Chi\n\n" +
+                        "<color=orange>" + "Ally Single Target" + "</color>\n" +
+                        "<color=green>" + "Dispels All Negative Effects" + "</color>";
                 }
 
                 break;
 
             case "Ox":
 
-                if (gameObject.name == "Skill1Btn")
+                if (gameObject.name == "OxSkill1Btn")
                 {
-                    skillDescription.text = "<color=green>" + "Mountain's Wrath" + "</color>\n\n" +
-                        "Deals damage to" + "<color=orange>" + " All Enemy Targets" + "</color>";
+                    skillDescription.text = "<color=yellow>" + "Mountain's Wrath" + "</color>\n\n" +
+                        "<color=orange>" + "All Enemy Targets" + "</color>";
                 }
-                else if (gameObject.name == "Skill2Btn")
+                else if (gameObject.name == "OxSkill2Btn")
                 {
-                    skillDescription.text = "<color=green>" + "Unyielding Thunder" + "</color>\n\n" +
-                        "Stuns a" + "<color=orange>" + " Single Target" + "</color>";
+                    skillDescription.text = "<color=yellow>" + "Unyielding Thunder" + "</color>\n" +
+                        "x3 Chi\n\n" +
+                        "<color=orange>" + "Single Target" + "</color>\n" +
+                        "<color=red>" + "Stun" + "</color>";
                 }
-                else if (gameObject.name == "Skill3Btn")
+                else if (gameObject.name == "OxSkill3Btn")
                 {
-                    skillDescription.text = "<color=green>" + "Ox King's Challenge" + "</color>\n\n" +
-                        "Taunts a" + "<color=orange>" + " Single Target" + "</color>";
+                    skillDescription.text = "<color=yellow>" + "Ox King's Challenge" + "</color>\n" +
+                        "x3 Chi\n\n" +
+                        "<color=orange>" + "Single Target" + "</color>\n" +
+                        "<color=red>" + "Taunt" + "</color>";
                 }
 
                 break;

@@ -13,6 +13,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private Image healthBar;
     [SerializeField] private Image healthBarFill;
     [SerializeField] private GameObject floatingText;
+    public Image healthPanel; 
 
     [Header("Stats")]
     public float maxHealth;
@@ -37,8 +38,6 @@ public class CharacterStats : MonoBehaviour
     [Header("Others")]
     [SerializeField] private Animator animator;
     [HideInInspector] public bool checkedStatus;
-
-    //private float maxChi = 2;
 
     private void Start()
     {

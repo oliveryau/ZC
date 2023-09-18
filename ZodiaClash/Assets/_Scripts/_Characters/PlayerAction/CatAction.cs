@@ -125,6 +125,8 @@ public class CatAction : _PlayerAction
                     {
                         hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
 
+                        hit.collider.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+
                         if (Input.GetMouseButtonDown(0))
                         {
                             selectedTarget = hit.collider.gameObject;
@@ -145,15 +147,13 @@ public class CatAction : _PlayerAction
                         foreach (GameObject enemy in enemyTargets)
                         {
                             enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+
+                            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
                         }
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            if (playerChi.currentChi < skill2ChiCost)
-                            {
-                                Debug.LogError("Cannot use skill!");
-                            }
-                            else if (playerChi.currentChi >= skill2ChiCost)
+                            if (playerChi.currentChi >= skill2ChiCost)
                             {
                                 playerChi.UseChi(skill2ChiCost);
 
@@ -173,15 +173,13 @@ public class CatAction : _PlayerAction
                         foreach (GameObject enemy in enemyTargets)
                         {
                             enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+
+                            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
                         }
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            if (playerChi.currentChi < skill3ChiCost)
-                            {
-                                Debug.LogError("Cannot use skill!");
-                            }
-                            else if (playerChi.currentChi >= skill3ChiCost)
+                            if (playerChi.currentChi >= skill3ChiCost)
                             {
                                 playerChi.UseChi(skill3ChiCost);
 
@@ -201,6 +199,8 @@ public class CatAction : _PlayerAction
                 foreach (GameObject enemy in enemyTargets)
                 {
                     enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
+
+                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
                 }
             }
             #endregion

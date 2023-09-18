@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum PlayerState
 {
@@ -13,6 +14,8 @@ public class _PlayerAction : MonoBehaviour
 
     [Header("HUD")]
     [SerializeField] protected GameObject characterSkillUi;
+    [SerializeField] protected Button skill2Enable;
+    [SerializeField] protected Button skill3Enable;
     public GameObject turnIndicator;
     public GameObject targetIndicator;
 
@@ -160,10 +163,23 @@ public class _PlayerAction : MonoBehaviour
         if (value == true)
         {
             characterSkillUi.SetActive(true);
+
+            if (playerChi.currentChi < skill2ChiCost)
+            {
+                skill2Enable.interactable = false;
+            }
+
+            if (playerChi.currentChi < skill3ChiCost)
+            {
+                skill3Enable.interactable = false;
+            }
         }
         else if (value == false)
         {
             characterSkillUi.SetActive(false);
+
+            skill2Enable.interactable = true;
+            skill3Enable.interactable = true;
         }
     }
 
