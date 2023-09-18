@@ -143,6 +143,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   healthBarFill: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
+  healthPanel: {fileID: 0}
   maxHealth: 100
   health: 100
   attack: 10
@@ -171,6 +172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerState: 0
   characterSkillUi: {fileID: 0}
+  skill2Enable: {fileID: 0}
+  skill3Enable: {fileID: 0}
   turnIndicator: {fileID: 332883918410069826}
   targetIndicator: {fileID: 8576473479161851106}
   skill1Prefab: {fileID: 9145442680651904805}
@@ -195,10 +198,6 @@ PrefabInstance:
     - target: {fileID: 2067175565949815356, guid: 8e3fd02902078ac4193171835980c559, type: 3}
       propertyPath: m_Name
       value: Turn Indicator
-      objectReference: {fileID: 0}
-    - target: {fileID: 2067175565949815356, guid: 8e3fd02902078ac4193171835980c559, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3080394127348428447, guid: 8e3fd02902078ac4193171835980c559, type: 3}
       propertyPath: m_LocalPosition.x
@@ -579,10 +578,6 @@ PrefabInstance:
     - target: {fileID: 1555464568913434716, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
       propertyPath: m_Name
       value: Targeting Indicator
-      objectReference: {fileID: 0}
-    - target: {fileID: 1555464568913434716, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

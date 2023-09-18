@@ -46,6 +46,8 @@ public class CatAction : _PlayerAction
                     {
                         selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
 
+                        selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+
                         if (Input.GetMouseButtonDown(0))
                         {
                             playerChi.RegainChi();
@@ -53,6 +55,8 @@ public class CatAction : _PlayerAction
                             playerState = PlayerState.ATTACKING;
 
                             TargetSelectionUi(false, null);
+
+                            selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
                         }
                     }
                 }
@@ -65,21 +69,24 @@ public class CatAction : _PlayerAction
                         foreach (GameObject enemy in enemyTargets)
                         {
                             enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+
+                            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
                         }
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            if (playerChi.currentChi < skill2ChiCost)
-                            {
-                                Debug.LogError("Cannot use skill!");
-                            }
-                            else if (playerChi.currentChi >= skill2ChiCost)
+                            if (playerChi.currentChi >= skill2ChiCost)
                             {
                                 playerChi.UseChi(skill2ChiCost);
 
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
+
+                                foreach (GameObject enemy in enemyTargets)
+                                {
+                                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                                }
                             }
                         }
                     }
@@ -93,21 +100,24 @@ public class CatAction : _PlayerAction
                         foreach (GameObject enemy in enemyTargets)
                         {
                             enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+
+                            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
                         }
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            if (playerChi.currentChi < skill3ChiCost)
-                            {
-                                Debug.LogError("Cannot use skill!");
-                            }
-                            else if (playerChi.currentChi >= skill3ChiCost)
+                            if (playerChi.currentChi >= skill3ChiCost)
                             {
                                 playerChi.UseChi(skill3ChiCost);
 
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
+
+                                foreach (GameObject enemy in enemyTargets)
+                                {
+                                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                                }
                             }
                         }
                     }
@@ -135,6 +145,8 @@ public class CatAction : _PlayerAction
                             playerState = PlayerState.ATTACKING;
 
                             TargetSelectionUi(false, null);
+
+                            hit.collider.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
                         }
                     }
                 }
@@ -160,6 +172,11 @@ public class CatAction : _PlayerAction
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
+
+                                foreach (GameObject enemy in enemyTargets)
+                                {
+                                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                                }
                             }
                         }
                     }
@@ -186,6 +203,11 @@ public class CatAction : _PlayerAction
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
+
+                                foreach (GameObject enemy in enemyTargets)
+                                {
+                                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                                }
                             }
                         }
                     }

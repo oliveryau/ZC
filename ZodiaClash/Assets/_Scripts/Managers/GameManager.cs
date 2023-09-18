@@ -33,12 +33,6 @@ public class GameManager : MonoBehaviour
     {
         state = BattleState.NEWROUND;
 
-        CharacterStats[] characters = FindObjectsOfType<CharacterStats>();
-        foreach (CharacterStats chara in characters)
-        {
-            charactersList.Add(chara);
-        }
-
         roundCounter = 0;
         roundInProgress = false;
 
@@ -133,6 +127,15 @@ public class GameManager : MonoBehaviour
     
     public void DetermineTurnOrder()
     {
+        CharacterStats[] characters = FindObjectsOfType<CharacterStats>();
+
+        charactersList.Clear();
+
+        foreach (CharacterStats chara in characters)
+        {
+            charactersList.Add(chara);
+        }
+
         charactersList.Sort((a, b) => b.speed.CompareTo(a.speed));
 
         turnOrderList.Clear();

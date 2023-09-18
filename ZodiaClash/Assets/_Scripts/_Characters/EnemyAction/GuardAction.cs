@@ -12,6 +12,17 @@ public class GuardAction : _EnemyAction
             {
                 turnIndicator.SetActive(true);
 
+                if (characterStats.tauntCheck)
+                {
+                    if (!selectedTarget.gameObject.activeSelf)
+                    {
+                        selectedTarget = null;
+
+                        characterStats.tauntCounter = 0;
+                        characterStats.tauntCheck = false;
+                    }
+                }
+
                 enemyState = EnemyState.CHECKSTATUS;
             }
 

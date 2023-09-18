@@ -229,7 +229,6 @@ public class CharacterStats : MonoBehaviour
         #region Stun
         if (stunCounter > 0)
         {
-            stunCheck = true;
             DamageText(0, false, "stun0");
         }
         #endregion
@@ -237,7 +236,6 @@ public class CharacterStats : MonoBehaviour
         #region Taunt
         if (tauntCounter > 0)
         {
-            tauntCheck = true;
             DamageText(0, false, "taunt");
         }
         #endregion

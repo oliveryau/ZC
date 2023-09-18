@@ -34,5 +34,21 @@ public class C_SingleHeal : _BaseBuff
             targetStats.defBreakCounter = 0;            
         }
         #endregion
+
+        #region Stun
+        if (targetStats.stunCounter > 0)
+        {
+            targetStats.stunCounter = 0;
+            targetStats.stunCheck = false;
+        }
+        #endregion
+
+        #region Taunt
+        if (targetStats.tauntCounter > 0)
+        {
+            targetStats.tauntCounter = 0;
+            targetStats.tauntCheck = false;
+        }
+        #endregion
     }
 }
