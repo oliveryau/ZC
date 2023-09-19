@@ -87,11 +87,7 @@ public class GoatAction : _PlayerAction
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            if (playerChi.currentChi < skill2ChiCost)
-                            {
-                                Debug.LogError("Cannot use skill!");
-                            }
-                            else if (playerChi.currentChi >= skill2ChiCost)
+                            if (playerChi.currentChi >= skill2ChiCost)
                             {
                                 selectedTarget = hit.collider.gameObject;
                                 playerChi.UseChi(skill2ChiCost);
@@ -111,11 +107,7 @@ public class GoatAction : _PlayerAction
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            if (playerChi.currentChi < skill3ChiCost)
-                            {
-                                Debug.LogError("Cannot use skill!");
-                            }
-                            else if (playerChi.currentChi >= skill3ChiCost)
+                            if (playerChi.currentChi >= skill3ChiCost)
                             {
                                 selectedTarget = hit.collider.gameObject;
                                 playerChi.UseChi(skill3ChiCost);
@@ -167,11 +159,11 @@ public class GoatAction : _PlayerAction
     {
         if (selectedSkillPrefab == skill1Prefab)
         {
-            StartCoroutine(AttackStartDelay(0.5f, 0.5f));
+            StartCoroutine(AttackStartDelay(0.5f, 1f));
         }
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
-            StartCoroutine(BuffStartDelay(0.5f, 0.5f));
+            StartCoroutine(BuffStartDelay(0.5f, 1f));
         }
     }
 

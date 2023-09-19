@@ -23,13 +23,16 @@ public class C_AoeActivateBleed : AoeAttack
             {
                 bleed.AoeBleedCalculation(currentTarget, currentTarget.bleedStack);
                 currentTarget.TakeDamage(damage + bleed.bleedDamage, critCheck, "rend");
+                //remove all status effect icons
 
                 currentTarget.bleedStack = 0;
             }
             else
             {
-                currentTarget.bleedStack += bleedTurns;
-                currentTarget.TakeDamage(damage, critCheck, "bleed");
+                //normal aoe attack
+                CalculateDamage(target);
+
+                currentTarget.TakeDamage(damage, critCheck, null);
             }
         }
 

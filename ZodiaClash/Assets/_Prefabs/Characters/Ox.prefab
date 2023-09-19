@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2408279072610572451}
   - component: {fileID: 3706023178330750303}
   - component: {fileID: 4675580668173088104}
+  - component: {fileID: 3452263423381633223}
   - component: {fileID: 113179958145281681}
   - component: {fileID: 8887539544704033780}
   m_Layer: 0
@@ -127,6 +128,27 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!95 &3452263423381633223
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9196513893604650534}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 347c6a69a1d632b49987459b0ed585b6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &113179958145281681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,8 +164,8 @@ MonoBehaviour:
   characterName: {fileID: 0}
   healthBar: {fileID: 0}
   healthBarFill: {fileID: 0}
-  floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
   healthPanel: {fileID: 0}
+  floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
   maxHealth: 100
   health: 100
   attack: 10
@@ -195,6 +217,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2408279072610572451}
     m_Modifications:
+    - target: {fileID: 1604582794233934147, guid: 8e3fd02902078ac4193171835980c559, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604582794233934147, guid: 8e3fd02902078ac4193171835980c559, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604582794233934147, guid: 8e3fd02902078ac4193171835980c559, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2067175565949815356, guid: 8e3fd02902078ac4193171835980c559, type: 3}
       propertyPath: m_Name
       value: Turn Indicator
@@ -205,7 +239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3080394127348428447, guid: 8e3fd02902078ac4193171835980c559, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.25
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3080394127348428447, guid: 8e3fd02902078ac4193171835980c559, type: 3}
       propertyPath: m_LocalPosition.z
@@ -213,7 +247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3080394127348428447, guid: 8e3fd02902078ac4193171835980c559, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3080394127348428447, guid: 8e3fd02902078ac4193171835980c559, type: 3}
       propertyPath: m_LocalRotation.x
@@ -225,7 +259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3080394127348428447, guid: 8e3fd02902078ac4193171835980c559, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3080394127348428447, guid: 8e3fd02902078ac4193171835980c559, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -237,7 +271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3080394127348428447, guid: 8e3fd02902078ac4193171835980c559, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -541,7 +575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1196019324432383770, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1196019324432383770, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
       propertyPath: m_LocalPosition.z

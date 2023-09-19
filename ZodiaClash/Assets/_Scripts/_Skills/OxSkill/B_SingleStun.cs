@@ -17,6 +17,9 @@ public class B_SingleStun : NormalAttack
         targetStats.stunCounter += stunTurns;
         targetStats.stunCheck = true;
 
+        StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();
+        statusEffect.SpawnEffectsBar(targetStats, stunTurns, "stun");
+
         critCheck = false;
     }
 }

@@ -24,6 +24,9 @@ public class A_SingleBleed : NormalAttack
                 targetStats.TakeDamage(damage, critCheck, "bleed");
                 targetStats.bleedStack += bleedTurns;
 
+                StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();
+                statusEffect.SpawnEffectsBar(targetStats, bleedTurns, "bleed");
+
                 if (targetStats.bleedStack > bleed.bleedLimit)
                 {
                     targetStats.bleedStack = bleed.bleedLimit;

@@ -7,13 +7,16 @@ using TMPro;
 public class CharacterStats : MonoBehaviour
 {
     private GameManager gameManager;
+    private StatusEffectManager statusEffectManager;
+    private Animator animator;
 
     [Header("HUD")]
-    [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private Image healthBar;
     [SerializeField] private Image healthBarFill;
+    public Transform statusEffectPanel;
+    [SerializeField] private TextMeshProUGUI characterName;
+    public Image healthPanel;
     [SerializeField] private GameObject floatingText;
-    public Image healthPanel; 
 
     [Header("Stats")]
     public float maxHealth;
@@ -35,13 +38,13 @@ public class CharacterStats : MonoBehaviour
     [Header("Buffs")]
     public int attackBuffCounter;
 
-    [Header("Others")]
-    [SerializeField] private Animator animator;
     [HideInInspector] public bool checkedStatus;
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        statusEffectManager = FindObjectOfType<StatusEffectManager>();
+        animator = GetComponent<Animator>();
 
         if (characterName != null)
         {
@@ -108,7 +111,10 @@ public class CharacterStats : MonoBehaviour
         }
         else
         {
-            //animator.Play("Damaged");
+            if (animator != null)
+            {
+                animator.SetTrigger("damaged");
+            }
         }
 
         healthBarFill.fillAmount = health / maxHealth;
@@ -137,11 +143,12 @@ public class CharacterStats : MonoBehaviour
     public void DamageText(float value, bool critCheck, string effect)
     {
         TextMeshPro popup = floatingText.GetComponent<TextMeshPro>();
-        popup.color = Color.red;
+        popup.color = Color.white;
 
         if (critCheck)
         {
             popup.text = "CRITICAL HIT\n\n";
+            popup.color = Color.red;
         }
 
         switch (effect)
@@ -209,6 +216,8 @@ public class CharacterStats : MonoBehaviour
 
             TakeDamage(bleed.bleedDamage, false, "bleed");
             --bleedStack;
+
+            statusEffectManager.EarlyUpdateEffectsBar(this, "bleed");
         }
         #endregion
 
@@ -216,12 +225,15 @@ public class CharacterStats : MonoBehaviour
         if (defBreakCounter > 0)
         {
             --defBreakCounter;
-        }
-        else if (defBreakCounter <= 0)
-        {
-            if (defense != initialDefense)
+
+            statusEffectManager.EarlyUpdateEffectsBar(this, "defBreak");
+
+            if (defBreakCounter <= 0)
             {
-                defense = initialDefense;
+                if (defense != initialDefense)
+                {
+                    defense = initialDefense;
+                }
             }
         }
         #endregion
@@ -240,7 +252,7 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         checkedStatus = true;
     }

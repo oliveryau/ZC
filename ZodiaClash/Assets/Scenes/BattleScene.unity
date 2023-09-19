@@ -271,7 +271,7 @@ PrefabInstance:
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 889802528}
+      objectReference: {fileID: 1135007117}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthFill
       value: 
@@ -283,15 +283,19 @@ PrefabInstance:
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthPanel
       value: 
-      objectReference: {fileID: 13073616}
+      objectReference: {fileID: 689990390}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: characterName
       value: 
-      objectReference: {fileID: 4871545402215118905}
+      objectReference: {fileID: 4871545402215118903}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBarFill
       value: 
-      objectReference: {fileID: 2033018390}
+      objectReference: {fileID: 1328986654}
+    - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
+      propertyPath: statusEffectPanel
+      value: 
+      objectReference: {fileID: 4871545402215118906}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBarBattlefield
       value: 
@@ -300,13 +304,17 @@ PrefabInstance:
       propertyPath: healthFillBattlefield
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4797279004932237479, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -342,11 +350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987179757459714258, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_Name
-      value: Guard Right
-      objectReference: {fileID: 0}
-    - target: {fileID: 6987179757459714258, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: Guard 2
       objectReference: {fileID: 0}
     - target: {fileID: 7673797348443967187, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: critMultiplier
@@ -382,7 +386,7 @@ PrefabInstance:
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 1135007117}
+      objectReference: {fileID: 889802528}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthFill
       value: 
@@ -394,15 +398,19 @@ PrefabInstance:
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthPanel
       value: 
-      objectReference: {fileID: 689990390}
+      objectReference: {fileID: 13073616}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: characterName
       value: 
-      objectReference: {fileID: 4871545402215118903}
+      objectReference: {fileID: 4871545402215118905}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBarFill
       value: 
-      objectReference: {fileID: 1328986654}
+      objectReference: {fileID: 2033018390}
+    - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
+      propertyPath: statusEffectPanel
+      value: 
+      objectReference: {fileID: 618713170}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBarBattlefield
       value: 
@@ -411,13 +419,17 @@ PrefabInstance:
       propertyPath: healthFillBattlefield
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4797279004932237479, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.25
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -453,11 +465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987179757459714258, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_Name
-      value: Guard Mid
-      objectReference: {fileID: 0}
-    - target: {fileID: 6987179757459714258, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: Guard 3
       objectReference: {fileID: 0}
     - target: {fileID: 7673797348443967187, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: critMultiplier
@@ -646,6 +654,11 @@ GameObject:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3396923105591143278, guid: b1ffe3e832101ff46a86ebf583f054c5, type: 3}
   m_PrefabInstance: {fileID: 8160933751789097029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &618713170 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3130143337319523270, guid: 3a7397b603dce95448ac3644d1462498, type: 3}
+  m_PrefabInstance: {fileID: 4871545402215118902}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
@@ -1000,6 +1013,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &896910132 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6980776351926649318, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
+  m_PrefabInstance: {fileID: 2786839859615930786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1098324960 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6997769400817801172, guid: 3a7397b603dce95448ac3644d1462498, type: 3}
@@ -1101,6 +1119,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1687428633033733676, guid: ee705cb84788de5419182db6b6ac6d2f, type: 3}
   m_PrefabInstance: {fileID: 7492545535486648352}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1520945925 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5070920942563723549, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
+  m_PrefabInstance: {fileID: 2786839859615930786}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1520945926 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4646023360759985001, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
+  m_PrefabInstance: {fileID: 2786839859615930786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1555967427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,8 +1159,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1342839538}
-  - {fileID: 790666007}
   - {fileID: 159293937}
+  - {fileID: 790666007}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1563480799
@@ -1222,6 +1250,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1800905552 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6086123931131378513, guid: 3a7397b603dce95448ac3644d1462498, type: 3}
+  m_PrefabInstance: {fileID: 4871545402215118902}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1826868762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,7 +1379,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 1774688893
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1942128370
 RectTransform:
@@ -1362,10 +1395,10 @@ RectTransform:
   m_Children:
   - {fileID: 7492545535486648353}
   - {fileID: 3389647295545325798}
+  - {fileID: 663132215}
   - {fileID: 1731861608}
   - {fileID: 419218315}
   - {fileID: 671649027}
-  - {fileID: 663132215}
   - {fileID: 548426329}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1506,6 +1539,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1942128370}
     m_Modifications:
+    - target: {fileID: 232707749575676841, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
+      propertyPath: m_Name
+      value: Ox Effects Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 368385239286426077, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
+      propertyPath: m_Name
+      value: Goat Effects Panel
+      objectReference: {fileID: 0}
     - target: {fileID: 430153957514675279, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
       propertyPath: m_Name
       value: HP Player HUD
@@ -1520,27 +1561,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 834734355140468448, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 834734355140468448, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 834734355140468448, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 834734355140468448, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 834734355140468448, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 834734355140468448, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 834734355140468448, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1805,6 +1846,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8484351989797803524}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
+      propertyPath: statusEffectPanel
+      value: 
+      objectReference: {fileID: 1800905552}
+    - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBarBattlefield
       value: 
       objectReference: {fileID: 0}
@@ -1814,7 +1859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1854,11 +1899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987179757459714258, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_Name
-      value: Guard Left
-      objectReference: {fileID: 0}
-    - target: {fileID: 6987179757459714258, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: Guard 1
       objectReference: {fileID: 0}
     - target: {fileID: 7673797348443967187, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: critMultiplier
@@ -1992,6 +2033,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8279118524424343439, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279118524424343439, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 2786839859615930792}
@@ -2015,6 +2060,10 @@ PrefabInstance:
       propertyPath: healthFillSecond
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8279118524424343439, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
+      propertyPath: statusEffectPanel
+      value: 
+      objectReference: {fileID: 896910132}
     - target: {fileID: 8279118524424343439, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: healthBarBattlefield
       value: 
@@ -2166,6 +2215,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &4871545402215118906 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8706650659221722561, guid: 3a7397b603dce95448ac3644d1462498, type: 3}
+  m_PrefabInstance: {fileID: 4871545402215118902}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4945693000349419718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2521,6 +2575,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7755369481287933084, guid: b1ffe3e832101ff46a86ebf583f054c5, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2647,6 +2705,10 @@ PrefabInstance:
       value: 1_Attack Defense Break
       objectReference: {fileID: 0}
     - target: {fileID: 3835756840090538757, guid: fdb930144ad93e4469b58404268777cd, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835756840090538757, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 2786839859615930790}
@@ -2666,6 +2728,10 @@ PrefabInstance:
       propertyPath: healthFillSecond
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3835756840090538757, guid: fdb930144ad93e4469b58404268777cd, type: 3}
+      propertyPath: statusEffectPanel
+      value: 
+      objectReference: {fileID: 1520945926}
     - target: {fileID: 3835756840090538757, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: healthBarBattlefield
       value: 
@@ -2773,10 +2839,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2786839859615930788}
     - target: {fileID: 113179958145281681, guid: a621eaaae89ec59408dad02e0223abda, type: 3}
-      propertyPath: maxHealth
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 113179958145281681, guid: a621eaaae89ec59408dad02e0223abda, type: 3}
       propertyPath: healthName
       value: 
       objectReference: {fileID: 0}
@@ -2792,6 +2854,10 @@ PrefabInstance:
       propertyPath: healthFillSecond
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 113179958145281681, guid: a621eaaae89ec59408dad02e0223abda, type: 3}
+      propertyPath: statusEffectPanel
+      value: 
+      objectReference: {fileID: 1520945925}
     - target: {fileID: 113179958145281681, guid: a621eaaae89ec59408dad02e0223abda, type: 3}
       propertyPath: healthBarBattlefield
       value: 

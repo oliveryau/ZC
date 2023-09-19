@@ -50,5 +50,6 @@ public class C_SingleHeal : _BaseBuff
             targetStats.tauntCheck = false;
         }
         #endregion
+        //reset all negative effects icons
     }
 }

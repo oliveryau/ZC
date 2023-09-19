@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7634364934505384889}
   - component: {fileID: 1032449978282707555}
+  - component: {fileID: 5278540930468943510}
   - component: {fileID: 6534633142626487021}
   m_Layer: 0
   m_Name: Game Manager
@@ -46,10 +47,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  turnOrder: {fileID: 0}
+  playerHud: {fileID: 0}
+  enemyHud: {fileID: 0}
+  skillChiHud: {fileID: 0}
+  currentCharacter: {fileID: 0}
   roundCounter: 0
-  currentPlayerIndex: 0
+  currentCharacterIndex: 0
   activePlayer: 
   activeEnemy: 
+  turnOrderList: []
+--- !u!114 &5278540930468943510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075143863232499502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2189740c46a234daa2b01ffc098230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectsPanel: {fileID: 0}
+  bleedIcon: {fileID: 244024827966708907, guid: aad68591af0cc0c4483dd54b7bf85c02, type: 3}
+  defBreakIcon: {fileID: 1554564938126959776, guid: 877bafee7f6fd504ebf01b08cc14e4d8, type: 3}
+  stunIcon: {fileID: 6126166109037537968, guid: 9cfc435301132084a8795f637296297d, type: 3}
+  tauntIcon: {fileID: 8486654821120690224, guid: c09e508f33b971743be698a98e014390, type: 3}
+  atkBuffIcon: {fileID: 561189915271357867, guid: da57b9ffee9bf5a4bb9e0d889c54854f, type: 3}
 --- !u!114 &6534633142626487021
 MonoBehaviour:
   m_ObjectHideFlags: 0

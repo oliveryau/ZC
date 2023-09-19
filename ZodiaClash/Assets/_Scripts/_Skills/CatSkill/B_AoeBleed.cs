@@ -29,6 +29,9 @@ public class B_AoeBleed : AoeAttack
                     currentTarget.TakeDamage(damage, critCheck, "bleed");
                     currentTarget.bleedStack += bleedTurns;
 
+                    StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();
+                    statusEffect.SpawnEffectsBar(currentTarget, bleedTurns, "bleed");
+
                     if (currentTarget.bleedStack > bleed.bleedLimit)
                     {
                         currentTarget.bleedStack = bleed.bleedLimit;

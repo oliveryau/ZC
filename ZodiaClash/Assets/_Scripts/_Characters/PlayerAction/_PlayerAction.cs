@@ -56,7 +56,7 @@ public class _PlayerAction : MonoBehaviour
     {
         playerState = PlayerState.WAITING;
 
-        moveSpeed = 50f;
+        moveSpeed = 60f;
         startPosition = transform.position;
         movingToTarget = false;
         movingToStart = false;

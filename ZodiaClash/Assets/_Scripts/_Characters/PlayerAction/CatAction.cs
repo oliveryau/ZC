@@ -243,7 +243,7 @@ public class CatAction : _PlayerAction
     {
         if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
-            StartCoroutine(AttackStartDelay(0.5f, 0.5f));
+            StartCoroutine(AttackStartDelay(0.5f, 1f));
         }
     }
 

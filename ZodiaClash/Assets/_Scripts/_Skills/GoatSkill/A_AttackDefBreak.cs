@@ -26,6 +26,9 @@ public class A_AttackDefBreak : NormalAttack
             }
 
             targetStats.defBreakCounter = defBreakCount;
+
+            StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();
+            statusEffect.SpawnEffectsBar(targetStats, defBreakCount, "defBreak");
         }
         else
         {

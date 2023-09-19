@@ -239,7 +239,7 @@ public class OxAction : _PlayerAction
     {
         if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab)
         {
-            StartCoroutine(AttackStartDelay(0.5f, 0.5f));
+            StartCoroutine(AttackStartDelay(0.5f, 1f));
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {

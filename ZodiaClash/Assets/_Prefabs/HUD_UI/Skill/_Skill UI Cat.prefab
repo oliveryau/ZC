@@ -571,6 +571,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5418897345180888430, guid: b1b39750c859ff249b5b9432f4151c6e, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8760241045518139801, guid: b1b39750c859ff249b5b9432f4151c6e, type: 3}
       propertyPath: m_Name
       value: Cat Skill Hover

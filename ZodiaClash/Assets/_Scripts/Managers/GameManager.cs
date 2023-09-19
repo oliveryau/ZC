@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public int currentCharacterIndex;
     public string activePlayer;
     public string activeEnemy;
-    [HideInInspector] public List<string> turnOrderList = new List<string>();
+    public List<string> turnOrderList = new List<string>();
 
     private void Start()
     {
@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
     {
         TextMeshProUGUI turnOrderText = turnOrder.GetComponentInChildren<TextMeshProUGUI>();
 
-        turnOrderText.text = "TURN:\n\n";
+        turnOrderText.text = "TURN ORDER:\n\n";
         turnOrderText.color = Color.white;
 
         if (turnOrderList.Count > 0)

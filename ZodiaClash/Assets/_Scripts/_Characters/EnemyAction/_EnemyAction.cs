@@ -171,7 +171,7 @@ public class _EnemyAction : MonoBehaviour
     public void EnemyHighlightTargetIndicator(bool highlight)
     {
         SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
-        targetSelect.color = highlight ? Color.red : Color.black;
+        targetSelect.color = highlight ? Color.red : Color.white;
     }
     #endregion
 }

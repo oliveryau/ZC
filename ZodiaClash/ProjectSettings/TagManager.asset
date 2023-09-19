@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Enemy
   - Dead
+  - Bleed
+  - Def Break
+  - Stun
+  - Taunt
+  - Atk Buff
   layers:
   - Default
   - TransparentFX

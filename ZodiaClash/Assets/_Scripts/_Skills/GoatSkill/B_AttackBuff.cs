@@ -23,5 +23,8 @@ public class B_AttackBuff : _BaseBuff
 
         targetStats.AttackBuff(skillBuffPercent);
         targetStats.attackBuffCounter = buffCount;
+
+        StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();
+        statusEffect.SpawnEffectsBar(targetStats, buffCount, "atkBuff");
     }
 }
