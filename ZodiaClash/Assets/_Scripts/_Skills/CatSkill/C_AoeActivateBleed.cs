@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class C_AoeActivateBleed : AoeAttack
 {
-    [Header("Effects")]
-    [SerializeField] private int bleedTurns;
-
     public override void Attack(GameObject[] targets)
     {
         //owner.GetComponent<Animator>().Play(animationName);

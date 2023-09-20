@@ -138,7 +138,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 else if (gameObject.name == "CatSkill2Btn")
                 {
                     skillDescription.text = "Dancing Blades\n" +
-                        "<color=yellow>" + "x2 Chi" + "</color>\n\n" +
+                        "<color=yellow>" + "x1 Chi" + "</color>\n\n" +
                         "<color=orange>" + "All Enemy Targets" + "</color>\n" +
                         "<color=red>" + "Bleeds (Max 5 Stacks)" + "</color>";
                 }

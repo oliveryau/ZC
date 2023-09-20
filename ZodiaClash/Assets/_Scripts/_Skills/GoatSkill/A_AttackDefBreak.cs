@@ -20,11 +20,10 @@ public class A_AttackDefBreak : NormalAttack
         {
             if (targetStats.defBreakCounter <= 0)
             {
-                targetStats.TakeDamage(damage, critCheck, "defBreak");
-                
                 targetStats.defense *= 1 - (defBreakPercent / 100f);
             }
 
+            targetStats.TakeDamage(damage, critCheck, "defBreak");
             targetStats.defBreakCounter = defBreakCount;
 
             StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();

@@ -159,14 +159,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1304055b5b8c96f4b9742bc8508b25c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  characterHpHud: {fileID: 0}
   healthBarFill: {fileID: 0}
   statusEffectPanel: {fileID: 0}
   characterName: {fileID: 0}
   healthPanel: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
-  maxHealth: 70
-  health: 70
+  maxHealth: 80
+  health: 80
   attack: 15
   defense: 15
   speed: 2

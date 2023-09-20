@@ -314,11 +314,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5
+      value: 4.75
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.25
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -354,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987179757459714258, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_Name
-      value: Guard 3
+      value: Guard C
       objectReference: {fileID: 0}
     - target: {fileID: 7673797348443967187, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: critMultiplier
@@ -402,23 +402,23 @@ PrefabInstance:
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthPanel
       value: 
-      objectReference: {fileID: 689990390}
+      objectReference: {fileID: 1098324960}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: characterName
       value: 
-      objectReference: {fileID: 4871545402215118903}
+      objectReference: {fileID: 4871545402215118904}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBarFill
       value: 
-      objectReference: {fileID: 1328986654}
+      objectReference: {fileID: 8484351989797803524}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: characterHpHud
       value: 
-      objectReference: {fileID: 2078863027}
+      objectReference: {fileID: 916829034}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: statusEffectPanel
       value: 
-      objectReference: {fileID: 4871545402215118906}
+      objectReference: {fileID: 1800905552}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBarBattlefield
       value: 
@@ -433,11 +433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -473,7 +473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987179757459714258, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_Name
-      value: Guard 2
+      value: Guard A
       objectReference: {fileID: 0}
     - target: {fileID: 7673797348443967187, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: critMultiplier
@@ -1131,7 +1131,7 @@ Transform:
   m_GameObject: {fileID: 1447076000}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: -0.25, z: 0}
+  m_LocalPosition: {x: -1.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1186,8 +1186,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1342839538}
   - {fileID: 790666007}
+  - {fileID: 1342839538}
   - {fileID: 159293937}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1251,7 +1251,7 @@ Transform:
   m_GameObject: {fileID: 1689384671}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1898,23 +1898,23 @@ PrefabInstance:
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthPanel
       value: 
-      objectReference: {fileID: 1098324960}
+      objectReference: {fileID: 689990390}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: characterName
       value: 
-      objectReference: {fileID: 4871545402215118904}
+      objectReference: {fileID: 4871545402215118903}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBarFill
       value: 
-      objectReference: {fileID: 8484351989797803524}
+      objectReference: {fileID: 1328986654}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: characterHpHud
       value: 
-      objectReference: {fileID: 916829034}
+      objectReference: {fileID: 2078863027}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: statusEffectPanel
       value: 
-      objectReference: {fileID: 1800905552}
+      objectReference: {fileID: 4871545402215118906}
     - target: {fileID: 2594587474146752471, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: healthBarBattlefield
       value: 
@@ -1929,7 +1929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6791500705078951300, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1965,7 +1965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987179757459714258, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: m_Name
-      value: Guard 1
+      value: Guard B
       objectReference: {fileID: 0}
     - target: {fileID: 7673797348443967187, guid: 4ade12444571f1847b8a02da749e3abb, type: 3}
       propertyPath: critMultiplier
@@ -2016,7 +2016,7 @@ PrefabInstance:
       objectReference: {fileID: 1439205949}
     - target: {fileID: 748038080333493805, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: skill2ChiCost
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 748038080333493805, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: skill3ChiCost
@@ -2036,7 +2036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 904211530649164793, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 904211530649164793, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2852,7 +2852,7 @@ PrefabInstance:
       objectReference: {fileID: 419218314}
     - target: {fileID: 5065470643690481029, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.5
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 5065470643690481029, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: m_LocalPosition.y

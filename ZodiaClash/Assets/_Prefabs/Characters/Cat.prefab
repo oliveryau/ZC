@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1304055b5b8c96f4b9742bc8508b25c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  characterHpHud: {fileID: 0}
   healthBarFill: {fileID: 0}
   statusEffectPanel: {fileID: 0}
   characterName: {fileID: 0}
@@ -342,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: bleedTurns
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: critMultiplier

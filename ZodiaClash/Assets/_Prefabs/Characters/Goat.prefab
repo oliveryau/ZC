@@ -302,7 +302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: defBreakRate
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: defBreakCount
