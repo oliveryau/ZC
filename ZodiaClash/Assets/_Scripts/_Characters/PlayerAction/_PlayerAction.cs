@@ -267,6 +267,8 @@ public class _PlayerAction : MonoBehaviour
 
             if (reachedTarget)
             {
+                GetComponent<SpriteRenderer>().sortingOrder = 1;
+
                 movingToTarget = false;
 
                 AttackAnimation();
@@ -278,6 +280,8 @@ public class _PlayerAction : MonoBehaviour
 
             if (reachedStart)
             {
+                GetComponent<SpriteRenderer>().sortingOrder = 0;
+
                 movingToStart = false;
 
                 endingTurn = true;
@@ -360,7 +364,7 @@ public class _PlayerAction : MonoBehaviour
     public void HighlightTargetIndicator(bool highlight)
     {
         SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
-        targetSelect.color = highlight ? Color.cyan : Color.black;
+        targetSelect.color = highlight ? Color.cyan : Color.white;
     }
     #endregion
 }

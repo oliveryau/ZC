@@ -6,14 +6,13 @@ using UnityEngine.SceneManagement;
 
 public enum BattleState
 {
-    NEWROUND, NEXTTURN, PLAYERTURN, ENEMYTURN, WIN, LOSE
+    NEWGAME, NEWROUND, NEXTTURN, PLAYERTURN, ENEMYTURN, WIN, LOSE
 }
 
 public class GameManager : MonoBehaviour
 {
     public BattleState state;
     
-    private List<CharacterStats> charactersList = new List<CharacterStats>();
     private CharacterStats currentCharacter;
     private bool roundInProgress;
 
@@ -24,23 +23,29 @@ public class GameManager : MonoBehaviour
     public GameObject skillChiHud;
 
     [Header("Turn Management")]
-    public int roundCounter;
+    public List<CharacterStats> charactersList = new List<CharacterStats>();
+    public List<CharacterStats> turnOrderList = new List<CharacterStats>();
     public int currentCharacterIndex;
     public string activePlayer;
     public string activeEnemy;
-    public List<string> turnOrderList = new List<string>();
+
+    [Header("Others")]
+    public int roundCounter;
 
     private void Start()
     {
-        state = BattleState.NEWROUND;
+        state = BattleState.NEWGAME;
 
-        roundCounter = 0;
         roundInProgress = false;
 
         turnOrder.SetActive(false);
         playerHud.SetActive(false);
         enemyHud.SetActive(false);
         skillChiHud.SetActive(false);
+        
+        roundCounter = 0;
+
+        StartCoroutine(NewGameDelay(0.5f)); //delay at start
     }
 
     private void Update()
@@ -58,7 +63,7 @@ public class GameManager : MonoBehaviour
                 roundInProgress = true;
                 ++roundCounter;
 
-                StartCoroutine(NewRoundDelay(0.5f)); //delay and switch states
+                state = BattleState.NEXTTURN;
             }
         }
         else if (state == BattleState.NEXTTURN)
@@ -66,7 +71,8 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("State: Next Turn");
             if (currentCharacter != null)
             {
-                turnOrderList.Remove(currentCharacter.gameObject.name);
+                turnOrderList.Remove(currentCharacter);
+                turnOrderList.Add(currentCharacter);
             }
 
             //check if battle has ended
@@ -99,6 +105,7 @@ public class GameManager : MonoBehaviour
                     if (currentCharacter.tag == "Enemy")
                     {
                         activeEnemy = currentCharacter.gameObject.name;
+                        activePlayer = null;
 
                         Debug.LogWarning("State: Enemy Turn");
                         UpdateTurnOrderUi();
@@ -108,6 +115,7 @@ public class GameManager : MonoBehaviour
                     else if (currentCharacter.tag == "Player")
                     {
                         activePlayer = currentCharacter.gameObject.name;
+                        activeEnemy = null;
 
                         Debug.LogWarning("State: Player Turn");
                         UpdateTurnOrderUi();
@@ -124,7 +132,6 @@ public class GameManager : MonoBehaviour
                     currentCharacter = null;
                     activeEnemy = null;
                     activePlayer = null;
-                    UpdateTurnOrderUi();
 
                     currentCharacterIndex = 0; //reset the index for the next round
                     roundInProgress = false;
@@ -152,7 +159,7 @@ public class GameManager : MonoBehaviour
 
         foreach (CharacterStats chara in charactersList)
         {
-            turnOrderList.Add(chara.gameObject.name);
+            turnOrderList.Add(chara);
         }
     }
 
@@ -161,35 +168,34 @@ public class GameManager : MonoBehaviour
         TextMeshProUGUI turnOrderText = turnOrder.GetComponentInChildren<TextMeshProUGUI>();
 
         turnOrderText.text = "TURN:\n\n";
-        turnOrderText.color = Color.white;
 
         if (turnOrderList.Count > 0)
         {
-            foreach (string characterName in turnOrderList)
+            foreach (CharacterStats character in turnOrderList)
             {
-                if (characterName == activePlayer) //player's turn
+                if (character.gameObject.name == activePlayer) //player's turn
                 {
-                    turnOrderText.text += "<color=green>" + characterName + "</color>\n";
+                    turnOrderText.text += "<color=green>" + character.gameObject.name + "</color>\n";
                 }
-                else if (characterName == activeEnemy) //enemy's turn
+                else if (character.gameObject.name == activeEnemy) //enemy's turn
                 {
-                    turnOrderText.text += "<color=red>" + characterName + "</color>\n";
+                    turnOrderText.text += "<color=red>" + character.gameObject.name + "</color>\n";
                 }
                 else
                 {
-                    turnOrderText.text += characterName + "\n"; //other characters
+                    turnOrderText.text += "<color=white>" + character.gameObject.name + "</color>\n"; //other characters
                 }
             }
         }
     }
 
-    public IEnumerator NewRoundDelay(float seconds)
+    public IEnumerator NewGameDelay(float seconds)
     {
         DetermineTurnOrder();
 
         yield return new WaitForSeconds(seconds);
 
-        state = BattleState.NEXTTURN;
+        state = BattleState.NEWROUND;
 
         turnOrder.SetActive(true);
         playerHud.SetActive(true);

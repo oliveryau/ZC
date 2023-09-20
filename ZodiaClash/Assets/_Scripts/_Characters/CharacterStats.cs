@@ -92,7 +92,8 @@ public class CharacterStats : MonoBehaviour
         gameObject.tag = "Dead";
         //animator.Play("Death");
 
-        gameManager.turnOrderList.Remove(gameObject.name);
+        gameManager.charactersList.Remove(this);
+        gameManager.turnOrderList.Remove(this);
         gameManager.UpdateTurnOrderUi();
 
         yield return new WaitForSeconds(0.5f);
@@ -254,7 +255,7 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         checkedStatus = true;
     }

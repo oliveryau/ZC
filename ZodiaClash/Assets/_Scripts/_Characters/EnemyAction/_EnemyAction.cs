@@ -93,6 +93,8 @@ public class _EnemyAction : MonoBehaviour
 
             if (reachedTarget)
             {
+                GetComponent<SpriteRenderer>().sortingOrder = 1;
+
                 movingToTarget = false;
 
                 EnemyAttackAnimation();
@@ -104,6 +106,8 @@ public class _EnemyAction : MonoBehaviour
 
             if (reachedStart)
             {
+                GetComponent<SpriteRenderer>().sortingOrder = 0;
+
                 movingToStart = false;
 
                 enemyEndingTurn = true;
