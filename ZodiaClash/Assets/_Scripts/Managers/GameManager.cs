@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
     {
         TextMeshProUGUI turnOrderText = turnOrder.GetComponentInChildren<TextMeshProUGUI>();
 
-        turnOrderText.text = "TURN ORDER:\n\n";
+        turnOrderText.text = "TURN:\n\n";
         turnOrderText.color = Color.white;
 
         if (turnOrderList.Count > 0)

@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: be288d77987f338448a0fb4e27b9f855, type: 3}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -161,9 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1304055b5b8c96f4b9742bc8508b25c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: {fileID: 0}
-  healthBar: {fileID: 0}
+  characterHpHud: {fileID: 0}
   healthBarFill: {fileID: 0}
+  statusEffectPanel: {fileID: 0}
+  characterName: {fileID: 0}
   healthPanel: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
   maxHealth: 70
@@ -178,7 +179,6 @@ MonoBehaviour:
   tauntCounter: 0
   tauntCheck: 0
   attackBuffCounter: 0
-  animator: {fileID: 0}
   checkedStatus: 0
 --- !u!114 &4605275760277306182
 MonoBehaviour:

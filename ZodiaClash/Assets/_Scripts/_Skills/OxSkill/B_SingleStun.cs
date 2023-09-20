@@ -14,7 +14,7 @@ public class B_SingleStun : NormalAttack
         CalculateDamage(target);
 
         targetStats.TakeDamage(damage, critCheck, "stun");
-        targetStats.stunCounter += stunTurns;
+        targetStats.stunCounter = stunTurns;
         targetStats.stunCheck = true;
 
         StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();

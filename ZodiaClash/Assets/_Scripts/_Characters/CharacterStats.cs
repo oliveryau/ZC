@@ -11,9 +11,11 @@ public class CharacterStats : MonoBehaviour
     private Animator animator;
 
     [Header("HUD")]
-    [SerializeField] private Image healthBar;
+    [SerializeField] private GameObject characterHpHud;
     [SerializeField] private Image healthBarFill;
     public Transform statusEffectPanel;
+
+    [Header("Other HUD")]
     [SerializeField] private TextMeshProUGUI characterName;
     public Image healthPanel;
     [SerializeField] private GameObject floatingText;
@@ -86,7 +88,7 @@ public class CharacterStats : MonoBehaviour
         }
 
         health = 0;
-        healthBar.gameObject.SetActive(false);
+        characterHpHud.SetActive(false);
         gameObject.tag = "Dead";
         //animator.Play("Death");
 
@@ -217,7 +219,7 @@ public class CharacterStats : MonoBehaviour
             TakeDamage(bleed.bleedDamage, false, "bleed");
             --bleedStack;
 
-            statusEffectManager.EarlyUpdateEffectsBar(this, "bleed");
+            statusEffectManager.UpdateEffectsBar(this, "bleed");
         }
         #endregion
 
@@ -226,7 +228,7 @@ public class CharacterStats : MonoBehaviour
         {
             --defBreakCounter;
 
-            statusEffectManager.EarlyUpdateEffectsBar(this, "defBreak");
+            statusEffectManager.UpdateEffectsBar(this, "defBreak");
 
             if (defBreakCounter <= 0)
             {
@@ -265,6 +267,8 @@ public class CharacterStats : MonoBehaviour
         {
             --stunCounter;
 
+            statusEffectManager.UpdateEffectsBar(this, "stun");
+
             if (stunCounter <= 0)
             {
                 stunCheck = false;
@@ -276,6 +280,8 @@ public class CharacterStats : MonoBehaviour
         if (tauntCounter > 0)
         {
             --tauntCounter;
+
+            statusEffectManager.UpdateEffectsBar(this, "taunt");
 
             if (tauntCounter <= 0)
             {
@@ -289,6 +295,8 @@ public class CharacterStats : MonoBehaviour
         if (attackBuffCounter > 0)
         {
             --attackBuffCounter;
+
+            statusEffectManager.UpdateEffectsBar(this, "atkBuff");
 
             if (attackBuffCounter <= 0)
             {

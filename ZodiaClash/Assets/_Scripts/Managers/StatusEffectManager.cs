@@ -78,7 +78,7 @@ public class StatusEffectManager : MonoBehaviour
 
                         if (int.TryParse(defBreakText.text, out int value)) //convert int to string
                         {
-                            value = count; //set to defBreakCount
+                            value = count; //defBreakCount will always be defBreak limit
 
                             defBreakText.text = value.ToString(); //set the number of the text
                         }
@@ -86,7 +86,7 @@ public class StatusEffectManager : MonoBehaviour
                     }
                 }
 
-                if (!defBreakExist)
+                if (!defBreakExist) //instantiate normally if no defBreakIcon
                 {
                     TextMeshProUGUI newDefBreakText = defBreakIcon.GetComponentInChildren<TextMeshProUGUI>();
                     newDefBreakText.text = count.ToString();
@@ -96,22 +96,100 @@ public class StatusEffectManager : MonoBehaviour
                 break;
 
             case "stun":
-                TextMeshProUGUI stunText = stunIcon.GetComponentInChildren<TextMeshProUGUI>();
-                stunText.text = count.ToString();
-                Instantiate(stunIcon, effectsPanel.position, Quaternion.identity, effectsPanel);
+
+                bool stunExist = false;
+
+                for (int i = 0; i < target.statusEffectPanel.childCount; i++)
+                {
+                    GameObject status = target.statusEffectPanel.GetChild(i).gameObject;
+                    TextMeshProUGUI stunText = status.GetComponentInChildren<TextMeshProUGUI>();
+
+                    if (status.CompareTag("Stun")) //if stunIcon exists
+                    {
+                        stunExist = true;
+
+                        if (int.TryParse(stunText.text, out int value)) //convert int to string
+                        {
+                            value = count; //stunCounter will always be stun limit
+
+                            stunText.text = value.ToString();
+                        }
+                        break;
+                    }
+                }
+
+                if (!stunExist) //instantiate normally if no stunIcon
+                {
+                    TextMeshProUGUI newStunText = stunIcon.GetComponentInChildren<TextMeshProUGUI>();
+                    newStunText.text = count.ToString();
+                    Instantiate(stunIcon, effectsPanel.position, Quaternion.identity, effectsPanel);
+                }
+
                 break;
 
             case "taunt":
-                TextMeshProUGUI tauntText = tauntIcon.GetComponentInChildren<TextMeshProUGUI>();
-                tauntText.text = count.ToString();
-                Instantiate(tauntIcon, effectsPanel.position, Quaternion.identity, effectsPanel);
+
+                bool tauntExist = false;
+
+                for (int i = 0; i < target.statusEffectPanel.childCount; i++)
+                {
+                    GameObject status = target.statusEffectPanel.GetChild(i).gameObject;
+                    TextMeshProUGUI tauntText = status.GetComponentInChildren<TextMeshProUGUI>();
+
+                    if (status.CompareTag("Stun"))
+                    {
+                        tauntExist = true;
+
+                        if (int.TryParse(tauntText.text, out int value))
+                        {
+                            value = count; //tauntCounter will always be taunt limit
+
+                            tauntText.text = value.ToString();
+                        }
+                        break;
+                    }
+                }
+
+                if (!tauntExist) //instantiate normally if no tauntIcon
+                {
+                    TextMeshProUGUI newTauntText = tauntIcon.GetComponentInChildren<TextMeshProUGUI>();
+                    newTauntText.text = count.ToString();
+                    Instantiate(tauntIcon, effectsPanel.position, Quaternion.identity, effectsPanel);
+                }
+
                 break;
 
             //buffs
             case "atkBuff":
-                TextMeshProUGUI atkBuffText = atkBuffIcon.GetComponentInChildren<TextMeshProUGUI>();
-                atkBuffText.text = count.ToString();
-                Instantiate(atkBuffIcon, effectsPanel.position, Quaternion.identity, effectsPanel);
+
+                bool atkBuffExist = false;
+
+                for (int i = 0; i < target.statusEffectPanel.childCount; i++)
+                {
+                    GameObject status = target.statusEffectPanel.GetChild(i).gameObject;
+                    TextMeshProUGUI atkBuffText = status.GetComponentInChildren<TextMeshProUGUI>();
+
+                    if (status.CompareTag("Atk Buff"))
+                    {
+                        atkBuffExist = true;
+
+                        if (int.TryParse(atkBuffText.text, out int value))
+                        {
+                            value = count; //attackkBuffCounter will always be atkBuff limit
+
+                            atkBuffText.text = value.ToString();
+                        }
+                        break;
+                    }
+                }
+
+                if (!atkBuffExist)
+                {
+                    TextMeshProUGUI newAtkBuffText = atkBuffIcon.GetComponentInChildren<TextMeshProUGUI>();
+                    newAtkBuffText.text = count.ToString();
+                    Instantiate(atkBuffIcon, effectsPanel.position, Quaternion.identity, effectsPanel);
+                }
+
                 break;
 
             default:
@@ -121,7 +199,7 @@ public class StatusEffectManager : MonoBehaviour
         effectsPanel = null;
     }
 
-    public void EarlyUpdateEffectsBar(CharacterStats character, string effect)
+    public void UpdateEffectsBar(CharacterStats character, string effect)
     {
         switch (effect)
         {
@@ -165,7 +243,78 @@ public class StatusEffectManager : MonoBehaviour
 
                 break;
 
+            case "stun":
+
+                for (int i = 0; i < character.statusEffectPanel.childCount; i++)
+                {
+                    GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
+                    TextMeshProUGUI stunText = status.GetComponentInChildren<TextMeshProUGUI>();
+
+                    if (status.CompareTag("Stun"))
+                    {
+                        stunText.text = character.stunCounter.ToString();
+
+                        if (character.stunCounter <= 0)
+                        {
+                            Destroy(status);
+                        }
+                    }
+                }
+
+                break;
+
+            case "taunt":
+
+                for (int i = 0; i < character.statusEffectPanel.childCount; i++)
+                {
+                    GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
+                    TextMeshProUGUI tauntText = status.GetComponentInChildren<TextMeshProUGUI>();
+
+                    if (status.CompareTag("Taunt"))
+                    {
+                        tauntText.text = character.tauntCounter.ToString();
+
+                        if (character.tauntCounter <= 0)
+                        {
+                            Destroy(status);
+                        }
+                    }
+                }
+
+                break;
+
+            case "atkBuff":
+
+                for (int i = 0; i < character.statusEffectPanel.childCount; i++)
+                {
+                    GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
+                    TextMeshProUGUI atkBuffText = status.GetComponentInChildren<TextMeshProUGUI>();
+
+                    if (status.CompareTag("Atk Buff"))
+                    {
+                        atkBuffText.text = character.attackBuffCounter.ToString();
+
+                        if (character.attackBuffCounter <= 0)
+                        {
+                            Destroy(status);
+                        }
+                    }
+                }
+
+                break;
+
             default:
+
+                for (int i = 0; i < character.statusEffectPanel.childCount; i++)
+                {
+                    GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
+
+                    if (!status.CompareTag("Atk Buff"))
+                    {
+                        Destroy(status);
+                    }
+                }
+
                 break;
         }
     }

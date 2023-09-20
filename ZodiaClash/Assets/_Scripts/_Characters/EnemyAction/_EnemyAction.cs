@@ -48,7 +48,7 @@ public class _EnemyAction : MonoBehaviour
     {
         enemyState = EnemyState.WAITING;
 
-        moveSpeed = 50f;
+        moveSpeed = 60f;
         startPosition = transform.position;
         movingToTarget = false;
         movingToStart = false;
