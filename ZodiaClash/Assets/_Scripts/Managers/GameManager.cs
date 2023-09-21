@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject turnOrder;
     [SerializeField] private GameObject playerHud;
     [SerializeField] private GameObject enemyHud;
-    public GameObject skillChiHud;
+    [SerializeField] private GameObject skillChiHud;
+    [SerializeField] private GameObject statusEffectIndicator;
 
     [Header("Turn Management")]
     public List<CharacterStats> charactersList = new List<CharacterStats>();
@@ -42,10 +43,11 @@ public class GameManager : MonoBehaviour
         playerHud.SetActive(false);
         enemyHud.SetActive(false);
         skillChiHud.SetActive(false);
+        statusEffectIndicator.SetActive(false);
         
         roundCounter = 0;
 
-        StartCoroutine(NewGameDelay(0.5f)); //delay at start
+        StartCoroutine(NewGameDelay(1f)); //delay at start
     }
 
     private void Update()
@@ -85,6 +87,7 @@ public class GameManager : MonoBehaviour
                 playerHud.SetActive(false);
                 enemyHud.SetActive(false);
                 skillChiHud.SetActive(false);
+                statusEffectIndicator.SetActive(false);
             }
             else if (GameObject.FindGameObjectsWithTag("Player").Length <= 0) //no players left
             {
@@ -95,6 +98,7 @@ public class GameManager : MonoBehaviour
                 playerHud.SetActive(false);
                 enemyHud.SetActive(false);
                 skillChiHud.SetActive(false);
+                statusEffectIndicator.SetActive(false);
             }
             else
             {
@@ -201,5 +205,6 @@ public class GameManager : MonoBehaviour
         playerHud.SetActive(true);
         enemyHud.SetActive(true);
         skillChiHud.SetActive(true);
+        statusEffectIndicator.SetActive(true);
     }
 }

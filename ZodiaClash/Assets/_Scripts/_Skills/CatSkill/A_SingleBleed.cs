@@ -17,17 +17,17 @@ public class A_SingleBleed : NormalAttack
         float randomValue = Random.Range(0f, 1f);
         if (randomValue <= bleedRate)
         {
-            _Bleed bleed = FindObjectOfType<_Bleed>();
+            Bleed bleed = FindObjectOfType<Bleed>();
 
             if (targetStats.bleedStack < bleed.bleedLimit)
             {
-                targetStats.TakeDamage(damage, critCheck, "bleed");
-                targetStats.bleedStack += bleedTurns;
+                targetStats.TakeDamage(damage, critCheck, "bleed"); //actual damage
 
-                StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();
+                StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>(); //status effect icon
                 statusEffect.SpawnEffectsBar(targetStats, bleedTurns, "bleed");
 
-                if (targetStats.bleedStack > bleed.bleedLimit)
+                targetStats.bleedStack += bleedTurns;
+                if (targetStats.bleedStack > bleed.bleedLimit) //dont overstack bleed
                 {
                     targetStats.bleedStack = bleed.bleedLimit;
                 }

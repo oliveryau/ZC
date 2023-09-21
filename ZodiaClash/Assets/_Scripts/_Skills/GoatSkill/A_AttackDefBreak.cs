@@ -5,9 +5,9 @@ using UnityEngine;
 public class A_AttackDefBreak : NormalAttack
 {
     [Header("Effects")]
-    [SerializeField] private float defBreakRate;
-    [SerializeField] private int defBreakCount;
-    [SerializeField] private int defBreakPercent;
+    [SerializeField] private float shatterRate;
+    [SerializeField] private int shatterTurns;
+    [SerializeField] private int shatterPercent;
 
     public override void Attack(GameObject target)
     {
@@ -16,18 +16,25 @@ public class A_AttackDefBreak : NormalAttack
         CalculateDamage(target);
 
         float randomValue = Random.Range(0f, 1f);
-        if (randomValue <= defBreakRate)
+        if (randomValue <= shatterRate)
         {
-            if (targetStats.defBreakCounter <= 0)
+            Shatter shatter = FindObjectOfType<Shatter>();
+
+            targetStats.TakeDamage(damage, critCheck, "shatter"); //actual damage
+
+            if (targetStats.shatterCounter <= 0) //dont overstack shatter
             {
-                targetStats.defense *= 1 - (defBreakPercent / 100f);
+                shatter.ShatterCalculation(targetStats, shatterPercent);
             }
 
-            targetStats.TakeDamage(damage, critCheck, "defBreak");
-            targetStats.defBreakCounter = defBreakCount;
+            StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>(); //status effect icons
+            statusEffect.SpawnEffectsBar(targetStats, shatterTurns, "shatter");
 
-            StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();
-            statusEffect.SpawnEffectsBar(targetStats, defBreakCount, "defBreak");
+            targetStats.shatterCounter += shatterTurns;
+            if (targetStats.shatterCounter > shatter.shatterLimit) //dont overstack shatter turns
+            {
+                targetStats.shatterCounter = shatter.shatterLimit;
+            }
         }
         else
         {

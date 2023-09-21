@@ -265,6 +265,6 @@ public class CatAction : _PlayerAction
             selectedSkillPrefab.GetComponent<C_AoeActivateBleed>().Attack(enemyTargets);
         }
 
-        StartCoroutine(EndTurnDelay(1f));
+        StartCoroutine(EndTurnDelay(0.5f));
     }
 }

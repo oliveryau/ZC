@@ -5,26 +5,28 @@ using UnityEngine;
 public class B_AttackBuff : _BaseBuff
 {
     [Header("Effects")]
-    [SerializeField] private int buffCount;
-
-    private float buffAmount;
+    [SerializeField] private int enrageTurns;
 
     public void AttackBuff(GameObject target)
     {
         GetTargets(target);
 
-        buffAmount = Mathf.RoundToInt(
-            (skillBuffPercent / 100f) * targetStats.attack);
+        Enrage enrage = FindObjectOfType<Enrage>();
 
-        if (targetStats.attackBuffCounter <= 0)
+        targetStats.BuffText(skillBuffPercent, "enrage");
+
+        if (targetStats.attackBuffCounter <= 0) //don't overstack attack
         {
-            targetStats.attack += buffAmount;
+            enrage.EnrageCalculation(targetStats, skillBuffPercent);
         }
 
-        targetStats.AttackBuff(skillBuffPercent);
-        targetStats.attackBuffCounter = buffCount;
+        StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>();
+        statusEffect.SpawnEffectsBar(targetStats, enrageTurns, "enrage");
 
-        StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();
-        statusEffect.SpawnEffectsBar(targetStats, buffCount, "atkBuff");
+        targetStats.attackBuffCounter += enrageTurns;
+        if (targetStats.attackBuffCounter > enrage.enrageLimit)
+        {
+            targetStats.attackBuffCounter = enrage.enrageLimit;
+        }
     }
 }

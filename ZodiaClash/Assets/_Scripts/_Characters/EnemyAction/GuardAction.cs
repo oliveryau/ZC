@@ -159,6 +159,6 @@ public class GuardAction : _EnemyAction
             selectedSkillPrefab.GetComponent<NormalAttack>().Attack(selectedTarget);
         }
 
-        StartCoroutine(EnemyEndTurnDelay(1f));
+        StartCoroutine(EnemyEndTurnDelay(0.5f));
     }
 }

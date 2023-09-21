@@ -13,7 +13,7 @@ public class B_AoeBleed : AoeAttack
     {
         //owner.GetComponent<Animator>().Play(animationName);
 
-        _Bleed bleed = FindObjectOfType<_Bleed>();
+        Bleed bleed = FindObjectOfType<Bleed>();
 
         foreach (GameObject target in targets)
         {
@@ -26,13 +26,13 @@ public class B_AoeBleed : AoeAttack
             {
                 if (currentTarget.bleedStack < bleed.bleedLimit)
                 {
-                    currentTarget.TakeDamage(damage, critCheck, "bleed");
-                    currentTarget.bleedStack += bleedTurns;
+                    currentTarget.TakeDamage(damage, critCheck, "bleed"); //actual damage
 
-                    StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();
+                    StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>(); //status effect icon
                     statusEffect.SpawnEffectsBar(currentTarget, bleedTurns, "bleed");
 
-                    if (currentTarget.bleedStack > bleed.bleedLimit)
+                    currentTarget.bleedStack += bleedTurns;
+                    if (currentTarget.bleedStack > bleed.bleedLimit) //dont overstack bleed
                     {
                         currentTarget.bleedStack = bleed.bleedLimit;
                     }

@@ -8,7 +8,7 @@ public class C_AoeActivateBleed : AoeAttack
     {
         //owner.GetComponent<Animator>().Play(animationName);
 
-        _Bleed bleed = FindObjectOfType<_Bleed>();
+        Bleed bleed = FindObjectOfType<Bleed>();
 
         foreach (GameObject target in targets)
         {
@@ -20,15 +20,15 @@ public class C_AoeActivateBleed : AoeAttack
             {
                 bleed.AoeBleedCalculation(currentTarget, currentTarget.bleedStack);
                 currentTarget.TakeDamage(damage + bleed.bleedDamage, critCheck, "rend");
-                //remove all status effect icons
 
-                currentTarget.bleedStack = 0;
+                currentTarget.bleedStack = 0; //set to 0 first
+
+                StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>(); //remove status effect icon
+                statusEffect.UpdateEffectsBar(currentTarget, "bleed");
             }
             else
             {
                 //normal aoe attack
-                CalculateDamage(target);
-
                 currentTarget.TakeDamage(damage, critCheck, null);
             }
         }

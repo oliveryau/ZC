@@ -27,7 +27,7 @@ public class C_SingleTaunt : MonoBehaviour
         target.GetComponent<CharacterStats>().tauntCounter += tauntTurns;
         target.GetComponent<CharacterStats>().tauntCheck = true;
 
-        StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();
+        StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>();
         statusEffect.SpawnEffectsBar(target.GetComponent<CharacterStats>(), tauntTurns, "taunt");
     }
 }

@@ -185,6 +185,6 @@ public class GoatAction : _PlayerAction
             selectedSkillPrefab.GetComponent<C_SingleHeal>().Heal(selectedTarget);
         }
 
-        StartCoroutine(EndTurnDelay(1f));
+        StartCoroutine(EndTurnDelay(0.5f));
     }
 }

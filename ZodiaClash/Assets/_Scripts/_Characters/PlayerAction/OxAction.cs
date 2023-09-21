@@ -265,6 +265,6 @@ public class OxAction : _PlayerAction
             selectedSkillPrefab.GetComponent<C_SingleTaunt>().Taunt(selectedTarget);
         }
 
-        StartCoroutine(EndTurnDelay(1f));
+        StartCoroutine(EndTurnDelay(0.5f));
     }
 }

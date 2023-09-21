@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6446560743076388856}
   - component: {fileID: 3953025058336906593}
   m_Layer: 5
-  m_Name: _Effects Panel
+  m_Name: _Individual Effects Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

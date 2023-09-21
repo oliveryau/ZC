@@ -14,6 +14,7 @@ public class _EnemyAction : MonoBehaviour
     [Header("HUD")]
     public GameObject turnIndicator;
     public GameObject targetIndicator;
+    protected int originalSort;
 
     [Header("Skill Selection")]
     [SerializeField] protected GameObject skill1Prefab;
@@ -47,6 +48,8 @@ public class _EnemyAction : MonoBehaviour
     private void Start()
     {
         enemyState = EnemyState.WAITING;
+
+        originalSort = GetComponent<SpriteRenderer>().sortingOrder;
 
         moveSpeed = 60f;
         startPosition = transform.position;
@@ -93,7 +96,7 @@ public class _EnemyAction : MonoBehaviour
 
             if (reachedTarget)
             {
-                GetComponent<SpriteRenderer>().sortingOrder = 1;
+                GetComponent<SpriteRenderer>().sortingOrder = 10;
 
                 movingToTarget = false;
 
@@ -106,7 +109,7 @@ public class _EnemyAction : MonoBehaviour
 
             if (reachedStart)
             {
-                GetComponent<SpriteRenderer>().sortingOrder = 0;
+                GetComponent<SpriteRenderer>().sortingOrder = originalSort;
 
                 movingToStart = false;
 

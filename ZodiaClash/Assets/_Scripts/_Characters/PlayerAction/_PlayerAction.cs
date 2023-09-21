@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,11 +14,15 @@ public class _PlayerAction : MonoBehaviour
     public PlayerState playerState;
 
     [Header("HUD")]
+    [SerializeField] protected GameObject characterAvatar;
     [SerializeField] protected GameObject characterSkillUi;
+    [SerializeField] protected TextMeshProUGUI skill2ChiCostUi;
+    [SerializeField] protected TextMeshProUGUI skill3ChiCostUi;
     [SerializeField] protected Button skill2Enable;
     [SerializeField] protected Button skill3Enable;
     public GameObject turnIndicator;
     public GameObject targetIndicator;
+    protected int originalSort;
 
     //animations
     [Header("Skill Selection")]
@@ -56,6 +61,8 @@ public class _PlayerAction : MonoBehaviour
     {
         playerState = PlayerState.WAITING;
 
+        originalSort = GetComponent<SpriteRenderer>().sortingOrder;
+
         moveSpeed = 60f;
         startPosition = transform.position;
         movingToTarget = false;
@@ -78,6 +85,7 @@ public class _PlayerAction : MonoBehaviour
             if (playerState == PlayerState.WAITING)
             {
                 turnIndicator.SetActive(true);
+                characterAvatar.GetComponent<Animator>().SetTrigger("increase");
 
                 //taunt
                 if (characterStats.tauntCheck)
@@ -143,6 +151,7 @@ public class _PlayerAction : MonoBehaviour
 
                 //hud
                 turnIndicator.SetActive(false);
+                characterAvatar.GetComponent<Animator>().SetTrigger("decrease");
 
                 //skill
                 selectedSkillPrefab = null;
@@ -175,7 +184,8 @@ public class _PlayerAction : MonoBehaviour
     {
         if (value == true)
         {
-            characterSkillUi.SetActive(true);
+            skill2ChiCostUi.text = skill2ChiCost.ToString();
+            skill3ChiCostUi.text = skill3ChiCost.ToString();
 
             if (playerChi.currentChi < skill2ChiCost)
             {
@@ -186,6 +196,8 @@ public class _PlayerAction : MonoBehaviour
             {
                 skill3Enable.interactable = false;
             }
+
+            characterSkillUi.SetActive(true);
         }
         else if (value == false)
         {
@@ -267,7 +279,7 @@ public class _PlayerAction : MonoBehaviour
 
             if (reachedTarget)
             {
-                GetComponent<SpriteRenderer>().sortingOrder = 1;
+                GetComponent<SpriteRenderer>().sortingOrder = 10;
 
                 movingToTarget = false;
 
@@ -280,7 +292,7 @@ public class _PlayerAction : MonoBehaviour
 
             if (reachedStart)
             {
-                GetComponent<SpriteRenderer>().sortingOrder = 0;
+                GetComponent<SpriteRenderer>().sortingOrder = originalSort;
 
                 movingToStart = false;
 

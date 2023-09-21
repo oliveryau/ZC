@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class _Bleed : MonoBehaviour
+public class Bleed : MonoBehaviour
 {
+    public int bleedLimit;
     [SerializeField] private int bleedPercent;
 
     [HideInInspector] public float bleedDamage; //damage of bleed
-    public int bleedLimit;
 
     public void BleedCalculation(CharacterStats bleedTarget) //universal bleed formula
     {

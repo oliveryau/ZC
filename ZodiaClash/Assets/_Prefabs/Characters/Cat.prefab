@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1722746847
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 5b4b2b8ac19a7114a927ece1b6512f6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -164,6 +164,7 @@ MonoBehaviour:
   characterHpHud: {fileID: 0}
   healthBarFill: {fileID: 0}
   statusEffectPanel: {fileID: 0}
+  hpValueUi: {fileID: 0}
   characterName: {fileID: 0}
   healthPanel: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
@@ -173,7 +174,7 @@ MonoBehaviour:
   defense: 20
   speed: 5
   bleedStack: 0
-  defBreakCounter: 0
+  shatterCounter: 0
   stunCounter: 0
   stunCheck: 0
   tauntCounter: 0
@@ -193,7 +194,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerState: 0
+  characterAvatar: {fileID: 0}
   characterSkillUi: {fileID: 0}
+  skill2ChiCostUi: {fileID: 0}
+  skill3ChiCostUi: {fileID: 0}
   skill2Enable: {fileID: 0}
   skill3Enable: {fileID: 0}
   turnIndicator: {fileID: 8434711378409804290}
@@ -493,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
       propertyPath: skillAttackPercent
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
       propertyPath: maxAttackMultiplier

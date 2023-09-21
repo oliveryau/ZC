@@ -7,7 +7,7 @@ using TMPro;
 public class CharacterStats : MonoBehaviour
 {
     private GameManager gameManager;
-    private StatusEffectManager statusEffectManager;
+    private StatusEffectHud statusEffectHud;
     private Animator animator;
 
     [Header("HUD")]
@@ -16,6 +16,7 @@ public class CharacterStats : MonoBehaviour
     public Transform statusEffectPanel;
 
     [Header("Other HUD")]
+    [SerializeField] private TextMeshProUGUI hpValueUi;
     [SerializeField] private TextMeshProUGUI characterName;
     public Image healthPanel;
     [SerializeField] private GameObject floatingText;
@@ -31,7 +32,7 @@ public class CharacterStats : MonoBehaviour
 
     [Header("Debuffs")]
     public int bleedStack;
-    public int defBreakCounter;
+    public int shatterCounter;
     public int stunCounter;
     public bool stunCheck;
     public int tauntCounter;
@@ -45,16 +46,15 @@ public class CharacterStats : MonoBehaviour
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        statusEffectManager = FindObjectOfType<StatusEffectManager>();
+        statusEffectHud = FindObjectOfType<StatusEffectHud>();
         animator = GetComponent<Animator>();
 
-        if (characterName != null)
-        {
-            characterName.text = gameObject.name.ToString();
-        }
+        if (characterName != null) characterName.text = gameObject.name.ToString();
 
         //hp
         health = maxHealth;
+
+        if (hpValueUi != null) hpValueUi.text = health.ToString();
         healthBarFill.fillAmount = health / maxHealth;
 
         //status effects
@@ -64,14 +64,6 @@ public class CharacterStats : MonoBehaviour
         stunCheck = false;
         tauntCheck = false;
         checkedStatus = false;
-    }
-
-    private void Update()
-    {
-        if (health >= maxHealth)
-        {
-            health = maxHealth;
-        }
     }
 
     private IEnumerator Death()
@@ -120,6 +112,7 @@ public class CharacterStats : MonoBehaviour
             }
         }
 
+        if (hpValueUi != null) hpValueUi.text = health.ToString();
         healthBarFill.fillAmount = health / maxHealth;
     }
 
@@ -134,12 +127,8 @@ public class CharacterStats : MonoBehaviour
             health = maxHealth;
         }
 
+        if (hpValueUi != null) hpValueUi.text = health.ToString();
         healthBarFill.fillAmount = health / maxHealth;
-    }
-
-    public void AttackBuff(float buffAmount)
-    {
-        BuffText(buffAmount, "atkBuff");
     }
 
     #region Text Effects
@@ -162,7 +151,7 @@ public class CharacterStats : MonoBehaviour
             case "rend":
                 popup.text += "REND\n" + value.ToString();
                 break;
-            case "defBreak":
+            case "shatter":
                 popup.text += "DEF DOWN\n" + value.ToString();
                 break;
             case "stun":
@@ -191,11 +180,11 @@ public class CharacterStats : MonoBehaviour
 
         switch (effect)
         {
+            case "enrage":
+                popup.text = "ATK UP\n+" + value.ToString() + "% ATK";
+                break;
             case "heal":
                 popup.text = "CLEANSE\n" + value.ToString();
-                break;
-            case "atkBuff":
-                popup.text = "ATK UP\n+" + value.ToString() + "% ATK";
                 break;
             default:
                 Debug.LogError("No buff text, BUG");
@@ -214,24 +203,24 @@ public class CharacterStats : MonoBehaviour
         #region Bleed
         if (bleedStack > 0)
         {
-            _Bleed bleed = FindObjectOfType<_Bleed>();
+            Bleed bleed = FindObjectOfType<Bleed>();
             bleed.BleedCalculation(this);
 
             TakeDamage(bleed.bleedDamage, false, "bleed");
             --bleedStack;
 
-            statusEffectManager.UpdateEffectsBar(this, "bleed");
+            statusEffectHud.UpdateEffectsBar(this, "bleed");
         }
         #endregion
 
         #region Defense Break
-        if (defBreakCounter > 0)
+        if (shatterCounter > 0)
         {
-            --defBreakCounter;
+            --shatterCounter;
 
-            statusEffectManager.UpdateEffectsBar(this, "defBreak");
+            statusEffectHud.UpdateEffectsBar(this, "shatter");
 
-            if (defBreakCounter <= 0)
+            if (shatterCounter <= 0)
             {
                 if (defense != initialDefense)
                 {
@@ -268,7 +257,7 @@ public class CharacterStats : MonoBehaviour
         {
             --stunCounter;
 
-            statusEffectManager.UpdateEffectsBar(this, "stun");
+            statusEffectHud.UpdateEffectsBar(this, "stun");
 
             if (stunCounter <= 0)
             {
@@ -282,7 +271,7 @@ public class CharacterStats : MonoBehaviour
         {
             --tauntCounter;
 
-            statusEffectManager.UpdateEffectsBar(this, "taunt");
+            statusEffectHud.UpdateEffectsBar(this, "taunt");
 
             if (tauntCounter <= 0)
             {
@@ -297,7 +286,7 @@ public class CharacterStats : MonoBehaviour
         {
             --attackBuffCounter;
 
-            statusEffectManager.UpdateEffectsBar(this, "atkBuff");
+            statusEffectHud.UpdateEffectsBar(this, "enrage");
 
             if (attackBuffCounter <= 0)
             {

@@ -29,9 +29,9 @@ public class C_SingleHeal : _BaseBuff
         #endregion
 
         #region Defense Break
-        if (targetStats.defBreakCounter > 0)
+        if (targetStats.shatterCounter > 0)
         {
-            targetStats.defBreakCounter = 0;            
+            targetStats.shatterCounter = 0;            
         }
         #endregion
 
@@ -52,7 +52,7 @@ public class C_SingleHeal : _BaseBuff
         #endregion
 
         //reset all negative effects icons
-        StatusEffectManager statusEffect = FindObjectOfType<StatusEffectManager>();
+        StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>();
         statusEffect.UpdateEffectsBar(targetStats, "cleanse");
     }
 }
