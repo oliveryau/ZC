@@ -17,7 +17,11 @@ public class GoatAction : _PlayerAction
         {
             TargetSelectionUi(true, "enemy");
         }
-        else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
+        else if (selectedSkillPrefab == skill2Prefab)
+        {
+            TargetSelectionUi(true, "ally", true);
+        }
+        else if (selectedSkillPrefab == skill3Prefab)
         {
             TargetSelectionUi(true, "ally");
         }
@@ -83,18 +87,27 @@ public class GoatAction : _PlayerAction
                 {
                     if (hit.collider != null && hit.collider.CompareTag("Player"))
                     {
-                        hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(true);
-
-                        if (Input.GetMouseButtonDown(0))
+                        #region Cannot Target Itself
+                        if (hit.collider.gameObject == this.gameObject)
                         {
-                            if (playerChi.currentChi >= skill2ChiCost)
+                            hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(false);
+                        }
+                        #endregion
+                        else
+                        {
+                            hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(true);
+
+                            if (Input.GetMouseButtonDown(0))
                             {
-                                selectedTarget = hit.collider.gameObject;
-                                playerChi.UseChi(skill2ChiCost);
+                                if (playerChi.currentChi >= skill2ChiCost)
+                                {
+                                    selectedTarget = hit.collider.gameObject;
+                                    playerChi.UseChi(skill2ChiCost);
 
-                                playerState = PlayerState.ATTACKING;
+                                    playerState = PlayerState.ATTACKING;
 
-                                TargetSelectionUi(false, null);
+                                    TargetSelectionUi(false, null);
+                                }
                             }
                         }
                     }

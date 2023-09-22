@@ -18,7 +18,7 @@ public class CatAction : _PlayerAction
         {
             aoeSkillSelected = false;
 
-            TargetSelectionUi(true, "enemy");
+            TargetSelectionUi(true, "enemy", characterStats.tauntCheck);
         }
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe
         {
@@ -44,84 +44,93 @@ public class CatAction : _PlayerAction
 
                     if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
-                        selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
-                        selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.black;
-
-                        if (Input.GetMouseButtonDown(0))
+                        if (hit.collider.gameObject != selectedTarget.gameObject)
                         {
-                            playerChi.RegainChi();
-
-                            playerState = PlayerState.ATTACKING;
-
-                            TargetSelectionUi(false, null);
-
-                            selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                            selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
                         }
-                    }
-                }
-                else if (selectedSkillPrefab == skill2Prefab) //aoe targeting
-                {
-                    aoeSkillSelected = true;
-
-                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
-                    {
-                        foreach (GameObject enemy in enemyTargets)
+                        else
                         {
-                            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                            //can only target taunted character
 
-                            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
-                        }
+                            selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
 
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                            if (playerChi.currentChi >= skill2ChiCost)
+                            selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+
+                            if (Input.GetMouseButtonDown(0))
                             {
-                                playerChi.UseChi(skill2ChiCost);
+                                playerChi.RegainChi();
 
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
 
-                                foreach (GameObject enemy in enemyTargets)
-                                {
-                                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
-                                }
+                                selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
                             }
                         }
                     }
                 }
-                else if (selectedSkillPrefab == skill3Prefab) //aoe targeting
-                {
-                    aoeSkillSelected = true;
+                //else if (selectedSkillPrefab == skill2Prefab) //aoe targeting
+                //{
+                //    aoeSkillSelected = true;
 
-                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
-                    {
-                        foreach (GameObject enemy in enemyTargets)
-                        {
-                            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                //    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                //    {
+                //        foreach (GameObject enemy in enemyTargets)
+                //        {
+                //            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
 
-                            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
-                        }
+                //            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+                //        }
 
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                            if (playerChi.currentChi >= skill3ChiCost)
-                            {
-                                playerChi.UseChi(skill3ChiCost);
+                //        if (Input.GetMouseButtonDown(0))
+                //        {
+                //            if (playerChi.currentChi >= skill2ChiCost)
+                //            {
+                //                playerChi.UseChi(skill2ChiCost);
 
-                                playerState = PlayerState.ATTACKING;
+                //                playerState = PlayerState.ATTACKING;
 
-                                TargetSelectionUi(false, null);
+                //                TargetSelectionUi(false, null);
 
-                                foreach (GameObject enemy in enemyTargets)
-                                {
-                                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
-                                }
-                            }
-                        }
-                    }
-                }
+                //                foreach (GameObject enemy in enemyTargets)
+                //                {
+                //                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
+                //else if (selectedSkillPrefab == skill3Prefab) //aoe targeting
+                //{
+                //    aoeSkillSelected = true;
+
+                //    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                //    {
+                //        foreach (GameObject enemy in enemyTargets)
+                //        {
+                //            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+
+                //            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+                //        }
+
+                //        if (Input.GetMouseButtonDown(0))
+                //        {
+                //            if (playerChi.currentChi >= skill3ChiCost)
+                //            {
+                //                playerChi.UseChi(skill3ChiCost);
+
+                //                playerState = PlayerState.ATTACKING;
+
+                //                TargetSelectionUi(false, null);
+
+                //                foreach (GameObject enemy in enemyTargets)
+                //                {
+                //                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
             }
             #endregion
             #region Normal Targeting Behaviour

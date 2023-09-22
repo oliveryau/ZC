@@ -12,9 +12,10 @@ public class GuardAction : _EnemyAction
             {
                 turnIndicator.SetActive(true);
 
-                //taunt
+                #region Taunted Behaviour
                 if (characterStats.tauntCheck)
                 {
+                    //if taunt target is dead
                     if (!selectedTarget.gameObject.activeSelf)
                     {
                         selectedTarget = null;
@@ -23,6 +24,7 @@ public class GuardAction : _EnemyAction
                         characterStats.tauntCheck = false;
                     }
                 }
+                #endregion
 
                 enemyState = EnemyState.CHECKSTATUS;
             }

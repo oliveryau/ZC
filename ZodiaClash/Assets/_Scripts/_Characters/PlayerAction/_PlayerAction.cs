@@ -87,7 +87,7 @@ public class _PlayerAction : MonoBehaviour
                 turnIndicator.SetActive(true);
                 characterAvatar.GetComponent<Animator>().SetTrigger("increase");
 
-                //taunt
+                #region Taunted Behaviour
                 if (characterStats.tauntCheck)
                 {
                     //if taunt target is dead
@@ -99,6 +99,7 @@ public class _PlayerAction : MonoBehaviour
                         characterStats.tauntCheck = false;
                     }
                 }
+                #endregion
 
                 playerState = PlayerState.CHECKSTATUS;
             }
@@ -180,14 +181,19 @@ public class _PlayerAction : MonoBehaviour
     }
 
     #region UI Toggling
-    protected void ToggleSkillUi(bool value)
+    protected void ToggleSkillUi(bool display)
     {
-        if (value == true)
+        if (display == true)
         {
             skill2ChiCostUi.text = skill2ChiCost.ToString();
             skill3ChiCostUi.text = skill3ChiCost.ToString();
 
-            if (playerChi.currentChi < skill2ChiCost)
+            if (characterStats.tauntCheck)
+            {
+                skill2Enable.interactable = false;
+                skill3Enable.interactable = false;
+            }
+            else if (playerChi.currentChi < skill2ChiCost)
             {
                 skill2Enable.interactable = false;
             }
@@ -199,7 +205,7 @@ public class _PlayerAction : MonoBehaviour
 
             characterSkillUi.SetActive(true);
         }
-        else if (value == false)
+        else if (display == false)
         {
             SkillButtons[] skillButtons = FindObjectsOfType<SkillButtons>();
             foreach (SkillButtons skillButton in skillButtons)
@@ -214,36 +220,62 @@ public class _PlayerAction : MonoBehaviour
         }
     }
 
-    protected void TargetSelectionUi(bool value, string targets)
+    protected void TargetSelectionUi(bool display, string targets, bool specific = false)
     {
-        if (value)
+        if (display)
         {
             if (targets == "ally") //show ally targeting
             {
                 foreach (GameObject player in playerTargets)
                 {
                     player.GetComponent<_PlayerAction>().targetIndicator.SetActive(true);
+
+                    #region Cannot Target Itself
+                    if (specific) //cannot target itself
+                    {
+                        if (player == this.gameObject)
+                        {
+                            player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
+                        }
+                    }
+                    #endregion
                 }
 
                 foreach (GameObject enemy in enemyTargets)
                 {
                     enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
                 }
+
             }
             else if (targets == "enemy") //show enemy targeting
             {
                 foreach (GameObject enemy in enemyTargets)
                 {
                     enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
+
+                    #region Target Only Taunted Character
+                    if (specific) // taunted
+                    {
+                        if (enemy == selectedTarget)
+                        {
+                            enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
+                        }
+                        else
+                        {
+                            enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
+                        }
+                    }
+                    #endregion
                 }
 
                 foreach (GameObject player in playerTargets)
                 {
                     player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
                 }
+
             }
         }
-        else if (!value)
+        else if (!display)
         {
             //hide all targeting
             foreach (GameObject enemy in enemyTargets)
@@ -376,7 +408,7 @@ public class _PlayerAction : MonoBehaviour
     public void HighlightTargetIndicator(bool highlight)
     {
         SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
-        targetSelect.color = highlight ? Color.cyan : Color.white;
+        targetSelect.color = highlight ? Color.cyan : Color.black;
     }
     #endregion
 }
