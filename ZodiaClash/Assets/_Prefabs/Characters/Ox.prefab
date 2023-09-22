@@ -36,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 3643820232310952929}
   - {fileID: 8217594623812553636}
-  - {fileID: 6250428797569821280}
+  - {fileID: 2316822193886388889}
   - {fileID: 6544522799122348666}
   - {fileID: 8483448366423156909}
   m_Father: {fileID: 0}
@@ -164,6 +164,7 @@ MonoBehaviour:
   characterHpHud: {fileID: 0}
   healthBarFill: {fileID: 0}
   statusEffectPanel: {fileID: 0}
+  hpValueUi: {fileID: 0}
   characterName: {fileID: 0}
   healthPanel: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
@@ -173,11 +174,9 @@ MonoBehaviour:
   defense: 25
   speed: 4
   bleedStack: 0
-  defBreakCounter: 0
+  shatterCounter: 0
   stunCounter: 0
-  stunCheck: 0
   tauntCounter: 0
-  tauntCheck: 0
   attackBuffCounter: 0
   checkedStatus: 0
 --- !u!114 &8887539544704033780
@@ -193,12 +192,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerState: 0
+  characterAvatar: {fileID: 0}
   characterSkillUi: {fileID: 0}
+  skill2ChiCostUi: {fileID: 0}
+  skill3ChiCostUi: {fileID: 0}
   skill2Enable: {fileID: 0}
   skill3Enable: {fileID: 0}
   turnIndicator: {fileID: 332883918410069826}
   targetIndicator: {fileID: 8576473479161851106}
-  skill1Prefab: {fileID: 9145442680651904805}
+  skill1Prefab: {fileID: 608506892630654940}
   skill2Prefab: {fileID: 8251729790526515007}
   skill3Prefab: {fileID: 6768236369634637288}
   selectedSkillPrefab: {fileID: 0}
@@ -209,6 +211,77 @@ MonoBehaviour:
   selectedTarget: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}
+--- !u!1001 &1387559364042872727
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2408279072610572451}
+    m_Modifications:
+    - target: {fileID: 1959136381337512011, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+      propertyPath: m_Name
+      value: Chi-Flowing Blow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113463033497336080, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 9196513893604650534}
+    - target: {fileID: 3703815287898649870, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703815287898649870, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703815287898649870, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703815287898649870, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703815287898649870, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703815287898649870, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703815287898649870, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703815287898649870, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703815287898649870, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703815287898649870, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+--- !u!1 &608506892630654940 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1959136381337512011, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+  m_PrefabInstance: {fileID: 1387559364042872727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2316822193886388889 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3703815287898649870, guid: 2265258d413bb8749a63dc937edba963, type: 3}
+  m_PrefabInstance: {fileID: 1387559364042872727}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1742524794232634750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,8 +374,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9196513893604650534}
     - target: {fileID: 471342081536651971, guid: c55e0172d1c56ad43bafee4f4c85f6ab, type: 3}
-      propertyPath: tauntTurns
-      value: 2
+      propertyPath: tauntRate
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6909422217657556072, guid: c55e0172d1c56ad43bafee4f4c85f6ab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -346,7 +419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8626058702637302061, guid: c55e0172d1c56ad43bafee4f4c85f6ab, type: 3}
       propertyPath: m_Name
-      value: Single Target Taunt
+      value: God of War's Challenge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -415,33 +488,9 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 9196513893604650534}
-    - target: {fileID: 2842570152458356636, guid: 2845da73499cd8b41ac8e574c155a1f0, type: 3}
-      propertyPath: critRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842570152458356636, guid: 2845da73499cd8b41ac8e574c155a1f0, type: 3}
-      propertyPath: stunTurns
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842570152458356636, guid: 2845da73499cd8b41ac8e574c155a1f0, type: 3}
-      propertyPath: critMultiplier
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842570152458356636, guid: 2845da73499cd8b41ac8e574c155a1f0, type: 3}
-      propertyPath: skillAttackPercent
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842570152458356636, guid: 2845da73499cd8b41ac8e574c155a1f0, type: 3}
-      propertyPath: maxAttackMultiplier
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842570152458356636, guid: 2845da73499cd8b41ac8e574c155a1f0, type: 3}
-      propertyPath: minAttackMultiplier
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 4226123111675479197, guid: 2845da73499cd8b41ac8e574c155a1f0, type: 3}
       propertyPath: m_Name
-      value: Single Target Stun
+      value: Unstoppable Thunder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -457,109 +506,6 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4226123111675479197, guid: 2845da73499cd8b41ac8e574c155a1f0, type: 3}
   m_PrefabInstance: {fileID: 5197782968527692706}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5206492304694161597
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2408279072610572451}
-    m_Modifications:
-    - target: {fileID: 2232895680322263773, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232895680322263773, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232895680322263773, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232895680322263773, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232895680322263773, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232895680322263773, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232895680322263773, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232895680322263773, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232895680322263773, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232895680322263773, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2715427919934904291, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 9196513893604650534}
-    - target: {fileID: 2715427919934904291, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: critRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2715427919934904291, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: skillAttackPercent
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3938976782827014040, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: m_Name
-      value: AOE Attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 7281113104915052964, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 9196513893604650534}
-    - target: {fileID: 7281113104915052964, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: critRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7281113104915052964, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: critMultiplier
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7281113104915052964, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: skillAttackPercent
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7281113104915052964, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: maxAttackMultiplier
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7281113104915052964, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-      propertyPath: minAttackMultiplier
-      value: 0.8
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
---- !u!4 &6250428797569821280 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2232895680322263773, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-  m_PrefabInstance: {fileID: 5206492304694161597}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9145442680651904805 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3938976782827014040, guid: 84d9bdcd1b6cfc848a2de53a2f66ce3b, type: 3}
-  m_PrefabInstance: {fileID: 5206492304694161597}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7103267296454030526
 PrefabInstance:

@@ -8,6 +8,9 @@ public class Enrage : MonoBehaviour
 
     public void EnrageCalculation(CharacterStats enrageTarget, int enragePercent) //universal bleed formula
     {
-        enrageTarget.attack *= (enragePercent / 100f) + 1;
+        float enrageValue = (enragePercent / 100f) * enrageTarget.attack;
+        enrageTarget.attack += enrageValue;
+
+        enrageTarget.increasedAttackValue = enrageValue;
     }
 }

@@ -7,7 +7,7 @@ using TMPro;
 public class CharacterStats : MonoBehaviour
 {
     private GameManager gameManager;
-    private StatusEffectHud statusEffectHud;
+    private _StatusEffectHud statusEffectHud;
     private Animator animator;
 
     [Header("HUD")]
@@ -27,42 +27,37 @@ public class CharacterStats : MonoBehaviour
     public float attack;
     public float defense;
     public int speed;
-    private float initialAttack;
-    private float initialDefense;
+
+    [HideInInspector] public float increasedAttackValue;
+    [HideInInspector] public float decreasedDefenseValue;
+    [HideInInspector] public float increasedDefenseValue;
 
     [Header("Debuffs")]
     public int bleedStack;
     public int shatterCounter;
     public int stunCounter;
-    public bool stunCheck;
     public int tauntCounter;
-    public bool tauntCheck;
 
     [Header("Buffs")]
     public int attackBuffCounter;
+    public int armorCounter;
 
     [HideInInspector] public bool checkedStatus;
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        statusEffectHud = FindObjectOfType<StatusEffectHud>();
+        statusEffectHud = FindObjectOfType<_StatusEffectHud>();
         animator = GetComponent<Animator>();
-
-        if (characterName != null) characterName.text = gameObject.name.ToString();
 
         //hp
         health = maxHealth;
-
-        if (hpValueUi != null) hpValueUi.text = health.ToString();
         healthBarFill.fillAmount = health / maxHealth;
 
-        //status effects
-        initialDefense = defense;
-        initialAttack = attack;
+        if (characterName != null) characterName.text = gameObject.name.ToString();
+        if (hpValueUi != null) hpValueUi.text = health.ToString();
 
-        stunCheck = false;
-        tauntCheck = false;
+        //status effect
         checkedStatus = false;
     }
 
@@ -116,11 +111,18 @@ public class CharacterStats : MonoBehaviour
         healthBarFill.fillAmount = health / maxHealth;
     }
 
-    public void HealBuff(float buffAmount)
+    public void HealBuff(float buffAmount, bool cleanse)
     {
         health += buffAmount;
 
-        BuffText(buffAmount, "heal");
+        if (cleanse)
+        {
+            BuffText(buffAmount, "cleanse");
+        }
+        else
+        {
+            BuffText(buffAmount, "heal");
+        }
 
         if (health >= maxHealth)
         {
@@ -183,8 +185,14 @@ public class CharacterStats : MonoBehaviour
             case "enrage":
                 popup.text = "ATK UP\n+" + value.ToString() + "% ATK";
                 break;
-            case "heal":
+            case "armor":
+                popup.text = "DEF UP\n+" + value.ToString() + "% DEF";
+                break;
+            case "cleanse":
                 popup.text = "CLEANSE\n" + value.ToString();
+                break;
+            case "heal":
+                popup.text = "HEAL\n" + value.ToString();
                 break;
             default:
                 Debug.LogError("No buff text, BUG");
@@ -213,7 +221,7 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
 
-        #region Defense Break
+        #region Shatter
         if (shatterCounter > 0)
         {
             --shatterCounter;
@@ -222,10 +230,8 @@ public class CharacterStats : MonoBehaviour
 
             if (shatterCounter <= 0)
             {
-                if (defense != initialDefense)
-                {
-                    defense = initialDefense;
-                }
+                defense += decreasedDefenseValue; //add back decreased value
+                decreasedDefenseValue = 0;
             }
         }
         #endregion
@@ -244,6 +250,22 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
 
+        //buffs
+        #region Armor
+        if (armorCounter > 0)
+        {
+            --armorCounter;
+
+            statusEffectHud.UpdateEffectsBar(this, "armor");
+
+            if (armorCounter <= 0)
+            {
+                defense -= increasedDefenseValue; //minus back increased value
+                increasedDefenseValue = 0;
+            }
+        }
+        #endregion
+
         yield return new WaitForSeconds(0.5f);
 
         checkedStatus = true;
@@ -258,11 +280,6 @@ public class CharacterStats : MonoBehaviour
             --stunCounter;
 
             statusEffectHud.UpdateEffectsBar(this, "stun");
-
-            if (stunCounter <= 0)
-            {
-                stunCheck = false;
-            }
         }
         #endregion
 
@@ -272,16 +289,11 @@ public class CharacterStats : MonoBehaviour
             --tauntCounter;
 
             statusEffectHud.UpdateEffectsBar(this, "taunt");
-
-            if (tauntCounter <= 0)
-            {
-                tauntCheck = false;
-            }
         }
         #endregion
 
         //buffs
-        #region Attack Buff
+        #region Enrage
         if (attackBuffCounter > 0)
         {
             --attackBuffCounter;
@@ -290,10 +302,8 @@ public class CharacterStats : MonoBehaviour
 
             if (attackBuffCounter <= 0)
             {
-                if (attack != initialAttack)
-                {
-                    attack = initialAttack;
-                }
+                attack -= increasedAttackValue;
+                increasedAttackValue = 0;
             }
         }
         #endregion

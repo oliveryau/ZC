@@ -18,7 +18,7 @@ public class A_AttackDefBreak : NormalAttack
         float randomValue = Random.Range(0f, 1f);
         if (randomValue <= shatterRate)
         {
-            Shatter shatter = FindObjectOfType<Shatter>();
+            Defense shatter = FindObjectOfType<Defense>();
 
             targetStats.TakeDamage(damage, critCheck, "shatter"); //actual damage
 
@@ -27,7 +27,7 @@ public class A_AttackDefBreak : NormalAttack
                 shatter.ShatterCalculation(targetStats, shatterPercent);
             }
 
-            StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>(); //status effect icons
+            _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>(); //status effect icons
             statusEffect.SpawnEffectsBar(targetStats, shatterTurns, "shatter");
 
             targetStats.shatterCounter += shatterTurns;

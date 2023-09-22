@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3938976782827014040
+--- !u!1 &8626058702637302061
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2232895680322263773}
-  - component: {fileID: 7281113104915052964}
+  - component: {fileID: 6909422217657556072}
+  - component: {fileID: 471342081536651971}
   m_Layer: 0
-  m_Name: 1_AOE Attack
+  m_Name: God of War's Challenge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2232895680322263773
+--- !u!4 &6909422217657556072
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938976782827014040}
+  m_GameObject: {fileID: 8626058702637302061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,23 +32,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7281113104915052964
+--- !u!114 &471342081536651971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938976782827014040}
+  m_GameObject: {fileID: 8626058702637302061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0347573554214c74d8c35c27ce110a27, type: 3}
+  m_Script: {fileID: 11500000, guid: 30712c30d96a2924a9fb8ceda772d80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   animationName: 
-  skillAttackPercent: 0
-  minAttackMultiplier: 0
-  maxAttackMultiplier: 0
-  critRate: 0
-  critMultiplier: 0
+  skillAttackPercent: 50
+  minAttackMultiplier: 0.8
+  maxAttackMultiplier: 1.2
+  critRate: 0.5
+  critMultiplier: 1.5
   critCheck: 0
+  tauntRate: 0.3
+  tauntTurns: 1
+  armorPercent: 50
+  armorTurns: 2

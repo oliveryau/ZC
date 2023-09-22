@@ -13,7 +13,15 @@ public class OxAction : _PlayerAction
     {
         base.SelectSkill(btn);
 
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
+        if (selectedSkillPrefab == skill1Prefab)
+        {
+            TargetSelectionUi(true, "enemy", characterStats.tauntCounter > 0);
+        }
+        else if (selectedSkillPrefab == skill2Prefab)
+        {
+            TargetSelectionUi(true, "enemy");
+        }
+        else if (selectedSkillPrefab == skill3Prefab)
         {
             TargetSelectionUi(true, "enemy");
         }
@@ -27,80 +35,27 @@ public class OxAction : _PlayerAction
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
             #region Taunted Behaviour
-            if (characterStats.tauntCheck)
+            if (characterStats.tauntCounter > 0)
             {
-                if (selectedSkillPrefab == skill1Prefab) //aoe targeting
+                if (selectedSkillPrefab == skill1Prefab) //single targeting
                 {
-                    aoeSkillSelected = true;
-
                     if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
-                        foreach (GameObject enemy in enemyTargets)
+                        if (hit.collider.gameObject != selectedTarget.gameObject)
                         {
-                            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
-                            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+                            selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
                         }
-
-                        if (Input.GetMouseButtonDown(0))
+                        else
                         {
-                            playerChi.RegainChi();
+                            //can only target taunted character
 
-                            playerState = PlayerState.ATTACKING;
+                            selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
 
-                            TargetSelectionUi(false, null);
+                            selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.black;
 
-                            foreach (GameObject enemy in enemyTargets)
+                            if (Input.GetMouseButtonDown(0))
                             {
-                                enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
-                            }
-                        }
-                    }
-                }
-                else if (selectedSkillPrefab == skill2Prefab) //single targeting
-                {
-                    aoeSkillSelected = false;
-
-                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
-                    {
-                        selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
-                        selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.black;
-
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                            if (playerChi.currentChi >= skill2ChiCost)
-                            {
-                                playerChi.UseChi(skill2ChiCost);
-
-                                playerState = PlayerState.ATTACKING;
-
-                                TargetSelectionUi(false, null);
-
-                                selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
-                            }
-                        }
-                    }
-                }
-                else if (selectedSkillPrefab == skill3Prefab) //single targeting
-                {
-                    aoeSkillSelected = false;
-
-                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
-                    {
-                        selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
-                        selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.black;
-
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                            if (playerChi.currentChi < skill3ChiCost)
-                            {
-                                Debug.Log("Cannot use skill!");
-                            }
-                            else if (playerChi.currentChi >= skill3ChiCost)
-                            {
-                                playerChi.UseChi(skill3ChiCost);
+                                playerChi.RegainChi();
 
                                 playerState = PlayerState.ATTACKING;
 
@@ -114,40 +69,10 @@ public class OxAction : _PlayerAction
             }
             #endregion
             #region Normal Targeting Behaviour
-            else if (!characterStats.tauntCheck)
+            else if (characterStats.tauntCounter <= 0)
             {
-                if (selectedSkillPrefab == skill1Prefab) //aoe targeting
+                if (selectedSkillPrefab == skill1Prefab) //single targeting
                 {
-                    aoeSkillSelected = true;
-
-                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
-                    {
-                        foreach (GameObject enemy in enemyTargets)
-                        {
-                            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
-                            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
-                        }
-
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                            playerChi.RegainChi();
-
-                            playerState = PlayerState.ATTACKING;
-
-                            TargetSelectionUi(false, null);
-
-                            foreach (GameObject enemy in enemyTargets)
-                            {
-                                enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
-                            }
-                        }
-                    }
-                }
-                else if (selectedSkillPrefab == skill2Prefab) //single targeting
-                {
-                    aoeSkillSelected = false;
-
                     if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
                         hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
@@ -156,11 +81,28 @@ public class OxAction : _PlayerAction
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            if (playerChi.currentChi < skill2ChiCost)
-                            {
-                                Debug.Log("Cannot use skill!");
-                            }
-                            else if (playerChi.currentChi >= skill2ChiCost)
+                            selectedTarget = hit.collider.gameObject;
+                            playerChi.RegainChi();
+
+                            playerState = PlayerState.ATTACKING;
+
+                            TargetSelectionUi(false, null);
+
+                            hit.collider.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                        }
+                    }
+                }
+                else if (selectedSkillPrefab == skill2Prefab) //single targeting
+                {
+                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                    {
+                        hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+
+                        hit.collider.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            if (playerChi.currentChi >= skill2ChiCost)
                             {
                                 selectedTarget = hit.collider.gameObject;
                                 playerChi.UseChi(skill2ChiCost);
@@ -174,32 +116,31 @@ public class OxAction : _PlayerAction
                         }
                     }
                 }
-                else if (selectedSkillPrefab == skill3Prefab) //single targeting
+                else if (selectedSkillPrefab == skill3Prefab) //aoe targeting
                 {
-                    aoeSkillSelected = false;
-
                     if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
-                        hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                        foreach (GameObject enemy in enemyTargets)
+                        {
+                            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
 
-                        hit.collider.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+                            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+                        }
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            if (playerChi.currentChi < skill3ChiCost)
+                            if (playerChi.currentChi >= skill3ChiCost)
                             {
-                                Debug.Log("Cannot use skill!");
-                            }
-                            else if (playerChi.currentChi >= skill3ChiCost)
-                            {
-                                selectedTarget = hit.collider.gameObject;
                                 playerChi.UseChi(skill3ChiCost);
 
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
 
-                                hit.collider.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                                foreach (GameObject enemy in enemyTargets)
+                                {
+                                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                                }
                             }
                         }
                     }
@@ -225,25 +166,17 @@ public class OxAction : _PlayerAction
     {
         playerAttacking = true;
 
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab) //skills that require movement
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that require movement
         {
             movingToTarget = true; //movement is triggered
-        }
-        else if (selectedSkillPrefab == skill3Prefab) //skills that do not require movement
-        {
-            AttackAnimation();
         }
     }
 
     protected override void AttackAnimation()
     {
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab)
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
             StartCoroutine(AttackStartDelay(0.5f, 1f));
-        }
-        else if (selectedSkillPrefab == skill3Prefab)
-        {
-            StartCoroutine(BuffStartDelay(0.5f, 1f));
         }
     }
 
@@ -251,8 +184,8 @@ public class OxAction : _PlayerAction
     {
         if (selectedSkillPrefab == skill1Prefab)
         {
-            //aoe attack skill
-            selectedSkillPrefab.GetComponent<AoeAttack>().Attack(enemyTargets);
+            //single target lifesteal skill
+            selectedSkillPrefab.GetComponent<A_SingleLifesteal>().Attack(selectedTarget);
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
@@ -262,7 +195,7 @@ public class OxAction : _PlayerAction
         else if (selectedSkillPrefab == skill3Prefab)
         {
             //single target taunt skill
-            selectedSkillPrefab.GetComponent<C_SingleTaunt>().Taunt(selectedTarget);
+            selectedSkillPrefab.GetComponent<C_SingleTaunt>().Attack(enemyTargets);
         }
 
         StartCoroutine(EndTurnDelay(0.5f));

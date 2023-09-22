@@ -11,48 +11,12 @@ public class C_SingleHeal : _BaseBuff
     {
         GetTargets(target);
 
-        healAmount = Mathf.RoundToInt
-            ((skillBuffPercent / 100f) * targetStats.maxHealth);
+        Healing healing = FindObjectOfType<Healing>();
+        healAmount = healing.HealCalculation(targetStats, skillBuffPercent);
 
-        targetStats.HealBuff(healAmount);
-        ResetStatus();
-    }
+        targetStats.HealBuff(healAmount, true);
 
-    private void ResetStatus()
-    {
-        //dispel all negative effects here
-        #region Bleed
-        if (targetStats.bleedStack > 0)
-        {
-            targetStats.bleedStack = 0;
-        }
-        #endregion
-
-        #region Defense Break
-        if (targetStats.shatterCounter > 0)
-        {
-            targetStats.shatterCounter = 0;            
-        }
-        #endregion
-
-        #region Stun
-        if (targetStats.stunCounter > 0)
-        {
-            targetStats.stunCounter = 0;
-            targetStats.stunCheck = false;
-        }
-        #endregion
-
-        #region Taunt
-        if (targetStats.tauntCounter > 0)
-        {
-            targetStats.tauntCounter = 0;
-            targetStats.tauntCheck = false;
-        }
-        #endregion
-
-        //reset all negative effects icons
-        StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>();
-        statusEffect.UpdateEffectsBar(targetStats, "cleanse");
+        Cleanse cleanse = FindObjectOfType<Cleanse>();
+        cleanse.RemoveAllStatus(targetStats);
     }
 }

@@ -15,7 +15,7 @@ public class GoatAction : _PlayerAction
 
         if (selectedSkillPrefab == skill1Prefab)
         {
-            TargetSelectionUi(true, "enemy");
+            TargetSelectionUi(true, "enemy", characterStats.tauntCounter > 0);
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
@@ -35,32 +35,41 @@ public class GoatAction : _PlayerAction
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
             #region Taunted Behaviour
-            if (characterStats.tauntCheck)
+            if (characterStats.tauntCounter > 0)
             {
                 if (selectedSkillPrefab == skill1Prefab) //single targeting
                 {
                     if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
-                        selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
-                        selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.black;
-
-                        if (Input.GetMouseButtonDown(0))
+                        if (hit.collider.gameObject != selectedTarget.gameObject)
                         {
-                            playerChi.RegainChi();
+                            selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
+                        }
+                        else
+                        {
+                            //can only target taunted character
 
-                            playerState = PlayerState.ATTACKING;
+                            selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
 
-                            TargetSelectionUi(false, null);
+                            selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.black;
 
-                            selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                playerChi.RegainChi();
+
+                                playerState = PlayerState.ATTACKING;
+
+                                TargetSelectionUi(false, null);
+
+                                selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                            }
                         }
                     }
                 }
             }
             #endregion
             #region Normal Targeting Behaviour
-            else if (!characterStats.tauntCheck)
+            else if (characterStats.tauntCounter <= 0)
             {
                 if (selectedSkillPrefab == skill1Prefab) //single targeting
                 {

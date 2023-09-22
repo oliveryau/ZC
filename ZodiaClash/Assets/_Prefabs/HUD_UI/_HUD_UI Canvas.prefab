@@ -754,10 +754,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Status Effects Overview
       objectReference: {fileID: 0}
-    - target: {fileID: 4966555375943450741, guid: a26c72e68c080f746a673a0a3832b83b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5212979132198882049, guid: a26c72e68c080f746a673a0a3832b83b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

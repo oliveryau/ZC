@@ -2,32 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class C_SingleTaunt : MonoBehaviour
+public class C_SingleTaunt : AoeAttack
 {
-    [Header("Character")]
-    [SerializeField] protected GameObject owner;
-
     [Header("Effects")]
+    [SerializeField] private float tauntRate;
     [SerializeField] private int tauntTurns;
+    [SerializeField] private int armorPercent;
+    [SerializeField] private int armorTurns;
 
-    public void Taunt(GameObject target)
+    public override void Attack(GameObject[] targets)
     {
         //owner.GetComponent<Animator>().Play(animationName);
 
-        if (target.gameObject.CompareTag("Player"))
+        base.Attack(targets);
+
+        Taunt(targets);
+
+        Armor();
+    }
+
+    public void Taunt(GameObject[] targets)
+    {
+        Taunt taunt = FindObjectOfType<Taunt>();
+        taunt.AoeTauntCalculation(owner, targets, tauntTurns, tauntRate);
+    }
+
+    public void Armor()
+    {
+        Defense armor = FindObjectOfType<Defense>();
+
+        attackerStats.BuffText(armorPercent, "armor");
+
+        if (attackerStats.armorCounter <= 0) //dont overstack defense
         {
-            target.GetComponent<_PlayerAction>().selectedTarget = owner;
-        }
-        else if (target.gameObject.CompareTag("Enemy"))
-        {
-            target.GetComponent<_EnemyAction>().selectedTarget = owner;
+            armor.ArmorCalculation(attackerStats, armorPercent);
         }
 
-        target.GetComponent<CharacterStats>().DamageText(0, false, "taunt");
-        target.GetComponent<CharacterStats>().tauntCounter += tauntTurns;
-        target.GetComponent<CharacterStats>().tauntCheck = true;
+        _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>();
+        statusEffect.SpawnEffectsBar(attackerStats, armorTurns, "armor");
 
-        StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>();
-        statusEffect.SpawnEffectsBar(target.GetComponent<CharacterStats>(), tauntTurns, "taunt");
+        attackerStats.armorCounter += armorTurns;
+        if (attackerStats.armorCounter > armor.armorLimit)
+        {
+            attackerStats.armorCounter = armor.armorLimit;
+        }
     }
 }

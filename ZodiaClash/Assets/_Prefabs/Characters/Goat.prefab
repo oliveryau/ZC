@@ -176,9 +176,7 @@ MonoBehaviour:
   bleedStack: 0
   shatterCounter: 0
   stunCounter: 0
-  stunCheck: 0
   tauntCounter: 0
-  tauntCheck: 0
   attackBuffCounter: 0
   checkedStatus: 0
 --- !u!114 &4605275760277306182
@@ -265,13 +263,9 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 5381734240096825297}
-    - target: {fileID: 5890325854461279527, guid: cde38a178c29e86418d1160e8c759e24, type: 3}
-      propertyPath: skillBuffPercent
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 8987391991611993712, guid: cde38a178c29e86418d1160e8c759e24, type: 3}
       propertyPath: m_Name
-      value: 3_Ally Heal
+      value: Heavenly Shepherd's Grace
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -301,48 +295,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5381734240096825297}
     - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: critRate
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: shatterRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: defBreakRate
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: shatterTurns
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: defBreakCount
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: critMultiplier
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: shatterPercent
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: defBreakPercent
       value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: skillAttackPercent
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: maxAttackMultiplier
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: minAttackMultiplier
-      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5670876820899502265, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: owner
@@ -370,7 +332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6752634862961264834, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: m_Name
-      value: 1_Attack Defense Break
+      value: Yin-Yang Blast
       objectReference: {fileID: 0}
     - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: m_LocalPosition.x
@@ -647,7 +609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3282467874363028042, guid: f43fb87dcdba7594f896390d46324d30, type: 3}
       propertyPath: m_Name
-      value: 2_Ally Attack Buff
+      value: Chi Surge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

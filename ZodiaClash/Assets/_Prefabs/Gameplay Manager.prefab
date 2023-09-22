@@ -69,10 +69,14 @@ GameObject:
   - component: {fileID: 8506647469441864164}
   - component: {fileID: 5329976614917483088}
   - component: {fileID: 6204437302020011797}
-  - component: {fileID: 8601906811472057262}
+  - component: {fileID: 443097011561100355}
+  - component: {fileID: 3653429433075465798}
   - component: {fileID: 1001133516557685194}
+  - component: {fileID: 8601906811472057262}
+  - component: {fileID: 6868809918580143764}
+  - component: {fileID: 6093940092200279046}
   m_Layer: 0
-  m_Name: Status Effects
+  m_Name: Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,6 +127,7 @@ MonoBehaviour:
   stunIcon: {fileID: 6126166109037537968, guid: 9cfc435301132084a8795f637296297d, type: 3}
   tauntIcon: {fileID: 8486654821120690224, guid: c09e508f33b971743be698a98e014390, type: 3}
   atkBuffIcon: {fileID: 561189915271357867, guid: da57b9ffee9bf5a4bb9e0d889c54854f, type: 3}
+  armorIcon: {fileID: 3373990890109378416, guid: 146415a4dbb282a4e801e9d402f43000, type: 3}
 --- !u!114 &6204437302020011797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +143,7 @@ MonoBehaviour:
   bleedLimit: 5
   bleedPercent: 5
   bleedDamage: 0
---- !u!114 &8601906811472057262
+--- !u!114 &443097011561100355
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,10 +152,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 7251663232612195149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 341c1ece36327c84fbe7d954ddbd0d73, type: 3}
+  m_Script: {fileID: 11500000, guid: b893ba17993e93948bcf6ee734f988ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shatterLimit: 3
+  stunLimit: 1
+--- !u!114 &3653429433075465798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251663232612195149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e172c39560783074eb47f5453913e462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tauntLimit: 1
 --- !u!114 &1001133516557685194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +182,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enrageLimit: 3
+--- !u!114 &8601906811472057262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251663232612195149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341c1ece36327c84fbe7d954ddbd0d73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shatterLimit: 3
+  armorLimit: 2
+--- !u!114 &6868809918580143764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251663232612195149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1049033f86242704a8015733b06947cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6093940092200279046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251663232612195149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cabf154cf252544bf1a7c9ef5bbab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

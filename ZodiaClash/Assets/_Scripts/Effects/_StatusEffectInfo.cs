@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatusEffectInfo : MonoBehaviour
+public class _StatusEffectInfo : MonoBehaviour
 {
     [SerializeField] private GameObject effectsInfo;
 

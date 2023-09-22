@@ -51,7 +51,7 @@ public class _EnemyAction : MonoBehaviour
 
         originalSort = GetComponent<SpriteRenderer>().sortingOrder;
 
-        moveSpeed = 60f;
+        moveSpeed = 50f;
         startPosition = transform.position;
         movingToTarget = false;
         movingToStart = false;
@@ -107,10 +107,10 @@ public class _EnemyAction : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
 
+            GetComponent<SpriteRenderer>().sortingOrder = originalSort;
+
             if (reachedStart)
             {
-                GetComponent<SpriteRenderer>().sortingOrder = originalSort;
-
                 movingToStart = false;
 
                 enemyEndingTurn = true;

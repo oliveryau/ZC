@@ -28,7 +28,7 @@ public class B_AoeBleed : AoeAttack
                 {
                     currentTarget.TakeDamage(damage, critCheck, "bleed"); //actual damage
 
-                    StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>(); //status effect icon
+                    _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>(); //status effect icon
                     statusEffect.SpawnEffectsBar(currentTarget, bleedTurns, "bleed");
 
                     currentTarget.bleedStack += bleedTurns;

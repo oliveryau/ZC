@@ -23,7 +23,7 @@ public class C_AoeActivateBleed : AoeAttack
 
                 currentTarget.bleedStack = 0; //set to 0 first
 
-                StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>(); //remove status effect icon
+                _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>(); //remove status effect icon
                 statusEffect.UpdateEffectsBar(currentTarget, "bleed");
             }
             else

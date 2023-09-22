@@ -11,6 +11,7 @@ TagManager:
   - Taunt
   - Shatter
   - Enrage
+  - Armor
   layers:
   - Default
   - TransparentFX

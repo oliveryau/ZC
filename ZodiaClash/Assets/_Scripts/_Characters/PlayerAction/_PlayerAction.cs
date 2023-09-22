@@ -39,7 +39,7 @@ public class _PlayerAction : MonoBehaviour
     [SerializeField] protected GameObject[] playerTargets;
     [SerializeField] protected GameObject[] enemyTargets;
     public GameObject selectedTarget;
-    protected bool aoeSkillSelected;
+    //protected bool aoeSkillSelected;
 
     [Header("Movements")]
     [SerializeField] protected Vector3 startPosition;
@@ -63,7 +63,7 @@ public class _PlayerAction : MonoBehaviour
 
         originalSort = GetComponent<SpriteRenderer>().sortingOrder;
 
-        moveSpeed = 60f;
+        moveSpeed = 50f;
         startPosition = transform.position;
         movingToTarget = false;
         movingToStart = false;
@@ -88,7 +88,7 @@ public class _PlayerAction : MonoBehaviour
                 characterAvatar.GetComponent<Animator>().SetTrigger("increase");
 
                 #region Taunted Behaviour
-                if (characterStats.tauntCheck)
+                if (characterStats.tauntCounter > 0)
                 {
                     //if taunt target is dead
                     if (!selectedTarget.gameObject.activeSelf)
@@ -96,7 +96,7 @@ public class _PlayerAction : MonoBehaviour
                         selectedTarget = null;
 
                         characterStats.tauntCounter = 0;
-                        characterStats.tauntCheck = false;
+                        //characterStats.tauntCounter = false;
                     }
                 }
                 #endregion
@@ -111,7 +111,7 @@ public class _PlayerAction : MonoBehaviour
                     StartCoroutine(characterStats.CheckStatusEffects());
                     checkingStatus = true;
                 }
-                else if (characterStats.checkedStatus && characterStats.stunCheck)
+                else if (characterStats.checkedStatus && characterStats.stunCounter > 0)
                 {
                     playerState = PlayerState.ENDING;
                     checkingStatus = false;
@@ -156,7 +156,7 @@ public class _PlayerAction : MonoBehaviour
 
                 //skill
                 selectedSkillPrefab = null;
-                if (!characterStats.tauntCheck)
+                if (characterStats.tauntCounter <= 0)
                 {
                     selectedTarget = null;
                 }
@@ -188,7 +188,7 @@ public class _PlayerAction : MonoBehaviour
             skill2ChiCostUi.text = skill2ChiCost.ToString();
             skill3ChiCostUi.text = skill3ChiCost.ToString();
 
-            if (characterStats.tauntCheck)
+            if (characterStats.tauntCounter > 0)
             {
                 skill2Enable.interactable = false;
                 skill3Enable.interactable = false;
@@ -220,7 +220,7 @@ public class _PlayerAction : MonoBehaviour
         }
     }
 
-    protected void TargetSelectionUi(bool display, string targets, bool specific = false)
+    protected void TargetSelectionUi(bool display, string targets, bool special = false)
     {
         if (display)
         {
@@ -231,7 +231,7 @@ public class _PlayerAction : MonoBehaviour
                     player.GetComponent<_PlayerAction>().targetIndicator.SetActive(true);
 
                     #region Cannot Target Itself
-                    if (specific) //cannot target itself
+                    if (special) //cannot target itself
                     {
                         if (player == this.gameObject)
                         {
@@ -254,7 +254,7 @@ public class _PlayerAction : MonoBehaviour
                     enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
 
                     #region Target Only Taunted Character
-                    if (specific) // taunted
+                    if (special) // taunted
                     {
                         if (enemy == selectedTarget)
                         {
@@ -322,10 +322,10 @@ public class _PlayerAction : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
 
+            GetComponent<SpriteRenderer>().sortingOrder = originalSort;
+
             if (reachedStart)
             {
-                GetComponent<SpriteRenderer>().sortingOrder = originalSort;
-
                 movingToStart = false;
 
                 endingTurn = true;

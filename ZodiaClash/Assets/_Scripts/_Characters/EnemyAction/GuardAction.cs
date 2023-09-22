@@ -13,7 +13,7 @@ public class GuardAction : _EnemyAction
                 turnIndicator.SetActive(true);
 
                 #region Taunted Behaviour
-                if (characterStats.tauntCheck)
+                if (characterStats.tauntCounter > 0)
                 {
                     //if taunt target is dead
                     if (!selectedTarget.gameObject.activeSelf)
@@ -21,7 +21,6 @@ public class GuardAction : _EnemyAction
                         selectedTarget = null;
 
                         characterStats.tauntCounter = 0;
-                        characterStats.tauntCheck = false;
                     }
                 }
                 #endregion
@@ -36,7 +35,7 @@ public class GuardAction : _EnemyAction
                     StartCoroutine(characterStats.CheckStatusEffects());
                     checkingStatus = true;
                 }
-                else if (characterStats.checkedStatus && characterStats.stunCheck)
+                else if (characterStats.checkedStatus && characterStats.stunCounter > 0)
                 {
                     //stunCheck
                     enemyState = EnemyState.ENDING;
@@ -60,15 +59,17 @@ public class GuardAction : _EnemyAction
 
             else if (enemyState == EnemyState.TARGETING)
             {
-                if (!characterStats.tauntCheck)
+                if (characterStats.tauntCounter <= 0)
                 {
                     EnemySelectTarget();
                 }
-                else if (characterStats.tauntCheck)
+                #region Taunted Behaviour
+                else if (characterStats.tauntCounter > 0)
                 {
                     //taunt
                     enemyState = EnemyState.ATTACKING;
                 }
+                #endregion
             }
 
             else if (enemyState == EnemyState.ATTACKING)
@@ -92,7 +93,7 @@ public class GuardAction : _EnemyAction
 
                 //skill
                 selectedSkillPrefab = null;
-                if (!characterStats.tauntCheck)
+                if (characterStats.tauntCounter <= 0)
                 {
                     selectedTarget = null;
                 }

@@ -20,7 +20,7 @@ public class B_AttackBuff : _BaseBuff
             enrage.EnrageCalculation(targetStats, skillBuffPercent);
         }
 
-        StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>();
+        _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>();
         statusEffect.SpawnEffectsBar(targetStats, enrageTurns, "enrage");
 
         targetStats.attackBuffCounter += enrageTurns;

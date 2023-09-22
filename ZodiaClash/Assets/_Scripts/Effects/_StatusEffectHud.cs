@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class StatusEffectHud : MonoBehaviour
+public class _StatusEffectHud : MonoBehaviour
 {
     private Transform effectsPanel;
 
@@ -15,6 +15,7 @@ public class StatusEffectHud : MonoBehaviour
 
     [Header("Buffs")]
     [SerializeField] private GameObject atkBuffIcon;
+    [SerializeField] private GameObject armorIcon;
 
     public void SpawnEffectsBar(CharacterStats target, int count, string effect)
     {
@@ -64,7 +65,7 @@ public class StatusEffectHud : MonoBehaviour
             case "shatter":
 
                 bool shatterExist = false;
-                Shatter shatter = FindObjectOfType<Shatter>();
+                Defense shatter = FindObjectOfType<Defense>();
 
                 for (int i = 0; i < target.statusEffectPanel.childCount; i++)
                 {
@@ -177,7 +178,6 @@ public class StatusEffectHud : MonoBehaviour
 
                     if (status.CompareTag("Enrage"))
                     {
-                        Debug.Log("A");
                         atkBuffExist = true;
 
                         if (int.TryParse(enrageText.text, out int value))
@@ -197,10 +197,48 @@ public class StatusEffectHud : MonoBehaviour
 
                 if (!atkBuffExist)
                 {
-                    Debug.Log("B");
                     TextMeshProUGUI newAtkBuffText = atkBuffIcon.GetComponentInChildren<TextMeshProUGUI>();
                     newAtkBuffText.text = count.ToString();
                     Instantiate(atkBuffIcon, effectsPanel.position, Quaternion.identity, effectsPanel);
+                }
+
+                break;
+
+            case "armor":
+
+                bool armorExist = false;
+
+                Defense armor = FindObjectOfType<Defense>();
+
+                for (int i = 0; i < target.statusEffectPanel.childCount; i++)
+                {
+                    GameObject status = target.statusEffectPanel.GetChild(i).gameObject;
+                    TextMeshProUGUI armorText = status.GetComponentInChildren<TextMeshProUGUI>();
+
+                    if (status.CompareTag("Armor"))
+                    {
+                        armorExist = true;
+
+                        if (int.TryParse(armorText.text, out int value))
+                        {
+                            value += count; //add the int and enrageCount
+
+                            if (value > armor.armorLimit) //if it exceeds enrageLimit
+                            {
+                                value = armor.armorLimit; //set to enrageLimit
+                            }
+
+                            armorText.text = value.ToString();
+                        }
+                        break;
+                    }
+                }
+
+                if (!armorExist)
+                {
+                    TextMeshProUGUI newArmorText = armorIcon.GetComponentInChildren<TextMeshProUGUI>();
+                    newArmorText.text = count.ToString();
+                    Instantiate(armorIcon, effectsPanel.position, Quaternion.identity, effectsPanel);
                 }
 
                 break;
@@ -316,13 +354,33 @@ public class StatusEffectHud : MonoBehaviour
 
                 break;
 
+            case "armor":
+
+                for (int i = 0; i < character.statusEffectPanel.childCount; i++)
+                {
+                    GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
+                    TextMeshProUGUI armorText = status.GetComponentInChildren<TextMeshProUGUI>();
+
+                    if (status.CompareTag("Armor"))
+                    {
+                        armorText.text = character.armorCounter.ToString();
+
+                        if (character.armorCounter <= 0)
+                        {
+                            Destroy(status);
+                        }
+                    }
+                }
+
+                break;
+
             case "cleanse": //add all buff tags
 
                 for (int i = 0; i < character.statusEffectPanel.childCount; i++)
                 {
                     GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
 
-                    if (!status.CompareTag("Enrage"))
+                    if (!status.CompareTag("Enrage") || !status.CompareTag("Armor"))
                     {
                         Destroy(status);
                     }

@@ -6,8 +6,6 @@ public class AoeAttack : _BaseAttack
 {
     public virtual void Attack(GameObject[] targets)
     {
-        //owner.GetComponent<Animator>().Play(animationName);
-
         foreach (GameObject target in targets)
         {
             CalculateDamage(target);

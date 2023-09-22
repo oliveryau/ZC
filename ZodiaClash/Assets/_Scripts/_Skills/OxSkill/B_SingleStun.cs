@@ -14,10 +14,11 @@ public class B_SingleStun : NormalAttack
         CalculateDamage(target);
 
         targetStats.TakeDamage(damage, critCheck, "stun");
-        targetStats.stunCounter = stunTurns;
-        targetStats.stunCheck = true;
 
-        StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>();
+        Stun stun = FindObjectOfType<Stun>();
+        stun.StunCalculation(targetStats, stunTurns);
+
+        _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>();
         statusEffect.SpawnEffectsBar(targetStats, stunTurns, "stun");
 
         critCheck = false;

@@ -176,9 +176,7 @@ MonoBehaviour:
   bleedStack: 0
   shatterCounter: 0
   stunCounter: 0
-  stunCheck: 0
   tauntCounter: 0
-  tauntCheck: 0
   attackBuffCounter: 0
   checkedStatus: 0
 --- !u!114 &748038080333493805
@@ -223,7 +221,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4762691887861153798, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
       propertyPath: m_Name
-      value: 1_Single Target Bleed
+      value: Scarlet Claw
       objectReference: {fileID: 0}
     - target: {fileID: 7660239511987674435, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
       propertyPath: m_LocalPosition.x
@@ -270,36 +268,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4019357009197646768}
     - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
-      propertyPath: critRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
-      propertyPath: bleedRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
       propertyPath: bleedCount
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
-      propertyPath: bleedTurns
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
-      propertyPath: critMultiplier
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
-      propertyPath: skillAttackPercent
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
-      propertyPath: maxAttackMultiplier
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9026143885174029251, guid: 816bdc004f50e2b43982bcfcad51a437, type: 3}
-      propertyPath: minAttackMultiplier
-      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -326,43 +296,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 107567898745390864, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: m_Name
-      value: 2_AOE Attack Bleed
+      value: Dance of Fury
       objectReference: {fileID: 0}
     - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: owner
       value: 
       objectReference: {fileID: 4019357009197646768}
     - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
-      propertyPath: critRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
-      propertyPath: bleedRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: bleedCount
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
-      propertyPath: bleedTurns
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
-      propertyPath: critMultiplier
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
-      propertyPath: skillAttackPercent
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
-      propertyPath: maxAttackMultiplier
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 452378121440640244, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
-      propertyPath: minAttackMultiplier
-      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 3044524414229934615, guid: c3a30611003a5144abd9a3541edec8f4, type: 3}
       propertyPath: owner
@@ -433,7 +375,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1467018417481673863, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
       propertyPath: m_Name
-      value: 3_Activate Bleed
+      value: Five Elements Bloodbath
       objectReference: {fileID: 0}
     - target: {fileID: 4327182109380047298, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
       propertyPath: m_LocalPosition.x
@@ -480,32 +422,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4019357009197646768}
     - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
-      propertyPath: critRate
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
       propertyPath: bleedCount
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
       propertyPath: bleedTurns
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
-      propertyPath: critMultiplier
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
-      propertyPath: skillAttackPercent
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
-      propertyPath: maxAttackMultiplier
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109261761786833357, guid: 265eb9d92afe9a14289b10a2ab0ca129, type: 3}
-      propertyPath: minAttackMultiplier
-      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

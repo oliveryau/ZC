@@ -23,7 +23,7 @@ public class A_SingleBleed : NormalAttack
             {
                 targetStats.TakeDamage(damage, critCheck, "bleed"); //actual damage
 
-                StatusEffectHud statusEffect = FindObjectOfType<StatusEffectHud>(); //status effect icon
+                _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>(); //status effect icon
                 statusEffect.SpawnEffectsBar(targetStats, bleedTurns, "bleed");
 
                 targetStats.bleedStack += bleedTurns;

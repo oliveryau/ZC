@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4327182109380047298}
   - component: {fileID: 9109261761786833357}
   m_Layer: 0
-  m_Name: 3_AOE Activate Bleed
+  m_Name: Five Elements Bloodbath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,10 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   animationName: 
-  skillAttackPercent: 0
-  minAttackMultiplier: 0
-  maxAttackMultiplier: 0
-  critRate: 0
-  critMultiplier: 0
+  skillAttackPercent: 30
+  minAttackMultiplier: 0.8
+  maxAttackMultiplier: 1.2
+  critRate: 0.8
+  critMultiplier: 2
   critCheck: 0
-  bleedTurns: 0
