@@ -39,7 +39,8 @@ public class CharacterStats : MonoBehaviour
     public int tauntCounter;
 
     [Header("Buffs")]
-    public int attackBuffCounter;
+    public bool speedCheck;
+    public int enrageCounter;
     public int armorCounter;
 
     [HideInInspector] public bool checkedStatus;
@@ -81,6 +82,7 @@ public class CharacterStats : MonoBehaviour
 
         gameManager.charactersList.Remove(this);
         gameManager.turnOrderList.Remove(this);
+        gameManager.originalTurnOrderList.Remove(this);
         gameManager.UpdateTurnOrderUi();
 
         yield return new WaitForSeconds(0.5f);
@@ -150,11 +152,8 @@ public class CharacterStats : MonoBehaviour
             case "bleed":
                 popup.text += "BLEED\n" + value.ToString();
                 break;
-            case "rend":
-                popup.text += "REND\n" + value.ToString();
-                break;
             case "shatter":
-                popup.text += "DEF DOWN\n" + value.ToString();
+                popup.text += "SHATTER\n" + value.ToString();
                 break;
             case "stun":
                 popup.text += "STUN\n" + value.ToString();
@@ -183,10 +182,10 @@ public class CharacterStats : MonoBehaviour
         switch (effect)
         {
             case "enrage":
-                popup.text = "ATK UP\n+" + value.ToString() + "% ATK";
+                popup.text = "ENRAGE\n" + value.ToString();
                 break;
             case "armor":
-                popup.text = "DEF UP\n+" + value.ToString() + "% DEF";
+                popup.text = "ARMOR\n" + value.ToString();
                 break;
             case "cleanse":
                 popup.text = "CLEANSE\n" + value.ToString();
@@ -293,14 +292,22 @@ public class CharacterStats : MonoBehaviour
         #endregion
 
         //buffs
-        #region Enrage
-        if (attackBuffCounter > 0)
+        #region Speed Buff
+        if (speedCheck)
         {
-            --attackBuffCounter;
+            gameManager.revertingTurn = true;
+            speedCheck = false;
+        }
+        #endregion
+
+        #region Enrage
+        if (enrageCounter > 0)
+        {
+            --enrageCounter;
 
             statusEffectHud.UpdateEffectsBar(this, "enrage");
 
-            if (attackBuffCounter <= 0)
+            if (enrageCounter <= 0)
             {
                 attack -= increasedAttackValue;
                 increasedAttackValue = 0;

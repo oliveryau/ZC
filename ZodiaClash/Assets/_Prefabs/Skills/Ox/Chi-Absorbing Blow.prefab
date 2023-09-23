@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3703815287898649870}
   - component: {fileID: 3113463033497336080}
   m_Layer: 0
-  m_Name: Chi-Flowing Blow
+  m_Name: Chi-Absorbing Blow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -172,12 +172,16 @@ MonoBehaviour:
   health: 80
   attack: 10
   defense: 20
-  speed: 5
+  speed: 4
+  increasedAttackValue: 0
+  decreasedDefenseValue: 0
+  increasedDefenseValue: 0
   bleedStack: 0
   shatterCounter: 0
   stunCounter: 0
   tauntCounter: 0
   attackBuffCounter: 0
+  armorCounter: 0
   checkedStatus: 0
 --- !u!114 &748038080333493805
 MonoBehaviour:
@@ -198,6 +202,7 @@ MonoBehaviour:
   skill3ChiCostUi: {fileID: 0}
   skill2Enable: {fileID: 0}
   skill3Enable: {fileID: 0}
+  skillTextIndicator: {fileID: 0}
   turnIndicator: {fileID: 8434711378409804290}
   targetIndicator: {fileID: 6741899399230050745}
   skill1Prefab: {fileID: 7601538499357730313}

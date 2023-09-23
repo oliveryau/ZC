@@ -51,14 +51,14 @@ MonoBehaviour:
   enemyHud: {fileID: 0}
   skillChiHud: {fileID: 0}
   statusEffectIndicator: {fileID: 0}
-  fadeInPanel: {fileID: 3046840369367761494, guid: 02da6245fc3d7694197bb817e490ff98, type: 3}
-  fadeOutPanel: {fileID: 0}
-  charactersList: []
-  turnOrderList: []
-  currentCharacterIndex: 0
+  characterCount: 0
+  roundCounter: 0
   activePlayer: 
   activeEnemy: 
-  roundCounter: 0
+  charactersList: []
+  turnOrderList: []
+  originalTurnOrderList: []
+  revertingTurn: 0
 --- !u!1 &7251663232612195149
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc3a7bee36d89047ad10218b53af400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enrageLimit: 3
+  enrageLimit: 1
 --- !u!114 &8601906811472057262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341c1ece36327c84fbe7d954ddbd0d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shatterLimit: 3
+  shatterLimit: 2
   armorLimit: 2
 --- !u!114 &6868809918580143764
 MonoBehaviour:

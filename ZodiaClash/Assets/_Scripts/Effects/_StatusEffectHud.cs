@@ -343,9 +343,9 @@ public class _StatusEffectHud : MonoBehaviour
 
                     if (status.CompareTag("Enrage"))
                     {
-                        atkBuffText.text = character.attackBuffCounter.ToString();
+                        atkBuffText.text = character.enrageCounter.ToString();
 
-                        if (character.attackBuffCounter <= 0)
+                        if (character.enrageCounter <= 0)
                         {
                             Destroy(status);
                         }

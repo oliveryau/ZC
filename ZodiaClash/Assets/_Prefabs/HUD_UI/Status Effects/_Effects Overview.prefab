@@ -1587,7 +1587,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Enrage
+  m_text: 'Armor
 
     Defense is increased'
   m_isRightToLeft: 0

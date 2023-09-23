@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stun : MonoBehaviour
 {
-    [SerializeField] private int stunLimit;
+    public int stunLimit;
 
     public void StunCalculation(CharacterStats stunTarget, int stunCount)
     {

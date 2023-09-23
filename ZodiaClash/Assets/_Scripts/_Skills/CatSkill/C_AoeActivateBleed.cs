@@ -19,7 +19,7 @@ public class C_AoeActivateBleed : AoeAttack
             if (currentTarget.bleedStack > 0)
             {
                 bleed.AoeBleedCalculation(currentTarget, currentTarget.bleedStack);
-                currentTarget.TakeDamage(damage + bleed.bleedDamage, critCheck, "rend");
+                currentTarget.TakeDamage(damage + bleed.bleedDamage, critCheck, null);
 
                 currentTarget.bleedStack = 0; //set to 0 first
 

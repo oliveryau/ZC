@@ -6,8 +6,8 @@ public class A_AttackDefBreak : NormalAttack
 {
     [Header("Effects")]
     [SerializeField] private float shatterRate;
-    [SerializeField] private int shatterTurns;
-    [SerializeField] private int shatterPercent;
+    public int shatterTurns;
+    public int shatterPercent;
 
     public override void Attack(GameObject target)
     {

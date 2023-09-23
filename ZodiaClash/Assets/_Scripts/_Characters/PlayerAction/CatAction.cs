@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -196,7 +195,7 @@ public class CatAction : _PlayerAction
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
-            //strong single target DoT skill
+            //aoe activate bleed skill
             selectedSkillPrefab.GetComponent<C_AoeActivateBleed>().Attack(enemyTargets);
         }
 

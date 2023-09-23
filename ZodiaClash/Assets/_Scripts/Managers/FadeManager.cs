@@ -9,14 +9,7 @@ public class FadeManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(FadeInPanel());
-    }
-
-    public IEnumerator FadeInPanel()
-    {
-        fadeInPanel.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        fadeInPanel.SetActive(false);
+        Destroy(Instantiate(fadeInPanel, transform.position, Quaternion.identity, this.gameObject.transform), 1f);
     }
 
     public IEnumerator FadeOutPanel()

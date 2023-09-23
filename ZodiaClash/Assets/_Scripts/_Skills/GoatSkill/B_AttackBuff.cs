@@ -5,7 +5,7 @@ using UnityEngine;
 public class B_AttackBuff : _BaseBuff
 {
     [Header("Effects")]
-    [SerializeField] private int enrageTurns;
+    public int enrageTurns;
 
     public void AttackBuff(GameObject target)
     {
@@ -15,7 +15,7 @@ public class B_AttackBuff : _BaseBuff
 
         targetStats.BuffText(skillBuffPercent, "enrage");
 
-        if (targetStats.attackBuffCounter <= 0) //don't overstack attack
+        if (targetStats.enrageCounter <= 0) //don't overstack attack
         {
             enrage.EnrageCalculation(targetStats, skillBuffPercent);
         }
@@ -23,10 +23,14 @@ public class B_AttackBuff : _BaseBuff
         _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>();
         statusEffect.SpawnEffectsBar(targetStats, enrageTurns, "enrage");
 
-        targetStats.attackBuffCounter += enrageTurns;
-        if (targetStats.attackBuffCounter > enrage.enrageLimit)
+        targetStats.enrageCounter += enrageTurns;
+        if (targetStats.enrageCounter > enrage.enrageLimit)
         {
-            targetStats.attackBuffCounter = enrage.enrageLimit;
+            targetStats.enrageCounter = enrage.enrageLimit;
         }
+
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        gameManager.SwitchTurnOrder(targetStats);
+        targetStats.speedCheck = true;
     }
 }

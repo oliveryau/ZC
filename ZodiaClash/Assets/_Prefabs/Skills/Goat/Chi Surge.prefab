@@ -47,3 +47,4 @@ MonoBehaviour:
   owner: {fileID: 0}
   animationName: 
   skillBuffPercent: 0
+  enrageTurns: 1

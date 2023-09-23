@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Taunt : MonoBehaviour
 {
-    [SerializeField] private int tauntLimit;
+    public int tauntLimit;
 
     public void AoeTauntCalculation(GameObject tauntStarter, GameObject[] targets, int tauntCount, float tauntChance)
     {

@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class B_AoeBleed : AoeAttack
 {
     [Header("Effects")]
     [SerializeField] private float bleedRate;
-    [SerializeField] private int bleedTurns;
+    public int bleedTurns;
 
     public override void Attack(GameObject[] targets)
     {
@@ -21,13 +20,14 @@ public class B_AoeBleed : AoeAttack
 
             CharacterStats currentTarget = target.GetComponent<CharacterStats>();
 
-            float randomValue = Random.Range(0f, 1f);
-            if (randomValue <= bleedRate)
-            {
+            //float randomValue = Random.Range(0f, 1f);
+            //if (randomValue <= bleedRate)
+            //{
+                currentTarget.TakeDamage(damage, critCheck, "bleed"); //actual damage
+
                 if (currentTarget.bleedStack < bleed.bleedLimit)
                 {
-                    currentTarget.TakeDamage(damage, critCheck, "bleed"); //actual damage
-
+                    
                     _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>(); //status effect icon
                     statusEffect.SpawnEffectsBar(currentTarget, bleedTurns, "bleed");
 
@@ -37,11 +37,11 @@ public class B_AoeBleed : AoeAttack
                         currentTarget.bleedStack = bleed.bleedLimit;
                     }
                 }
-            }
-            else
-            {
-                currentTarget.TakeDamage(damage, critCheck, null);
-            }
+            //}
+            //else
+            //{
+            //    currentTarget.TakeDamage(damage, critCheck, null);
+            //}
         }
 
         critCheck = false;

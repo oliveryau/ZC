@@ -165,9 +165,6 @@ public class _PlayerAction : MonoBehaviour
                     selectedTarget = null;
                 }
 
-                //target
-                enemyTargets = null;
-
                 //others
                 playerAttacking = false;
                 endingTurn = false;

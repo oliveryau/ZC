@@ -172,12 +172,17 @@ MonoBehaviour:
   health: 70
   attack: 10
   defense: 20
-  speed: 6
+  speed: 2
+  increasedAttackValue: 0
+  decreasedDefenseValue: 0
+  increasedDefenseValue: 0
   bleedStack: 0
   shatterCounter: 0
   stunCounter: 0
   tauntCounter: 0
-  attackBuffCounter: 0
+  speedCheck: 0
+  enrageCounter: 0
+  armorCounter: 0
   checkedStatus: 0
 --- !u!114 &4605275760277306182
 MonoBehaviour:
@@ -198,6 +203,7 @@ MonoBehaviour:
   skill3ChiCostUi: {fileID: 0}
   skill2Enable: {fileID: 0}
   skill3Enable: {fileID: 0}
+  skillTextIndicator: {fileID: 0}
   turnIndicator: {fileID: 4979974492597844116}
   targetIndicator: {fileID: 4670334886745227498}
   skill1Prefab: {fileID: 1308368075293902733}
@@ -558,10 +564,6 @@ PrefabInstance:
     - target: {fileID: 208945933906342829, guid: f43fb87dcdba7594f896390d46324d30, type: 3}
       propertyPath: buffCount
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 208945933906342829, guid: f43fb87dcdba7594f896390d46324d30, type: 3}
-      propertyPath: enrageTurns
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 208945933906342829, guid: f43fb87dcdba7594f896390d46324d30, type: 3}
       propertyPath: skillBuffPercent

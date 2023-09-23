@@ -194,8 +194,8 @@ public class OxAction : _PlayerAction
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
-            //single target taunt skill
-            selectedSkillPrefab.GetComponent<C_SingleTaunt>().Attack(enemyTargets);
+            //aoe target taunt skill
+            selectedSkillPrefab.GetComponent<C_AoeTaunt>().Attack(enemyTargets);
         }
 
         StartCoroutine(EndTurnDelay(0.5f));

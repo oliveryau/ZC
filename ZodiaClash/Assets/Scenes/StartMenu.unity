@@ -674,6 +674,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 388263455561020816, guid: d5131df585bba934a9c8791c44a824ae, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 234556729}
     - target: {fileID: 4411346745243644636, guid: d5131df585bba934a9c8791c44a824ae, type: 3}
       propertyPath: m_Name
       value: Fade Manager

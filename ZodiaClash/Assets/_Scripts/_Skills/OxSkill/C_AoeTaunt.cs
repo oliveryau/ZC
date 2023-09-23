@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class C_SingleTaunt : AoeAttack
+public class C_AoeTaunt : AoeAttack
 {
     [Header("Effects")]
     [SerializeField] private float tauntRate;
-    [SerializeField] private int tauntTurns;
+    public int tauntTurns;
     [SerializeField] private int armorPercent;
-    [SerializeField] private int armorTurns;
+    public int armorTurns;
 
     public override void Attack(GameObject[] targets)
     {

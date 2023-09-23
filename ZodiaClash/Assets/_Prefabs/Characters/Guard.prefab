@@ -170,7 +170,7 @@ MonoBehaviour:
   health: 80
   attack: 15
   defense: 15
-  speed: 2
+  speed: 1
   increasedAttackValue: 0
   decreasedDefenseValue: 0
   increasedDefenseValue: 0
@@ -178,7 +178,8 @@ MonoBehaviour:
   shatterCounter: 0
   stunCounter: 0
   tauntCounter: 0
-  attackBuffCounter: 0
+  speedCheck: 0
+  enrageCounter: 0
   armorCounter: 0
   checkedStatus: 0
 --- !u!114 &1387766248315115033

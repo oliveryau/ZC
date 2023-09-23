@@ -5,7 +5,7 @@ using UnityEngine;
 public class B_SingleStun : NormalAttack
 {
     [Header("Effects")]
-    [SerializeField] private int stunTurns;
+    public int stunTurns;
 
     public override void Attack(GameObject target)
     {

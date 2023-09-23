@@ -15,13 +15,15 @@ public class StartMenu : MonoBehaviour
 
     public void StartButton()
     {
-        fadeManager.fadeOutPanel.SetActive(true);
+        Destroy(Instantiate(fadeManager.fadeOutPanel, transform.position, Quaternion.identity, fadeManager.transform), 1f);
+
         StartCoroutine(DelayStartButton());
     }
 
     public void QuitButton()
     {
-        fadeManager.fadeOutPanel.SetActive(true);
+        Destroy(Instantiate(fadeManager.fadeOutPanel, transform.position, Quaternion.identity, fadeManager.transform), 1f);
+
         StartCoroutine(DelayQuitButton());
     }
 
