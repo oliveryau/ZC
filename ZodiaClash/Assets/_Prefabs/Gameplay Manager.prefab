@@ -51,6 +51,8 @@ MonoBehaviour:
   enemyHud: {fileID: 0}
   skillChiHud: {fileID: 0}
   statusEffectIndicator: {fileID: 0}
+  fadeInPanel: {fileID: 3046840369367761494, guid: 02da6245fc3d7694197bb817e490ff98, type: 3}
+  fadeOutPanel: {fileID: 0}
   charactersList: []
   turnOrderList: []
   currentCharacterIndex: 0

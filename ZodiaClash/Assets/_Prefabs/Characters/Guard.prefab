@@ -162,6 +162,7 @@ MonoBehaviour:
   characterHpHud: {fileID: 0}
   healthBarFill: {fileID: 0}
   statusEffectPanel: {fileID: 0}
+  hpValueUi: {fileID: 0}
   characterName: {fileID: 0}
   healthPanel: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
@@ -170,13 +171,15 @@ MonoBehaviour:
   attack: 15
   defense: 15
   speed: 2
+  increasedAttackValue: 0
+  decreasedDefenseValue: 0
+  increasedDefenseValue: 0
   bleedStack: 0
-  defBreakCounter: 0
+  shatterCounter: 0
   stunCounter: 0
-  stunCheck: 0
   tauntCounter: 0
-  tauntCheck: 0
   attackBuffCounter: 0
+  armorCounter: 0
   checkedStatus: 0
 --- !u!114 &1387766248315115033
 MonoBehaviour:
@@ -191,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState: 0
+  skillTextIndicator: {fileID: 0}
   turnIndicator: {fileID: 8402745814470872068}
   targetIndicator: {fileID: 611685546994801581}
   skill1Prefab: {fileID: 7212366318642619022}
@@ -288,7 +292,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 869803160032126477, guid: 249c404c5ced6a34e928edbbcd8ed08e, type: 3}
       propertyPath: m_Name
-      value: Single Target Attack
+      value: Jade Thrust
       objectReference: {fileID: 0}
     - target: {fileID: 2240264357507610230, guid: 249c404c5ced6a34e928edbbcd8ed08e, type: 3}
       propertyPath: owner

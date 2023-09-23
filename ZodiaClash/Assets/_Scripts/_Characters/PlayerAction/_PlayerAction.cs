@@ -20,6 +20,7 @@ public class _PlayerAction : MonoBehaviour
     [SerializeField] protected TextMeshProUGUI skill3ChiCostUi;
     [SerializeField] protected Button skill2Enable;
     [SerializeField] protected Button skill3Enable;
+    [SerializeField] protected GameObject skillTextIndicator;
     public GameObject turnIndicator;
     public GameObject targetIndicator;
     protected int originalSort;
@@ -96,7 +97,6 @@ public class _PlayerAction : MonoBehaviour
                         selectedTarget = null;
 
                         characterStats.tauntCounter = 0;
-                        //characterStats.tauntCounter = false;
                     }
                 }
                 #endregion
@@ -138,6 +138,8 @@ public class _PlayerAction : MonoBehaviour
 
                 if (!playerAttacking)
                 {
+                    ToggleSkillText(true);
+
                     UseSkill();
                 }
 
@@ -146,6 +148,8 @@ public class _PlayerAction : MonoBehaviour
 
             else if (playerState == PlayerState.ENDING)
             {
+                ToggleSkillText(false);
+
                 characterStats.CheckEndStatusEffects();
 
                 gameManager.state = BattleState.NEXTTURN;
@@ -287,6 +291,22 @@ public class _PlayerAction : MonoBehaviour
             {
                 player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
             }
+        }
+    }
+
+    protected void ToggleSkillText(bool display)
+    {
+        TextMeshProUGUI skillText = skillTextIndicator.GetComponentInChildren<TextMeshProUGUI>();
+        
+        if (display)
+        {
+            skillText.text = selectedSkillPrefab.gameObject.name;
+            skillTextIndicator.SetActive(true);
+        }
+        else if (!display)
+        {
+            skillTextIndicator.SetActive(false);
+            skillText.text = null;
         }
     }
     #endregion

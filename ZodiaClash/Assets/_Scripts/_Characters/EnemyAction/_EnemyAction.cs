@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public enum EnemyState
@@ -12,6 +13,7 @@ public class _EnemyAction : MonoBehaviour
     public EnemyState enemyState;
 
     [Header("HUD")]
+    [SerializeField] protected GameObject skillTextIndicator;
     public GameObject turnIndicator;
     public GameObject targetIndicator;
     protected int originalSort;
@@ -71,10 +73,28 @@ public class _EnemyAction : MonoBehaviour
         playerTargets = GameObject.FindGameObjectsWithTag("Player");
     }
 
+    #region UI Toggling
     protected void EnemyToggleUi()
     {
         turnIndicator.SetActive(true);
     }
+
+    protected void EnemyToggleSkillText(bool display)
+    {
+        TextMeshProUGUI skillText = skillTextIndicator.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (display)
+        {
+            skillText.text = selectedSkillPrefab.gameObject.name;
+            skillTextIndicator.SetActive(true);
+        }
+        else if (!display)
+        {
+            skillTextIndicator.SetActive(false);
+            skillText.text = null;
+        }
+    }
+    #endregion
 
     protected void EnemyMovement()
     {

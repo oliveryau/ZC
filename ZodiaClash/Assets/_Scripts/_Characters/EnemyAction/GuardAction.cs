@@ -76,6 +76,8 @@ public class GuardAction : _EnemyAction
             {
                 if (!enemyAttacking)
                 {
+                    EnemyToggleSkillText(true);
+
                     EnemyUseSkill();
                 }
 
@@ -84,6 +86,8 @@ public class GuardAction : _EnemyAction
 
             else if (enemyState == EnemyState.ENDING)
             {
+                EnemyToggleSkillText(false);
+
                 characterStats.CheckEndStatusEffects();
 
                 gameManager.state = BattleState.NEXTTURN;
