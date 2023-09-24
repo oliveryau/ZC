@@ -791,6 +791,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7624357990869100, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cbbacbe5c50c5f24495a8517ec4408aa, type: 3}
     - target: {fileID: 298682666984406441, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_Name
       value: Effects Indicator
@@ -1136,6 +1140,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3481623793102666207, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5b4b2b8ac19a7114a927ece1b6512f6c, type: 3}
     - target: {fileID: 3632628794509865253, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: m_Name
       value: Five Elements Bloodbath
