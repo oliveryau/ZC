@@ -261,10 +261,6 @@ PrefabInstance:
       value: Targeting Indicator
       objectReference: {fileID: 0}
     - target: {fileID: 2099321719976376782, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2413806693520163455, guid: eade1a9cb606451418ee9ca7ec5e2549, type: 3}
-    - target: {fileID: 2099321719976376782, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}

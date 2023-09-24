@@ -182,10 +182,10 @@ public class CharacterStats : MonoBehaviour
         switch (effect)
         {
             case "enrage":
-                popup.text = "ENRAGE\n" + value.ToString();
+                popup.text = "ENRAGE";
                 break;
             case "armor":
-                popup.text = "ARMOR\n" + value.ToString();
+                popup.text = "ARMOR";
                 break;
             case "cleanse":
                 popup.text = "CLEANSE\n" + value.ToString();

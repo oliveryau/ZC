@@ -425,7 +425,7 @@ public class _PlayerAction : MonoBehaviour
     public void HighlightTargetIndicator(bool highlight)
     {
         SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
-        targetSelect.color = highlight ? Color.cyan : Color.black;
+        targetSelect.color = highlight ? Color.cyan : Color.white;
     }
     #endregion
 }
