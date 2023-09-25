@@ -207,6 +207,7 @@ MonoBehaviour:
   characterHpHud: {fileID: 0}
   healthBarFill: {fileID: 0}
   statusEffectPanel: {fileID: 0}
+  uniqueCharacterAvatar: {fileID: 21300000, guid: ab7bc0445251b6943b7969345ad9205d, type: 3}
   hpValueUi: {fileID: 0}
   characterName: {fileID: 0}
   healthPanel: {fileID: 0}

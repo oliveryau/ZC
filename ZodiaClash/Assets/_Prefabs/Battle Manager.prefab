@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3312e1e1103d04b838672129c6c242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
+  battleState: 0
   turnOrder: {fileID: 0}
   playerHud: {fileID: 0}
   enemyHud: {fileID: 0}
@@ -68,7 +68,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9006058886940457294}
-  - component: {fileID: 8506647469441864164}
   - component: {fileID: 5329976614917483088}
   - component: {fileID: 6204437302020011797}
   - component: {fileID: 443097011561100355}
@@ -99,19 +98,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7634364934505384889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8506647469441864164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7251663232612195149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5633c6c68818e2b45ace4529cd25e066, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectsInfo: {fileID: 0}
 --- !u!114 &5329976614917483088
 MonoBehaviour:
   m_ObjectHideFlags: 0

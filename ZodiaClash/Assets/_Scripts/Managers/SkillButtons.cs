@@ -22,7 +22,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         skillDescription = skillPanel.GetComponentInChildren<TextMeshProUGUI>();
         skillImage = GetComponent<Image>();
 
-        if (battleManager.state == BattleState.PLAYERTURN)
+        if (battleManager.battleState == BattleState.PLAYERTURN)
         {
             string chosenSkill = gameObject.name;
             gameObject.GetComponent<Button>().onClick.AddListener(() => AttachCallback(chosenSkill));

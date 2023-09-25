@@ -16,6 +16,7 @@ public class CharacterStats : MonoBehaviour
     public Transform statusEffectPanel;
 
     [Header("Other HUD")]
+    public Sprite uniqueCharacterAvatar;
     [SerializeField] private TextMeshProUGUI hpValueUi;
     [SerializeField] private TextMeshProUGUI characterName;
     public Image healthPanel;

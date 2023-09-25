@@ -6,7 +6,7 @@ public class GuardAction : _EnemyAction
 {
     private void Update()
     {
-        if (battleManager.state == BattleState.ENEMYTURN && battleManager.activeEnemy == gameObject.name)
+        if (battleManager.battleState == BattleState.ENEMYTURN && battleManager.activeEnemy == gameObject.name)
         {
             if (enemyState == EnemyState.WAITING)
             {
@@ -90,7 +90,7 @@ public class GuardAction : _EnemyAction
 
                 characterStats.CheckEndStatusEffects();
 
-                battleManager.state = BattleState.NEXTTURN;
+                battleManager.battleState = BattleState.NEXTTURN;
 
                 //hud
                 turnIndicator.SetActive(false);

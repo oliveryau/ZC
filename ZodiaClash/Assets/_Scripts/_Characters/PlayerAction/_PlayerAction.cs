@@ -83,7 +83,7 @@ public class _PlayerAction : MonoBehaviour
     #region Player State
     protected void UpdatePlayerState()
     {
-        if (battleManager.state == BattleState.PLAYERTURN && battleManager.activePlayer == gameObject.name)
+        if (battleManager.battleState == BattleState.PLAYERTURN && battleManager.activePlayer == gameObject.name)
         {
             if (playerState == PlayerState.WAITING)
             {
@@ -154,7 +154,7 @@ public class _PlayerAction : MonoBehaviour
 
                 characterStats.CheckEndStatusEffects();
 
-                battleManager.state = BattleState.NEXTTURN;
+                battleManager.battleState = BattleState.NEXTTURN;
 
                 //hud
                 turnIndicator.SetActive(false);

@@ -165,6 +165,7 @@ MonoBehaviour:
   characterHpHud: {fileID: 0}
   healthBarFill: {fileID: 0}
   statusEffectPanel: {fileID: 0}
+  uniqueCharacterAvatar: {fileID: 21300000, guid: 6f83e99937db46e4da9a0f528c1d534b, type: 3}
   hpValueUi: {fileID: 0}
   characterName: {fileID: 0}
   healthPanel: {fileID: 0}
@@ -219,6 +220,8 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}
   aoeTargetPosition: {fileID: 0}
+  movingToTarget: 0
+  movingToStart: 0
 --- !u!1 &7058883584559556463
 GameObject:
   m_ObjectHideFlags: 0

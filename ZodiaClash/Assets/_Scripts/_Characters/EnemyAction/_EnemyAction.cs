@@ -99,42 +99,49 @@ public class _EnemyAction : MonoBehaviour
 
     protected void EnemyMovement()
     {
-        if (transform.position == startPosition)
+        if (!movingToTarget && !movingToStart)
         {
-            reachedStart = true;
-            reachedTarget = false;
+            return;
         }
-
-        if (transform.position == targetPosition.position)
+        else
         {
-            reachedTarget = true;
-            reachedStart = false;
-        }
-
-        if (movingToTarget && !movingToStart)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, moveSpeed * Time.deltaTime);
-
-            if (reachedTarget)
+            if (transform.position == startPosition)
             {
-                GetComponent<SpriteRenderer>().sortingOrder = 10;
-
-                movingToTarget = false;
-
-                EnemyAttackAnimation();
+                reachedStart = true;
+                reachedTarget = false;
             }
-        }
-        else if (movingToStart && !movingToTarget)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
 
-            GetComponent<SpriteRenderer>().sortingOrder = originalSort;
-
-            if (reachedStart)
+            if (transform.position == targetPosition.position)
             {
-                movingToStart = false;
+                reachedTarget = true;
+                reachedStart = false;
+            }
 
-                enemyEndingTurn = true;
+            if (movingToTarget && !movingToStart)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, moveSpeed * Time.deltaTime);
+
+                if (reachedTarget)
+                {
+                    GetComponent<SpriteRenderer>().sortingOrder = 10;
+
+                    movingToTarget = false;
+
+                    EnemyAttackAnimation();
+                }
+            }
+            else if (movingToStart && !movingToTarget)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
+
+                GetComponent<SpriteRenderer>().sortingOrder = originalSort;
+
+                if (reachedStart)
+                {
+                    movingToStart = false;
+
+                    enemyEndingTurn = true;
+                }
             }
         }
     }
