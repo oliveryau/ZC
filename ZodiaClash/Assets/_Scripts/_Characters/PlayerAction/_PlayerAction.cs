@@ -47,8 +47,8 @@ public class _PlayerAction : MonoBehaviour
     [SerializeField] protected Transform targetPosition;
     [SerializeField] protected Transform aoeTargetPosition;
     protected float moveSpeed;
-    protected bool movingToTarget;
-    protected bool movingToStart;
+    [SerializeField] protected bool movingToTarget;
+    [SerializeField] protected bool movingToStart;
     protected bool reachedTarget;
     protected bool reachedStart;
 
@@ -315,42 +315,49 @@ public class _PlayerAction : MonoBehaviour
 
     protected void PlayerMovement()
     {
-        if (transform.position == startPosition)
+        if (!movingToTarget && !movingToStart)
         {
-            reachedStart = true;
-            reachedTarget = false;
+            return;
         }
-        
-        if (transform.position == targetPosition.position)
+        else
         {
-            reachedTarget = true;
-            reachedStart = false;
-        }
-
-        if (movingToTarget && !movingToStart)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, moveSpeed * Time.deltaTime);
-
-            if (reachedTarget)
+            if (transform.position == startPosition)
             {
-                GetComponent<SpriteRenderer>().sortingOrder = 10;
-
-                movingToTarget = false;
-
-                AttackAnimation();
+                reachedStart = true;
+                reachedTarget = false;
             }
-        }
-        else if (movingToStart && !movingToTarget)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
-
-            GetComponent<SpriteRenderer>().sortingOrder = originalSort;
-
-            if (reachedStart)
+        
+            if (transform.position == targetPosition.position)
             {
-                movingToStart = false;
+                reachedTarget = true;
+                reachedStart = false;
+            }
 
-                endingTurn = true;
+            if (movingToTarget && !movingToStart)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, moveSpeed * Time.deltaTime);
+
+                if (reachedTarget)
+                {
+                    GetComponent<SpriteRenderer>().sortingOrder = 10;
+
+                    movingToTarget = false;
+
+                    AttackAnimation();
+                }
+            }
+            else if (movingToStart && !movingToTarget)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
+
+                GetComponent<SpriteRenderer>().sortingOrder = originalSort;
+
+                if (reachedStart)
+                {
+                    movingToStart = false;
+
+                    endingTurn = true;
+                }
             }
         }
     }
