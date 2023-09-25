@@ -169,6 +169,15 @@ public class CatAction : _PlayerAction
 
         if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that require movement
         {
+            if (selectedSkillPrefab == skill1Prefab) //single target
+            {
+                targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
+            }
+            else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe attack
+            {
+                targetPosition = aoeTargetPosition;
+            }
+
             movingToTarget = true; //movement is triggered
         }
     }

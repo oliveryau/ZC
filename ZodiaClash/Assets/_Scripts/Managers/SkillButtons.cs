@@ -9,7 +9,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     [SerializeField] private GameObject skillPanel;
 
-    private GameManager gameManager;
+    private BattleManager battleManager;
     private TextMeshProUGUI skillDescription;
     private GameObject[] players;
     private GameObject currentPlayer;
@@ -18,11 +18,11 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        battleManager = FindObjectOfType<BattleManager>();
         skillDescription = skillPanel.GetComponentInChildren<TextMeshProUGUI>();
         skillImage = GetComponent<Image>();
 
-        if (gameManager.state == BattleState.PLAYERTURN)
+        if (battleManager.state == BattleState.PLAYERTURN)
         {
             string chosenSkill = gameObject.name;
             gameObject.GetComponent<Button>().onClick.AddListener(() => AttachCallback(chosenSkill));
@@ -30,7 +30,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             players = GameObject.FindGameObjectsWithTag("Player");
             foreach (GameObject player in players)
             {
-                if (player.name == gameManager.activePlayer)
+                if (player.name == battleManager.activePlayer)
                 {
                     currentPlayer = player;
                     break;

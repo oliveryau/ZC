@@ -6,7 +6,7 @@ using TMPro;
 
 public class CharacterStats : MonoBehaviour
 {
-    private GameManager gameManager;
+    private BattleManager battleManager;
     private _StatusEffectHud statusEffectHud;
     private Animator animator;
 
@@ -47,7 +47,7 @@ public class CharacterStats : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        battleManager = FindObjectOfType<BattleManager>();
         statusEffectHud = FindObjectOfType<_StatusEffectHud>();
         animator = GetComponent<Animator>();
 
@@ -80,10 +80,10 @@ public class CharacterStats : MonoBehaviour
         gameObject.tag = "Dead";
         //animator.Play("Death");
 
-        gameManager.charactersList.Remove(this);
-        gameManager.turnOrderList.Remove(this);
-        gameManager.originalTurnOrderList.Remove(this);
-        gameManager.UpdateTurnOrderUi();
+        battleManager.charactersList.Remove(this);
+        battleManager.turnOrderList.Remove(this);
+        battleManager.originalTurnOrderList.Remove(this);
+        battleManager.UpdateTurnOrderUi();
 
         yield return new WaitForSeconds(0.5f);
 
@@ -295,7 +295,7 @@ public class CharacterStats : MonoBehaviour
         #region Speed Buff
         if (speedCheck)
         {
-            gameManager.revertingTurn = true;
+            battleManager.revertingTurn = true;
             speedCheck = false;
         }
         #endregion

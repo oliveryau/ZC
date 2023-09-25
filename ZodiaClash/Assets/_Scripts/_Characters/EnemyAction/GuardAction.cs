@@ -6,7 +6,7 @@ public class GuardAction : _EnemyAction
 {
     private void Update()
     {
-        if (gameManager.state == BattleState.ENEMYTURN && gameManager.activeEnemy == gameObject.name)
+        if (battleManager.state == BattleState.ENEMYTURN && battleManager.activeEnemy == gameObject.name)
         {
             if (enemyState == EnemyState.WAITING)
             {
@@ -90,7 +90,7 @@ public class GuardAction : _EnemyAction
 
                 characterStats.CheckEndStatusEffects();
 
-                gameManager.state = BattleState.NEXTTURN;
+                battleManager.state = BattleState.NEXTTURN;
 
                 //hud
                 turnIndicator.SetActive(false);
@@ -106,6 +106,8 @@ public class GuardAction : _EnemyAction
                 playerTargets = null;
 
                 //others
+                targetPosition = null;
+
                 enemyAttacking = false;
                 enemyEndingTurn = false;
                 characterStats.checkedStatus = false;
@@ -146,6 +148,8 @@ public class GuardAction : _EnemyAction
 
         if (selectedSkillPrefab == skill1Prefab) //skills that require movement
         {
+            targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform; //single target
+
             movingToTarget = true; //movement is triggered
         }
     }

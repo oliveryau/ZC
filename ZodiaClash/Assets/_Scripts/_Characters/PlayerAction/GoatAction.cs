@@ -169,6 +169,8 @@ public class GoatAction : _PlayerAction
 
         if (selectedSkillPrefab == skill1Prefab) //skills that require movement
         {
+            targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
+
             movingToTarget = true; //movement is triggered
         }
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)

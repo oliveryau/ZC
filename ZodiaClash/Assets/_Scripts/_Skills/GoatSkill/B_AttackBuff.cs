@@ -29,7 +29,7 @@ public class B_AttackBuff : _BaseBuff
             targetStats.enrageCounter = enrage.enrageLimit;
         }
 
-        GameManager gameManager = FindObjectOfType<GameManager>();
+        BattleManager gameManager = FindObjectOfType<BattleManager>();
         gameManager.SwitchTurnOrder(targetStats);
         targetStats.speedCheck = true;
     }

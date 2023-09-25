@@ -168,6 +168,15 @@ public class OxAction : _PlayerAction
 
         if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that require movement
         {
+            if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab)
+            {
+                targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
+            }
+            else if (selectedSkillPrefab == skill3Prefab)
+            {
+                targetPosition = aoeTargetPosition;
+            }
+
             movingToTarget = true; //movement is triggered
         }
     }

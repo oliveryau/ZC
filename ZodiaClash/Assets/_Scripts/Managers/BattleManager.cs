@@ -9,7 +9,7 @@ public enum BattleState
     NEWGAME, NEWROUND, NEXTTURN, PLAYERTURN, ENEMYTURN, WIN, LOSE
 }
 
-public class GameManager : MonoBehaviour
+public class BattleManager : MonoBehaviour
 {
     public BattleState state;
     

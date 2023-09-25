@@ -32,13 +32,14 @@ public class _EnemyAction : MonoBehaviour
     [Header("Movements")]
     [SerializeField] protected Vector3 startPosition;
     [SerializeField] protected Transform targetPosition;
+    [SerializeField] protected Transform aoeTargetPosition;
     protected float moveSpeed;
     protected bool movingToTarget;
     protected bool movingToStart;
     protected bool reachedTarget;
     protected bool reachedStart;
 
-    protected GameManager gameManager;
+    protected BattleManager battleManager;
     protected CharacterStats characterStats;
     protected bool enemyAttacking;
     protected bool enemyEndingTurn;
@@ -60,7 +61,7 @@ public class _EnemyAction : MonoBehaviour
         reachedTarget = false;
         reachedStart = false;
 
-        gameManager = FindObjectOfType<GameManager>();
+        battleManager = FindObjectOfType<BattleManager>();
         characterStats = GetComponent<CharacterStats>();
         enemyAttacking = false;
         enemyEndingTurn = false;

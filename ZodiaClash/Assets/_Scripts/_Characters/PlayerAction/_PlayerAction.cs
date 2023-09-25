@@ -45,13 +45,14 @@ public class _PlayerAction : MonoBehaviour
     [Header("Movements")]
     [SerializeField] protected Vector3 startPosition;
     [SerializeField] protected Transform targetPosition;
+    [SerializeField] protected Transform aoeTargetPosition;
     protected float moveSpeed;
     protected bool movingToTarget;
     protected bool movingToStart;
     protected bool reachedTarget;
     protected bool reachedStart;
 
-    protected GameManager gameManager;
+    protected BattleManager battleManager;
     protected CharacterStats characterStats;
     protected PlayerChi playerChi;
     protected bool playerAttacking;
@@ -71,7 +72,7 @@ public class _PlayerAction : MonoBehaviour
         reachedTarget = false;
         reachedStart = false;
 
-        gameManager = FindObjectOfType<GameManager>();
+        battleManager = FindObjectOfType<BattleManager>();
         characterStats = GetComponent<CharacterStats>();
         playerChi = FindObjectOfType<PlayerChi>();
         playerAttacking = false;
@@ -79,9 +80,10 @@ public class _PlayerAction : MonoBehaviour
         checkingStatus = false;
     }
 
+    #region Player State
     protected void UpdatePlayerState()
     {
-        if (gameManager.state == BattleState.PLAYERTURN && gameManager.activePlayer == gameObject.name)
+        if (battleManager.state == BattleState.PLAYERTURN && battleManager.activePlayer == gameObject.name)
         {
             if (playerState == PlayerState.WAITING)
             {
@@ -152,7 +154,7 @@ public class _PlayerAction : MonoBehaviour
 
                 characterStats.CheckEndStatusEffects();
 
-                gameManager.state = BattleState.NEXTTURN;
+                battleManager.state = BattleState.NEXTTURN;
 
                 //hud
                 turnIndicator.SetActive(false);
@@ -166,6 +168,8 @@ public class _PlayerAction : MonoBehaviour
                 }
 
                 //others
+                targetPosition = null;
+
                 playerAttacking = false;
                 endingTurn = false;
                 characterStats.checkedStatus = false;
@@ -174,6 +178,7 @@ public class _PlayerAction : MonoBehaviour
             }
         }
     }
+    #endregion
 
     protected void RefreshTargets()
     {

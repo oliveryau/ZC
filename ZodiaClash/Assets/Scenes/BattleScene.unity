@@ -629,6 +629,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1365253893 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6536634600452847800, guid: 1d557c76c8d216540b767a66de1b92ba, type: 3}
+  m_PrefabInstance: {fileID: 1879767753726492272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1439205949 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8149368996529361673, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
@@ -1092,6 +1097,14 @@ PrefabInstance:
       propertyPath: statusEffectPanel
       value: 
       objectReference: {fileID: 1520945926}
+    - target: {fileID: 2538401863118905923, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538401863118905923, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2723263526295020733, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: m_Name
       value: Dance of Fury
@@ -1109,10 +1122,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1753910397}
     - target: {fileID: 3087089328109663894, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
-      propertyPath: targetPosition
-      value: 
-      objectReference: {fileID: 1689384672}
-    - target: {fileID: 3087089328109663894, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: characterAvatar
       value: 
       objectReference: {fileID: 500626532}
@@ -1128,6 +1137,10 @@ PrefabInstance:
       propertyPath: characterSkillUi
       value: 
       objectReference: {fileID: 419218314}
+    - target: {fileID: 3087089328109663894, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: aoeTargetPosition
+      value: 
+      objectReference: {fileID: 1689384672}
     - target: {fileID: 3087089328109663894, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skillTextIndicator
       value: 
@@ -1261,10 +1274,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1439205949}
     - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
-      propertyPath: targetPosition
-      value: 
-      objectReference: {fileID: 1689384672}
-    - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: characterAvatar
       value: 
       objectReference: {fileID: 752764134}
@@ -1280,6 +1289,10 @@ PrefabInstance:
       propertyPath: characterSkillUi
       value: 
       objectReference: {fileID: 1731861607}
+    - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: aoeTargetPosition
+      value: 
+      objectReference: {fileID: 1689384672}
     - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skillTextIndicator
       value: 
@@ -1297,10 +1310,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2025133112}
     - target: {fileID: 8280137639503927606, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
-      propertyPath: targetPosition
-      value: 
-      objectReference: {fileID: 1689384672}
-    - target: {fileID: 8280137639503927606, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: characterAvatar
       value: 
       objectReference: {fileID: 384902301}
@@ -1316,6 +1325,10 @@ PrefabInstance:
       propertyPath: characterSkillUi
       value: 
       objectReference: {fileID: 671649024}
+    - target: {fileID: 8280137639503927606, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: aoeTargetPosition
+      value: 
+      objectReference: {fileID: 1689384672}
     - target: {fileID: 8280137639503927606, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skillTextIndicator
       value: 
@@ -1388,6 +1401,14 @@ PrefabInstance:
     - target: {fileID: 2116636225945797738, guid: 1d557c76c8d216540b767a66de1b92ba, type: 3}
       propertyPath: m_Name
       value: Target Points
+      objectReference: {fileID: 0}
+    - target: {fileID: 4643494610350307382, guid: 1d557c76c8d216540b767a66de1b92ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536634600452847800, guid: 1d557c76c8d216540b767a66de1b92ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1608,7 +1629,7 @@ PrefabInstance:
       objectReference: {fileID: 893817572}
     - target: {fileID: 1075143863232499502, guid: d1f84f7113e494447baafb671923066b, type: 3}
       propertyPath: m_Name
-      value: Gameplay Manager
+      value: Battle Manager
       objectReference: {fileID: 0}
     - target: {fileID: 2067318985202968223, guid: d1f84f7113e494447baafb671923066b, type: 3}
       propertyPath: effectsInfo
@@ -1743,25 +1764,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4003031062897731387, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
-      propertyPath: targetPosition
+      propertyPath: aoeTargetPosition
       value: 
-      objectReference: {fileID: 1689384672}
+      objectReference: {fileID: 1365253893}
     - target: {fileID: 4003031062897731387, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: skillTextIndicator
       value: 
       objectReference: {fileID: 1510701239}
     - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
-      propertyPath: targetPosition
+      propertyPath: aoeTargetPosition
       value: 
-      objectReference: {fileID: 1689384672}
+      objectReference: {fileID: 1365253893}
     - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: skillTextIndicator
       value: 
       objectReference: {fileID: 1510701239}
     - target: {fileID: 5981490860473186612, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
-      propertyPath: targetPosition
+      propertyPath: aoeTargetPosition
       value: 
-      objectReference: {fileID: 1689384672}
+      objectReference: {fileID: 1365253893}
     - target: {fileID: 5981490860473186612, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: skillTextIndicator
       value: 
