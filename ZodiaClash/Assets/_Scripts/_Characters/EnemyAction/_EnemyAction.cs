@@ -74,29 +74,6 @@ public class _EnemyAction : MonoBehaviour
         playerTargets = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    #region UI Toggling
-    protected void EnemyToggleUi()
-    {
-        turnIndicator.SetActive(true);
-    }
-
-    protected void EnemyToggleSkillText(bool display)
-    {
-        TextMeshProUGUI skillText = skillTextIndicator.GetComponentInChildren<TextMeshProUGUI>();
-
-        if (display)
-        {
-            skillText.text = selectedSkillPrefab.gameObject.name;
-            skillTextIndicator.SetActive(true);
-        }
-        else if (!display)
-        {
-            skillTextIndicator.SetActive(false);
-            skillText.text = null;
-        }
-    }
-    #endregion
-
     protected void EnemyMovement()
     {
         if (!movingToTarget && !movingToStart)
@@ -144,6 +121,11 @@ public class _EnemyAction : MonoBehaviour
                 }
             }
         }
+    }
+
+    protected virtual void UpdateEnemyState()
+    {
+        //unique enemy states
     }
 
     protected virtual void EnemySelectSkill()
@@ -201,6 +183,40 @@ public class _EnemyAction : MonoBehaviour
 
         enemyState = EnemyState.ENDING;
     }
+
+    #region UI Toggling
+    protected void EnemyToggleUi(bool display)
+    {
+        if (display)
+        {
+            turnIndicator.SetActive(true);
+
+            characterStats.healthPanel.color = Color.black;
+        }
+        else if (!display)
+        {
+            turnIndicator.SetActive(false);
+
+            characterStats.healthPanel.color = Color.clear;
+        }
+    }
+
+    protected void EnemyToggleSkillText(bool display)
+    {
+        TextMeshProUGUI skillText = skillTextIndicator.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (display)
+        {
+            skillText.text = selectedSkillPrefab.gameObject.name;
+            skillTextIndicator.SetActive(true);
+        }
+        else if (!display)
+        {
+            skillTextIndicator.SetActive(false);
+            skillText.text = null;
+        }
+    }
+    #endregion
 
     #region Target UI
     public void EnemyHighlightTargetIndicator(bool highlight)

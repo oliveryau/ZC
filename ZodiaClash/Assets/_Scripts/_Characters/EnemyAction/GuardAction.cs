@@ -6,11 +6,16 @@ public class GuardAction : _EnemyAction
 {
     private void Update()
     {
+        UpdateEnemyState();
+    }
+
+    protected override void UpdateEnemyState()
+    {
         if (battleManager.battleState == BattleState.ENEMYTURN && battleManager.activeEnemy == gameObject.name)
         {
             if (enemyState == EnemyState.WAITING)
             {
-                turnIndicator.SetActive(true);
+                EnemyToggleUi(true);
 
                 #region Taunted Behaviour
                 if (characterStats.tauntCounter > 0)
@@ -52,8 +57,6 @@ public class GuardAction : _EnemyAction
             {
                 EnemyRefreshTargets();
 
-                EnemyToggleUi();
-
                 EnemySelectSkill();
             }
 
@@ -86,6 +89,7 @@ public class GuardAction : _EnemyAction
 
             else if (enemyState == EnemyState.ENDING)
             {
+                EnemyToggleUi(false);
                 EnemyToggleSkillText(false);
 
                 characterStats.CheckEndStatusEffects();

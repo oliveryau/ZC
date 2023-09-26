@@ -208,29 +208,6 @@ public class BattleManager : MonoBehaviour
 
     public void UpdateTurnOrderUi()
     {
-        //TextMeshProUGUI turnOrderText = turnOrder.GetComponentInChildren<TextMeshProUGUI>();
-
-        //turnOrderText.text = "TURN:\n\n";
-
-        //if (turnOrderList.Count > 0) //take from turnOrderList
-        //{
-        //    foreach (CharacterStats character in turnOrderList)
-        //    {
-        //        if (character.gameObject.name == activePlayer) //player's turn
-        //        {
-        //            turnOrderText.text += "<color=green>" + character.gameObject.name + "</color>\n";
-        //        }
-        //        else if (character.gameObject.name == activeEnemy) //enemy's turn
-        //        {
-        //            turnOrderText.text += "<color=red>" + character.gameObject.name + "</color>\n";
-        //        }
-        //        else
-        //        {
-        //            turnOrderText.text += "<color=white>" + character.gameObject.name + "</color>\n"; //other characters
-        //        }
-        //    }
-        //}
-
         foreach (Transform child in avatarListContainer)
         {
             Destroy(child.gameObject);
@@ -241,9 +218,27 @@ public class BattleManager : MonoBehaviour
             foreach (CharacterStats character in turnOrderList)
             {
                 GameObject avatarContainer = Instantiate(avatarContainerPrefab, avatarListContainer);
-                Image avatarImage = avatarContainer.GetComponent<Image>();
-                avatarImage.sprite = character.uniqueCharacterAvatar;
-                //optionally, set the size, position, or other properties of the avatar container here
+
+                #region Indicator Colours
+                Image characterIndicator = avatarContainer.transform.Find("Unique Indicator").GetComponent<Image>();
+                if (character.gameObject.name == activePlayer)
+                {
+                    characterIndicator.color = Color.green;
+                }
+                else if (character.gameObject.name == activeEnemy)
+                {
+                    characterIndicator.color = Color.red;
+                }
+                else
+                {
+                    characterIndicator.color = Color.white;
+                }
+                #endregion
+
+                #region Character Sprite
+                Image activeCharacterImg = avatarContainer.transform.Find("Unique Avatar").GetComponent<Image>();
+                activeCharacterImg.sprite = character.uniqueCharacterAvatar;
+                #endregion
             }
         }
     }

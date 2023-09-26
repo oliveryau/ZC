@@ -40,7 +40,6 @@ public class _PlayerAction : MonoBehaviour
     [SerializeField] protected GameObject[] playerTargets;
     [SerializeField] protected GameObject[] enemyTargets;
     public GameObject selectedTarget;
-    //protected bool aoeSkillSelected;
 
     [Header("Movements")]
     [SerializeField] protected Vector3 startPosition;
@@ -186,133 +185,6 @@ public class _PlayerAction : MonoBehaviour
         enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
-    #region UI Toggling
-    protected void ToggleSkillUi(bool display)
-    {
-        if (display == true)
-        {
-            skill2ChiCostUi.text = skill2ChiCost.ToString();
-            skill3ChiCostUi.text = skill3ChiCost.ToString();
-
-            if (characterStats.tauntCounter > 0)
-            {
-                skill2Enable.interactable = false;
-                skill3Enable.interactable = false;
-            }
-            else if (playerChi.currentChi < skill2ChiCost)
-            {
-                skill2Enable.interactable = false;
-            }
-
-            if (playerChi.currentChi < skill3ChiCost)
-            {
-                skill3Enable.interactable = false;
-            }
-
-            characterSkillUi.SetActive(true);
-        }
-        else if (display == false)
-        {
-            SkillButtons[] skillButtons = FindObjectsOfType<SkillButtons>();
-            foreach (SkillButtons skillButton in skillButtons)
-            {
-                skillButton.ResetSkillColor();
-            }
-
-            characterSkillUi.SetActive(false);
-
-            skill2Enable.interactable = true;
-            skill3Enable.interactable = true;
-        }
-    }
-
-    protected void TargetSelectionUi(bool display, string targets, bool special = false)
-    {
-        if (display)
-        {
-            if (targets == "ally") //show ally targeting
-            {
-                foreach (GameObject player in playerTargets)
-                {
-                    player.GetComponent<_PlayerAction>().targetIndicator.SetActive(true);
-
-                    #region Cannot Target Itself
-                    if (special) //cannot target itself
-                    {
-                        if (player == this.gameObject)
-                        {
-                            player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
-                        }
-                    }
-                    #endregion
-                }
-
-                foreach (GameObject enemy in enemyTargets)
-                {
-                    enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
-                }
-
-            }
-            else if (targets == "enemy") //show enemy targeting
-            {
-                foreach (GameObject enemy in enemyTargets)
-                {
-                    enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
-
-                    #region Target Only Taunted Character
-                    if (special) // taunted
-                    {
-                        if (enemy == selectedTarget)
-                        {
-                            enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
-                        }
-                        else
-                        {
-                            enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
-                        }
-                    }
-                    #endregion
-                }
-
-                foreach (GameObject player in playerTargets)
-                {
-                    player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
-                }
-
-            }
-        }
-        else if (!display)
-        {
-            //hide all targeting
-            foreach (GameObject enemy in enemyTargets)
-            {
-                enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
-            }
-
-            foreach (GameObject player in playerTargets)
-            {
-                player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
-            }
-        }
-    }
-
-    protected void ToggleSkillText(bool display)
-    {
-        TextMeshProUGUI skillText = skillTextIndicator.GetComponentInChildren<TextMeshProUGUI>();
-        
-        if (display)
-        {
-            skillText.text = selectedSkillPrefab.gameObject.name;
-            skillTextIndicator.SetActive(true);
-        }
-        else if (!display)
-        {
-            skillTextIndicator.SetActive(false);
-            skillText.text = null;
-        }
-    }
-    #endregion
-
     protected void PlayerMovement()
     {
         if (!movingToTarget && !movingToStart)
@@ -432,6 +304,133 @@ public class _PlayerAction : MonoBehaviour
 
         playerState = PlayerState.ENDING;
     }
+
+    #region UI Toggling
+    protected void ToggleSkillUi(bool display)
+    {
+        if (display == true)
+        {
+            skill2ChiCostUi.text = skill2ChiCost.ToString();
+            skill3ChiCostUi.text = skill3ChiCost.ToString();
+
+            if (characterStats.tauntCounter > 0)
+            {
+                skill2Enable.interactable = false;
+                skill3Enable.interactable = false;
+            }
+            else if (playerChi.currentChi < skill2ChiCost)
+            {
+                skill2Enable.interactable = false;
+            }
+
+            if (playerChi.currentChi < skill3ChiCost)
+            {
+                skill3Enable.interactable = false;
+            }
+
+            characterSkillUi.SetActive(true);
+        }
+        else if (display == false)
+        {
+            SkillButtons[] skillButtons = FindObjectsOfType<SkillButtons>();
+            foreach (SkillButtons skillButton in skillButtons)
+            {
+                skillButton.ResetSkillColor();
+            }
+
+            characterSkillUi.SetActive(false);
+
+            skill2Enable.interactable = true;
+            skill3Enable.interactable = true;
+        }
+    }
+
+    protected void TargetSelectionUi(bool display, string targets, bool special = false)
+    {
+        if (display)
+        {
+            if (targets == "ally") //show ally targeting
+            {
+                foreach (GameObject player in playerTargets)
+                {
+                    player.GetComponent<_PlayerAction>().targetIndicator.SetActive(true);
+
+                    #region Cannot Target Itself
+                    if (special) //cannot target itself
+                    {
+                        if (player == this.gameObject)
+                        {
+                            player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
+                        }
+                    }
+                    #endregion
+                }
+
+                foreach (GameObject enemy in enemyTargets)
+                {
+                    enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
+                }
+
+            }
+            else if (targets == "enemy") //show enemy targeting
+            {
+                foreach (GameObject enemy in enemyTargets)
+                {
+                    enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
+
+                    #region Target Only Taunted Character
+                    if (special) // taunted
+                    {
+                        if (enemy == selectedTarget)
+                        {
+                            enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
+                        }
+                        else
+                        {
+                            enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
+                        }
+                    }
+                    #endregion
+                }
+
+                foreach (GameObject player in playerTargets)
+                {
+                    player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
+                }
+
+            }
+        }
+        else if (!display)
+        {
+            //hide all targeting
+            foreach (GameObject enemy in enemyTargets)
+            {
+                enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
+            }
+
+            foreach (GameObject player in playerTargets)
+            {
+                player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
+            }
+        }
+    }
+
+    protected void ToggleSkillText(bool display)
+    {
+        TextMeshProUGUI skillText = skillTextIndicator.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (display)
+        {
+            skillText.text = selectedSkillPrefab.gameObject.name;
+            skillTextIndicator.SetActive(true);
+        }
+        else if (!display)
+        {
+            skillTextIndicator.SetActive(false);
+            skillText.text = null;
+        }
+    }
+    #endregion
 
     #region Target UI
     public void HighlightTargetIndicator(bool highlight)

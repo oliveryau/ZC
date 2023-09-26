@@ -1879,10 +1879,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1468381431}
     - target: {fileID: 1032449978282707555, guid: d1f84f7113e494447baafb671923066b, type: 3}
-      propertyPath: avatarContainerPrefab
-      value: 
-      objectReference: {fileID: 1124624116346057494, guid: 26c01ba607d48b942865f39a9362ba5c, type: 3}
-    - target: {fileID: 1032449978282707555, guid: d1f84f7113e494447baafb671923066b, type: 3}
       propertyPath: statusEffectIndicator
       value: 
       objectReference: {fileID: 893817572}

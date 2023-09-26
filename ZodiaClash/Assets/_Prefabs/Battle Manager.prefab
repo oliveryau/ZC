@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleState: 0
   turnOrder: {fileID: 0}
+  avatarContainerPrefab: {fileID: 1124624116346057494, guid: 26c01ba607d48b942865f39a9362ba5c, type: 3}
+  avatarListContainer: {fileID: 0}
   playerHud: {fileID: 0}
   enemyHud: {fileID: 0}
   skillChiHud: {fileID: 0}

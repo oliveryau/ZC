@@ -330,10 +330,6 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8260194451012933056, guid: b1ffe3e832101ff46a86ebf583f054c5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5633900137219074963, guid: b1ffe3e832101ff46a86ebf583f054c5, type: 3}
@@ -696,10 +692,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HP Player HUD
       objectReference: {fileID: 0}
-    - target: {fileID: 430153957514675279, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 834734355140468448, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -779,10 +771,6 @@ PrefabInstance:
     - target: {fileID: 834734355140468448, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 927254170104344549, guid: 4447a6865713a7343ba7b4504fb664c0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -1.4999995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
