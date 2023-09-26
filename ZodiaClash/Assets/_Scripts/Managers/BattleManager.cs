@@ -215,8 +215,10 @@ public class BattleManager : MonoBehaviour
 
         if (turnOrderList.Count > 0)
         {
-            foreach (CharacterStats character in turnOrderList)
+            for (int i = 0; i < turnOrderList.Count; i++)
             {
+                CharacterStats character = turnOrderList[i];
+
                 GameObject avatarContainer = Instantiate(avatarContainerPrefab, avatarListContainer);
 
                 #region Indicator Colours
@@ -238,6 +240,14 @@ public class BattleManager : MonoBehaviour
                 #region Character Sprite
                 Image activeCharacterImg = avatarContainer.transform.Find("Unique Avatar").GetComponent<Image>();
                 activeCharacterImg.sprite = character.uniqueCharacterAvatar;
+                #endregion
+
+                #region Size
+                if (i == 0)
+                {
+                    float scaleFactor = 1.2f;
+                    avatarContainer.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1f);
+                }
                 #endregion
             }
         }
