@@ -15,6 +15,8 @@ public class GuardAction : _EnemyAction
         {
             if (enemyState == EnemyState.WAITING)
             {
+                enemyStartTurn = true;
+                characterStats.healthPanel.GetComponent<Animator>().SetTrigger("moveOut");
                 EnemyToggleUi(true);
 
                 #region Taunted Behaviour
@@ -40,12 +42,13 @@ public class GuardAction : _EnemyAction
                     StartCoroutine(characterStats.CheckStatusEffects());
                     checkingStatus = true;
                 }
+                #region Stunned
                 else if (characterStats.checkedStatus && characterStats.stunCounter > 0)
                 {
-                    //stunCheck
                     enemyState = EnemyState.ENDING;
                     checkingStatus = false;
                 }
+                #endregion
                 else if (characterStats.checkedStatus)
                 {
                     enemyState = EnemyState.SKILLSELECT;
@@ -97,6 +100,8 @@ public class GuardAction : _EnemyAction
                 battleManager.battleState = BattleState.NEXTTURN;
 
                 //hud
+                enemyStartTurn = false;
+                characterStats.healthPanel.GetComponent<Animator>().SetTrigger("moveIn");
                 turnIndicator.SetActive(false);
 
                 //skill

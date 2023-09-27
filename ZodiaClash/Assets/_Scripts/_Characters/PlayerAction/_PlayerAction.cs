@@ -66,17 +66,10 @@ public class _PlayerAction : MonoBehaviour
 
         moveSpeed = 50f;
         startPosition = transform.position;
-        movingToTarget = false;
-        movingToStart = false;
-        reachedTarget = false;
-        reachedStart = false;
 
         battleManager = FindObjectOfType<BattleManager>();
         characterStats = GetComponent<CharacterStats>();
         playerChi = FindObjectOfType<PlayerChi>();
-        playerAttacking = false;
-        endingTurn = false;
-        checkingStatus = false;
     }
 
     #region Player State
@@ -156,8 +149,8 @@ public class _PlayerAction : MonoBehaviour
                 battleManager.battleState = BattleState.NEXTTURN;
 
                 //hud
-                turnIndicator.SetActive(false);
                 characterAvatar.GetComponent<Animator>().SetTrigger("decrease");
+                turnIndicator.SetActive(false);
 
                 //skill
                 selectedSkillPrefab = null;
@@ -436,7 +429,7 @@ public class _PlayerAction : MonoBehaviour
     public void HighlightTargetIndicator(bool highlight)
     {
         SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
-        targetSelect.color = highlight ? Color.cyan : Color.white;
+        targetSelect.color = highlight ? Color.green : Color.white;
     }
     #endregion
 }

@@ -162,14 +162,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1304055b5b8c96f4b9742bc8508b25c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uniqueCharacterAvatar: {fileID: 21300000, guid: 3adb16ef04fb59c4a806b55db96e0f1d, type: 3}
   characterHpHud: {fileID: 0}
   healthBarFill: {fileID: 0}
   statusEffectPanel: {fileID: 0}
-  uniqueCharacterAvatar: {fileID: 21300000, guid: 3adb16ef04fb59c4a806b55db96e0f1d, type: 3}
+  floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
   hpValueUi: {fileID: 0}
   characterName: {fileID: 0}
   healthPanel: {fileID: 0}
-  floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
+  healthPanelOriginalColor: {r: 0, g: 0, b: 0, a: 0}
+  healthPanelHoverColor: {r: 0, g: 0, b: 0, a: 0}
+  healthPanelTargetColor: {r: 0, g: 0, b: 0, a: 0}
   maxHealth: 70
   health: 70
   attack: 10
@@ -217,6 +220,7 @@ MonoBehaviour:
   playerTargets: []
   enemyTargets: []
   selectedTarget: {fileID: 0}
+  selectingTarget: 0
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}
   aoeTargetPosition: {fileID: 0}

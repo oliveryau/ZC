@@ -46,8 +46,7 @@ public class CatAction : _PlayerAction
                             //can only target taunted character
 
                             selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
-                            selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+                            selectedTarget.GetComponent<CharacterStats>().healthPanel.color = selectedTarget.GetComponent<CharacterStats>().healthPanelTargetColor;
 
                             if (Input.GetMouseButtonDown(0))
                             {
@@ -57,7 +56,7 @@ public class CatAction : _PlayerAction
 
                                 TargetSelectionUi(false, null);
 
-                                selectedTarget.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                                selectedTarget.GetComponent<CharacterStats>().healthPanel.color = selectedTarget.GetComponent<CharacterStats>().healthPanelOriginalColor;
                             }
                         }
                     }
@@ -72,8 +71,7 @@ public class CatAction : _PlayerAction
                     if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
                         hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
-                        hit.collider.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+                        hit.collider.GetComponent<CharacterStats>().healthPanel.color = hit.collider.GetComponent<CharacterStats>().healthPanelTargetColor;
 
                         if (Input.GetMouseButtonDown(0))
                         {
@@ -84,7 +82,7 @@ public class CatAction : _PlayerAction
 
                             TargetSelectionUi(false, null);
 
-                            hit.collider.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                            hit.collider.GetComponent<CharacterStats>().healthPanel.color = hit.collider.GetComponent<CharacterStats>().healthPanelOriginalColor;
                         }
                     }
                 }
@@ -95,8 +93,7 @@ public class CatAction : _PlayerAction
                         foreach (GameObject enemy in enemyTargets)
                         {
                             enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
-                            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+                            enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelTargetColor;
                         }
 
                         if (Input.GetMouseButtonDown(0))
@@ -111,7 +108,7 @@ public class CatAction : _PlayerAction
 
                                 foreach (GameObject enemy in enemyTargets)
                                 {
-                                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                                    enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
                                 }
                             }
                         }
@@ -124,8 +121,7 @@ public class CatAction : _PlayerAction
                         foreach (GameObject enemy in enemyTargets)
                         {
                             enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
-                            enemy.GetComponent<CharacterStats>().healthPanel.color = Color.black;
+                            enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelTargetColor;
                         }
 
                         if (Input.GetMouseButtonDown(0))
@@ -140,7 +136,7 @@ public class CatAction : _PlayerAction
 
                                 foreach (GameObject enemy in enemyTargets)
                                 {
-                                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                                    enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
                                 }
                             }
                         }
@@ -155,8 +151,7 @@ public class CatAction : _PlayerAction
                 foreach (GameObject enemy in enemyTargets)
                 {
                     enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
-
-                    enemy.GetComponent<CharacterStats>().healthPanel.color = Color.clear;
+                    enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
                 }
             }
             #endregion

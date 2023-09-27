@@ -11,16 +11,23 @@ public class CharacterStats : MonoBehaviour
     private Animator animator;
 
     [Header("HUD")]
+    public Sprite uniqueCharacterAvatar;
     [SerializeField] private GameObject characterHpHud;
     [SerializeField] private Image healthBarFill;
     public Transform statusEffectPanel;
-
-    [Header("Other HUD")]
-    public Sprite uniqueCharacterAvatar;
-    [SerializeField] private TextMeshProUGUI hpValueUi;
-    [SerializeField] private TextMeshProUGUI characterName;
-    public Image healthPanel;
     [SerializeField] private GameObject floatingText;
+
+    [Header("Other Player HUD")]
+    [SerializeField] private TextMeshProUGUI hpValueUi;
+    public Image playerAvatar;
+    [HideInInspector] public Color32 playerAvatarOriginalColor;
+    [HideInInspector] public Color32 playerAvatarTargetColor;
+
+    [Header("Other Enemy HUD")]
+    public Image healthPanel;
+    [HideInInspector] public Color32 healthPanelOriginalColor;
+    [HideInInspector] public Color32 healthPanelHoverColor;
+    [HideInInspector] public Color32 healthPanelTargetColor;
 
     [Header("Stats")]
     public float maxHealth;
@@ -56,8 +63,21 @@ public class CharacterStats : MonoBehaviour
         health = maxHealth;
         healthBarFill.fillAmount = health / maxHealth;
 
-        if (characterName != null) characterName.text = gameObject.name.ToString();
+        //player hud
         if (hpValueUi != null) hpValueUi.text = health.ToString();
+        if (playerAvatar != null)
+        {
+            playerAvatarOriginalColor = playerAvatar.color;
+            playerAvatarTargetColor = new Color32(120, 255, 120, 255);
+        }
+
+        //enemy hud
+        if (healthPanel != null)
+        {
+            healthPanelOriginalColor = healthPanel.color;
+            healthPanelHoverColor = new Color32(100, 100, 100, 200);
+            healthPanelTargetColor = new Color32(255, 0, 0, 200);
+        }
 
         //status effect
         checkedStatus = false;
@@ -77,7 +97,6 @@ public class CharacterStats : MonoBehaviour
         }
 
         health = 0;
-        characterHpHud.SetActive(false);
         gameObject.tag = "Dead";
         //animator.Play("Death");
 
@@ -86,8 +105,9 @@ public class CharacterStats : MonoBehaviour
         battleManager.originalTurnOrderList.Remove(this);
         battleManager.UpdateTurnOrderUi();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
+        characterHpHud.SetActive(false);
         gameObject.SetActive(false);
     }
 
@@ -316,4 +336,22 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
     }
+
+    #region Mouse Detection on Enemy
+    private void OnMouseEnter()
+    {
+        if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
+        {
+            healthPanel.color = healthPanelHoverColor;
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
+        {
+            healthPanel.color = healthPanelOriginalColor;
+        }
+    }
+    #endregion
 }

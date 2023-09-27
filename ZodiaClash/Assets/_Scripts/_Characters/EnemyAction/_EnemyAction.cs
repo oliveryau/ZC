@@ -16,6 +16,7 @@ public class _EnemyAction : MonoBehaviour
     [SerializeField] protected GameObject skillTextIndicator;
     public GameObject turnIndicator;
     public GameObject targetIndicator;
+    [HideInInspector] public bool enemyStartTurn;
     protected int originalSort;
 
     [Header("Skill Selection")]
@@ -45,9 +46,6 @@ public class _EnemyAction : MonoBehaviour
     protected bool enemyEndingTurn;
     protected bool checkingStatus;
 
-    [Header("Status Effects")]
-    [HideInInspector] public int bleedCounts;
-
     private void Start()
     {
         enemyState = EnemyState.WAITING;
@@ -56,16 +54,9 @@ public class _EnemyAction : MonoBehaviour
 
         moveSpeed = 50f;
         startPosition = transform.position;
-        movingToTarget = false;
-        movingToStart = false;
-        reachedTarget = false;
-        reachedStart = false;
 
         battleManager = FindObjectOfType<BattleManager>();
         characterStats = GetComponent<CharacterStats>();
-        enemyAttacking = false;
-        enemyEndingTurn = false;
-        checkingStatus = false;
     }
 
     protected void EnemyRefreshTargets()
@@ -191,13 +182,13 @@ public class _EnemyAction : MonoBehaviour
         {
             turnIndicator.SetActive(true);
 
-            characterStats.healthPanel.color = Color.black;
+            characterStats.healthPanel.color = characterStats.healthPanelTargetColor;
         }
         else if (!display)
         {
             turnIndicator.SetActive(false);
 
-            characterStats.healthPanel.color = Color.clear;
+            characterStats.healthPanel.color = characterStats.healthPanelOriginalColor;
         }
     }
 
