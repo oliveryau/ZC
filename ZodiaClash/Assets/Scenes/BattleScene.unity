@@ -2242,10 +2242,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1500535034}
     - target: {fileID: 58012474279397109, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
-      propertyPath: characterName
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 58012474279397109, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthBarFill
       value: 
       objectReference: {fileID: 795844528}
@@ -2310,10 +2306,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 167566907}
     - target: {fileID: 7224059384418490618, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
-      propertyPath: characterName
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224059384418490618, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthBarFill
       value: 
       objectReference: {fileID: 1871615549}
@@ -2333,10 +2325,6 @@ PrefabInstance:
       propertyPath: healthPanel
       value: 
       objectReference: {fileID: 643516429}
-    - target: {fileID: 9049739051425123833, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
-      propertyPath: characterName
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 9049739051425123833, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthBarFill
       value: 

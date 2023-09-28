@@ -15,6 +15,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private GameObject characterHpHud;
     [SerializeField] private Image healthBarFill;
     public Transform statusEffectPanel;
+    [SerializeField] private GameObject characterName;
     [SerializeField] private GameObject floatingText;
 
     [Header("Other Player HUD")]
@@ -61,6 +62,9 @@ public class CharacterStats : MonoBehaviour
 
         //hp
         health = maxHealth;
+
+        //hud
+        characterName.GetComponent<TextMeshPro>().text = gameObject.name;
         healthBarFill.fillAmount = health / maxHealth;
 
         //player hud
@@ -340,6 +344,8 @@ public class CharacterStats : MonoBehaviour
     #region Mouse Detection on Enemy
     private void OnMouseEnter()
     {
+        characterName.SetActive(true);
+
         if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
         {
             healthPanel.color = healthPanelHoverColor;
@@ -348,6 +354,8 @@ public class CharacterStats : MonoBehaviour
 
     private void OnMouseExit()
     {
+        characterName.SetActive(false);
+
         if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
         {
             healthPanel.color = healthPanelOriginalColor;
