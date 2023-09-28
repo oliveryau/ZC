@@ -380,7 +380,7 @@ public class _StatusEffectHud : MonoBehaviour
                 {
                     GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
 
-                    if (!status.CompareTag("Enrage") || !status.CompareTag("Armor"))
+                    if (status.CompareTag("Bleed") || status.CompareTag("Shatter") || status.CompareTag("Stun") || status.CompareTag("Taunt"))
                     {
                         Destroy(status);
                     }

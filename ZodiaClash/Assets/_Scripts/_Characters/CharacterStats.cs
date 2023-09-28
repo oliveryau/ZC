@@ -6,6 +6,7 @@ using TMPro;
 
 public class CharacterStats : MonoBehaviour
 {
+    private GameManager gameManager;
     private BattleManager battleManager;
     private _StatusEffectHud statusEffectHud;
     private Animator animator;
@@ -56,6 +57,7 @@ public class CharacterStats : MonoBehaviour
 
     private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         battleManager = FindObjectOfType<BattleManager>();
         statusEffectHud = FindObjectOfType<_StatusEffectHud>();
         animator = GetComponent<Animator>();
@@ -64,8 +66,8 @@ public class CharacterStats : MonoBehaviour
         health = maxHealth;
 
         //hud
-        characterName.GetComponent<TextMeshPro>().text = gameObject.name;
         healthBarFill.fillAmount = health / maxHealth;
+        NameCheck();
 
         //player hud
         if (hpValueUi != null) hpValueUi.text = health.ToString();
@@ -85,6 +87,17 @@ public class CharacterStats : MonoBehaviour
 
         //status effect
         checkedStatus = false;
+    }
+
+    private void NameCheck()
+    {
+        TextMeshPro charaName = characterName.GetComponent<TextMeshPro>();
+        charaName.text = gameObject.name;
+
+        if (gameObject.CompareTag("Enemy") && charaName.text.Contains("Guard"))
+        {
+            charaName.text = "Jade Guard";
+        }
     }
 
     private IEnumerator Death()
@@ -229,6 +242,7 @@ public class CharacterStats : MonoBehaviour
     }
     #endregion
 
+    #region Status Effects
     public IEnumerator CheckStatusEffects()
     {
         //debuffs
@@ -340,25 +354,32 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
     }
+    #endregion
 
-    #region Mouse Detection on Enemy
+    #region Mouse Detection
     private void OnMouseEnter()
     {
-        characterName.SetActive(true);
-
-        if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
+        if (gameManager.gameState == GameState.PLAY)
         {
-            healthPanel.color = healthPanelHoverColor;
+            characterName.SetActive(true);
+
+            if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
+            {
+                healthPanel.color = healthPanelHoverColor;
+            }
         }
     }
 
     private void OnMouseExit()
     {
-        characterName.SetActive(false);
-
-        if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
+        if (gameManager.gameState == GameState.PLAY)
         {
-            healthPanel.color = healthPanelOriginalColor;
+            characterName.SetActive(false);
+
+            if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
+            {
+                healthPanel.color = healthPanelOriginalColor;
+            }
         }
     }
     #endregion

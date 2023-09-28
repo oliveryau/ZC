@@ -102,6 +102,11 @@ public class GameManager : MonoBehaviour
         isPaused = false;
     }
 
+    public void RestartBattle()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void ExitBattle()
     {
         isPaused = false;
