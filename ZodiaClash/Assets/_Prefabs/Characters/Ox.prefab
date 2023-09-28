@@ -127,7 +127,7 @@ SpriteRenderer:
   m_SortingLayerID: -1722746847
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 07a64473ce17122449575edf028b011b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 28571973df651d64494f2e0402dd7432, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -212,11 +212,23 @@ MonoBehaviour:
   statusEffectPanel: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
   hpValueUi: {fileID: 0}
-  characterName: {fileID: 0}
+  playerAvatar: {fileID: 0}
+  playerAvatarOriginalColor:
+    serializedVersion: 2
+    rgba: 0
+  playerAvatarTargetColor:
+    serializedVersion: 2
+    rgba: 0
   healthPanel: {fileID: 0}
-  healthPanelOriginalColor: {r: 0, g: 0, b: 0, a: 0}
-  healthPanelHoverColor: {r: 0, g: 0, b: 0, a: 0}
-  healthPanelTargetColor: {r: 0, g: 0, b: 0, a: 0}
+  healthPanelOriginalColor:
+    serializedVersion: 2
+    rgba: 0
+  healthPanelHoverColor:
+    serializedVersion: 2
+    rgba: 0
+  healthPanelTargetColor:
+    serializedVersion: 2
+    rgba: 0
   maxHealth: 100
   health: 100
   attack: 10
@@ -264,7 +276,6 @@ MonoBehaviour:
   playerTargets: []
   enemyTargets: []
   selectedTarget: {fileID: 0}
-  selectingTarget: 0
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}
   aoeTargetPosition: {fileID: 0}

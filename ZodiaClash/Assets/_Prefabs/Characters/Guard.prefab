@@ -125,7 +125,7 @@ SpriteRenderer:
   m_SortingLayerID: -1722746847
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 87bf3ed8148ed654482dea5e76d68f1a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 017e63cc934992a4099467da1cf3470d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -204,14 +204,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1304055b5b8c96f4b9742bc8508b25c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uniqueCharacterAvatar: {fileID: 21300000, guid: 166ba14ce09ca5846af7be0aa0ea0093, type: 3}
   characterHpHud: {fileID: 0}
   healthBarFill: {fileID: 0}
   statusEffectPanel: {fileID: 0}
-  uniqueCharacterAvatar: {fileID: 21300000, guid: 166ba14ce09ca5846af7be0aa0ea0093, type: 3}
-  hpValueUi: {fileID: 0}
-  characterName: {fileID: 0}
-  healthPanel: {fileID: 0}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
+  hpValueUi: {fileID: 0}
+  playerAvatar: {fileID: 0}
+  playerAvatarOriginalColor:
+    serializedVersion: 2
+    rgba: 0
+  playerAvatarTargetColor:
+    serializedVersion: 2
+    rgba: 0
+  healthPanel: {fileID: 0}
+  healthPanelOriginalColor:
+    serializedVersion: 2
+    rgba: 0
+  healthPanelHoverColor:
+    serializedVersion: 2
+    rgba: 0
+  healthPanelTargetColor:
+    serializedVersion: 2
+    rgba: 0
   maxHealth: 80
   health: 80
   attack: 15
@@ -244,6 +259,7 @@ MonoBehaviour:
   skillTextIndicator: {fileID: 0}
   turnIndicator: {fileID: 8402745814470872068}
   targetIndicator: {fileID: 611685546994801581}
+  enemyStartTurn: 0
   skill1Prefab: {fileID: 7212366318642619022}
   skill2Prefab: {fileID: 0}
   skill3Prefab: {fileID: 0}
@@ -254,7 +270,6 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}
   aoeTargetPosition: {fileID: 0}
-  bleedCounts: 0
 --- !u!1001 &2155880667090977777
 PrefabInstance:
   m_ObjectHideFlags: 0
