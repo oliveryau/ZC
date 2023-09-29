@@ -73,6 +73,7 @@ public class _EnemyAction : MonoBehaviour
         }
         else
         {
+            #region Set Position
             if (transform.position == startPosition)
             {
                 reachedStart = true;
@@ -84,7 +85,9 @@ public class _EnemyAction : MonoBehaviour
                 reachedTarget = true;
                 reachedStart = false;
             }
+            #endregion
 
+            #region Moving to Target
             if (movingToTarget && !movingToStart)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, moveSpeed * Time.deltaTime);
@@ -98,6 +101,8 @@ public class _EnemyAction : MonoBehaviour
                     EnemyAttackAnimation();
                 }
             }
+            #endregion
+            #region Moving back to Start
             else if (movingToStart && !movingToTarget)
             {
                 transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
@@ -111,6 +116,7 @@ public class _EnemyAction : MonoBehaviour
                     enemyEndingTurn = true;
                 }
             }
+            #endregion
         }
     }
 
@@ -181,13 +187,11 @@ public class _EnemyAction : MonoBehaviour
         if (display)
         {
             turnIndicator.SetActive(true);
-
             characterStats.healthPanel.color = characterStats.healthPanelTargetColor;
         }
         else if (!display)
         {
             turnIndicator.SetActive(false);
-
             characterStats.healthPanel.color = characterStats.healthPanelOriginalColor;
         }
     }

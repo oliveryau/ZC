@@ -52,7 +52,7 @@ MonoBehaviour:
   critRate: 0.5
   critMultiplier: 1.5
   critCheck: 0
-  tauntRate: 0.3
+  tauntRate: 1
   tauntTurns: 1
   armorPercent: 50
   armorTurns: 2

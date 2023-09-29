@@ -359,7 +359,7 @@ public class CharacterStats : MonoBehaviour
     #region Mouse Detection
     private void OnMouseEnter()
     {
-        if (gameManager.gameState == GameState.PLAY)
+        if (gameManager.gameState == GameState.PLAY && battleManager.battleState != BattleState.NEWGAME)
         {
             characterName.SetActive(true);
 
@@ -372,7 +372,7 @@ public class CharacterStats : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (gameManager.gameState == GameState.PLAY)
+        if (gameManager.gameState == GameState.PLAY && battleManager.battleState != BattleState.NEWGAME)
         {
             characterName.SetActive(false);
 

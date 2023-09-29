@@ -14,8 +14,6 @@ public class C_AoeTaunt : AoeAttack
     {
         //owner.GetComponent<Animator>().Play(animationName);
 
-        base.Attack(targets);
-
         Taunt(targets);
 
         Armor();
@@ -31,6 +29,7 @@ public class C_AoeTaunt : AoeAttack
     {
         Defense armor = FindObjectOfType<Defense>();
 
+        attackerStats = owner.GetComponent<CharacterStats>();
         attackerStats.BuffText(armorPercent, "armor");
 
         if (attackerStats.armorCounter <= 0) //dont overstack defense
@@ -42,7 +41,7 @@ public class C_AoeTaunt : AoeAttack
         statusEffect.SpawnEffectsBar(attackerStats, armorTurns, "armor");
 
         attackerStats.armorCounter += armorTurns;
-        if (attackerStats.armorCounter > armor.armorLimit)
+        if (attackerStats.armorCounter > armor.armorLimit) //dont overstack armor
         {
             attackerStats.armorCounter = armor.armorLimit;
         }

@@ -15,15 +15,15 @@ public class OxAction : _PlayerAction
 
         if (selectedSkillPrefab == skill1Prefab)
         {
-            TargetSelectionUi(true, "enemy", characterStats.tauntCounter > 0);
+            TargetSelectionUi(true, "enemy", "taunt"); //single target
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
-            TargetSelectionUi(true, "enemy");
+            TargetSelectionUi(true, "enemy", "taunt"); //single target
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
-            TargetSelectionUi(true, "enemy");
+            TargetSelectionUi(true, "ally", "taunt"); //self target
         }
     }
 
@@ -47,10 +47,7 @@ public class OxAction : _PlayerAction
                         }
                         else
                         {
-                            //can only target taunted character
-
                             selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
                             selectedTarget.GetComponent<CharacterStats>().healthPanel.color = selectedTarget.GetComponent<CharacterStats>().healthPanelTargetColor;
 
                             if (Input.GetMouseButtonDown(0))
@@ -60,15 +57,42 @@ public class OxAction : _PlayerAction
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
-
                                 selectedTarget.GetComponent<CharacterStats>().healthPanel.color = selectedTarget.GetComponent<CharacterStats>().healthPanelOriginalColor;
+                            }
+                        }
+                    }
+                }
+                else if (selectedSkillPrefab == skill2Prefab) //single targeting
+                {
+                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                    {
+                        if (hit.collider.gameObject != selectedTarget.gameObject)
+                        {
+                            selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
+                        }
+                        else
+                        {
+                            selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                            selectedTarget.GetComponent<CharacterStats>().healthPanel.color = selectedTarget.GetComponent<CharacterStats>().healthPanelTargetColor;
+
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                if (playerChi.currentChi >= skill2ChiCost)
+                                {
+                                    playerChi.UseChi(skill2ChiCost);
+
+                                    playerState = PlayerState.ATTACKING;
+
+                                    TargetSelectionUi(false, null);
+                                    selectedTarget.GetComponent<CharacterStats>().healthPanel.color = selectedTarget.GetComponent<CharacterStats>().healthPanelOriginalColor;
+                                }
                             }
                         }
                     }
                 }
             }
             #endregion
-            #region Normal Targeting Behaviour
+            #region Non-Taunted Behaviour
             else if (characterStats.tauntCounter <= 0)
             {
                 if (selectedSkillPrefab == skill1Prefab) //single targeting
@@ -86,7 +110,6 @@ public class OxAction : _PlayerAction
                             playerState = PlayerState.ATTACKING;
 
                             TargetSelectionUi(false, null);
-
                             hit.collider.GetComponent<CharacterStats>().healthPanel.color = hit.collider.GetComponent<CharacterStats>().healthPanelOriginalColor;
                         }
                     }
@@ -108,21 +131,29 @@ public class OxAction : _PlayerAction
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
-
                                 hit.collider.GetComponent<CharacterStats>().healthPanel.color = hit.collider.GetComponent<CharacterStats>().healthPanelOriginalColor;
                             }
                         }
                     }
                 }
-                else if (selectedSkillPrefab == skill3Prefab) //aoe targeting
+            }
+            #endregion
+
+            #region Unaffected Taunt Skill Behaviour
+            if (selectedSkillPrefab == skill3Prefab) //self targeting
+            {
+                if (hit.collider != null && hit.collider.CompareTag("Player"))
                 {
-                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                    #region Only Target Self
+                    if (hit.collider.gameObject != this.gameObject)
                     {
-                        foreach (GameObject enemy in enemyTargets)
-                        {
-                            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-                            enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelTargetColor;
-                        }
+                        hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(false);
+                    }
+                    #endregion
+                    else
+                    {
+                        hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(true);
+                        hit.collider.GetComponent<CharacterStats>().playerAvatar.color = hit.collider.GetComponent<CharacterStats>().playerAvatarTargetColor;
 
                         if (Input.GetMouseButtonDown(0))
                         {
@@ -133,11 +164,7 @@ public class OxAction : _PlayerAction
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
-
-                                foreach (GameObject enemy in enemyTargets)
-                                {
-                                    enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
-                                }
+                                hit.collider.GetComponent<CharacterStats>().playerAvatar.color = hit.collider.GetComponent<CharacterStats>().playerAvatarOriginalColor;
                             }
                         }
                     }
@@ -153,6 +180,12 @@ public class OxAction : _PlayerAction
                     enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
                     enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
                 }
+
+                foreach (GameObject player in playerTargets)
+                {
+                    player.GetComponent<_PlayerAction>().HighlightTargetIndicator(false);
+                    player.GetComponent<CharacterStats>().playerAvatar.color = player.GetComponent<CharacterStats>().playerAvatarOriginalColor;
+                }
             }
             #endregion
         }
@@ -162,27 +195,36 @@ public class OxAction : _PlayerAction
     {
         playerAttacking = true;
 
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that require movement
+        #region Movement Skills
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab)
         {
-            if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab)
-            {
-                targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
-            }
-            else if (selectedSkillPrefab == skill3Prefab)
-            {
-                targetPosition = aoeTargetPosition;
-            }
+            targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
 
             movingToTarget = true; //movement is triggered
         }
+        #endregion
+        #region Non-Movement Skills
+        else if (selectedSkillPrefab == skill3Prefab)
+        {
+            AttackAnimation();
+        }
+        #endregion
     }
 
     protected override void AttackAnimation()
     {
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
+        #region Movement Skills
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab)
         {
             StartCoroutine(AttackStartDelay(0.5f, 1f));
         }
+        #endregion
+        #region Non-Movement Skills
+        else if (selectedSkillPrefab = skill3Prefab)
+        {
+            StartCoroutine(BuffStartDelay(0.5f, 1f));
+        }
+        #endregion
     }
 
     protected override void ApplySkill()

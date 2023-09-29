@@ -9,6 +9,7 @@ public class GuardAction : _EnemyAction
         UpdateEnemyState();
     }
 
+    #region Guard State
     protected override void UpdateEnemyState()
     {
         if (battleManager.battleState == BattleState.ENEMYTURN && battleManager.activeEnemy == gameObject.name)
@@ -125,6 +126,7 @@ public class GuardAction : _EnemyAction
             }
         }
     }
+    #endregion
 
     protected override void EnemySelectSkill()
     {
@@ -155,20 +157,24 @@ public class GuardAction : _EnemyAction
     {
         enemyAttacking = true;
 
-        if (selectedSkillPrefab == skill1Prefab) //skills that require movement
+        #region Movement Skills
+        if (selectedSkillPrefab == skill1Prefab)
         {
-            targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform; //single target
+            targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
 
-            movingToTarget = true; //movement is triggered
+            movingToTarget = true;
         }
+        #endregion
     }
 
     protected override void EnemyAttackAnimation()
     {
+        #region Movement Skills
         if (selectedSkillPrefab == skill1Prefab)
         {
             StartCoroutine(EnemyAttackStartDelay(0.5f, 1f));
         }
+        #endregion
     }
 
     protected override void EnemyApplySkill()

@@ -15,15 +15,15 @@ public class GoatAction : _PlayerAction
 
         if (selectedSkillPrefab == skill1Prefab)
         {
-            TargetSelectionUi(true, "enemy", characterStats.tauntCounter > 0);
+            TargetSelectionUi(true, "enemy", "taunt"); //single target
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
-            TargetSelectionUi(true, "ally", true);
+            TargetSelectionUi(true, "ally", "speedBuff"); //ally target excluding self
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
-            TargetSelectionUi(true, "ally");
+            TargetSelectionUi(true, "ally"); //ally target
         }
     }
 
@@ -47,10 +47,7 @@ public class GoatAction : _PlayerAction
                         }
                         else
                         {
-                            //can only target taunted character
-
                             selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
                             selectedTarget.GetComponent<CharacterStats>().healthPanel.color = selectedTarget.GetComponent<CharacterStats>().healthPanelTargetColor;
 
                             if (Input.GetMouseButtonDown(0))
@@ -60,7 +57,6 @@ public class GoatAction : _PlayerAction
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
-
                                 selectedTarget.GetComponent<CharacterStats>().healthPanel.color = selectedTarget.GetComponent<CharacterStats>().healthPanelOriginalColor;
                             }
                         }
@@ -76,7 +72,6 @@ public class GoatAction : _PlayerAction
                     if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
                         hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-
                         hit.collider.GetComponent<CharacterStats>().healthPanel.color = hit.collider.GetComponent<CharacterStats>().healthPanelTargetColor;
 
                         if (Input.GetMouseButtonDown(0))
@@ -87,65 +82,63 @@ public class GoatAction : _PlayerAction
                             playerState = PlayerState.ATTACKING;
 
                             TargetSelectionUi(false, null);
-
                             hit.collider.GetComponent<CharacterStats>().healthPanel.color = hit.collider.GetComponent<CharacterStats>().healthPanelOriginalColor;
                         }
                     }
                 }
-                else if (selectedSkillPrefab == skill2Prefab) //ally targeting
+            }
+            #endregion
+
+            #region Unaffected Taunt Skill Behaviour
+            if (selectedSkillPrefab == skill2Prefab) //ally targeting excluding self
+            {
+                if (hit.collider != null && hit.collider.CompareTag("Player"))
                 {
-                    if (hit.collider != null && hit.collider.CompareTag("Player"))
+                    #region Cannot Target Itself
+                    if (hit.collider.gameObject == this.gameObject)
                     {
-                        #region Cannot Target Itself
-                        if (hit.collider.gameObject == this.gameObject)
-                        {
-                            hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(false);
-                        }
-                        #endregion
-                        else
-                        {
-                            hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(true);
-
-                            hit.collider.GetComponent<CharacterStats>().playerAvatar.color = hit.collider.GetComponent<CharacterStats>().playerAvatarTargetColor;
-
-                            if (Input.GetMouseButtonDown(0))
-                            {
-                                if (playerChi.currentChi >= skill2ChiCost)
-                                {
-                                    selectedTarget = hit.collider.gameObject;
-                                    playerChi.UseChi(skill2ChiCost);
-
-                                    playerState = PlayerState.ATTACKING;
-
-                                    TargetSelectionUi(false, null);
-
-                                    hit.collider.GetComponent<CharacterStats>().playerAvatar.color = hit.collider.GetComponent<CharacterStats>().playerAvatarOriginalColor;
-                                }
-                            }
-                        }
+                        hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(false);
                     }
-                }
-                else if (selectedSkillPrefab == skill3Prefab) //ally targeting
-                {
-                    if (hit.collider != null && hit.collider.CompareTag("Player"))
+                    #endregion
+                    else
                     {
                         hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(true);
-
                         hit.collider.GetComponent<CharacterStats>().playerAvatar.color = hit.collider.GetComponent<CharacterStats>().playerAvatarTargetColor;
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            if (playerChi.currentChi >= skill3ChiCost)
+                            if (playerChi.currentChi >= skill2ChiCost)
                             {
                                 selectedTarget = hit.collider.gameObject;
-                                playerChi.UseChi(skill3ChiCost);
+                                playerChi.UseChi(skill2ChiCost);
 
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
-
                                 hit.collider.GetComponent<CharacterStats>().playerAvatar.color = hit.collider.GetComponent<CharacterStats>().playerAvatarOriginalColor;
                             }
+                        }
+                    }
+                }
+            }
+            else if (selectedSkillPrefab == skill3Prefab) //ally targeting
+            {
+                if (hit.collider != null && hit.collider.CompareTag("Player"))
+                {
+                    hit.collider.GetComponent<_PlayerAction>().HighlightTargetIndicator(true);
+                    hit.collider.GetComponent<CharacterStats>().playerAvatar.color = hit.collider.GetComponent<CharacterStats>().playerAvatarTargetColor;
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        if (playerChi.currentChi >= skill3ChiCost)
+                        {
+                            selectedTarget = hit.collider.gameObject;
+                            playerChi.UseChi(skill3ChiCost);
+
+                            playerState = PlayerState.ATTACKING;
+
+                            TargetSelectionUi(false, null);
+                            hit.collider.GetComponent<CharacterStats>().playerAvatar.color = hit.collider.GetComponent<CharacterStats>().playerAvatarOriginalColor;
                         }
                     }
                 }
@@ -175,28 +168,36 @@ public class GoatAction : _PlayerAction
     {
         playerAttacking = true;
 
-        if (selectedSkillPrefab == skill1Prefab) //skills that require movement
+        #region Movement Skills
+        if (selectedSkillPrefab == skill1Prefab)
         {
             targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
 
-            movingToTarget = true; //movement is triggered
+            movingToTarget = true;
         }
+        #endregion
+        #region Non-Movement Skills
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
             AttackAnimation();
         }
+        #endregion
     }
 
     protected override void AttackAnimation()
     {
+        #region Movement Skills
         if (selectedSkillPrefab == skill1Prefab)
         {
             StartCoroutine(AttackStartDelay(0.5f, 1f));
         }
+        #endregion
+        #region Non-Movement Skills
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
             StartCoroutine(BuffStartDelay(0.5f, 1f));
         }
+        #endregion
     }
 
     protected override void ApplySkill()

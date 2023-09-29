@@ -13,11 +13,11 @@ public class CatAction : _PlayerAction
     {
         base.SelectSkill(btn);
 
-        if (selectedSkillPrefab == skill1Prefab)
+        if (selectedSkillPrefab == skill1Prefab) //single target
         {
-            TargetSelectionUi(true, "enemy", characterStats.tauntCounter > 0);
+            TargetSelectionUi(true, "enemy", "taunt");
         }
-        else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe
+        else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe target
         {
             TargetSelectionUi(true, "enemy");
         }
@@ -43,8 +43,6 @@ public class CatAction : _PlayerAction
                         }
                         else
                         {
-                            //can only target taunted character
-
                             selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
                             selectedTarget.GetComponent<CharacterStats>().healthPanel.color = selectedTarget.GetComponent<CharacterStats>().healthPanelTargetColor;
 
@@ -55,7 +53,6 @@ public class CatAction : _PlayerAction
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
-
                                 selectedTarget.GetComponent<CharacterStats>().healthPanel.color = selectedTarget.GetComponent<CharacterStats>().healthPanelOriginalColor;
                             }
                         }
@@ -81,63 +78,63 @@ public class CatAction : _PlayerAction
                             playerState = PlayerState.ATTACKING;
 
                             TargetSelectionUi(false, null);
-
                             hit.collider.GetComponent<CharacterStats>().healthPanel.color = hit.collider.GetComponent<CharacterStats>().healthPanelOriginalColor;
                         }
                     }
                 }
-                else if (selectedSkillPrefab == skill2Prefab) //aoe targeting
+            }
+            #endregion
+
+            #region Unaffected Taunt Skill Behaviour
+            if (selectedSkillPrefab == skill2Prefab) //aoe targeting
+            {
+                if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                 {
-                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                    foreach (GameObject enemy in enemyTargets)
                     {
-                        foreach (GameObject enemy in enemyTargets)
-                        {
-                            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-                            enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelTargetColor;
-                        }
+                        enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                        enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelTargetColor;
+                    }
 
-                        if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        if (playerChi.currentChi >= skill2ChiCost)
                         {
-                            if (playerChi.currentChi >= skill2ChiCost)
+                            playerChi.UseChi(skill2ChiCost);
+
+                            playerState = PlayerState.ATTACKING;
+
+                            TargetSelectionUi(false, null);
+                            foreach (GameObject enemy in enemyTargets)
                             {
-                                playerChi.UseChi(skill2ChiCost);
-
-                                playerState = PlayerState.ATTACKING;
-
-                                TargetSelectionUi(false, null);
-
-                                foreach (GameObject enemy in enemyTargets)
-                                {
-                                    enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
-                                }
+                                enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
                             }
                         }
                     }
                 }
-                else if (selectedSkillPrefab == skill3Prefab) //aoe targeting
+            }
+            else if (selectedSkillPrefab == skill3Prefab) //aoe targeting
+            {
+                if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                 {
-                    if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+                    foreach (GameObject enemy in enemyTargets)
                     {
-                        foreach (GameObject enemy in enemyTargets)
-                        {
-                            enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-                            enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelTargetColor;
-                        }
+                        enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
+                        enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelTargetColor;
+                    }
 
-                        if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        if (playerChi.currentChi >= skill3ChiCost)
                         {
-                            if (playerChi.currentChi >= skill3ChiCost)
+                            playerChi.UseChi(skill3ChiCost);
+
+                            playerState = PlayerState.ATTACKING;
+
+                            TargetSelectionUi(false, null);
+                            foreach (GameObject enemy in enemyTargets)
                             {
-                                playerChi.UseChi(skill3ChiCost);
-
-                                playerState = PlayerState.ATTACKING;
-
-                                TargetSelectionUi(false, null);
-
-                                foreach (GameObject enemy in enemyTargets)
-                                {
-                                    enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
-                                }
+                                enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
                             }
                         }
                     }
@@ -162,27 +159,31 @@ public class CatAction : _PlayerAction
     {
         playerAttacking = true;
 
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //skills that require movement
+        #region Movement Skills
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
-            if (selectedSkillPrefab == skill1Prefab) //single target
+            if (selectedSkillPrefab == skill1Prefab)
             {
                 targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
             }
-            else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe attack
+            else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
             {
-                targetPosition = aoeTargetPosition;
+                targetPosition = aoeTargetPosition; //aoe target pos
             }
 
             movingToTarget = true; //movement is triggered
         }
+        #endregion
     }
 
     protected override void AttackAnimation()
     {
+        #region Movement Skills
         if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
             StartCoroutine(AttackStartDelay(0.5f, 1f));
         }
+        #endregion
     }
 
     protected override void ApplySkill()

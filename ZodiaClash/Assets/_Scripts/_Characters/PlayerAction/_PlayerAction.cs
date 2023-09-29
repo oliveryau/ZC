@@ -186,6 +186,7 @@ public class _PlayerAction : MonoBehaviour
         }
         else
         {
+            #region Set Position
             if (transform.position == startPosition)
             {
                 reachedStart = true;
@@ -197,7 +198,9 @@ public class _PlayerAction : MonoBehaviour
                 reachedTarget = true;
                 reachedStart = false;
             }
+            #endregion
 
+            #region Moving to Attack
             if (movingToTarget && !movingToStart)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, moveSpeed * Time.deltaTime);
@@ -211,6 +214,8 @@ public class _PlayerAction : MonoBehaviour
                     AttackAnimation();
                 }
             }
+            #endregion
+            #region Moving back to Start
             else if (movingToStart && !movingToTarget)
             {
                 transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
@@ -224,6 +229,7 @@ public class _PlayerAction : MonoBehaviour
                     endingTurn = true;
                 }
             }
+            #endregion
         }
     }
 
@@ -306,12 +312,7 @@ public class _PlayerAction : MonoBehaviour
             skill2ChiCostUi.text = skill2ChiCost.ToString();
             skill3ChiCostUi.text = skill3ChiCost.ToString();
 
-            if (characterStats.tauntCounter > 0)
-            {
-                skill2Enable.interactable = false;
-                skill3Enable.interactable = false;
-            }
-            else if (playerChi.currentChi < skill2ChiCost)
+            if (playerChi.currentChi < skill2ChiCost)
             {
                 skill2Enable.interactable = false;
             }
@@ -338,22 +339,42 @@ public class _PlayerAction : MonoBehaviour
         }
     }
 
-    protected void TargetSelectionUi(bool display, string targets, bool special = false)
+    protected void TargetSelectionUi(bool display, string targets, string effect = null)
     {
         if (display)
         {
-            if (targets == "ally") //show ally targeting
+            #region Ally Targeting
+            if (targets == "ally")
             {
                 foreach (GameObject player in playerTargets)
                 {
                     player.GetComponent<_PlayerAction>().targetIndicator.SetActive(true);
 
-                    #region Cannot Target Itself
-                    if (special) //cannot target itself
+                    #region Ally Special Targeting
+                    if (effect != null)
                     {
-                        if (player == this.gameObject)
+                        switch (effect)
                         {
-                            player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
+                            case "speedBuff":
+
+                                if (player == this.gameObject)
+                                {
+                                    player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
+                                }
+                                break;
+
+                            case "taunt":
+
+                                if (player != this.gameObject)
+                                {
+                                    player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
+                                }
+
+                                break;
+
+                            default:
+                                Debug.LogError("No effects found");
+                                break;
                         }
                     }
                     #endregion
@@ -365,23 +386,36 @@ public class _PlayerAction : MonoBehaviour
                 }
 
             }
+            #endregion
+            #region Enemy Targeting
             else if (targets == "enemy") //show enemy targeting
             {
                 foreach (GameObject enemy in enemyTargets)
                 {
                     enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
 
-                    #region Target Only Taunted Character
-                    if (special) // taunted
+                    #region Enemy Special Targeting
+                    if (effect != null)
                     {
-                        if (enemy == selectedTarget)
+                        switch (effect)
                         {
-                            enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(true);
+                            case "taunt":
+
+                                if (characterStats.tauntCounter > 0)
+                                {
+                                    if (enemy != selectedTarget)
+                                    {
+                                        enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
+                                    }
+                                }
+
+                                break;
+
+                            default:
+                                Debug.LogError("No effects found");
+                                break;
                         }
-                        else
-                        {
-                            enemy.GetComponent<_EnemyAction>().targetIndicator.SetActive(false);
-                        }
+
                     }
                     #endregion
                 }
@@ -390,8 +424,8 @@ public class _PlayerAction : MonoBehaviour
                 {
                     player.GetComponent<_PlayerAction>().targetIndicator.SetActive(false);
                 }
-
             }
+            #endregion
         }
         else if (!display)
         {
