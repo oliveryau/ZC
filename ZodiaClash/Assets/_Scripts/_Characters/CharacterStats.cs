@@ -81,7 +81,7 @@ public class CharacterStats : MonoBehaviour
         if (healthPanel != null)
         {
             healthPanelOriginalColor = healthPanel.color;
-            healthPanelHoverColor = new Color32(100, 100, 100, 200);
+            healthPanelHoverColor = new Color32(50, 50, 50, 200);
             healthPanelTargetColor = new Color32(255, 0, 0, 200);
         }
 
