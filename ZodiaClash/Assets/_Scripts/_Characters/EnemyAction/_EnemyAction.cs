@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum EnemyState
 {
-    WAITING, CHECKSTATUS, SKILLSELECT, TARGETING, ATTACKING, ENDING
+    WAITING, CHECKSTATUS, SELECTION, ATTACKING, ENDING, DYING
 }
 
 public class _EnemyAction : MonoBehaviour
@@ -42,6 +42,7 @@ public class _EnemyAction : MonoBehaviour
 
     protected BattleManager battleManager;
     protected CharacterStats characterStats;
+    protected Animator animator;
     protected bool enemyAttacking;
     protected bool enemyEndingTurn;
     protected bool checkingStatus;
@@ -57,12 +58,28 @@ public class _EnemyAction : MonoBehaviour
 
         battleManager = FindObjectOfType<BattleManager>();
         characterStats = GetComponent<CharacterStats>();
+        animator = GetComponent<Animator>();
+    }
+
+    protected virtual void UpdateEnemyState()
+    {
+        //unique enemy states
     }
 
     protected void EnemyRefreshTargets()
     {
         enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
         playerTargets = GameObject.FindGameObjectsWithTag("Player");
+    }
+
+    protected virtual void EnemySelection()
+    {
+        //select targets first, then select skill based on targets
+    }
+
+    protected virtual void EnemyUseSkill()
+    {
+        //check if movement is needed, else play EnemyAttackAnimation()
     }
 
     protected void EnemyMovement()
@@ -120,26 +137,6 @@ public class _EnemyAction : MonoBehaviour
         }
     }
 
-    protected virtual void UpdateEnemyState()
-    {
-        //unique enemy states
-    }
-
-    protected virtual void EnemySelectSkill()
-    {
-        //do nothing
-    }
-
-    protected virtual void EnemySelectTarget()
-    {
-        //check for specific skill prefab, then proceed
-    }
-
-    protected virtual void EnemyUseSkill()
-    {
-        //check if movement is needed, else play EnemyAttackAnimation()
-    }
-
     protected virtual void EnemyAttackAnimation()
     {
         //play different attack animation timings for different skillPrefabs
@@ -150,6 +147,13 @@ public class _EnemyAction : MonoBehaviour
         //apply actual damage and effects
     }
 
+    protected virtual IEnumerator EnemyDeath()
+    {
+        //unique enemy death logic
+        yield return null;
+    }
+
+    #region Delays
     protected IEnumerator EnemyAttackStartDelay(float startDelay, float endDelay)
     {
         yield return new WaitForSeconds(startDelay); //walk delay before attacking
@@ -180,6 +184,7 @@ public class _EnemyAction : MonoBehaviour
 
         enemyState = EnemyState.ENDING;
     }
+    #endregion
 
     #region UI Toggling
     protected void EnemyToggleUi(bool display)

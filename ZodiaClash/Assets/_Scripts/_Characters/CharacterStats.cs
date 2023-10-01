@@ -13,7 +13,7 @@ public class CharacterStats : MonoBehaviour
 
     [Header("HUD")]
     public Sprite uniqueCharacterAvatar;
-    [SerializeField] private GameObject characterHpHud;
+    public GameObject characterHpHud;
     [SerializeField] private Image healthBarFill;
     public Transform statusEffectPanel;
     [SerializeField] private GameObject characterName;
@@ -62,30 +62,30 @@ public class CharacterStats : MonoBehaviour
         statusEffectHud = FindObjectOfType<_StatusEffectHud>();
         animator = GetComponent<Animator>();
 
-        //hp
+        #region HUD
         health = maxHealth;
-
-        //hud
         healthBarFill.fillAmount = health / maxHealth;
         NameCheck();
+        #endregion
 
-        //player hud
+        #region Player HUD
         if (hpValueUi != null) hpValueUi.text = health.ToString();
         if (playerAvatar != null)
         {
             playerAvatarOriginalColor = playerAvatar.color;
             playerAvatarTargetColor = new Color32(120, 255, 120, 255);
         }
+        #endregion
 
-        //enemy hud
+        #region Enemy HUD
         if (healthPanel != null)
         {
             healthPanelOriginalColor = healthPanel.color;
             healthPanelHoverColor = new Color32(50, 50, 50, 200);
             healthPanelTargetColor = new Color32(255, 0, 0, 200);
         }
+        #endregion
 
-        //status effect
         checkedStatus = false;
     }
 
@@ -100,7 +100,7 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    private IEnumerator Death()
+    private void Death()
     {
         if (gameObject.CompareTag("Player"))
         {
@@ -110,22 +110,8 @@ public class CharacterStats : MonoBehaviour
         else if (gameObject.CompareTag("Enemy"))
         {
             _EnemyAction enemy = GetComponent<_EnemyAction>();
-            enemy.enemyState = EnemyState.ENDING;
+            enemy.enemyState = EnemyState.DYING;
         }
-
-        health = 0;
-        gameObject.tag = "Dead";
-        //animator.Play("Death");
-
-        battleManager.charactersList.Remove(this);
-        battleManager.turnOrderList.Remove(this);
-        battleManager.originalTurnOrderList.Remove(this);
-        battleManager.UpdateTurnOrderUi();
-
-        yield return new WaitForSeconds(1f);
-
-        characterHpHud.SetActive(false);
-        gameObject.SetActive(false);
     }
 
     public void TakeDamage(float damage, bool critCheck, string debuff)
@@ -137,7 +123,7 @@ public class CharacterStats : MonoBehaviour
         //set damage text
         if (health <= 0)
         {
-            StartCoroutine(Death());
+            Death();
         }
         else
         {

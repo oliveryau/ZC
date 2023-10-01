@@ -43,8 +43,9 @@ public class GuardAction : _EnemyAction
                     StartCoroutine(characterStats.CheckStatusEffects());
                     checkingStatus = true;
                 }
+
                 #region Stunned
-                else if (characterStats.checkedStatus && characterStats.stunCounter > 0)
+                if (characterStats.checkedStatus && characterStats.stunCounter > 0)
                 {
                     enemyState = EnemyState.ENDING;
                     checkingStatus = false;
@@ -52,31 +53,16 @@ public class GuardAction : _EnemyAction
                 #endregion
                 else if (characterStats.checkedStatus)
                 {
-                    enemyState = EnemyState.SKILLSELECT;
+                    enemyState = EnemyState.SELECTION;
                     checkingStatus = false;
                 }
             }
 
-            else if (enemyState == EnemyState.SKILLSELECT)
+            else if (enemyState == EnemyState.SELECTION)
             {
                 EnemyRefreshTargets();
 
-                EnemySelectSkill();
-            }
-
-            else if (enemyState == EnemyState.TARGETING)
-            {
-                if (characterStats.tauntCounter <= 0)
-                {
-                    EnemySelectTarget();
-                }
-                #region Taunted Behaviour
-                else if (characterStats.tauntCounter > 0)
-                {
-                    //taunt
-                    enemyState = EnemyState.ATTACKING;
-                }
-                #endregion
+                EnemySelection();
             }
 
             else if (enemyState == EnemyState.ATTACKING)
@@ -93,10 +79,13 @@ public class GuardAction : _EnemyAction
 
             else if (enemyState == EnemyState.ENDING)
             {
-                EnemyToggleUi(false);
-                EnemyToggleSkillText(false);
+                if (characterStats.health > 0)
+                {
+                    EnemyToggleUi(false);
+                    EnemyToggleSkillText(false);
 
-                characterStats.CheckEndStatusEffects();
+                    characterStats.CheckEndStatusEffects();
+                }
 
                 battleManager.battleState = BattleState.NEXTTURN;
 
@@ -125,32 +114,35 @@ public class GuardAction : _EnemyAction
                 enemyState = EnemyState.WAITING;
             }
         }
+
+        if (this.enemyState == EnemyState.DYING)
+        {
+            StartCoroutine(EnemyDeath());
+        }
     }
     #endregion
 
-    protected override void EnemySelectSkill()
+    protected override void EnemySelection()
     {
-        if (selectedSkillPrefab == null)
+        #region Taunted Behaviour
+        if (characterStats.tauntCounter > 0)
         {
             selectedSkillPrefab = skill1Prefab;
 
-            enemyState = EnemyState.TARGETING;
+            enemyState = EnemyState.ATTACKING;
         }
-    }
-
-    protected override void EnemySelectTarget()
-    {
-        if (selectedSkillPrefab == skill1Prefab)
+        #endregion
+        else
         {
-            if (playerTargets.Length > 0)
-            {
-                int randomIndex = Random.Range(0, playerTargets.Length);
-                selectedTarget = playerTargets[randomIndex];
-                Debug.Log("Enemy Selected Target: " + selectedTarget.name);
+            int randomIndex = Random.Range(0, playerTargets.Length);
+            selectedTarget = playerTargets[randomIndex];
+            Debug.Log("Enemy Selected Target: " + selectedTarget.name);
 
-                enemyState = EnemyState.ATTACKING;
-            }
+            selectedSkillPrefab = skill1Prefab;
+
+            enemyState = EnemyState.ATTACKING;
         }
+
     }
 
     protected override void EnemyUseSkill()
@@ -186,5 +178,29 @@ public class GuardAction : _EnemyAction
         }
 
         StartCoroutine(EnemyEndTurnDelay(0.5f));
+    }
+
+    protected override IEnumerator EnemyDeath()
+    {
+        characterStats.health = 0;
+        gameObject.tag = "Dead";
+        //animator.SetTrigger("Death");
+
+        yield return new WaitForSeconds(1f);
+
+        #region Update Turn Order
+        battleManager.charactersList.Remove(characterStats);
+        battleManager.turnOrderList.Remove(characterStats);
+        battleManager.originalTurnOrderList.Remove(characterStats);
+        battleManager.UpdateTurnOrderUi();
+        #endregion
+
+        characterStats.characterHpHud.SetActive(false);
+
+        enemyState = EnemyState.ENDING;
+
+        yield return new WaitForSeconds(1f);
+
+        gameObject.SetActive(false);
     }
 }

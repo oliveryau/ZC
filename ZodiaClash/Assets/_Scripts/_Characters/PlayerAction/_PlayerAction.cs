@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public enum PlayerState
 {
-    WAITING, CHECKSTATUS, PLAYERSELECTION, ATTACKING, ENDING
+    WAITING, CHECKSTATUS, SELECTION, ATTACKING, ENDING, DYING
 }
 
 public class _PlayerAction : MonoBehaviour
@@ -112,12 +112,12 @@ public class _PlayerAction : MonoBehaviour
                 }
                 else if (characterStats.checkedStatus)
                 {
-                    playerState = PlayerState.PLAYERSELECTION;
+                    playerState = PlayerState.SELECTION;
                     checkingStatus = false;
                 }
             }
 
-            else if (playerState == PlayerState.PLAYERSELECTION)
+            else if (playerState == PlayerState.SELECTION)
             {
                 RefreshTargets();
 
@@ -178,6 +178,36 @@ public class _PlayerAction : MonoBehaviour
         enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
+    public virtual void SelectSkill(string btn)
+    {
+        //show specific target ui for specific skillPrefabs in override methods
+
+        if (btn.CompareTo("skill1") == 0)
+        {
+            selectedSkillPrefab = skill1Prefab;
+        }
+        else if (btn.CompareTo("skill2") == 0)
+        {
+            selectedSkillPrefab = skill2Prefab;
+        }
+        else if (btn.CompareTo("skill3") == 0)
+        {
+            selectedSkillPrefab = skill3Prefab;
+        }
+
+        Debug.Log("Player Skill Chosen: " + selectedSkillPrefab.name);
+    }
+
+    protected virtual void SelectTarget()
+    {
+        //check for specific skillPrefab, then userInput
+    }
+
+    protected virtual void UseSkill()
+    {
+        //check if movement is needed, else play AttackAnimation()
+    }
+
     protected void PlayerMovement()
     {
         if (!movingToTarget && !movingToStart)
@@ -192,7 +222,7 @@ public class _PlayerAction : MonoBehaviour
                 reachedStart = true;
                 reachedTarget = false;
             }
-        
+
             if (transform.position == targetPosition.position)
             {
                 reachedTarget = true;
@@ -233,36 +263,6 @@ public class _PlayerAction : MonoBehaviour
         }
     }
 
-    public virtual void SelectSkill(string btn)
-    {
-        //show specific target ui for specific skillPrefabs in override methods
-
-        if (btn.CompareTo("skill1") == 0)
-        {
-            selectedSkillPrefab = skill1Prefab;
-        }
-        else if (btn.CompareTo("skill2") == 0)
-        {
-            selectedSkillPrefab = skill2Prefab;
-        }
-        else if (btn.CompareTo("skill3") == 0)
-        {
-            selectedSkillPrefab = skill3Prefab;
-        }
-
-        Debug.Log("Player Skill Chosen: " + selectedSkillPrefab.name);
-    }
-
-    protected virtual void SelectTarget()
-    {
-        //check for specific skillPrefab, then userInput
-    }
-
-    protected virtual void UseSkill()
-    {
-        //check if movement is needed, else play AttackAnimation()
-    }
-
     protected virtual void AttackAnimation()
     {
         //customised attack animation timings for different skills
@@ -273,6 +273,7 @@ public class _PlayerAction : MonoBehaviour
         //apply actual damage and effects
     }
 
+    #region Delays
     protected IEnumerator AttackStartDelay(float startDelay, float endDelay)
     {
         yield return new WaitForSeconds(startDelay); //delay before attacking
@@ -303,6 +304,7 @@ public class _PlayerAction : MonoBehaviour
 
         playerState = PlayerState.ENDING;
     }
+    #endregion
 
     #region UI Toggling
     protected void ToggleSkillUi(bool display)
