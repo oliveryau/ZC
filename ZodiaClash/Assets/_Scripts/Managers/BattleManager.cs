@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -121,15 +122,16 @@ public class BattleManager : MonoBehaviour
                 if (characterCount < charactersList.Count)
                 {
                     activeCharacter = turnOrderList[0];
+
                     if (activeCharacter.tag == "Enemy")
                     {
                         activeEnemy = activeCharacter.gameObject.name;
                         activePlayer = null;
 
                         Debug.LogWarning("State: Enemy Turn");
-                        UpdateTurnOrderUi();
 
                         battleState = BattleState.ENEMYTURN;
+                        UpdateTurnOrderUi();
                     }
                     else if (activeCharacter.tag == "Player")
                     {
@@ -137,9 +139,9 @@ public class BattleManager : MonoBehaviour
                         activeEnemy = null;
 
                         Debug.LogWarning("State: Player Turn");
-                        UpdateTurnOrderUi();
 
                         battleState = BattleState.PLAYERTURN;
+                        UpdateTurnOrderUi();
                     }
                     ++characterCount;
                 }
@@ -151,6 +153,8 @@ public class BattleManager : MonoBehaviour
                     activeCharacter = null;
                     activeEnemy = null;
                     activePlayer = null;
+
+                    UpdateTurnOrderUi();
 
                     characterCount = 0;
                     roundInProgress = false;
@@ -204,53 +208,82 @@ public class BattleManager : MonoBehaviour
         {
             originalTurnOrderList.Add(chara);
         }
+
+        //turn order ui
+        for (int i = 0; i < turnOrderList.Count; i++)
+        {
+            CharacterStats character = turnOrderList[i];
+            GameObject avatarContainer = Instantiate(avatarContainerPrefab, avatarListContainer);
+
+            Transform avatarListChild = avatarListContainer.GetChild(i);
+            character.uniqueTurnHud = avatarListChild;
+
+            #region Character Sprite
+            Image activeCharacterImg = avatarContainer.transform.Find("Unique Avatar").GetComponent<Image>();
+            activeCharacterImg.sprite = character.uniqueCharacterAvatar;
+            #endregion
+
+            #region Colour
+            Image characterIndicator = avatarContainer.transform.Find("Unique Indicator").GetComponent<Image>();
+            if (character.gameObject.CompareTag("Player"))
+            {
+                characterIndicator.color = Color.green;
+            }
+            else if (character.gameObject.CompareTag("Enemy"))
+            {
+                characterIndicator.color = Color.red;
+            }
+            #endregion
+        }
     }
 
-    public void UpdateTurnOrderUi()
+    public void UpdateTurnOrderUi(bool death = false)
     {
-        foreach (Transform child in avatarListContainer)
+        for (int i = 0; i < turnOrderList.Count; i++)
         {
-            Destroy(child.gameObject);
-        }
+            CharacterStats character = turnOrderList[i];
 
-        if (turnOrderList.Count > 0)
-        {
-            for (int i = 0; i < turnOrderList.Count; i++)
+            Transform currentAvatarTransform = avatarListContainer.GetChild(i); //set transform to child of avatarListContainer
+
+            if (battleState == BattleState.PLAYERTURN && character.uniqueTurnHud == currentAvatarTransform)
             {
-                CharacterStats character = turnOrderList[i];
+                Debug.LogError("A");
+                break;
+            }
+            else if (battleState == BattleState.ENEMYTURN && character.uniqueTurnHud == currentAvatarTransform)
+            {
+                Debug.LogError("B");
+                break;
+            }
+            else if (character.uniqueTurnHud != currentAvatarTransform)
+            {
+                Debug.LogError("C");
+                Transform finalAvatarTransform = avatarListContainer.GetChild(turnOrderList.Count - 1);
+                Vector3 targetPosition = finalAvatarTransform.transform.position;
 
-                GameObject avatarContainer = Instantiate(avatarContainerPrefab, avatarListContainer);
+                StartCoroutine(MoveCharacterTurn(currentAvatarTransform, targetPosition));
 
-                #region Indicator Colours
-                Image characterIndicator = avatarContainer.transform.Find("Unique Indicator").GetComponent<Image>();
-                if (character.gameObject.name == activePlayer)
-                {
-                    characterIndicator.color = Color.green;
-                }
-                else if (character.gameObject.name == activeEnemy)
-                {
-                    characterIndicator.color = Color.red;
-                }
-                else
-                {
-                    characterIndicator.color = Color.white;
-                }
-                #endregion
-
-                #region Character Sprite
-                Image activeCharacterImg = avatarContainer.transform.Find("Unique Avatar").GetComponent<Image>();
-                activeCharacterImg.sprite = character.uniqueCharacterAvatar;
-                #endregion
-
-                #region Size
-                if (i == 0)
-                {
-                    float scaleFactor = 1.2f;
-                    avatarContainer.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1f);
-                }
-                #endregion
+                currentAvatarTransform.SetSiblingIndex(avatarListContainer.childCount - 1);
+                break;
             }
         }
+    }
+
+    private IEnumerator MoveCharacterTurn(Transform characterTransform, Vector3 targetPosition)
+    {
+        float duration = 0.3f;
+        float elapsedTime = 0f;
+        Vector3 startingPosition = characterTransform.position;
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            characterTransform.position = Vector3.Lerp(startingPosition, targetPosition, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        characterTransform.position = targetPosition;
     }
 
     public void SwitchTurnOrder(CharacterStats target)

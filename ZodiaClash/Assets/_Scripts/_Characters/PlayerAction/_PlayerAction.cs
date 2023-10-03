@@ -169,6 +169,11 @@ public class _PlayerAction : MonoBehaviour
                 playerState = PlayerState.WAITING;
             }
         }
+
+        if (this.playerState == PlayerState.DYING)
+        {
+            StartCoroutine(PlayerDeath());
+        }
     }
     #endregion
 
@@ -271,6 +276,29 @@ public class _PlayerAction : MonoBehaviour
     protected virtual void ApplySkill()
     {
         //apply actual damage and effects
+    }
+
+    protected IEnumerator PlayerDeath()
+    {
+        gameObject.tag = "Dead";
+        //animator.SetTrigger("Death");
+
+        yield return new WaitForSeconds(1f);
+
+        #region Update Turn Order
+        battleManager.charactersList.Remove(characterStats);
+        battleManager.turnOrderList.Remove(characterStats);
+        battleManager.originalTurnOrderList.Remove(characterStats);
+        battleManager.UpdateTurnOrderUi();
+        #endregion
+
+        characterStats.characterHpHud.SetActive(false);
+
+        playerState = PlayerState.ENDING;
+
+        yield return new WaitForSeconds(0.5f);
+
+        gameObject.SetActive(false);
     }
 
     #region Delays

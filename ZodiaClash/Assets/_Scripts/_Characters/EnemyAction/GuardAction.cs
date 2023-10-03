@@ -182,7 +182,6 @@ public class GuardAction : _EnemyAction
 
     protected override IEnumerator EnemyDeath()
     {
-        characterStats.health = 0;
         gameObject.tag = "Dead";
         //animator.SetTrigger("Death");
 
@@ -199,7 +198,7 @@ public class GuardAction : _EnemyAction
 
         enemyState = EnemyState.ENDING;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         gameObject.SetActive(false);
     }

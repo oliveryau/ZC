@@ -12,6 +12,7 @@ public class CharacterStats : MonoBehaviour
     private Animator animator;
 
     [Header("HUD")]
+    public Transform uniqueTurnHud;
     public Sprite uniqueCharacterAvatar;
     public GameObject characterHpHud;
     [SerializeField] private Image healthBarFill;
@@ -105,7 +106,7 @@ public class CharacterStats : MonoBehaviour
         if (gameObject.CompareTag("Player"))
         {
             _PlayerAction player = GetComponent<_PlayerAction>();
-            player.playerState = PlayerState.ENDING;
+            player.playerState = PlayerState.DYING;
         }
         else if (gameObject.CompareTag("Enemy"))
         {
@@ -123,6 +124,9 @@ public class CharacterStats : MonoBehaviour
         //set damage text
         if (health <= 0)
         {
+            health = 0;
+            if (hpValueUi != null) hpValueUi.text = health.ToString();
+
             Death();
         }
         else
@@ -131,9 +135,9 @@ public class CharacterStats : MonoBehaviour
             {
                 animator.SetTrigger("damaged");
             }
+            if (hpValueUi != null) hpValueUi.text = health.ToString();
         }
 
-        if (hpValueUi != null) hpValueUi.text = health.ToString();
         healthBarFill.fillAmount = health / maxHealth;
     }
 
