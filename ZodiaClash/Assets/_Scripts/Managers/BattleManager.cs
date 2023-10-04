@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public enum BattleState
@@ -36,7 +37,6 @@ public class BattleManager : MonoBehaviour
     public List<CharacterStats> charactersList = new List<CharacterStats>();
     public List<CharacterStats> turnOrderList = new List<CharacterStats>();
     public List<CharacterStats> originalTurnOrderList = new List<CharacterStats>();
-    public List<Transform> otherChildTransforms = new List<Transform>();
     [HideInInspector] public bool revertingTurn;
 
     private void Start()
@@ -85,13 +85,16 @@ public class BattleManager : MonoBehaviour
                 }
                 else if (!revertingTurn)
                 {
-                    turnOrderList.Remove(activeCharacter);
-                    originalTurnOrderList.Remove(activeCharacter);
+                    if (activeCharacter.health > 0)
+                    {
+                        turnOrderList.Remove(activeCharacter);
+                        originalTurnOrderList.Remove(activeCharacter);
 
-                    turnOrderList.Add(activeCharacter);
-                    originalTurnOrderList.Add(activeCharacter);
-
-                    UpdateTurnOrderUi();
+                        turnOrderList.Add(activeCharacter);
+                        originalTurnOrderList.Add(activeCharacter);    
+                        
+                        UpdateTurnOrderUi();
+                    }
                 }
             }
 
@@ -236,43 +239,103 @@ public class BattleManager : MonoBehaviour
                 characterIndicator.color = Color.red;
             }
             #endregion
+
+            #region Size
+            if (i == 0)
+            {
+                float scaleFactor = 1.2f;
+                character.uniqueTurnHud.localScale = new Vector3(scaleFactor, scaleFactor, 1f);
+            }
+            #endregion
         }
     }
 
-    public void UpdateTurnOrderUi(bool death = false)
+    public void UpdateTurnOrderUi(string effect = null, CharacterStats target = null)
     {
-        for (int i = 0; i < turnOrderList.Count; i++)
+        if (effect == null && target == null)
+        {
+            for (int i = 0; i < turnOrderList.Count; i++)
+            {
+                CharacterStats character = turnOrderList[i];
+                Transform currentAvatarTransform = avatarListContainer.GetChild(i);
+
+                if (battleState == BattleState.PLAYERTURN && character.uniqueTurnHud == currentAvatarTransform)
+                {
+                }
+                else if (battleState == BattleState.ENEMYTURN && character.uniqueTurnHud == currentAvatarTransform)
+                {
+                }
+                else
+                {
+                    MoveChildAvatarTransforms(1, avatarListContainer);
+
+                    //previous character's turn
+                    Transform lastAvatarTransform = avatarListContainer.GetChild(turnOrderList.Count - 1);
+                    Vector3 currentAvatarTargetPosition = lastAvatarTransform.transform.position;
+                    StartCoroutine(LerpTurn(currentAvatarTransform, currentAvatarTargetPosition));
+
+                    currentAvatarTransform.SetAsLastSibling();
+                    break;
+                }
+            }
+        }
+
+        if (effect != null && target != null)
+        {
+            for (int i = 0; i < turnOrderList.Count; i++)
+            {
+                CharacterStats character = turnOrderList[i];
+                Transform currentAvatarTransform = avatarListContainer.GetChild(i);
+
+                switch (effect)
+                {
+                    case "death":
+                        if (target == character)
+                        {
+                            MoveChildAvatarTransforms(1, avatarListContainer);
+
+                            Transform lastAvatarTransform = avatarListContainer.GetChild(turnOrderList.Count - 1);
+                            Vector3 targetAvatarTargetPosition = lastAvatarTransform.transform.position;
+                            StartCoroutine(LerpTurn(currentAvatarTransform, targetAvatarTargetPosition));
+                            currentAvatarTransform.SetAsLastSibling();
+
+                            //Destroy(target.uniqueTurnHud.gameObject);
+                            break;
+                        }
+                        break;
+                    case "switch":
+                        break;
+                    case "revert":
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        #region Size
+        for (int i = 0;i < turnOrderList.Count; i++)
         {
             CharacterStats character = turnOrderList[i];
-            Transform currentAvatarTransform = avatarListContainer.GetChild(i); //set transform to child of avatarListContainer
-            Debug.Log("Character: " + character.name);
-            Debug.Log("Turn HUD: " + character.uniqueTurnHud);
-            Debug.Log("Name: " + currentAvatarTransform.name);
 
-            if (battleState == BattleState.PLAYERTURN && character.uniqueTurnHud == currentAvatarTransform)
+            if (i == 0)
             {
+                float scaleFactor = 1.2f;
+                character.uniqueTurnHud.localScale = new Vector3(scaleFactor, scaleFactor, 1f);
             }
-            else if (battleState == BattleState.ENEMYTURN && character.uniqueTurnHud == currentAvatarTransform)
+            else
             {
-            }
-            else if (character.uniqueTurnHud != currentAvatarTransform)
-            {
-                //previous character's turn
-                Transform previousAvatarTransform = avatarListContainer.GetChild(turnOrderList.Count - 1);
-                Vector3 previousAvatarTargetPosition = previousAvatarTransform.transform.position;
-                StartCoroutine(LerpTurn(currentAvatarTransform, previousAvatarTargetPosition));
-
-                MoveChildAvatarTransforms(1, avatarListContainer, previousAvatarTargetPosition);
+                character.uniqueTurnHud.localScale = Vector3.one;
             }
         }
-
+        #endregion
     }
 
-    private void MoveChildAvatarTransforms(int index, Transform parent, Vector3 targetPosition)
+    private void MoveChildAvatarTransforms(int index, Transform parent)
     {
         if (index >= parent.childCount)
         {
-            return; // Exit the recursive function when all children have been moved
+            return;
         }
 
         Transform currentChild = parent.GetChild(index);
@@ -280,13 +343,12 @@ public class BattleManager : MonoBehaviour
         Vector3 currentChildTargetPosition = previousChild.transform.position;
         StartCoroutine(LerpTurn(currentChild, currentChildTargetPosition));
 
-        // Recursive call to move the next child
-        MoveChildAvatarTransforms(index + 1, parent, targetPosition);
+        MoveChildAvatarTransforms(index + 1, parent); //recursive method
     }
 
     private IEnumerator LerpTurn(Transform characterTransform, Vector3 targetPosition)
     {
-        float duration = 0.25f;
+        float duration = 0.15f;
         float elapsedTime = 0f;
         Vector3 startingPosition = characterTransform.position;
 
@@ -305,7 +367,7 @@ public class BattleManager : MonoBehaviour
     {
         turnOrderList.Remove(target);
         turnOrderList.Insert(1, target);
-        UpdateTurnOrderUi();
+        UpdateTurnOrderUi("switch");
     }
 
     public void RevertTurnOrder(CharacterStats target)
@@ -315,7 +377,7 @@ public class BattleManager : MonoBehaviour
         turnOrderList.Remove(target);
         turnOrderList.Insert(originalIndex, target);
 
-        UpdateTurnOrderUi();
+        UpdateTurnOrderUi("revert");
     }
     #endregion
 }

@@ -29,8 +29,8 @@ public class B_AttackBuff : _BaseBuff
             targetStats.enrageCounter = enrage.enrageLimit;
         }
 
-        BattleManager gameManager = FindObjectOfType<BattleManager>();
-        gameManager.SwitchTurnOrder(targetStats);
+        BattleManager battleManager = FindObjectOfType<BattleManager>();
+        battleManager.SwitchTurnOrder(targetStats);
         targetStats.speedCheck = true;
     }
 }

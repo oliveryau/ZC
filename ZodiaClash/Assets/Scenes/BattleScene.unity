@@ -1633,9 +1633,17 @@ PrefabInstance:
       value: Yin-Yang Blast
       objectReference: {fileID: 0}
     - target: {fileID: 588863114957182035, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: health
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 588863114957182035, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: hpValueUi
       value: 
       objectReference: {fileID: 1972068789}
+    - target: {fileID: 588863114957182035, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: maxHealth
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 588863114957182035, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: avatarGlow
       value: 
@@ -1661,9 +1669,17 @@ PrefabInstance:
       value: Scarlet Claw
       objectReference: {fileID: 0}
     - target: {fileID: 1698784854740043849, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: health
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1698784854740043849, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: hpValueUi
       value: 
       objectReference: {fileID: 2090784221}
+    - target: {fileID: 1698784854740043849, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: maxHealth
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1698784854740043849, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: avatarGlow
       value: 
@@ -1685,9 +1701,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1722606106}
     - target: {fileID: 2307507677430062805, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: health
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2307507677430062805, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: hpValueUi
       value: 
       objectReference: {fileID: 1418511031}
+    - target: {fileID: 2307507677430062805, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: maxHealth
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2307507677430062805, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: avatarGlow
       value: 

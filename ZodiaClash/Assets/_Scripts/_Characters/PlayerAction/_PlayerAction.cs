@@ -142,9 +142,12 @@ public class _PlayerAction : MonoBehaviour
 
             else if (playerState == PlayerState.ENDING)
             {
-                ToggleSkillText(false);
+                if (characterStats.health > 0)
+                {
+                    ToggleSkillText(false);
 
-                characterStats.CheckEndStatusEffects();
+                    characterStats.CheckEndStatusEffects();
+                }
 
                 battleManager.battleState = BattleState.NEXTTURN;
 
@@ -282,14 +285,14 @@ public class _PlayerAction : MonoBehaviour
     {
         gameObject.tag = "Dead";
         //animator.SetTrigger("Death");
-
+        
         yield return new WaitForSeconds(1f);
 
         #region Update Turn Order
+        battleManager.UpdateTurnOrderUi("death", characterStats);
         battleManager.charactersList.Remove(characterStats);
         battleManager.turnOrderList.Remove(characterStats);
         battleManager.originalTurnOrderList.Remove(characterStats);
-        battleManager.UpdateTurnOrderUi();
         #endregion
 
         characterStats.characterHpHud.SetActive(false);
