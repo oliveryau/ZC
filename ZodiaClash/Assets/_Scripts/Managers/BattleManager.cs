@@ -137,7 +137,6 @@ public class BattleManager : MonoBehaviour
                         Debug.LogWarning("State: Enemy Turn");
 
                         battleState = BattleState.ENEMYTURN;
-                        //UpdateTurnOrderUi();
                     }
                     else if (activeCharacter.tag == "Player")
                     {
@@ -147,7 +146,6 @@ public class BattleManager : MonoBehaviour
                         Debug.LogWarning("State: Player Turn");
 
                         battleState = BattleState.PLAYERTURN;
-                        //UpdateTurnOrderUi();
                     }
                     ++characterCount;
                 }
@@ -156,7 +154,6 @@ public class BattleManager : MonoBehaviour
                     Debug.LogWarning("State: End Round");
                     battleState = BattleState.NEWROUND;
 
-                    UpdateTurnOrderUi();
                     activeCharacter = null;
                     activeEnemy = null;
                     activePlayer = null;
@@ -292,18 +289,24 @@ public class BattleManager : MonoBehaviour
                     case "death":
                         if (target == character)
                         {
-                            MoveChildAvatarTransforms(1, avatarListContainer);
-
                             Transform lastAvatarTransform = avatarListContainer.GetChild(turnOrderList.Count - 1);
                             Vector3 targetAvatarTargetPosition = lastAvatarTransform.transform.position;
-                            StartCoroutine(LerpTurn(currentAvatarTransform, targetAvatarTargetPosition));
-                            currentAvatarTransform.SetAsLastSibling();
+                            StartCoroutine(LerpTurn(currentAvatarTransform, targetAvatarTargetPosition, true));
 
-                            //Destroy(target.uniqueTurnHud.gameObject);
+                            StartCoroutine(DeathTurnRemove(target.uniqueTurnHud.gameObject));
                             break;
                         }
                         break;
                     case "switch":
+                        if (target == character)
+                        {
+                            Transform nextAvatarTransform = avatarListContainer.GetChild(1);
+                            Vector3 targetAvatarTargetPosition = nextAvatarTransform.transform.position;
+                            StartCoroutine(LerpTurn(currentAvatarTransform, targetAvatarTargetPosition));
+
+                            currentAvatarTransform.SetSiblingIndex(1);
+                            break;
+                        }
                         break;
                     case "revert":
                         break;
@@ -331,28 +334,35 @@ public class BattleManager : MonoBehaviour
         #endregion
     }
 
-    private void MoveChildAvatarTransforms(int index, Transform parent)
+    private void MoveChildAvatarTransforms(int index, Transform parent, int targetIndex = 0)
     {
         if (index >= parent.childCount)
         {
             return;
         }
 
-        Transform currentChild = parent.GetChild(index);
-        Transform previousChild = parent.GetChild(index - 1);
-        Vector3 currentChildTargetPosition = previousChild.transform.position;
-        StartCoroutine(LerpTurn(currentChild, currentChildTargetPosition));
+        if (targetIndex == index)
+        {
+            MoveChildAvatarTransforms(index + 1, parent); //recursive method
+        }
+        else
+        {
+            Transform currentChild = parent.GetChild(index);
+            Transform previousChild = parent.GetChild(index - 1);
+            Vector3 currentChildTargetPosition = previousChild.transform.position;
+            StartCoroutine(LerpTurn(currentChild, currentChildTargetPosition));
 
-        MoveChildAvatarTransforms(index + 1, parent); //recursive method
+            MoveChildAvatarTransforms(index + 1, parent); //recursive method
+        }
     }
 
-    private IEnumerator LerpTurn(Transform characterTransform, Vector3 targetPosition)
+    private IEnumerator LerpTurn(Transform characterTransform, Vector3 targetPosition, bool dead = false)
     {
         float duration = 0.15f;
         float elapsedTime = 0f;
         Vector3 startingPosition = characterTransform.position;
 
-        while (elapsedTime < duration)
+        while (elapsedTime < duration && !dead)
         {
             float t = elapsedTime / duration;
             characterTransform.position = Vector3.Lerp(startingPosition, targetPosition, t);
@@ -363,11 +373,17 @@ public class BattleManager : MonoBehaviour
         characterTransform.position = targetPosition;
     }
 
+    private IEnumerator DeathTurnRemove(GameObject targetAvatar)
+    {
+        yield return new WaitForSeconds(0.01f);
+        Destroy(targetAvatar);
+    }
+
     public void SwitchTurnOrder(CharacterStats target)
     {
         turnOrderList.Remove(target);
         turnOrderList.Insert(1, target);
-        UpdateTurnOrderUi("switch");
+        UpdateTurnOrderUi("switch", target);
     }
 
     public void RevertTurnOrder(CharacterStats target)
