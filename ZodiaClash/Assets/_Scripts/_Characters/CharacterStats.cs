@@ -19,6 +19,7 @@ public class CharacterStats : MonoBehaviour
     public Transform statusEffectPanel;
     [SerializeField] private GameObject characterName;
     [SerializeField] private GameObject floatingText;
+    [HideInInspector] public bool hoverHudCheck;
 
     [Header("Other Player HUD")]
     [SerializeField] private TextMeshProUGUI hpValueUi;
@@ -67,6 +68,7 @@ public class CharacterStats : MonoBehaviour
         health = maxHealth;
         healthBarFill.fillAmount = health / maxHealth;
         NameCheck();
+        hoverHudCheck = false;
         #endregion
 
         #region Player HUD
@@ -82,12 +84,28 @@ public class CharacterStats : MonoBehaviour
         if (healthPanel != null)
         {
             healthPanelOriginalColor = healthPanel.color;
-            healthPanelHoverColor = new Color32(50, 50, 50, 200);
-            healthPanelTargetColor = new Color32(255, 0, 0, 200);
+            healthPanelHoverColor = new Color32(75, 75, 75, 200);
+            healthPanelTargetColor = new Color32(0, 0, 0, 255);
         }
         #endregion
 
         checkedStatus = false;
+    }
+
+    private void Update()
+    {
+        if (battleManager.battleState != BattleState.NEWGAME)
+        {
+            if (gameManager.gameState != GameState.PLAY)
+            {
+                hoverHudCheck = false;
+            }
+
+            if (health > 0)
+            {
+                HoverHudUi();
+            }
+        }
     }
 
     private void NameCheck()
@@ -101,6 +119,30 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    private void HoverHudUi()
+    {
+        if (hoverHudCheck)
+        {
+            characterName.SetActive(true);
+            uniqueTurnHud.transform.Find("Arrow").gameObject.SetActive(true);
+
+            if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
+            {
+                healthPanel.color = healthPanelHoverColor;
+            }
+        }
+        else
+        {
+            characterName.SetActive(false);
+            uniqueTurnHud.transform.Find("Arrow").gameObject.SetActive(false);
+
+            if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
+            {
+                healthPanel.color = healthPanelOriginalColor;
+            }
+        }
+    }
+
     private void Death()
     {
         if (gameObject.CompareTag("Player"))
@@ -111,6 +153,9 @@ public class CharacterStats : MonoBehaviour
         else if (gameObject.CompareTag("Enemy"))
         {
             _EnemyAction enemy = GetComponent<_EnemyAction>();
+            statusEffectPanel.gameObject.SetActive(false);
+            characterHpHud.GetComponent<Animator>().SetTrigger("death");
+            healthPanel.GetComponent<Animator>().SetTrigger("death");
             enemy.enemyState = EnemyState.DYING;
         }
     }
@@ -351,12 +396,7 @@ public class CharacterStats : MonoBehaviour
     {
         if (gameManager.gameState == GameState.PLAY && battleManager.battleState != BattleState.NEWGAME)
         {
-            characterName.SetActive(true);
-
-            if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
-            {
-                healthPanel.color = healthPanelHoverColor;
-            }
+            hoverHudCheck = true;
         }
     }
 
@@ -364,12 +404,7 @@ public class CharacterStats : MonoBehaviour
     {
         if (gameManager.gameState == GameState.PLAY && battleManager.battleState != BattleState.NEWGAME)
         {
-            characterName.SetActive(false);
-
-            if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
-            {
-                healthPanel.color = healthPanelOriginalColor;
-            }
+            hoverHudCheck = false;
         }
     }
     #endregion

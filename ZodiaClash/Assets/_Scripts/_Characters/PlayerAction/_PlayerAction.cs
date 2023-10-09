@@ -286,8 +286,6 @@ public class _PlayerAction : MonoBehaviour
         gameObject.tag = "Dead";
         //animator.SetTrigger("Death");
         
-        yield return new WaitForSeconds(1f);
-
         #region Update Turn Order
         battleManager.UpdateTurnOrderUi("death", characterStats);
         battleManager.charactersList.Remove(characterStats);
@@ -295,7 +293,9 @@ public class _PlayerAction : MonoBehaviour
         battleManager.originalTurnOrderList.Remove(characterStats);
         #endregion
 
-        characterStats.characterHpHud.SetActive(false);
+        yield return new WaitForSeconds(1f);
+
+        characterStats.playerAvatar.color = Color.gray;
 
         playerState = PlayerState.ENDING;
 

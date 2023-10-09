@@ -1110,25 +1110,25 @@ PrefabInstance:
       propertyPath: hover
       value: 
       objectReference: {fileID: 139262512}
-    - target: {fileID: 298682666984406441, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-      propertyPath: m_Name
-      value: Effects Indicator
-      objectReference: {fileID: 0}
-    - target: {fileID: 351441774686711283, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+    - target: {fileID: 138477279556155030, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 351441774686711283, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+    - target: {fileID: 138477279556155030, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 351441774686711283, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+    - target: {fileID: 138477279556155030, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 80
       objectReference: {fileID: 0}
-    - target: {fileID: 351441774686711283, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+    - target: {fileID: 138477279556155030, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298682666984406441, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_Name
+      value: Effects Indicator
       objectReference: {fileID: 0}
     - target: {fileID: 371850511667649116, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: hover
@@ -1170,22 +1170,6 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1172725202819971251, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1172725202819971251, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1172725202819971251, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1172725202819971251, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1356253651988487957, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_fontSize
       value: 30
@@ -1209,6 +1193,10 @@ PrefabInstance:
     - target: {fileID: 1383768953721531658, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 4.8056
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438923533921676796, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_ChildForceExpandHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1576761895852203248, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_Color.a
@@ -1454,6 +1442,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5378951111198774667, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5378951111198774667, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5378951111198774667, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5378951111198774667, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5520773316568686077, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: hover
       value: 
@@ -1498,22 +1502,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7389469907059241660, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7389469907059241660, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7389469907059241660, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7389469907059241660, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7642729271328821970, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1534,6 +1522,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7865857698468852326, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7865857698468852326, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7865857698468852326, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7865857698468852326, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7922638327600494873, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_Name
       value: Image 1
@@ -1546,10 +1550,6 @@ PrefabInstance:
       propertyPath: hover
       value: 
       objectReference: {fileID: 394930719}
-    - target: {fileID: 8851965782786187657, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8947098030685463997, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

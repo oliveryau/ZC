@@ -184,8 +184,6 @@ public class GuardAction : _EnemyAction
     {
         gameObject.tag = "Dead";
         //animator.SetTrigger("Death");
-        
-        yield return new WaitForSeconds(1f);
 
         #region Update Turn Order
         battleManager.UpdateTurnOrderUi("death", characterStats);
@@ -193,6 +191,8 @@ public class GuardAction : _EnemyAction
         battleManager.turnOrderList.Remove(characterStats);
         battleManager.originalTurnOrderList.Remove(characterStats);
         #endregion
+
+        yield return new WaitForSeconds(0.5f);
 
         characterStats.characterHpHud.SetActive(false);
 
