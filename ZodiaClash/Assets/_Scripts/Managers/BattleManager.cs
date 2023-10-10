@@ -239,7 +239,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void UpdateTurnOrderUi(string effect = null, CharacterStats target = null)
+    public void UpdateTurnOrderUi(string effect = null, CharacterStats target = null, int additionalIndex = 0)
     {
         if (effect == null && target == null)
         {
@@ -311,6 +311,9 @@ public class BattleManager : MonoBehaviour
 
                         break;
                     case "revert":
+                        currentAvatarTransform = target.uniqueTurnHud;
+
+                        currentAvatarTransform.SetSiblingIndex(additionalIndex);
                         break;
                     default:
                         break;
@@ -415,7 +418,7 @@ public class BattleManager : MonoBehaviour
         turnOrderList.Remove(target);
         turnOrderList.Insert(originalIndex, target);
 
-        UpdateTurnOrderUi("revert");
+        UpdateTurnOrderUi("revert", target, originalIndex);
     }
     #endregion
 }

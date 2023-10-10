@@ -12,7 +12,11 @@ public class GuardAction : _EnemyAction
     #region Guard State
     protected override void UpdateEnemyState()
     {
-        if (battleManager.battleState == BattleState.ENEMYTURN && battleManager.activeEnemy == gameObject.name)
+        if (enemyState == EnemyState.START)
+        {
+            EnemyStartMoveIn();
+        }
+        else if (battleManager.battleState == BattleState.ENEMYTURN && battleManager.activeEnemy == gameObject.name)
         {
             if (enemyState == EnemyState.WAITING)
             {

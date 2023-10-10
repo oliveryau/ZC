@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum EnemyState
 {
-    WAITING, CHECKSTATUS, SELECTION, ATTACKING, ENDING, DYING
+    START, WAITING, CHECKSTATUS, SELECTION, ATTACKING, ENDING, DYING
 }
 
 public class _EnemyAction : MonoBehaviour
@@ -49,8 +49,6 @@ public class _EnemyAction : MonoBehaviour
 
     private void Start()
     {
-        enemyState = EnemyState.WAITING;
-
         originalSort = GetComponent<SpriteRenderer>().sortingOrder;
 
         moveSpeed = 50f;
@@ -59,11 +57,36 @@ public class _EnemyAction : MonoBehaviour
         battleManager = FindObjectOfType<BattleManager>();
         characterStats = GetComponent<CharacterStats>();
         animator = GetComponent<Animator>();
+
+        Vector3 offset = new(10f, 0, 0);
+        transform.position = startPosition + offset;
+
+        enemyState = EnemyState.START;
     }
 
     protected virtual void UpdateEnemyState()
     {
         //unique enemy states
+    }
+
+    protected void EnemyStartMoveIn()
+    {
+        //move enemy to start position
+        bool startPoint = false;
+        float startSpeed = 25f;
+
+        transform.position = Vector3.MoveTowards(transform.position, startPosition, startSpeed * Time.deltaTime);
+
+        if (transform.position == startPosition)
+        {
+            startPoint = true;
+
+            if (startPoint)
+            {
+                enemyState = EnemyState.WAITING;
+                startPoint = false;
+            }
+        }
     }
 
     protected void EnemyRefreshTargets()
@@ -193,11 +216,13 @@ public class _EnemyAction : MonoBehaviour
         {
             turnIndicator.SetActive(true);
             characterStats.healthPanel.color = characterStats.healthPanelTargetColor;
+            characterStats.healthPanel.transform.Find("Arrow").gameObject.SetActive(true);
         }
         else if (!display)
         {
             turnIndicator.SetActive(false);
             characterStats.healthPanel.color = characterStats.healthPanelOriginalColor;
+            characterStats.healthPanel.transform.Find("Arrow").gameObject.SetActive(false);
         }
     }
 

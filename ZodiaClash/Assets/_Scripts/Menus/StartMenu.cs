@@ -29,9 +29,10 @@ public class StartMenu : MonoBehaviour
 
     private IEnumerator DelayStartButton()
     {
-        yield return new WaitForSeconds(0.5f);
-
         scene = SceneManager.GetActiveScene();
+
+        yield return new WaitForSeconds(0.8f);
+
         SceneManager.LoadScene(scene.buildIndex + 1);
     }
 

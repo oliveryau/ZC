@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9196513893604650534, guid: a621eaaae89ec59408dad02e0223abda, type: 3}
       propertyPath: m_Name
-      value: Ox
+      value: Leishou
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5133956287085704005, guid: a621eaaae89ec59408dad02e0223abda, type: 3}
@@ -192,11 +192,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5065470643690481029, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.5
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 5065470643690481029, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5065470643690481029, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -232,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5381734240096825297, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: m_Name
-      value: Goat
+      value: Yangsheng
       objectReference: {fileID: 0}
     - target: {fileID: 7065966559389496999, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: buffTurns
@@ -275,7 +275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 904211530649164793, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.75
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 904211530649164793, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: m_LocalPosition.y
@@ -323,7 +323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4019357009197646768, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: m_Name
-      value: Cat
+      value: Guiying
       objectReference: {fileID: 0}
     - target: {fileID: 4664854013163135867, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: m_Name

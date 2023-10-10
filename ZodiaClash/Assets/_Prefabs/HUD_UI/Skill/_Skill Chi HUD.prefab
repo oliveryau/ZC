@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 8165440313533692224}
   - component: {fileID: 7782985621999433882}
   - component: {fileID: 5193586095312737371}
+  - component: {fileID: 9102098643812751409}
   m_Layer: 5
   m_Name: _Skill Chi HUD
   m_TagString: Untagged
@@ -116,7 +117,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 258.90997, y: -475}
+  m_AnchoredPosition: {x: 275, y: -460}
   m_SizeDelta: {x: 350, y: -1004.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8165440313533692224
@@ -183,6 +184,27 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!95 &9102098643812751409
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687428633033733676}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b6e5ca30a75e26f43b8de8fc8b4225f7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1786140022133197836
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,7 +30,6 @@ public class CharacterStats : MonoBehaviour
     [Header("Other Enemy HUD")]
     public Image healthPanel;
     [HideInInspector] public Color32 healthPanelOriginalColor;
-    [HideInInspector] public Color32 healthPanelHoverColor;
     [HideInInspector] public Color32 healthPanelTargetColor;
 
     [Header("Stats")]
@@ -84,7 +83,6 @@ public class CharacterStats : MonoBehaviour
         if (healthPanel != null)
         {
             healthPanelOriginalColor = healthPanel.color;
-            healthPanelHoverColor = new Color32(75, 75, 75, 200);
             healthPanelTargetColor = new Color32(0, 0, 0, 255);
         }
         #endregion
@@ -128,7 +126,8 @@ public class CharacterStats : MonoBehaviour
 
             if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
             {
-                healthPanel.color = healthPanelHoverColor;
+                healthPanel.transform.Find("Arrow").gameObject.SetActive(true);
+                //healthPanel.color = healthPanelHoverColor;
             }
         }
         else
@@ -138,7 +137,8 @@ public class CharacterStats : MonoBehaviour
 
             if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
             {
-                healthPanel.color = healthPanelOriginalColor;
+                healthPanel.transform.Find("Arrow").gameObject.SetActive(false);
+                //healthPanel.color = healthPanelOriginalColor;
             }
         }
     }

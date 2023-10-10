@@ -212,6 +212,7 @@ MonoBehaviour:
   statusEffectPanel: {fileID: 0}
   characterName: {fileID: 7142683735931713415}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
+  hoverHudCheck: 0
   hpValueUi: {fileID: 0}
   playerAvatar: {fileID: 0}
   playerAvatarOriginalColor:
@@ -222,9 +223,6 @@ MonoBehaviour:
     rgba: 0
   healthPanel: {fileID: 0}
   healthPanelOriginalColor:
-    serializedVersion: 2
-    rgba: 0
-  healthPanelHoverColor:
     serializedVersion: 2
     rgba: 0
   healthPanelTargetColor:
