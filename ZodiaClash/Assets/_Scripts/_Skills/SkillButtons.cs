@@ -45,7 +45,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         switch (currentPlayer.name)
         {
-            case "Cat":
+            case "Guiying":
 
                 if (btn.CompareTo("CatSkill1Btn") == 0)
                 {
@@ -65,7 +65,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
                 break;
 
-            case "Goat":
+            case "Yangsheng":
 
                 if (btn.CompareTo("GoatSkill1Btn") == 0)
                 {
@@ -85,7 +85,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
                 break;
 
-            case "Ox":
+            case "Leishou":
 
                 if (btn.CompareTo("OxSkill1Btn") == 0)
                 {
@@ -127,7 +127,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         switch (currentPlayer.name)
         {
-            case "Cat":
+            case "Guiying":
 
                 Bleed bleed = FindObjectOfType<Bleed>();
 
@@ -156,7 +156,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
                 break;
 
-            case "Goat":
+            case "Yangsheng":
 
                 if (gameObject.name == "GoatSkill1Btn")
                 {
@@ -184,7 +184,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
                 break;
 
-            case "Ox":
+            case "Leishou":
 
                 if (gameObject.name == "OxSkill1Btn")
                 {

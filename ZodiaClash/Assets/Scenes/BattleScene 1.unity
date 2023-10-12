@@ -2153,8 +2153,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 813487967176509868, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: m_Name
-      value: Yangsheng
+      value: Enemy Yangsheng
       objectReference: {fileID: 0}
+    - target: {fileID: 813487967176509868, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282169098367958259, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
+      propertyPath: aoeTargetPosition
+      value: 
+      objectReference: {fileID: 1365253893}
+    - target: {fileID: 4282169098367958259, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
+      propertyPath: skillTextIndicator
+      value: 
+      objectReference: {fileID: 1510701239}
     - target: {fileID: 6699813660680686428, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.5
@@ -2231,6 +2243,10 @@ PrefabInstance:
       propertyPath: hpValueUi
       value: 
       objectReference: {fileID: 1418511031}
+    - target: {fileID: 8912101328307617309, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
+      propertyPath: healthPanel
+      value: 
+      objectReference: {fileID: 1500535034}
     - target: {fileID: 8912101328307617309, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: playerAvatar
       value: 
@@ -2410,7 +2426,7 @@ PrefabInstance:
     - target: {fileID: 58012474279397109, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthPanel
       value: 
-      objectReference: {fileID: 1500535034}
+      objectReference: {fileID: 167566907}
     - target: {fileID: 58012474279397109, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthBarFill
       value: 
