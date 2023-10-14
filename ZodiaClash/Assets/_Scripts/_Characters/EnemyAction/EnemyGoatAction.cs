@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class EnemyGoatAction : _EnemyAction
 {
-    [Header("Specific Behaviours")]
+    [Header("Heal Behaviour")]
     [SerializeField] private float healCooldown;
+    [SerializeField] private bool canHeal;
+
+    [Header("Low Health State")]
     [SerializeField] private bool rageState;
     [SerializeField] private float rageCount;
     [SerializeField] private bool rageApplied;
+
+    [Header("Death")]
     [SerializeField] private bool dead;
 
     private void Update()
@@ -52,16 +57,18 @@ public class EnemyGoatAction : _EnemyAction
                 if (characterStats.health <= 0.1f * characterStats.maxHealth)
                 {
                     rageState = true;
-                }
-
-                if (healCooldown > 0)
-                {
-                    --healCooldown;
+                    EnemyToggleSkillText(false, "goat");
                 }
 
                 if (!characterStats.checkedStatus && !checkingStatus)
                 {
                     StartCoroutine(characterStats.CheckStatusEffects());
+
+                    if (healCooldown > 0)
+                    {
+                        --healCooldown;
+                    }
+
                     checkingStatus = true;
                 }
 
@@ -194,6 +201,7 @@ public class EnemyGoatAction : _EnemyAction
 
                 if (healCooldown == 0) //if can heal
                 {
+                    Debug.Log("Healing");
                     for (int i = 0; i < enemyTargets.Length; i++)
                     {
                         CharacterStats enemy = enemyTargets[i].GetComponent<CharacterStats>();

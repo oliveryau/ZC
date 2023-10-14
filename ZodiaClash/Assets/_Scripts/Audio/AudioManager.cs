@@ -10,8 +10,10 @@ public class AudioManager : MonoBehaviour
 
     [Header("Sounds")]
     public AudioSource musicSource;
+    public AudioSource ambienceSource;
     public AudioSource effectsSource;
     public Sound[] musicSounds;
+    public Sound[] ambienceSounds;
     public Sound[] effectsSounds;
 
     private void Awake()
@@ -36,6 +38,19 @@ public class AudioManager : MonoBehaviour
     }
 
     public void StopMusic()
+    {
+        musicSource.Stop();
+    }
+
+    public void PlayAmbienceMusic(string name)
+    {
+        Sound s = Array.Find(ambienceSounds, x => x.name == name);
+
+        ambienceSource.clip = s.clip;
+        ambienceSource.Play();
+    }
+
+    public void StopAmbienceMusic()
     {
         musicSource.Stop();
     }

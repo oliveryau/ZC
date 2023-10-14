@@ -10,7 +10,7 @@ public class A_SingleBleed : NormalAttack
 
     public override void Attack(GameObject target)
     {
-        //owner.GetComponent<Animator>().Play(animationName);
+        //owner.GetComponent<Animator>().SetTrigger("skill1");
 
         CalculateDamage(target);
 

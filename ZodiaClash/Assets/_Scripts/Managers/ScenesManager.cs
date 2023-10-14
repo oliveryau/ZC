@@ -15,6 +15,7 @@ public class ScenesManager : MonoBehaviour
         {
             case "BattleScene 2":
                 AudioManager.Instance.PlayMusic("Battle BGM");
+                AudioManager.Instance.PlayAmbienceMusic("Battle Ambience");
                 break;
             default:
                 break;

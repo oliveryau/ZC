@@ -226,7 +226,7 @@ public class _EnemyAction : MonoBehaviour
         }
     }
 
-    protected void EnemyToggleSkillText(bool display)
+    protected void EnemyToggleSkillText(bool display, string specialCase = null)
     {
         TextMeshProUGUI skillText = skillTextIndicator.GetComponentInChildren<TextMeshProUGUI>();
 
@@ -234,6 +234,18 @@ public class _EnemyAction : MonoBehaviour
         {
             skillText.text = selectedSkillPrefab.gameObject.name;
             skillTextIndicator.SetActive(true);
+        }
+        else if (!display && specialCase != null)
+        {
+            switch (specialCase)
+            {
+                case "goat":
+                    skillText.text = "Last Stand";
+                    skillTextIndicator.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
         }
         else if (!display)
         {

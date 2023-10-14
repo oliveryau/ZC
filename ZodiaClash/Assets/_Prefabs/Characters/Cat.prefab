@@ -163,12 +163,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1304055b5b8c96f4b9742bc8508b25c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uniqueTurnHud: {fileID: 0}
   uniqueCharacterAvatar: {fileID: 21300000, guid: 60e0222d0af30564c8b1d9b266e2598c, type: 3}
   characterHpHud: {fileID: 0}
   healthBarFill: {fileID: 0}
   statusEffectPanel: {fileID: 0}
   characterName: {fileID: 2730697050742548364}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
+  hoverHudCheck: 0
   hpValueUi: {fileID: 0}
   playerAvatar: {fileID: 0}
   playerAvatarOriginalColor:
@@ -181,15 +183,12 @@ MonoBehaviour:
   healthPanelOriginalColor:
     serializedVersion: 2
     rgba: 0
-  healthPanelHoverColor:
-    serializedVersion: 2
-    rgba: 0
   healthPanelTargetColor:
     serializedVersion: 2
     rgba: 0
   maxHealth: 80
   health: 80
-  attack: 10
+  attack: 20
   defense: 20
   speed: 4
   increasedAttackValue: 0

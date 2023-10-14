@@ -165,6 +165,7 @@ public class CatAction : _PlayerAction
             if (selectedSkillPrefab == skill1Prefab)
             {
                 targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
+                characterStats.animator.SetTrigger("skill1");
             }
             else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
             {

@@ -9,7 +9,7 @@ public class CharacterStats : MonoBehaviour
     private GameManager gameManager;
     private BattleManager battleManager;
     private _StatusEffectHud statusEffectHud;
-    private Animator animator;
+    [HideInInspector] public Animator animator;
 
     [Header("HUD")]
     public Transform uniqueTurnHud;
@@ -342,7 +342,7 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
 
         checkedStatus = true;
     }

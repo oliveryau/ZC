@@ -51,8 +51,8 @@ MonoBehaviour:
   avatarListContainer: {fileID: 0}
   playerHud: {fileID: 0}
   enemyHud: {fileID: 0}
-  skillChiHud: {fileID: 0}
   statusEffectIndicator: {fileID: 0}
+  skillChiHud: {fileID: 0}
   characterCount: 0
   roundCounter: 0
   activePlayer: 
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bleedLimit: 5
-  bleedPercent: 30
+  bleedPercent: 15
   bleedDamage: 0
 --- !u!114 &443097011561100355
 MonoBehaviour:

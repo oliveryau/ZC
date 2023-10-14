@@ -186,8 +186,8 @@ MonoBehaviour:
   healthPanelTargetColor:
     serializedVersion: 2
     rgba: 0
-  maxHealth: 50
-  health: 50
+  maxHealth: 70
+  health: 70
   attack: 10
   defense: 20
   speed: 10
@@ -230,8 +230,10 @@ MonoBehaviour:
   targetPosition: {fileID: 0}
   aoeTargetPosition: {fileID: 0}
   healCooldown: 0
+  canHeal: 0
   rageState: 0
-  rageAttack: 0
+  rageCount: 0
+  rageApplied: 0
   dead: 0
 --- !u!1 &6391942041139562138
 GameObject:
