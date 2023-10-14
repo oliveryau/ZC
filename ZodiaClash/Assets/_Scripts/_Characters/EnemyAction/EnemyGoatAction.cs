@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class EnemyGoatAction : _EnemyAction
 {
+    [Header("Specific Behaviours")]
+    [SerializeField] private float healCooldown;
+    [SerializeField] private bool rageState;
+    [SerializeField] private float rageCount;
+    [SerializeField] private bool rageApplied;
+    [SerializeField] private bool dead;
+
     private void Update()
     {
         UpdateEnemyState();
@@ -42,6 +49,16 @@ public class EnemyGoatAction : _EnemyAction
 
             else if (enemyState == EnemyState.CHECKSTATUS)
             {
+                if (characterStats.health <= 0.1f * characterStats.maxHealth)
+                {
+                    rageState = true;
+                }
+
+                if (healCooldown > 0)
+                {
+                    --healCooldown;
+                }
+
                 if (!characterStats.checkedStatus && !checkingStatus)
                 {
                     StartCoroutine(characterStats.CheckStatusEffects());
@@ -138,50 +155,92 @@ public class EnemyGoatAction : _EnemyAction
         #endregion
         else
         {
-            for (int i = 0; i < enemyTargets.Length; i++)
+            if (rageState)
             {
-                CharacterStats enemy = enemyTargets[i].GetComponent<CharacterStats>();
-                //if enemy less than 30% hp -> heal target
-                if (enemy.health / enemy.maxHealth <= 0.3f)
+                if (rageCount == 0 && !rageApplied)
                 {
-                    selectedTarget = enemy.gameObject;
-                    Debug.Log("Enemy Selected Target (Heal): " + selectedTarget.name);
+                    Debug.Log("A");
+                    rageApplied = true;
 
-                    selectedSkillPrefab = skill3Prefab;
+                    characterStats.BuffText(0, "rage");
 
-                    enemyState = EnemyState.ATTACKING;
-
-                    break;
+                    characterStats.attack += 10;
+                    _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>();
+                    statusEffect.SpawnEffectsBar(characterStats, 0, "rageGoat");
+                    
+                    enemyEndingTurn = true;
                 }
-                //speedup character every time
-                else if (enemyTargets.Length > 1)
+                else if (rageCount == 0 && rageApplied)
                 {
-                    int randomIndex = Random.Range(0, enemyTargets.Length);
-                    while (enemyTargets[randomIndex] == this.gameObject)
-                    {
-                        randomIndex = Random.Range(0, enemyTargets.Length);
-                    }
+                    Debug.Log("B");
+                    enemyEndingTurn = true;
 
-                    selectedTarget = enemyTargets[randomIndex];
-                    Debug.Log("Enemy Selected Target: " + selectedTarget.name);
-
-                    selectedSkillPrefab = skill2Prefab;
-
-                    enemyState = EnemyState.ATTACKING;
-
-                    break;
+                    StartCoroutine(RageEndTurn(0.5f));
                 }
-                else
+                else if (rageCount > 0)
                 {
-                    int randomIndex = Random.Range(0, playerTargets.Length);
-                    selectedTarget = playerTargets[randomIndex];
-                    Debug.Log("Enemy Selected Target: " + selectedTarget.name);
-
+                    Debug.Log("C");
                     selectedSkillPrefab = skill1Prefab;
+                    selectedTarget = playerTargets[0].gameObject;
 
                     enemyState = EnemyState.ATTACKING;
 
-                    break;
+                    rageCount = 0;
+                }
+            }
+            else
+            {
+                bool healingAlly = false;
+
+                if (healCooldown == 0) //if can heal
+                {
+                    for (int i = 0; i < enemyTargets.Length; i++)
+                    {
+                        CharacterStats enemy = enemyTargets[i].GetComponent<CharacterStats>();
+                        if (enemy.health / enemy.maxHealth <= 0.3f) //if enemy less than 30% hp -> heal target
+                        {
+                            selectedTarget = enemy.gameObject;
+                            Debug.Log("Enemy Selected Target (Heal): " + selectedTarget.name);
+
+                            selectedSkillPrefab = skill3Prefab;
+
+                            healingAlly = true;
+                            healCooldown = 2;
+
+                            enemyState = EnemyState.ATTACKING;
+
+                            break;
+                        }
+                    }
+                }
+            
+                if (!healingAlly)
+                {
+                    if (battleManager.roundCounter == 1 || (enemyTargets.Length > 1 && battleManager.roundCounter % 3 == 0)) //speedup character at first round and at every 3 rounds
+                    {
+                        int randomIndex = Random.Range(0, enemyTargets.Length);
+                        while (enemyTargets[randomIndex] == this.gameObject)
+                        {
+                            randomIndex = Random.Range(0, enemyTargets.Length);
+                        }
+
+                        selectedTarget = enemyTargets[randomIndex];
+                        Debug.Log("Enemy Selected Target (Speedup): " + selectedTarget.name);
+
+                        selectedSkillPrefab = skill2Prefab;
+
+                        enemyState = EnemyState.ATTACKING;
+                    }
+                    else //do a normal attack
+                    {
+                        int randomIndex = Random.Range(0, playerTargets.Length);
+                        selectedTarget = playerTargets[randomIndex];
+                        Debug.Log("Enemy Selected Target: " + selectedTarget.name);
+
+                        selectedSkillPrefab = skill1Prefab;
+
+                        enemyState = EnemyState.ATTACKING;
+                    }
                 }
             }
         }
@@ -244,9 +303,55 @@ public class EnemyGoatAction : _EnemyAction
         StartCoroutine(EnemyEndTurnDelay(0.5f));
     }
 
+    protected IEnumerator RageEndTurn(float seconds)
+    {
+        yield return new WaitUntil(() => enemyEndingTurn);
+
+        yield return new WaitForSeconds(seconds);
+
+        enemyState = EnemyState.ENDING;
+
+        yield return new WaitForSeconds(seconds);
+
+        enemyState = EnemyState.WAITING;
+        rageCount = 1;
+    }
+
     protected override IEnumerator EnemyDeath()
     {
         gameObject.tag = "Dead";
+
+        #region Goat Death State
+        Enrage enrage = FindObjectOfType<Enrage>();
+        B_AttackBuff atkBuff = GetComponentInChildren<B_AttackBuff>();
+        EnemyRefreshTargets();
+        
+        if (!dead)
+        {
+            dead = true;
+            for (int i = 0; i < enemyTargets.Length; i++)
+            {
+                CharacterStats enemyStats = enemyTargets[i].GetComponent<CharacterStats>();
+
+                enemyStats.BuffText(atkBuff.skillBuffPercent, "enrage");
+
+                if (enemyStats.enrageCounter <= 0) //don't overstack attack
+                {
+                    enrage.EnrageCalculation(enemyStats, atkBuff.skillBuffPercent);
+                }
+
+                _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>();
+                statusEffect.SpawnEffectsBar(enemyStats, 99, "enrage");
+
+                enemyStats.enrageCounter += 99;
+                if (enemyStats.enrageCounter > enrage.enrageLimit)
+                {
+                    enemyStats.enrageCounter = enrage.enrageLimit;
+                }
+            }
+        }
+        #endregion
+
         //animator.SetTrigger("Death");
 
         #region Update Turn Order
@@ -256,7 +361,7 @@ public class EnemyGoatAction : _EnemyAction
         battleManager.originalTurnOrderList.Remove(characterStats);
         #endregion
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         characterStats.characterHpHud.SetActive(false);
 

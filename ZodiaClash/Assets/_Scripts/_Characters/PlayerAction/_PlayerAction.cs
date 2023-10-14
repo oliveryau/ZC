@@ -356,6 +356,7 @@ public class _PlayerAction : MonoBehaviour
             }
 
             characterSkillUi.SetActive(true);
+            battleManager.skillChiHud.SetActive(true);
         }
         else if (display == false)
         {

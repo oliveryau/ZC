@@ -22,8 +22,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private Transform avatarListContainer;
     [SerializeField] private GameObject playerHud;
     [SerializeField] private GameObject enemyHud;
-    [SerializeField] private GameObject skillChiHud;
     [SerializeField] private GameObject statusEffectIndicator;
+    public GameObject skillChiHud;
 
     [Header("Round Management")]
     public int characterCount;
@@ -165,7 +165,6 @@ public class BattleManager : MonoBehaviour
         turnOrder.SetActive(true);
         playerHud.SetActive(true);
         enemyHud.SetActive(true);
-        skillChiHud.SetActive(true);
         statusEffectIndicator.SetActive(true);
 
         battleState = BattleState.NEWROUND;

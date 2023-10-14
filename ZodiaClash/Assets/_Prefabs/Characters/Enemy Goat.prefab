@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: -1722746847
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 19ba9152f3b86fc4dbdb0391bfbbf294, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d77402d793502dc40ae79947f8c6f7b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -186,8 +186,8 @@ MonoBehaviour:
   healthPanelTargetColor:
     serializedVersion: 2
     rgba: 0
-  maxHealth: 30
-  health: 30
+  maxHealth: 50
+  health: 50
   attack: 10
   defense: 20
   speed: 10
@@ -229,6 +229,10 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}
   aoeTargetPosition: {fileID: 0}
+  healCooldown: 0
+  rageState: 0
+  rageAttack: 0
+  dead: 0
 --- !u!1 &6391942041139562138
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +259,7 @@ Transform:
   m_GameObject: {fileID: 6391942041139562138}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -0.25, z: 0}
+  m_LocalPosition: {x: -1.5, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

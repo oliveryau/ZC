@@ -266,6 +266,9 @@ public class CharacterStats : MonoBehaviour
             case "heal":
                 popup.text = "HEAL\n" + value.ToString();
                 break;
+            case "rage":
+                popup.text = "RAGE";
+                break;
             default:
                 Debug.LogError("No buff text, BUG");
                 break;
@@ -339,7 +342,7 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         checkedStatus = true;
     }

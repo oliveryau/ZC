@@ -230,7 +230,7 @@ MonoBehaviour:
     rgba: 0
   maxHealth: 30
   health: 30
-  attack: 15
+  attack: 10
   defense: 15
   speed: 1
   increasedAttackValue: 0
