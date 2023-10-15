@@ -26,17 +26,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        #region Cheat Codes
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            SceneManager.LoadScene(0);
-        }
-        else if (Input.GetKeyDown(KeyCode.F2))
-        {
-            SceneManager.LoadScene(1);
-        }
-        #endregion
-
         if (gameState == GameState.PLAY) //normal play state
         {
             Time.timeScale = 1f;
