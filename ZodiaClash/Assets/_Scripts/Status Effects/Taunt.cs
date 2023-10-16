@@ -25,7 +25,7 @@ public class Taunt : MonoBehaviour
             {
                 targetCharaStats.tauntCounter = tauntLimit;
             }
-            targetCharaStats.DamageText(0, false, "taunt");
+            targetCharaStats.StatusText("taunt");
 
             _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>();
             statusEffect.SpawnEffectsBar(targetCharaStats, tauntCount, "taunt");

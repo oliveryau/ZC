@@ -233,6 +233,7 @@ public class BattleManager : MonoBehaviour
             {
                 float scaleFactor = 1.2f;
                 character.uniqueTurnHud.localScale = new Vector3(scaleFactor, scaleFactor, 1f);
+                character.uniqueTurnHud.transform.Find("Arrow").gameObject.SetActive(true);
             }
             #endregion
         }
@@ -304,6 +305,7 @@ public class BattleManager : MonoBehaviour
                             StartCoroutine(LerpTurn(currentAvatarTransform, speedupAvatarTargetPosition));
 
                             //set index of avatar to next one
+                            currentAvatarTransform.Find("SpeedUp").gameObject.SetActive(true);
                             currentAvatarTransform.SetSiblingIndex(1);
                             break;
                         }
@@ -312,6 +314,7 @@ public class BattleManager : MonoBehaviour
                     case "revert":
                         currentAvatarTransform = target.uniqueTurnHud;
 
+                        currentAvatarTransform.Find("SpeedUp").gameObject.SetActive(false);
                         currentAvatarTransform.SetSiblingIndex(additionalIndex);
                         break;
                     default:
@@ -329,10 +332,12 @@ public class BattleManager : MonoBehaviour
             {
                 float scaleFactor = 1.2f;
                 character.uniqueTurnHud.localScale = new Vector3(scaleFactor, scaleFactor, 1f);
+                character.uniqueTurnHud.transform.Find("Arrow").gameObject.SetActive(true);
             }
             else
             {
                 character.uniqueTurnHud.localScale = Vector3.one;
+                character.uniqueTurnHud.transform.Find("Arrow").gameObject.SetActive(false);
             }
         }
         #endregion

@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1304055b5b8c96f4b9742bc8508b25c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   uniqueTurnHud: {fileID: 0}
   uniqueCharacterAvatar: {fileID: 21300000, guid: 166ba14ce09ca5846af7be0aa0ea0093, type: 3}
   characterHpHud: {fileID: 0}
@@ -212,6 +213,7 @@ MonoBehaviour:
   statusEffectPanel: {fileID: 0}
   characterName: {fileID: 7142683735931713415}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
+  statusEffectText: {fileID: 2068786622573946671, guid: b01e450bd9545674089be56db3033593, type: 3}
   hoverHudCheck: 0
   hpValueUi: {fileID: 0}
   playerAvatar: {fileID: 0}
@@ -228,8 +230,8 @@ MonoBehaviour:
   healthPanelTargetColor:
     serializedVersion: 2
     rgba: 0
-  maxHealth: 30
-  health: 30
+  maxHealth: 100
+  health: 100
   attack: 10
   defense: 15
   speed: 1
@@ -258,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyState: 0
   skillTextIndicator: {fileID: 0}
+  warningTextIndicator: {fileID: 0}
   turnIndicator: {fileID: 8402745814470872068}
   targetIndicator: {fileID: 611685546994801581}
   enemyStartTurn: 0
@@ -468,10 +471,6 @@ PrefabInstance:
     - target: {fileID: 2240264357507610230, guid: 249c404c5ced6a34e928edbbcd8ed08e, type: 3}
       propertyPath: critMultiplier
       value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240264357507610230, guid: 249c404c5ced6a34e928edbbcd8ed08e, type: 3}
-      propertyPath: skillAttackPercent
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2240264357507610230, guid: 249c404c5ced6a34e928edbbcd8ed08e, type: 3}
       propertyPath: maxAttackMultiplier

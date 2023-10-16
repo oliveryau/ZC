@@ -13,7 +13,7 @@ public class B_AttackBuff : _BaseBuff
 
         Enrage enrage = FindObjectOfType<Enrage>();
 
-        targetStats.BuffText(skillBuffPercent, "enrage");
+        targetStats.StatusText("enrage");
 
         if (targetStats.enrageCounter <= 0) //don't overstack attack
         {

@@ -6,7 +6,6 @@ public class _BaseAttack : MonoBehaviour
 {
     [Header("Character")]
     [SerializeField] protected GameObject owner;
-    [SerializeField] protected string animationName;
 
     [Header("Integer")]
     [SerializeField] protected int skillAttackPercent;

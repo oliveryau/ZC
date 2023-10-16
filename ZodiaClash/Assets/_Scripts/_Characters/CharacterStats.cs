@@ -19,6 +19,7 @@ public class CharacterStats : MonoBehaviour
     public Transform statusEffectPanel;
     [SerializeField] private GameObject characterName;
     [SerializeField] private GameObject floatingText;
+    [SerializeField] private GameObject statusEffectText;
     [HideInInspector] public bool hoverHudCheck;
 
     [Header("Other Player HUD")]
@@ -122,22 +123,22 @@ public class CharacterStats : MonoBehaviour
         if (hoverHudCheck)
         {
             characterName.SetActive(true);
-            uniqueTurnHud.transform.Find("Arrow").gameObject.SetActive(true);
+            //uniqueTurnHud.transform.Find("Arrow").gameObject.SetActive(true);
 
             if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
             {
-                healthPanel.transform.Find("Arrow").gameObject.SetActive(true);
+                //healthPanel.transform.Find("Arrow").gameObject.SetActive(true);
                 //healthPanel.color = healthPanelHoverColor;
             }
         }
         else
         {
             characterName.SetActive(false);
-            uniqueTurnHud.transform.Find("Arrow").gameObject.SetActive(false);
+            //uniqueTurnHud.transform.Find("Arrow").gameObject.SetActive(false);
 
             if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
             {
-                healthPanel.transform.Find("Arrow").gameObject.SetActive(false);
+                //healthPanel.transform.Find("Arrow").gameObject.SetActive(false);
                 //healthPanel.color = healthPanelOriginalColor;
             }
         }
@@ -164,7 +165,8 @@ public class CharacterStats : MonoBehaviour
     {
         health -= damage;
 
-        DamageText(damage, critCheck, debuff);
+        DamageText(damage, critCheck);
+        StatusText(debuff);
 
         //set damage text
         if (health <= 0)
@@ -192,7 +194,7 @@ public class CharacterStats : MonoBehaviour
 
         if (cleanse)
         {
-            BuffText(buffAmount, "cleanse");
+            StatusText("cleanse");
         }
         else
         {
@@ -208,40 +210,23 @@ public class CharacterStats : MonoBehaviour
         healthBarFill.fillAmount = health / maxHealth;
     }
 
-    #region Text Effects
-    public void DamageText(float value, bool critCheck, string effect)
+    #region Visual Effects
+    public void DamageText(float value, bool critCheck)
     {
         TextMeshPro popup = floatingText.GetComponent<TextMeshPro>();
         popup.color = Color.white;
 
         if (critCheck)
         {
-            popup.text = "CRITICAL HIT\n\n";
+            popup.text = "CRIT! ";
             popup.color = Color.red;
         }
-
-        switch (effect)
+        else
         {
-            case "bleed":
-                popup.text += "BLEED\n" + value.ToString();
-                break;
-            case "shatter":
-                popup.text += "SHATTER\n" + value.ToString();
-                break;
-            case "stun":
-                popup.text += "STUN\n" + value.ToString();
-                break;
-            case "stun0":
-                popup.text += "STUN";
-                break;
-            case "taunt":
-                popup.text += "TAUNT";
-                break;
-            default:
-                popup.text += value.ToString();
-                break;
+            popup.text = null;
         }
 
+        popup.text += value.ToString();
         Instantiate(floatingText, transform.position, Quaternion.identity, transform);
 
         popup.text = null;
@@ -254,27 +239,59 @@ public class CharacterStats : MonoBehaviour
 
         switch (effect)
         {
-            case "enrage":
-                popup.text = "ENRAGE";
-                break;
-            case "armor":
-                popup.text = "ARMOR";
-                break;
-            case "cleanse":
-                popup.text = "CLEANSE\n" + value.ToString();
-                break;
             case "heal":
-                popup.text = "HEAL\n" + value.ToString();
-                break;
-            case "rage":
-                popup.text = "RAGE";
+                popup.text = "+" + value.ToString();
                 break;
             default:
-                Debug.LogError("No buff text, BUG");
+                popup.text = null;
                 break;
         }
 
         Instantiate(floatingText, transform.position, Quaternion.identity, transform);
+
+        popup.text = null;
+    }
+
+    public void StatusText(string effect)
+    {
+        TextMeshProUGUI popup = statusEffectText.GetComponentInChildren<TextMeshProUGUI>();
+        popup.color = Color.white;
+
+        switch (effect)
+        {
+            case "bleed":
+                popup.text = "Bleed";
+                break;
+            case "shatter":
+                popup.text = "Shatter";
+                break;
+            case "stun":
+                popup.text = "Stun";
+                break;
+            case "taunt":
+                popup.text = "Taunt";
+                break;
+            case "enrage":
+                popup.text = "Enrage";
+                break;
+            case "armor":
+                popup.text = "Armor";
+                break;
+            case "cleanse":
+                popup.text = "Cleanse";
+                break;
+            case "rage":
+                popup.text = "Rage";
+                break;
+            default:
+                popup.text = null;
+                break;
+        }
+
+        if (effect != null)
+        {
+            Instantiate(statusEffectText, transform.position, Quaternion.identity, transform);
+        }
 
         popup.text = null;
     }
@@ -315,14 +332,14 @@ public class CharacterStats : MonoBehaviour
         #region Stun
         if (stunCounter > 0)
         {
-            DamageText(0, false, "stun0");
+            StatusText("stun");
         }
         #endregion
 
         #region Taunt
         if (tauntCounter > 0)
         {
-            DamageText(0, false, "taunt");
+            StatusText("taunt");
         }
         #endregion
 

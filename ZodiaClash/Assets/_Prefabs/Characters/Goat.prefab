@@ -163,12 +163,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1304055b5b8c96f4b9742bc8508b25c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  uniqueTurnHud: {fileID: 0}
   uniqueCharacterAvatar: {fileID: 21300000, guid: 3adb16ef04fb59c4a806b55db96e0f1d, type: 3}
   characterHpHud: {fileID: 0}
   healthBarFill: {fileID: 0}
   statusEffectPanel: {fileID: 0}
   characterName: {fileID: 2565123218387797550}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
+  statusEffectText: {fileID: 2068786622573946671, guid: b01e450bd9545674089be56db3033593, type: 3}
+  hoverHudCheck: 0
   hpValueUi: {fileID: 0}
   playerAvatar: {fileID: 0}
   playerAvatarOriginalColor:
@@ -179,9 +183,6 @@ MonoBehaviour:
     rgba: 0
   healthPanel: {fileID: 0}
   healthPanelOriginalColor:
-    serializedVersion: 2
-    rgba: 0
-  healthPanelHoverColor:
     serializedVersion: 2
     rgba: 0
   healthPanelTargetColor:

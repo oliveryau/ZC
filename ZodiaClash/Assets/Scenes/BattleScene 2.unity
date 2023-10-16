@@ -134,6 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &158915239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6307404063598170639, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+  m_PrefabInstance: {fileID: 197414479760093572}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &167566904 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4858991633244168773, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
@@ -812,27 +817,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8400394220153282768, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
   m_PrefabInstance: {fileID: 197414479760093572}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1510701243
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1510701239}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c02a854d55631014fba766ad06af5419, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1511122768 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7793932145795939308, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
@@ -1550,6 +1534,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5414218269737688127, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
     - target: {fileID: 5520773316568686077, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: hover
       value: 
@@ -1683,10 +1671,7 @@ PrefabInstance:
     - {fileID: 5988241923385350331, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
     - {fileID: 699881127775714149, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8400394220153282768, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1510701243}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
 --- !u!114 &197414479760093576 stripped
 MonoBehaviour:
@@ -2031,6 +2016,10 @@ PrefabInstance:
       propertyPath: skillTextIndicator
       value: 
       objectReference: {fileID: 1510701239}
+    - target: {fileID: 8091164749747860254, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8280137639503927606, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skillText
       value: 
@@ -2248,6 +2237,10 @@ PrefabInstance:
       propertyPath: skillTextIndicator
       value: 
       objectReference: {fileID: 1510701239}
+    - target: {fileID: 4282169098367958259, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
+      propertyPath: warningTextIndicator
+      value: 
+      objectReference: {fileID: 158915239}
     - target: {fileID: 6699813660680686428, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.5
@@ -2361,6 +2354,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3323903470169568988, guid: ad7ac37657f1a9642b591e0fe5bd4860, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 3776981409552776292, guid: ad7ac37657f1a9642b591e0fe5bd4860, type: 3}
       propertyPath: pauseScreen
       value: 
@@ -2617,6 +2614,10 @@ PrefabInstance:
       propertyPath: skillTextIndicator
       value: 
       objectReference: {fileID: 1510701239}
+    - target: {fileID: 4003031062897731387, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: warningTextIndicator
+      value: 
+      objectReference: {fileID: 158915239}
     - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthPanel
       value: 
@@ -2629,6 +2630,10 @@ PrefabInstance:
       propertyPath: skillTextIndicator
       value: 
       objectReference: {fileID: 1510701239}
+    - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: warningTextIndicator
+      value: 
+      objectReference: {fileID: 158915239}
     - target: {fileID: 5981490860473186612, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthPanel
       value: 

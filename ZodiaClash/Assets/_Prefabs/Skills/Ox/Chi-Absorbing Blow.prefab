@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  animationName: 
-  skillAttackPercent: 50
+  skillAttackPercent: 100
   minAttackMultiplier: 0.8
   maxAttackMultiplier: 1.2
   critRate: 0.5

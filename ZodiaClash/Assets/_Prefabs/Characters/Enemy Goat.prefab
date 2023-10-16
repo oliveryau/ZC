@@ -41,6 +41,7 @@ Transform:
   - {fileID: 2526553772816016386}
   - {fileID: 7474579139382144906}
   - {fileID: 4090045922359025477}
+  - {fileID: 6089179187775736129}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1613264774357693537
@@ -163,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1304055b5b8c96f4b9742bc8508b25c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   uniqueTurnHud: {fileID: 0}
   uniqueCharacterAvatar: {fileID: 21300000, guid: 3adb16ef04fb59c4a806b55db96e0f1d, type: 3}
   characterHpHud: {fileID: 0}
@@ -170,6 +172,7 @@ MonoBehaviour:
   statusEffectPanel: {fileID: 0}
   characterName: {fileID: 6556973948427452241}
   floatingText: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
+  statusEffectText: {fileID: 2068786622573946671, guid: b01e450bd9545674089be56db3033593, type: 3}
   hoverHudCheck: 0
   hpValueUi: {fileID: 0}
   playerAvatar: {fileID: 0}
@@ -216,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyState: 0
   skillTextIndicator: {fileID: 0}
+  warningTextIndicator: {fileID: 0}
   turnIndicator: {fileID: 4127066488040719247}
   targetIndicator: {fileID: 8803572653947505871}
   enemyStartTurn: 0
@@ -231,6 +235,7 @@ MonoBehaviour:
   aoeTargetPosition: {fileID: 0}
   healCooldown: 0
   canHeal: 0
+  skill4Prefab: {fileID: 8995874818723517444}
   rageState: 0
   rageCount: 0
   rageApplied: 0
@@ -457,6 +462,89 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8987391991611993712, guid: cde38a178c29e86418d1160e8c759e24, type: 3}
   m_PrefabInstance: {fileID: 2022592937639407165}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2405460814700747974
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6699813660680686428}
+    m_Modifications:
+    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 813487967176509868}
+    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: defBreakRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: defBreakCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: defBreakPercent
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752634862961264834, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: m_Name
+      value: Damned Desolation
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+--- !u!4 &6089179187775736129 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+  m_PrefabInstance: {fileID: 2405460814700747974}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8995874818723517444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6752634862961264834, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+  m_PrefabInstance: {fileID: 2405460814700747974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2735475130155682227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -548,6 +636,10 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 813487967176509868}
+    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: shatterRate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: defBreakRate
       value: 1

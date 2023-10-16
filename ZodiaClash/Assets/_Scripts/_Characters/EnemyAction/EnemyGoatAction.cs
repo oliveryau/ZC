@@ -9,6 +9,7 @@ public class EnemyGoatAction : _EnemyAction
     [SerializeField] private bool canHeal;
 
     [Header("Low Health State")]
+    [SerializeField] private GameObject skill4Prefab;
     [SerializeField] private bool rageState;
     [SerializeField] private float rageCount;
     [SerializeField] private bool rageApplied;
@@ -57,7 +58,6 @@ public class EnemyGoatAction : _EnemyAction
                 if (characterStats.health <= 0.1f * characterStats.maxHealth)
                 {
                     rageState = true;
-                    EnemyToggleSkillText(false, "goat");
                 }
 
                 if (!characterStats.checkedStatus && !checkingStatus)
@@ -166,10 +166,11 @@ public class EnemyGoatAction : _EnemyAction
             {
                 if (rageCount == 0 && !rageApplied)
                 {
-                    Debug.Log("A");
                     rageApplied = true;
 
-                    characterStats.BuffText(0, "rage");
+                    characterStats.StatusText("rage");
+                    EnemyToggleSkillText(true, "goat");
+                    StartCoroutine(EnemyToggleWarningText("goat"));
 
                     characterStats.attack += 10;
                     _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>();
@@ -179,19 +180,18 @@ public class EnemyGoatAction : _EnemyAction
                 }
                 else if (rageCount == 0 && rageApplied)
                 {
-                    Debug.Log("B");
                     enemyEndingTurn = true;
 
-                    StartCoroutine(RageEndTurn(0.5f));
+                    StartCoroutine(RageEndTurn(1f));
                 }
                 else if (rageCount > 0)
                 {
-                    Debug.Log("C");
-                    selectedSkillPrefab = skill1Prefab;
+                    selectedSkillPrefab = skill4Prefab;
                     selectedTarget = playerTargets[0].gameObject;
 
                     enemyState = EnemyState.ATTACKING;
 
+                    rageApplied = false;
                     rageCount = 0;
                 }
             }
@@ -205,7 +205,7 @@ public class EnemyGoatAction : _EnemyAction
                     for (int i = 0; i < enemyTargets.Length; i++)
                     {
                         CharacterStats enemy = enemyTargets[i].GetComponent<CharacterStats>();
-                        if (enemy.health / enemy.maxHealth <= 0.3f) //if enemy less than 30% hp -> heal target
+                        if (enemy.health / enemy.maxHealth <= 0.7f) //if enemy less than 70% hp -> heal target
                         {
                             selectedTarget = enemy.gameObject;
                             Debug.Log("Enemy Selected Target (Heal): " + selectedTarget.name);
@@ -213,7 +213,7 @@ public class EnemyGoatAction : _EnemyAction
                             selectedSkillPrefab = skill3Prefab;
 
                             healingAlly = true;
-                            healCooldown = 2;
+                            healCooldown = 3;
 
                             enemyState = EnemyState.ATTACKING;
 
@@ -259,7 +259,7 @@ public class EnemyGoatAction : _EnemyAction
         enemyAttacking = true;
 
         #region Movement Skills
-        if (selectedSkillPrefab == skill1Prefab)
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill4Prefab)
         {
             targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
 
@@ -277,7 +277,7 @@ public class EnemyGoatAction : _EnemyAction
     protected override void EnemyAttackAnimation()
     {
         #region Movement Skills
-        if (selectedSkillPrefab == skill1Prefab)
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill4Prefab)
         {
             StartCoroutine(EnemyAttackStartDelay(0.5f, 1f));
         }
@@ -292,7 +292,7 @@ public class EnemyGoatAction : _EnemyAction
 
     protected override void EnemyApplySkill()
     {
-        if (selectedSkillPrefab == skill1Prefab)
+        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill4Prefab)
         {
             //single target attack
             selectedSkillPrefab.GetComponent<NormalAttack>().Attack(selectedTarget);
@@ -341,7 +341,7 @@ public class EnemyGoatAction : _EnemyAction
             {
                 CharacterStats enemyStats = enemyTargets[i].GetComponent<CharacterStats>();
 
-                enemyStats.BuffText(atkBuff.skillBuffPercent, "enrage");
+                enemyStats.StatusText("enrage");
 
                 if (enemyStats.enrageCounter <= 0) //don't overstack attack
                 {

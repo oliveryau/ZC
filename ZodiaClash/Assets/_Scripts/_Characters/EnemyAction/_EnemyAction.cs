@@ -14,6 +14,7 @@ public class _EnemyAction : MonoBehaviour
 
     [Header("HUD")]
     [SerializeField] protected GameObject skillTextIndicator;
+    [SerializeField] protected GameObject warningTextIndicator;
     public GameObject turnIndicator;
     public GameObject targetIndicator;
     [HideInInspector] public bool enemyStartTurn;
@@ -230,12 +231,7 @@ public class _EnemyAction : MonoBehaviour
     {
         TextMeshProUGUI skillText = skillTextIndicator.GetComponentInChildren<TextMeshProUGUI>();
 
-        if (display)
-        {
-            skillText.text = selectedSkillPrefab.gameObject.name;
-            skillTextIndicator.SetActive(true);
-        }
-        else if (!display && specialCase != null)
+        if (display && specialCase != null)
         {
             switch (specialCase)
             {
@@ -247,11 +243,36 @@ public class _EnemyAction : MonoBehaviour
                     break;
             }
         }
+        else if (display)
+        {
+            skillText.text = selectedSkillPrefab.gameObject.name;
+            skillTextIndicator.SetActive(true);
+        }
         else if (!display)
         {
             skillTextIndicator.SetActive(false);
             skillText.text = null;
         }
+    }
+
+    protected IEnumerator EnemyToggleWarningText(string specialCase)
+    {
+        TextMeshProUGUI warningText = warningTextIndicator.GetComponentInChildren<TextMeshProUGUI>();
+
+        switch (specialCase)
+        {
+            case "goat":
+                warningText.text = "Damned Desolation will be used next!";
+                warningTextIndicator.SetActive(true);
+                break;
+            default:
+                break;
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        warningTextIndicator.SetActive(false);
+        warningText.text = null;
     }
     #endregion
 

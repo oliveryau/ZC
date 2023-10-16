@@ -30,7 +30,7 @@ public class C_AoeTaunt : AoeAttack
         Defense armor = FindObjectOfType<Defense>();
 
         attackerStats = owner.GetComponent<CharacterStats>();
-        attackerStats.BuffText(armorPercent, "armor");
+        attackerStats.StatusText("armor");
 
         if (attackerStats.armorCounter <= 0) //dont overstack defense
         {
