@@ -158,6 +158,7 @@ public class GuardAction : _EnemyAction
         {
             targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
 
+            StartCoroutine(cam.ZoomInSingleTarget(targetPosition));
             movingToTarget = true;
         }
         #endregion
@@ -187,7 +188,7 @@ public class GuardAction : _EnemyAction
     protected override IEnumerator EnemyDeath()
     {
         gameObject.tag = "Dead";
-        //animator.SetTrigger("Death");
+        //characterStats.animator.SetTrigger("Death");
 
         #region Update Turn Order
         battleManager.UpdateTurnOrderUi("death", characterStats);

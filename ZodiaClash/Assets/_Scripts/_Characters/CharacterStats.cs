@@ -109,7 +109,7 @@ public class CharacterStats : MonoBehaviour
 
     private void NameCheck()
     {
-        TextMeshPro charaName = characterName.GetComponent<TextMeshPro>();
+        TextMeshProUGUI charaName = characterName.GetComponent<TextMeshProUGUI>();
         charaName.text = gameObject.name;
 
         if (gameObject.CompareTag("Enemy") && charaName.text.Contains("Guard"))
@@ -194,6 +194,7 @@ public class CharacterStats : MonoBehaviour
 
         if (cleanse)
         {
+            BuffText(buffAmount, "cleanse");
             StatusText("cleanse");
         }
         else
@@ -213,32 +214,37 @@ public class CharacterStats : MonoBehaviour
     #region Visual Effects
     public void DamageText(float value, bool critCheck)
     {
-        TextMeshPro popup = floatingText.GetComponent<TextMeshPro>();
-        popup.color = Color.white;
+        TextMeshProUGUI critText = floatingText.transform.Find("Crit Text").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI damageText = floatingText.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+
+        critText.color = Color.red;
+        damageText.color = Color.white;
 
         if (critCheck)
         {
-            popup.text = "CRIT! ";
-            popup.color = Color.red;
+            critText.gameObject.SetActive(true);
         }
         else
         {
-            popup.text = null;
+            critText.gameObject.SetActive(false);
         }
 
-        popup.text += value.ToString();
+        damageText.text = value.ToString();
         Instantiate(floatingText, transform.position, Quaternion.identity, transform);
 
-        popup.text = null;
+        damageText.text = null;
     }
 
     public void BuffText(float value, string effect)
     {
-        TextMeshPro popup = floatingText.GetComponent<TextMeshPro>();
+        TextMeshProUGUI popup = floatingText.transform.Find("Text").GetComponent<TextMeshProUGUI>();
         popup.color = Color.green;
 
         switch (effect)
         {
+            case "cleanse":
+                popup.text = "+" + value.ToString();
+                break;
             case "heal":
                 popup.text = "+" + value.ToString();
                 break;
@@ -359,7 +365,7 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
 
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1f);
 
         checkedStatus = true;
     }

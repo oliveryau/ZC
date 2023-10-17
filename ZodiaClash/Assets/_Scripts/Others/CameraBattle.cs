@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraBattle : MonoBehaviour
 {
     [SerializeField] private Camera cam;
 
@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
         startOrthoSize = cam.orthographicSize;
     }
 
-    public IEnumerator ZoomSingleTarget(Transform pos)
+    public IEnumerator ZoomInSingleTarget(Transform pos)
     {
         Vector3 targetPosition = new Vector3(pos.position.x, pos.position.y, cam.transform.position.z);
         float elapsedTime = 0.0f;
@@ -33,20 +33,18 @@ public class CameraController : MonoBehaviour
         }
 
         cam.orthographicSize = targetOrthoSize;
-
-        yield return new WaitForSeconds(duration);
-
-        StartCoroutine(ZoomOutEffect(targetPosition));
     }
 
-    public IEnumerator ZoomOutEffect(Vector3 pos)
+    public IEnumerator ZoomOut()
     {
+        Vector3 initialPosition = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
+
         float elapsedTime = 0.0f;
 
         while (elapsedTime < duration)
         {
             float t = elapsedTime / duration;
-            cam.transform.position = Vector3.Lerp(pos, startPosition, t);
+            cam.transform.position = Vector3.Lerp(initialPosition, startPosition, t);
             cam.orthographicSize = Mathf.Lerp(targetOrthoSize, startOrthoSize, t);
 
             elapsedTime += Time.deltaTime;

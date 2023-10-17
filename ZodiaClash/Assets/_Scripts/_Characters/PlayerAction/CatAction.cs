@@ -166,13 +166,13 @@ public class CatAction : _PlayerAction
             {
                 targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
                 characterStats.animator.SetTrigger("skill1");
-                StartCoroutine(cameraController.ZoomSingleTarget(targetPosition));
             }
             else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
             {
                 targetPosition = aoeTargetPosition; //aoe target pos
             }
 
+            StartCoroutine(cam.ZoomInSingleTarget(targetPosition));
             movingToTarget = true; //movement is triggered
         }
         #endregion

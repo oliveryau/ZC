@@ -1626,9 +1626,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Image 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8346392133470684450, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_Name
+      value: Battle State HUD
+      objectReference: {fileID: 0}
     - target: {fileID: 8767278685352295605, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: hover
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8770115210713605124, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
       objectReference: {fileID: 0}
     - target: {fileID: 8947098030685463997, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1684,6 +1692,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &660684119653260918
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6349117868058696665, guid: a453ecd8c16cf3b45b1b94597fee52d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6349117868058696665, guid: a453ecd8c16cf3b45b1b94597fee52d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6349117868058696665, guid: a453ecd8c16cf3b45b1b94597fee52d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772062036028628814, guid: a453ecd8c16cf3b45b1b94597fee52d4, type: 3}
+      propertyPath: m_Name
+      value: Background Image
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a453ecd8c16cf3b45b1b94597fee52d4, type: 3}
 --- !u!1001 &1365183744071584864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1744,10 +1781,6 @@ PrefabInstance:
       propertyPath: statusEffectPanel
       value: 
       objectReference: {fileID: 1852511230}
-    - target: {fileID: 709988267848815956, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -1626597601535657343, guid: bf1a4340fb5b3c24785825f7ac68b4d8, type: 2}
     - target: {fileID: 709988267848815956, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -1888,6 +1921,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Five Elements Bloodbath
       objectReference: {fileID: 0}
+    - target: {fileID: 5562072919082771128, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: m_Name
+      value: Character Name
+      objectReference: {fileID: 0}
     - target: {fileID: 5629014538226825640, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: m_Name
       value: Heavenly Shepherd's Grace
@@ -1977,9 +2014,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1832107892}
     - target: {fileID: 6926131040797665473, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926131040797665473, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -1626597601535657343, guid: bf1a4340fb5b3c24785825f7ac68b4d8, type: 2}
+      objectReference: {fileID: 6910642312096235933, guid: 6630f43237975aa478adac8bf6650d54, type: 2}
     - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skillText
       value: 
@@ -2064,6 +2105,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8573040474771211716, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 8879444760872115709, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: m_Name
       value: Unstoppable Thunder
@@ -2104,107 +2149,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d557c76c8d216540b767a66de1b92ba, type: 3}
---- !u!1001 &2647157813289228017
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833306781209359260, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2227385348397442140, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_Name
-      value: Background Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 2677610284378233874, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 708d19f79ceb2ab478b45b950d693dad, type: 3}
+--- !u!1 &2030359524106125965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8346392133470684450, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+  m_PrefabInstance: {fileID: 197414479760093572}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3069115989705681871
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2505,6 +2454,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8909054148693310747, guid: 5d186448335117a449dbafed1dd8aaab, type: 3}
     - target: {fileID: 1032449978282707555, guid: d1f84f7113e494447baafb671923066b, type: 3}
+      propertyPath: battleStateHud
+      value: 
+      objectReference: {fileID: 2030359524106125965}
+    - target: {fileID: 1032449978282707555, guid: d1f84f7113e494447baafb671923066b, type: 3}
       propertyPath: imageTurnOrder
       value: 
       objectReference: {fileID: 1468381430}
@@ -2683,6 +2636,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 643516429}
     - target: {fileID: 9049739051425123833, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: floatingText
+      value: 
+      objectReference: {fileID: 2068786622573946671, guid: e017fbf3857542b4ea83a0dd74f44b20, type: 3}
+    - target: {fileID: 9049739051425123833, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthBarFill
       value: 
       objectReference: {fileID: 1132555836}
@@ -2791,7 +2748,7 @@ SceneRoots:
   - {fileID: 6579011343209215275}
   - {fileID: 4945693000349419718}
   - {fileID: 1775791410}
-  - {fileID: 2647157813289228017}
+  - {fileID: 660684119653260918}
   - {fileID: 197414479760093572}
   - {fileID: 1901210210}
   - {fileID: 1365183744071584864}

@@ -54,7 +54,7 @@ public class _PlayerAction : MonoBehaviour
     protected BattleManager battleManager;
     protected CharacterStats characterStats;
     protected PlayerChi playerChi;
-    protected CameraController cameraController;
+    protected CameraBattle cam;
     protected bool playerAttacking;
     protected bool endingTurn;
     protected bool checkingStatus;
@@ -71,7 +71,7 @@ public class _PlayerAction : MonoBehaviour
         battleManager = FindObjectOfType<BattleManager>();
         characterStats = GetComponent<CharacterStats>();
         playerChi = FindObjectOfType<PlayerChi>();
-        cameraController = FindObjectOfType<CameraController>();
+        cam = FindObjectOfType<CameraBattle>();
     }
 
     #region Player State
@@ -259,8 +259,8 @@ public class _PlayerAction : MonoBehaviour
             else if (movingToStart && !movingToTarget)
             {
                 transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
-                //characterStats.animator.SetTrigger("moveBack");
                 characterStats.animator.SetBool("moveBack", true);
+                StartCoroutine(cam.ZoomOut());
 
                 GetComponent<SpriteRenderer>().sortingOrder = originalSort;
 
@@ -329,6 +329,7 @@ public class _PlayerAction : MonoBehaviour
 
         yield return new WaitForSeconds(endDelay); //delay to play animation
 
+        StartCoroutine(cam.ZoomOut());
         endingTurn = true;
     }
 

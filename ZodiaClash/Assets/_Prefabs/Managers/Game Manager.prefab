@@ -63,6 +63,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  startPosition: {x: 0, y: 0, z: 0}
-  targetOrthoSize: 3
-  duration: 0.5
+  targetOrthoSize: 3.25
+  duration: 0.2

@@ -43,7 +43,7 @@ public class _EnemyAction : MonoBehaviour
 
     protected BattleManager battleManager;
     protected CharacterStats characterStats;
-    protected Animator animator;
+    protected CameraBattle cam;
     protected bool enemyAttacking;
     protected bool enemyEndingTurn;
     protected bool checkingStatus;
@@ -57,7 +57,7 @@ public class _EnemyAction : MonoBehaviour
 
         battleManager = FindObjectOfType<BattleManager>();
         characterStats = GetComponent<CharacterStats>();
-        animator = GetComponent<Animator>();
+        cam = FindObjectOfType<CameraBattle>();
 
         Vector3 offset = new(10f, 0, 0);
         transform.position = startPosition + offset;
@@ -147,11 +147,14 @@ public class _EnemyAction : MonoBehaviour
             else if (movingToStart && !movingToTarget)
             {
                 transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
+                //characterStats.animator.SetBool("moveBack", true);
+                StartCoroutine(cam.ZoomOut());
 
                 GetComponent<SpriteRenderer>().sortingOrder = originalSort;
 
                 if (reachedStart)
                 {
+                    //characterStats.animator.SetBool("moveBack", true);
                     movingToStart = false;
 
                     enemyEndingTurn = true;
@@ -197,6 +200,7 @@ public class _EnemyAction : MonoBehaviour
 
         yield return new WaitForSeconds(endDelay); //delay to play animation
 
+        StartCoroutine(cam.ZoomOut());
         enemyEndingTurn = true;
     }
 

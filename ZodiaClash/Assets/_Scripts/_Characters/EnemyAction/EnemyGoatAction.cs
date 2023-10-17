@@ -55,7 +55,7 @@ public class EnemyGoatAction : _EnemyAction
 
             else if (enemyState == EnemyState.CHECKSTATUS)
             {
-                if (characterStats.health <= 0.1f * characterStats.maxHealth)
+                if (characterStats.health <= 0.3f * characterStats.maxHealth)
                 {
                     rageState = true;
                 }
@@ -263,6 +263,7 @@ public class EnemyGoatAction : _EnemyAction
         {
             targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
 
+            StartCoroutine(cam.ZoomInSingleTarget(targetPosition));
             movingToTarget = true;
         }
         #endregion
@@ -270,6 +271,7 @@ public class EnemyGoatAction : _EnemyAction
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
             EnemyAttackAnimation();
+            StartCoroutine(cam.ZoomInSingleTarget(transform));
         }
         #endregion
     }
@@ -360,7 +362,7 @@ public class EnemyGoatAction : _EnemyAction
         }
         #endregion
 
-        //animator.SetTrigger("Death");
+        //characterStats.animator.SetTrigger("Death");
 
         #region Update Turn Order
         battleManager.UpdateTurnOrderUi("death", characterStats);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,7 @@ public class BattleManager : MonoBehaviour
     private bool roundInProgress;
 
     [Header("HUD")]
+    [SerializeField] private GameObject battleStateHud;
     [SerializeField] private GameObject turnOrder;
     [SerializeField] private GameObject avatarContainerPrefab;
     [SerializeField] private Transform avatarListContainer;
@@ -42,11 +44,10 @@ public class BattleManager : MonoBehaviour
         battleState = BattleState.NEWGAME;
 
         roundInProgress = false;
-
         characterCount = 0;
         roundCounter = 0;
 
-        StartCoroutine(NewGameDelay(1f)); //delay at start
+        StartCoroutine(NewGameDelay(0.5f, 1f)); //delay at start
     }
 
     private void Update()
@@ -55,7 +56,6 @@ public class BattleManager : MonoBehaviour
         {
             if (!roundInProgress)
             {
-                //introduce UI for a new round and any other conditions for a new round need to be met
                 roundInProgress = true;
                 ++roundCounter;
 
@@ -100,6 +100,9 @@ public class BattleManager : MonoBehaviour
                 enemyHud.SetActive(false);
                 skillChiHud.SetActive(false);
                 statusEffectIndicator.SetActive(false);
+
+                battleStateHud.GetComponentInChildren<TextMeshProUGUI>().text = "Battle Over";
+                battleStateHud.gameObject.SetActive(true);
             }
             //then check if enemy has won
             else if (GameObject.FindGameObjectsWithTag("Player").Length <= 0) //no players left
@@ -156,9 +159,13 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public IEnumerator NewGameDelay(float seconds)
+    public IEnumerator NewGameDelay(float startDelay, float nextDelay)
     {
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(startDelay);
+
+        battleStateHud.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(nextDelay);
 
         DetermineTurnOrder();
 
@@ -166,6 +173,8 @@ public class BattleManager : MonoBehaviour
         playerHud.SetActive(true);
         enemyHud.SetActive(true);
         statusEffectIndicator.SetActive(true);
+
+        battleStateHud.gameObject.SetActive(false);
 
         battleState = BattleState.NEWROUND;
     }

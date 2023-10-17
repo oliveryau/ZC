@@ -31,14 +31,14 @@ public class StartMenu : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
 
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
 
         SceneManager.LoadScene(scene.buildIndex + 1);
     }
 
     private IEnumerator DelayQuitButton()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         Application.Quit();
     }

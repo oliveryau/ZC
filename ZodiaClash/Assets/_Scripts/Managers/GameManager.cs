@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public enum GameState
 {
-    PLAY, PAUSE, EFFECTS
+    WAIT, PLAY, PAUSE, EFFECTS
 }
 
 public class GameManager : MonoBehaviour
@@ -19,9 +19,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool isPaused;
     [SerializeField] private bool isEffectDisplayed;
 
+    private ScenesManager scenesManager;
+
     private void Start()
     {
-        gameState = GameState.PLAY;
+        scenesManager = FindObjectOfType<ScenesManager>();
+
+        gameState = GameState.WAIT;
+
+        StartCoroutine(StartDelay());
     }
 
     private void Update()
@@ -85,7 +91,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    #region Pause
+    private IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(1f);
+
+        gameState = GameState.PLAY;
+    }
+
+    #region Pause Menu Buttons
     public void ResumeGame()
     {
         isPaused = false;
@@ -93,14 +106,26 @@ public class GameManager : MonoBehaviour
 
     public void RestartBattle()
     {
-        SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
+        gameState = GameState.WAIT;
+
+        StartCoroutine(scenesManager.LoadLevel());
     }
 
     public void ExitBattle()
     {
-        isPaused = false;
+        Time.timeScale = 1f;
+        gameState = GameState.WAIT;
 
-        //load previous scene
+        StartCoroutine(scenesManager.LoadMap());
+    }
+
+    public void ExitMenu()
+    {
+        Time.timeScale = 1f;
+        gameState = GameState.WAIT;
+
+        StartCoroutine(scenesManager.LoadMenu());
     }
     #endregion
 
