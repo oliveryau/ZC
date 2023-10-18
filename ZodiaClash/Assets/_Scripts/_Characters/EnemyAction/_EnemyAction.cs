@@ -41,8 +41,9 @@ public class _EnemyAction : MonoBehaviour
     protected bool reachedTarget;
     protected bool reachedStart;
 
-    [Header("Others")]
-    [SerializeField] protected Transform selfAoeTargetPosition;
+    [Header("Camera Positions")]
+    [SerializeField] protected Transform enemyTeamCamPoint;
+    [SerializeField] protected Transform playerTeamCamPoint;
 
     protected BattleManager battleManager;
     protected CharacterStats characterStats;
@@ -62,8 +63,10 @@ public class _EnemyAction : MonoBehaviour
         characterStats = GetComponent<CharacterStats>();
         cam = FindObjectOfType<CameraBattle>();
 
+        #region Enemy Moving In
         Vector3 offset = new(10f, 0, 0);
         transform.position = startPosition + offset;
+        #endregion
 
         enemyState = EnemyState.START;
     }
@@ -151,7 +154,6 @@ public class _EnemyAction : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
                 //characterStats.animator.SetBool("moveBack", true);
-                StartCoroutine(cam.ZoomOut());
 
                 GetComponent<SpriteRenderer>().sortingOrder = originalSort;
 
@@ -203,7 +205,6 @@ public class _EnemyAction : MonoBehaviour
 
         yield return new WaitForSeconds(endDelay); //delay to play animation
 
-        StartCoroutine(cam.ZoomOut());
         enemyEndingTurn = true;
     }
 

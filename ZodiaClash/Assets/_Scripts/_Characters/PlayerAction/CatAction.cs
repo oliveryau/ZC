@@ -16,10 +16,12 @@ public class CatAction : _PlayerAction
         if (selectedSkillPrefab == skill1Prefab) //single target
         {
             TargetSelectionUi(true, "enemy", "taunt");
+            StartCoroutine(cam.ZoomIn(enemyTeamCamPoint));
         }
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab) //aoe target
         {
             TargetSelectionUi(true, "enemy");
+            StartCoroutine(cam.ZoomIn(enemyTeamCamPoint));
         }
     }
 
@@ -115,6 +117,7 @@ public class CatAction : _PlayerAction
             }
             else if (selectedSkillPrefab == skill3Prefab) //aoe targeting
             {
+                //StartCoroutine(cam.ZoomIn(aoeTargetPosition));
                 if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                 {
                     foreach (GameObject enemy in enemyTargets)
@@ -164,13 +167,10 @@ public class CatAction : _PlayerAction
         {
             targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
             characterStats.animator.SetTrigger("skill1");
-            StartCoroutine(cam.ZoomInSingleTarget(targetPosition, 2f));
         }
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
-            Debug.Log("A");
             targetPosition = aoeTargetPosition; //aoe target pos
-            StartCoroutine(cam.ZoomInSingleTarget(targetPosition, 4f));
         }
 
         movingToTarget = true; //movement is triggered

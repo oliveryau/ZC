@@ -4,56 +4,65 @@ using UnityEngine;
 
 public class CameraBattle : MonoBehaviour
 {
-    [SerializeField] private Camera cam;
-
+    private Camera cam;
     private Vector3 startPosition;
     private float startOrthoSize;
     private float duration;
 
     private void Start()
     {
+        cam = Camera.main;
         startPosition = cam.transform.position;
         startOrthoSize = cam.orthographicSize;
-
-        duration = 0.2f;
+        duration = 0.1f;
     }
 
-    public IEnumerator ZoomInSingleTarget(Transform pos, float targetOrthoSize)
+    public IEnumerator ZoomIn(Transform pos, float targetOrthoSize = 5f)
     {
+        Vector3 initialPosition = cam.transform.position;
+        float initialOrthoSize = cam.orthographicSize;
         Vector3 targetPosition = new Vector3(pos.position.x, pos.position.y, cam.transform.position.z);
-        float elapsedTime = 0.0f;
 
-        while (elapsedTime < duration)
+        if (cam.transform.position != targetPosition)
         {
-            float t = elapsedTime / duration;
-            cam.transform.position = Vector3.Lerp(startPosition, targetPosition, t);
-            cam.orthographicSize = Mathf.Lerp(startOrthoSize, targetOrthoSize, t);
+            float elapsedTime = 0.0f;
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            while (elapsedTime < duration)
+            {
+                float t = elapsedTime / duration;
+                cam.transform.position = Vector3.Lerp(initialPosition, targetPosition, t);
+                cam.orthographicSize = Mathf.Lerp(initialOrthoSize, targetOrthoSize, t);
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            cam.transform.position = targetPosition;
+            cam.orthographicSize = targetOrthoSize;
         }
-
-        cam.orthographicSize = targetOrthoSize;
     }
 
     public IEnumerator ZoomOut()
     {
-        float targetOrthoSize = cam.orthographicSize;
-        Vector3 initialPosition = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
+        Vector3 initialPosition = cam.transform.position;
+        float initialOrthoSize = cam.orthographicSize;
 
-        float elapsedTime = 0.0f;
-
-        while (elapsedTime < duration)
+        if (cam.transform.position != startPosition)
         {
-            float t = elapsedTime / duration;
-            cam.transform.position = Vector3.Lerp(initialPosition, startPosition, t);
-            cam.orthographicSize = Mathf.Lerp(targetOrthoSize, startOrthoSize, t);
+            float elapsedTime = 0.0f;
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            while (elapsedTime < duration)
+            {
+                float t = elapsedTime / duration;
+                cam.transform.position = Vector3.Lerp(initialPosition, startPosition, t);
+                cam.orthographicSize = Mathf.Lerp(initialOrthoSize, startOrthoSize, t);
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            cam.transform.position = startPosition;
+            cam.orthographicSize = startOrthoSize;
         }
-
-        cam.orthographicSize = startOrthoSize;
-        cam.transform.position = startPosition;
     }
 }

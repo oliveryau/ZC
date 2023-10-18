@@ -16,14 +16,17 @@ public class OxAction : _PlayerAction
         if (selectedSkillPrefab == skill1Prefab)
         {
             TargetSelectionUi(true, "enemy", "taunt"); //single target
+            StartCoroutine(cam.ZoomIn(enemyTeamCamPoint));
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
             TargetSelectionUi(true, "enemy", "taunt"); //single target
+            StartCoroutine(cam.ZoomIn(enemyTeamCamPoint));
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
             TargetSelectionUi(true, "ally", "taunt"); //self target
+            StartCoroutine(cam.ZoomIn(playerTeamCamPoint));
         }
     }
 
@@ -200,14 +203,12 @@ public class OxAction : _PlayerAction
         {
             targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
             movingToTarget = true; //movement is triggered
-            StartCoroutine(cam.ZoomInSingleTarget(targetPosition, 2f));
         }
         #endregion
         #region Non-Movement Skills
         else if (selectedSkillPrefab == skill3Prefab)
         {
             AttackAnimation();
-            StartCoroutine(cam.ZoomInSingleTarget(selfAoeTargetPosition, 4f));
         }
         #endregion
     }

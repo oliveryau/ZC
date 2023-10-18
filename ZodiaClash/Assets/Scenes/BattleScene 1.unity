@@ -2104,9 +2104,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1689384672}
     - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: enemyTeamCamPoint
+      value: 
+      objectReference: {fileID: 1879767753726492273}
+    - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: playerTeamCamPoint
+      value: 
+      objectReference: {fileID: 1879767753726492274}
+    - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skillTextIndicator
       value: 
       objectReference: {fileID: 1510701239}
+    - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: teamTargetPosition
+      value: 
+      objectReference: {fileID: 1365253893}
     - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: selfAoeTargetPosition
       value: 
@@ -2195,6 +2207,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d557c76c8d216540b767a66de1b92ba, type: 3}
+--- !u!4 &1879767753726492273 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2232195928745642667, guid: 1d557c76c8d216540b767a66de1b92ba, type: 3}
+  m_PrefabInstance: {fileID: 1879767753726492272}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1879767753726492274 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4221619953528582005, guid: 1d557c76c8d216540b767a66de1b92ba, type: 3}
+  m_PrefabInstance: {fileID: 1879767753726492272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4158258206573681480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2206,7 +2228,7 @@ PrefabInstance:
     - target: {fileID: 3323903470169568988, guid: ad7ac37657f1a9642b591e0fe5bd4860, type: 3}
       propertyPath: cam
       value: 
-      objectReference: {fileID: 519420031}
+      objectReference: {fileID: 0}
     - target: {fileID: 3776981409552776292, guid: ad7ac37657f1a9642b591e0fe5bd4860, type: 3}
       propertyPath: pauseScreen
       value: 
@@ -2390,9 +2412,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1365253893}
     - target: {fileID: 4003031062897731387, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: enemyTeamCamPoint
+      value: 
+      objectReference: {fileID: 1879767753726492273}
+    - target: {fileID: 4003031062897731387, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: playerTeamCamPoint
+      value: 
+      objectReference: {fileID: 1879767753726492274}
+    - target: {fileID: 4003031062897731387, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: skillTextIndicator
       value: 
       objectReference: {fileID: 1510701239}
+    - target: {fileID: 4003031062897731387, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: teamTargetPosition
+      value: 
+      objectReference: {fileID: 1689384672}
     - target: {fileID: 4003031062897731387, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: warningTextIndicator
       value: 
@@ -2410,9 +2444,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1365253893}
     - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: enemyTeamCamPoint
+      value: 
+      objectReference: {fileID: 1879767753726492273}
+    - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: playerTeamCamPoint
+      value: 
+      objectReference: {fileID: 1879767753726492274}
+    - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: skillTextIndicator
       value: 
       objectReference: {fileID: 1510701239}
+    - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: teamTargetPosition
+      value: 
+      objectReference: {fileID: 1689384672}
     - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: warningTextIndicator
       value: 
@@ -2430,9 +2476,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1365253893}
     - target: {fileID: 5981490860473186612, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: enemyTeamCamPoint
+      value: 
+      objectReference: {fileID: 1879767753726492273}
+    - target: {fileID: 5981490860473186612, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: playerTeamCamPoint
+      value: 
+      objectReference: {fileID: 1879767753726492274}
+    - target: {fileID: 5981490860473186612, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: skillTextIndicator
       value: 
       objectReference: {fileID: 1510701239}
+    - target: {fileID: 5981490860473186612, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: teamTargetPosition
+      value: 
+      objectReference: {fileID: 1689384672}
     - target: {fileID: 5981490860473186612, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: warningTextIndicator
       value: 

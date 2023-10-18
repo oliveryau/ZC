@@ -46,13 +46,15 @@ public class _PlayerAction : MonoBehaviour
     [SerializeField] protected Transform targetPosition;
     [SerializeField] protected Transform aoeTargetPosition;
     protected float moveSpeed;
-    [SerializeField] protected bool movingToTarget;
-    [SerializeField] protected bool movingToStart;
+    protected bool movingToTarget;
+    protected bool movingToStart;
     protected bool reachedTarget;
     protected bool reachedStart;
 
-    [Header("Others")]
-    [SerializeField] protected Transform selfAoeTargetPosition;
+    [Header("Camera Positions")]
+    protected bool zoomed;
+    [SerializeField] protected Transform playerTeamCamPoint;
+    [SerializeField] protected Transform enemyTeamCamPoint;
 
     protected BattleManager battleManager;
     protected CharacterStats characterStats;
@@ -159,6 +161,7 @@ public class _PlayerAction : MonoBehaviour
                 //hud
                 characterAvatar.GetComponent<Animator>().SetTrigger("decrease");
                 turnIndicator.SetActive(false);
+                StartCoroutine(cam.ZoomOut());
 
                 //skill
                 selectedSkillPrefab = null;
@@ -263,7 +266,6 @@ public class _PlayerAction : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
                 characterStats.animator.SetBool("moveBack", true);
-                StartCoroutine(cam.ZoomOut());
 
                 GetComponent<SpriteRenderer>().sortingOrder = originalSort;
 
@@ -332,7 +334,6 @@ public class _PlayerAction : MonoBehaviour
 
         yield return new WaitForSeconds(endDelay); //delay to play animation
 
-        StartCoroutine(cam.ZoomOut());
         endingTurn = true;
     }
 

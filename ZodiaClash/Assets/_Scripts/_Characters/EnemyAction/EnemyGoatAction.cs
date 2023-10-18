@@ -263,14 +263,12 @@ public class EnemyGoatAction : _EnemyAction
             targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
 
             movingToTarget = true;
-            StartCoroutine(cam.ZoomInSingleTarget(targetPosition, 2f));
         }
         #endregion
         #region Non-Movement Skills
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
             EnemyAttackAnimation();
-            StartCoroutine(cam.ZoomInSingleTarget(selfAoeTargetPosition, 4f));
         }
         #endregion
     }
