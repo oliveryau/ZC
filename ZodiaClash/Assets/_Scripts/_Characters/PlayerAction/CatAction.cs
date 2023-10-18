@@ -160,21 +160,20 @@ public class CatAction : _PlayerAction
         playerAttacking = true;
 
         #region Movement Skills
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
+        if (selectedSkillPrefab == skill1Prefab)
         {
-            if (selectedSkillPrefab == skill1Prefab)
-            {
-                targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
-                characterStats.animator.SetTrigger("skill1");
-            }
-            else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
-            {
-                targetPosition = aoeTargetPosition; //aoe target pos
-            }
-
-            StartCoroutine(cam.ZoomInSingleTarget(targetPosition));
-            movingToTarget = true; //movement is triggered
+            targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
+            characterStats.animator.SetTrigger("skill1");
+            StartCoroutine(cam.ZoomInSingleTarget(targetPosition, 2f));
         }
+        else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
+        {
+            Debug.Log("A");
+            targetPosition = aoeTargetPosition; //aoe target pos
+            StartCoroutine(cam.ZoomInSingleTarget(targetPosition, 4f));
+        }
+
+        movingToTarget = true; //movement is triggered
         #endregion
     }
 

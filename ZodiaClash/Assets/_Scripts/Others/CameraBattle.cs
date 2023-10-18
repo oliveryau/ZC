@@ -8,16 +8,17 @@ public class CameraBattle : MonoBehaviour
 
     private Vector3 startPosition;
     private float startOrthoSize;
-    [SerializeField] private float targetOrthoSize;
-    [SerializeField] private float duration;
+    private float duration;
 
     private void Start()
     {
         startPosition = cam.transform.position;
         startOrthoSize = cam.orthographicSize;
+
+        duration = 0.2f;
     }
 
-    public IEnumerator ZoomInSingleTarget(Transform pos)
+    public IEnumerator ZoomInSingleTarget(Transform pos, float targetOrthoSize)
     {
         Vector3 targetPosition = new Vector3(pos.position.x, pos.position.y, cam.transform.position.z);
         float elapsedTime = 0.0f;
@@ -37,6 +38,7 @@ public class CameraBattle : MonoBehaviour
 
     public IEnumerator ZoomOut()
     {
+        float targetOrthoSize = cam.orthographicSize;
         Vector3 initialPosition = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 
         float elapsedTime = 0.0f;

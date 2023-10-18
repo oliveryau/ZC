@@ -158,8 +158,8 @@ public class GuardAction : _EnemyAction
         {
             targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
 
-            StartCoroutine(cam.ZoomInSingleTarget(targetPosition));
             movingToTarget = true;
+            StartCoroutine(cam.ZoomInSingleTarget(targetPosition, 2f));
         }
         #endregion
     }

@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemyGoatAction : _EnemyAction
 {
     [Header("Heal Behaviour")]
-    [SerializeField] private float healCooldown;
     [SerializeField] private bool canHeal;
 
     [Header("Low Health State")]
+    [SerializeField] private GameObject rageAura;
     [SerializeField] private GameObject skill4Prefab;
     [SerializeField] private bool rageState;
     [SerializeField] private float rageCount;
@@ -55,7 +55,7 @@ public class EnemyGoatAction : _EnemyAction
 
             else if (enemyState == EnemyState.CHECKSTATUS)
             {
-                if (characterStats.health <= 0.3f * characterStats.maxHealth)
+                if (characterStats.health <= 0.4f * characterStats.maxHealth)
                 {
                     rageState = true;
                 }
@@ -63,11 +63,6 @@ public class EnemyGoatAction : _EnemyAction
                 if (!characterStats.checkedStatus && !checkingStatus)
                 {
                     StartCoroutine(characterStats.CheckStatusEffects());
-
-                    if (healCooldown > 0)
-                    {
-                        --healCooldown;
-                    }
 
                     checkingStatus = true;
                 }
@@ -172,6 +167,12 @@ public class EnemyGoatAction : _EnemyAction
                     EnemyToggleSkillText(true, "goat");
                     StartCoroutine(EnemyToggleWarningText("goat"));
 
+                    if (!transform.Find("Rage Aura(Clone)"))
+                    {
+                        Vector3 offset = new(0f, -0.5f, 0f);
+                        Instantiate(rageAura, transform.position + offset, Quaternion.identity, transform);
+                    }
+
                     characterStats.attack += 10;
                     _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>();
                     statusEffect.SpawnEffectsBar(characterStats, 0, "rageGoat");
@@ -199,26 +200,24 @@ public class EnemyGoatAction : _EnemyAction
             {
                 bool healingAlly = false;
 
-                if (healCooldown == 0) //if can heal
+                for (int i = 0; i < enemyTargets.Length; i++)
                 {
-                    Debug.Log("Healing");
-                    for (int i = 0; i < enemyTargets.Length; i++)
+                    CharacterStats enemy = enemyTargets[i].GetComponent<CharacterStats>();
+                    if (enemy.health / enemy.maxHealth <= 0.8f && enemy.gameObject != this.gameObject) //if enemy ally is less than 80% hp -> heal
                     {
-                        CharacterStats enemy = enemyTargets[i].GetComponent<CharacterStats>();
-                        if (enemy.health / enemy.maxHealth <= 0.7f) //if enemy less than 70% hp -> heal target
-                        {
-                            selectedTarget = enemy.gameObject;
-                            Debug.Log("Enemy Selected Target (Heal): " + selectedTarget.name);
+                        selectedTarget = enemy.gameObject;
+                        Debug.Log("Enemy Selected Target (Heal): " + selectedTarget.name);
+                        selectedSkillPrefab = skill3Prefab;
 
-                            selectedSkillPrefab = skill3Prefab;
+                        healingAlly = true;
 
-                            healingAlly = true;
-                            healCooldown = 3;
+                        enemyState = EnemyState.ATTACKING;
 
-                            enemyState = EnemyState.ATTACKING;
-
-                            break;
-                        }
+                        break;
+                    }
+                    else if (enemy.gameObject == this.gameObject)
+                    {
+                        continue;
                     }
                 }
             
@@ -263,15 +262,15 @@ public class EnemyGoatAction : _EnemyAction
         {
             targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
 
-            StartCoroutine(cam.ZoomInSingleTarget(targetPosition));
             movingToTarget = true;
+            StartCoroutine(cam.ZoomInSingleTarget(targetPosition, 2f));
         }
         #endregion
         #region Non-Movement Skills
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
             EnemyAttackAnimation();
-            StartCoroutine(cam.ZoomInSingleTarget(transform));
+            StartCoroutine(cam.ZoomInSingleTarget(selfAoeTargetPosition, 4f));
         }
         #endregion
     }

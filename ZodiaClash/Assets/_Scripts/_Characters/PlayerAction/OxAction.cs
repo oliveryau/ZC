@@ -199,14 +199,15 @@ public class OxAction : _PlayerAction
         if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab)
         {
             targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
-
             movingToTarget = true; //movement is triggered
+            StartCoroutine(cam.ZoomInSingleTarget(targetPosition, 2f));
         }
         #endregion
         #region Non-Movement Skills
         else if (selectedSkillPrefab == skill3Prefab)
         {
             AttackAnimation();
+            StartCoroutine(cam.ZoomInSingleTarget(selfAoeTargetPosition, 4f));
         }
         #endregion
     }

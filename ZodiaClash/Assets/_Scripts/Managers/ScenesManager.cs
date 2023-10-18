@@ -112,4 +112,13 @@ public class ScenesManager : MonoBehaviour
                 break;
         }
     }
+
+    public IEnumerator LoadLevelFromMap(int index)
+    {
+        fadeManager.SpawnFadeOutPanel();
+
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene(index);
+    }
 }

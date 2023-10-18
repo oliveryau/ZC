@@ -2057,6 +2057,10 @@ PrefabInstance:
       propertyPath: skillTextIndicator
       value: 
       objectReference: {fileID: 1510701239}
+    - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: selfAoeTargetPosition
+      value: 
+      objectReference: {fileID: 1365253893}
     - target: {fileID: 8091164749747860254, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -2164,7 +2168,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 813487967176509868, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: m_Name
-      value: Cursed Yangsheng
+      value: Yangsheng
       objectReference: {fileID: 0}
     - target: {fileID: 813487967176509868, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: m_TagString
@@ -2190,9 +2194,17 @@ PrefabInstance:
       propertyPath: warningTextIndicator
       value: 
       objectReference: {fileID: 158915239}
+    - target: {fileID: 4282169098367958259, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
+      propertyPath: selfAoeTargetPosition
+      value: 
+      objectReference: {fileID: 1689384672}
+    - target: {fileID: 6667647839369928789, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6699813660680686428, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5
+      value: 3.75
       objectReference: {fileID: 0}
     - target: {fileID: 6699813660680686428, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2291,7 +2303,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1581388209}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7254386196387349479, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
@@ -2307,6 +2320,22 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 3323903470169568988, guid: ad7ac37657f1a9642b591e0fe5bd4860, type: 3}
+      propertyPath: maxPosition.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323903470169568988, guid: ad7ac37657f1a9642b591e0fe5bd4860, type: 3}
+      propertyPath: maxPosition.y
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323903470169568988, guid: ad7ac37657f1a9642b591e0fe5bd4860, type: 3}
+      propertyPath: minPosition.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323903470169568988, guid: ad7ac37657f1a9642b591e0fe5bd4860, type: 3}
+      propertyPath: minPosition.y
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3776981409552776292, guid: ad7ac37657f1a9642b591e0fe5bd4860, type: 3}
       propertyPath: pauseScreen
       value: 
@@ -2571,6 +2600,10 @@ PrefabInstance:
       propertyPath: warningTextIndicator
       value: 
       objectReference: {fileID: 158915239}
+    - target: {fileID: 4003031062897731387, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: selfAoeTargetPosition
+      value: 
+      objectReference: {fileID: 1689384672}
     - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthPanel
       value: 
@@ -2587,6 +2620,10 @@ PrefabInstance:
       propertyPath: warningTextIndicator
       value: 
       objectReference: {fileID: 158915239}
+    - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: selfAoeTargetPosition
+      value: 
+      objectReference: {fileID: 1689384672}
     - target: {fileID: 5981490860473186612, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthPanel
       value: 

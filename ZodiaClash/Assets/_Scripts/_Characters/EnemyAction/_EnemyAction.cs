@@ -41,6 +41,9 @@ public class _EnemyAction : MonoBehaviour
     protected bool reachedTarget;
     protected bool reachedStart;
 
+    [Header("Others")]
+    [SerializeField] protected Transform selfAoeTargetPosition;
+
     protected BattleManager battleManager;
     protected CharacterStats characterStats;
     protected CameraBattle cam;

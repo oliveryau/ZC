@@ -172,7 +172,7 @@ public class GoatAction : _PlayerAction
         if (selectedSkillPrefab == skill1Prefab)
         {
             targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
-
+            StartCoroutine(cam.ZoomInSingleTarget(targetPosition, 2f));
             movingToTarget = true;
         }
         #endregion
@@ -180,6 +180,7 @@ public class GoatAction : _PlayerAction
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
             AttackAnimation();
+            StartCoroutine(cam.ZoomInSingleTarget(selfAoeTargetPosition, 4f));
         }
         #endregion
     }

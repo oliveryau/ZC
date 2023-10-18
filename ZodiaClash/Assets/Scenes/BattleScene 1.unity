@@ -2107,6 +2107,10 @@ PrefabInstance:
       propertyPath: skillTextIndicator
       value: 
       objectReference: {fileID: 1510701239}
+    - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
+      propertyPath: selfAoeTargetPosition
+      value: 
+      objectReference: {fileID: 1365253893}
     - target: {fileID: 8280137639503927606, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skillText
       value: 
@@ -2393,6 +2397,10 @@ PrefabInstance:
       propertyPath: warningTextIndicator
       value: 
       objectReference: {fileID: 197414479760093573}
+    - target: {fileID: 4003031062897731387, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: selfAoeTargetPosition
+      value: 
+      objectReference: {fileID: 1689384672}
     - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthPanel
       value: 
@@ -2409,6 +2417,10 @@ PrefabInstance:
       propertyPath: warningTextIndicator
       value: 
       objectReference: {fileID: 197414479760093573}
+    - target: {fileID: 5392115229176130615, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: selfAoeTargetPosition
+      value: 
+      objectReference: {fileID: 1689384672}
     - target: {fileID: 5981490860473186612, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthPanel
       value: 
@@ -2425,6 +2437,10 @@ PrefabInstance:
       propertyPath: warningTextIndicator
       value: 
       objectReference: {fileID: 197414479760093573}
+    - target: {fileID: 5981490860473186612, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
+      propertyPath: selfAoeTargetPosition
+      value: 
+      objectReference: {fileID: 1689384672}
     - target: {fileID: 7224059384418490618, guid: 3e0fbaec5f0d3944cb8ca984e6fa964a, type: 3}
       propertyPath: healthPanel
       value: 

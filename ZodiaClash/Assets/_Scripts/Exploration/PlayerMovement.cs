@@ -10,6 +10,12 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
 
+    [Header("Others")]
+    [SerializeField] private DialogueUi dialogueUi;
+
+    public DialogueUi DialogueUi => dialogueUi;
+    public IInteractable Interactable { get; set; }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -17,8 +23,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (dialogueUi.IsOpen) return;
+
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         inputVertical = Input.GetAxisRaw("Vertical");
+
+        #region Dialogue
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (Interactable != null)
+            {
+                Interactable.Interact(this);
+            }
+        }
+        #endregion
     }
 
     private void FixedUpdate()
@@ -30,6 +48,15 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.velocity = Vector2.zero;
+        }
+
+        if (inputHorizontal > 0)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        if (inputHorizontal < 0)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
     }
 }

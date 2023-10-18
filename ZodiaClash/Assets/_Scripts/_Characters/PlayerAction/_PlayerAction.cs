@@ -51,6 +51,9 @@ public class _PlayerAction : MonoBehaviour
     protected bool reachedTarget;
     protected bool reachedStart;
 
+    [Header("Others")]
+    [SerializeField] protected Transform selfAoeTargetPosition;
+
     protected BattleManager battleManager;
     protected CharacterStats characterStats;
     protected PlayerChi playerChi;

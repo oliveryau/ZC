@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleState: 0
+  battleStateHud: {fileID: 0}
   turnOrder: {fileID: 0}
   avatarContainerPrefab: {fileID: 1124624116346057494, guid: 26c01ba607d48b942865f39a9362ba5c, type: 3}
   avatarListContainer: {fileID: 0}
@@ -172,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc3a7bee36d89047ad10218b53af400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enrageLimit: 1
+  enrageLimit: 99
 --- !u!114 &8601906811472057262
 MonoBehaviour:
   m_ObjectHideFlags: 0
