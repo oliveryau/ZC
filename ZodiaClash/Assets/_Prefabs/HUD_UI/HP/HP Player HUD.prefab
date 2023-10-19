@@ -442,7 +442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 750, y: 160}
+  m_AnchoredPosition: {x: 885, y: 150}
   m_SizeDelta: {x: 300, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3733371037056867782
@@ -640,7 +640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 450, y: 160}
+  m_AnchoredPosition: {x: 585, y: 150}
   m_SizeDelta: {x: 300, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4319678150362546166
@@ -972,7 +972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 150, y: 160}
+  m_AnchoredPosition: {x: 285, y: 150}
   m_SizeDelta: {x: 300, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7464283187760415487
@@ -1232,7 +1232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1686614808185624690, guid: d1bb540658dda164ab722445e9d442a8, type: 3}
       propertyPath: m_Name
-      value: Cat HP Bar Fill
+      value: Goat HP Bar Fill
       objectReference: {fileID: 0}
     - target: {fileID: 5480320549937083023, guid: d1bb540658dda164ab722445e9d442a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1278,7 +1278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1686614808185624690, guid: d1bb540658dda164ab722445e9d442a8, type: 3}
       propertyPath: m_Name
-      value: Cat HP Bar Fill
+      value: Ox HP Bar Fill
       objectReference: {fileID: 0}
     - target: {fileID: 5480320549937083023, guid: d1bb540658dda164ab722445e9d442a8, type: 3}
       propertyPath: m_LocalPosition.x

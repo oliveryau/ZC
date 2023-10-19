@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using static UnityEngine.GraphicsBuffer;
 
 public class _StatusEffectHud : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class _StatusEffectHud : MonoBehaviour
 
     public void SpawnEffectsBar(CharacterStats target, int count, string effect)
     {
-        effectsPanel = target.statusEffectPanel;
+        effectsPanel = target.statusEffectPanel.transform;
 
         switch (effect)
         {
@@ -30,9 +31,9 @@ public class _StatusEffectHud : MonoBehaviour
                 bool bleedExist = false;
                 Bleed bleed = FindObjectOfType<Bleed>();
 
-                for (int i = 0; i < target.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = target.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = target.statusEffectPanel.transform.GetChild(i).gameObject;
                     TextMeshProUGUI bleedText = status.GetComponentInChildren<TextMeshProUGUI>();
 
                     if (status.CompareTag("Bleed")) //if bleedIcon exists
@@ -68,9 +69,9 @@ public class _StatusEffectHud : MonoBehaviour
                 bool shatterExist = false;
                 Defense shatter = FindObjectOfType<Defense>();
 
-                for (int i = 0; i < target.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = target.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
                     TextMeshProUGUI shatterText = status.GetComponentInChildren<TextMeshProUGUI>();
 
                     if (status.CompareTag("Shatter")) //if shatterIcon exists
@@ -105,9 +106,9 @@ public class _StatusEffectHud : MonoBehaviour
 
                 bool stunExist = false;
 
-                for (int i = 0; i < target.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = target.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
                     TextMeshProUGUI stunText = status.GetComponentInChildren<TextMeshProUGUI>();
 
                     if (status.CompareTag("Stun")) //if stunIcon exists
@@ -137,9 +138,9 @@ public class _StatusEffectHud : MonoBehaviour
 
                 bool tauntExist = false;
 
-                for (int i = 0; i < target.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = target.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
                     TextMeshProUGUI tauntText = status.GetComponentInChildren<TextMeshProUGUI>();
 
                     if (status.CompareTag("Stun"))
@@ -172,9 +173,9 @@ public class _StatusEffectHud : MonoBehaviour
 
                 Enrage enrage = FindObjectOfType<Enrage>();
 
-                for (int i = 0; i < target.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = target.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
                     TextMeshProUGUI enrageText = status.GetComponentInChildren<TextMeshProUGUI>();
 
                     if (status.CompareTag("Enrage"))
@@ -211,9 +212,9 @@ public class _StatusEffectHud : MonoBehaviour
 
                 Defense armor = FindObjectOfType<Defense>();
 
-                for (int i = 0; i < target.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = target.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
                     TextMeshProUGUI armorText = status.GetComponentInChildren<TextMeshProUGUI>();
 
                     if (status.CompareTag("Armor"))
@@ -248,9 +249,9 @@ public class _StatusEffectHud : MonoBehaviour
 
                 bool rageGoatBuffExist = false;
 
-                for (int i = 0; i < target.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = target.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
 
                     if (status.CompareTag("RageGoat"))
                     {
@@ -276,13 +277,15 @@ public class _StatusEffectHud : MonoBehaviour
 
     public void UpdateEffectsBar(CharacterStats character, string effect)
     {
+        effectsPanel = character.statusEffectPanel.transform;
+
         switch (effect)
         {
             case "bleed":
 
-                for (int i = 0; i < character.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = character.statusEffectPanel.GetChild(i).gameObject;    
+                    GameObject status = effectsPanel.GetChild(i).gameObject;    
                     TextMeshProUGUI bleedText = status.GetComponentInChildren<TextMeshProUGUI>();
 
                     if (status.CompareTag("Bleed"))
@@ -300,9 +303,9 @@ public class _StatusEffectHud : MonoBehaviour
 
             case "shatter":
 
-                for (int i = 0; i < character.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
                     TextMeshProUGUI defBreakText = status.GetComponentInChildren<TextMeshProUGUI>();
 
                     if (status.CompareTag("Shatter"))
@@ -320,9 +323,9 @@ public class _StatusEffectHud : MonoBehaviour
 
             case "stun":
 
-                for (int i = 0; i < character.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
                     TextMeshProUGUI stunText = status.GetComponentInChildren<TextMeshProUGUI>();
 
                     if (status.CompareTag("Stun"))
@@ -340,9 +343,9 @@ public class _StatusEffectHud : MonoBehaviour
 
             case "taunt":
 
-                for (int i = 0; i < character.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
                     TextMeshProUGUI tauntText = status.GetComponentInChildren<TextMeshProUGUI>();
 
                     if (status.CompareTag("Taunt"))
@@ -360,9 +363,9 @@ public class _StatusEffectHud : MonoBehaviour
 
             case "enrage":
 
-                for (int i = 0; i < character.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
                     TextMeshProUGUI atkBuffText = status.GetComponentInChildren<TextMeshProUGUI>();
 
                     if (status.CompareTag("Enrage"))
@@ -380,9 +383,9 @@ public class _StatusEffectHud : MonoBehaviour
 
             case "armor":
 
-                for (int i = 0; i < character.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
                     TextMeshProUGUI armorText = status.GetComponentInChildren<TextMeshProUGUI>();
 
                     if (status.CompareTag("Armor"))
@@ -400,9 +403,9 @@ public class _StatusEffectHud : MonoBehaviour
 
             case "cleanse": //add all buff tags
 
-                for (int i = 0; i < character.statusEffectPanel.childCount; i++)
+                for (int i = 0; i < effectsPanel.childCount; i++)
                 {
-                    GameObject status = character.statusEffectPanel.GetChild(i).gameObject;
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
 
                     if (status.CompareTag("Bleed") || status.CompareTag("Shatter") || status.CompareTag("Stun") || status.CompareTag("Taunt"))
                     {

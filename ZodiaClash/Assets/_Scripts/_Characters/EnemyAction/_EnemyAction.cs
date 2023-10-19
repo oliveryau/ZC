@@ -224,13 +224,13 @@ public class _EnemyAction : MonoBehaviour
         if (display)
         {
             turnIndicator.SetActive(true);
-            characterStats.healthPanel.color = characterStats.healthPanelTargetColor;
+            //characterStats.healthPanel.color = characterStats.healthPanelTargetColor;
             characterStats.healthPanel.transform.Find("Arrow").gameObject.SetActive(true);
         }
         else if (!display)
         {
             turnIndicator.SetActive(false);
-            characterStats.healthPanel.color = characterStats.healthPanelOriginalColor;
+            //characterStats.healthPanel.color = characterStats.healthPanelOriginalColor;
             characterStats.healthPanel.transform.Find("Arrow").gameObject.SetActive(false);
         }
     }

@@ -15,8 +15,8 @@ public class CharacterStats : MonoBehaviour
     public Transform uniqueTurnHud;
     public Sprite uniqueCharacterAvatar;
     public GameObject characterHpHud;
+    public GameObject statusEffectPanel;
     [SerializeField] private Image healthBarFill;
-    public Transform statusEffectPanel;
     [SerializeField] private GameObject characterName;
     [SerializeField] private GameObject floatingText;
     [SerializeField] private GameObject statusEffectText;
@@ -30,8 +30,7 @@ public class CharacterStats : MonoBehaviour
 
     [Header("Other Enemy HUD")]
     public Image healthPanel;
-    [HideInInspector] public Color32 healthPanelOriginalColor;
-    [HideInInspector] public Color32 healthPanelTargetColor;
+    [SerializeField] private TextMeshProUGUI hpPercentUi;
 
     [Header("Stats")]
     public float maxHealth;
@@ -71,7 +70,7 @@ public class CharacterStats : MonoBehaviour
         hoverHudCheck = false;
         #endregion
 
-        #region Player HUD
+        #region Other Player HUD
         if (hpValueUi != null) hpValueUi.text = health.ToString();
         if (playerAvatar != null)
         {
@@ -80,11 +79,10 @@ public class CharacterStats : MonoBehaviour
         }
         #endregion
 
-        #region Enemy HUD
-        if (healthPanel != null)
+        #region Other Enemy HUD
+        if (hpPercentUi != null)
         {
-            healthPanelOriginalColor = healthPanel.color;
-            healthPanelTargetColor = new Color32(0, 0, 0, 255);
+            hpPercentUi.text = Mathf.RoundToInt(health / maxHealth * 100).ToString() + "%";
         }
         #endregion
 
@@ -128,7 +126,6 @@ public class CharacterStats : MonoBehaviour
             if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
             {
                 //healthPanel.transform.Find("Arrow").gameObject.SetActive(true);
-                //healthPanel.color = healthPanelHoverColor;
             }
         }
         else
@@ -139,7 +136,6 @@ public class CharacterStats : MonoBehaviour
             if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
             {
                 //healthPanel.transform.Find("Arrow").gameObject.SetActive(false);
-                //healthPanel.color = healthPanelOriginalColor;
             }
         }
     }
@@ -149,12 +145,13 @@ public class CharacterStats : MonoBehaviour
         if (gameObject.CompareTag("Player"))
         {
             _PlayerAction player = GetComponent<_PlayerAction>();
+            statusEffectPanel.SetActive(false);
             player.playerState = PlayerState.DYING;
         }
         else if (gameObject.CompareTag("Enemy"))
         {
             _EnemyAction enemy = GetComponent<_EnemyAction>();
-            statusEffectPanel.gameObject.SetActive(false);
+            statusEffectPanel.SetActive(false);
             characterHpHud.GetComponent<Animator>().SetTrigger("death");
             healthPanel.GetComponent<Animator>().SetTrigger("death");
             enemy.enemyState = EnemyState.DYING;
@@ -173,6 +170,7 @@ public class CharacterStats : MonoBehaviour
         {
             health = 0;
             if (hpValueUi != null) hpValueUi.text = health.ToString();
+            if (hpPercentUi != null) hpPercentUi.text = Mathf.RoundToInt(health / maxHealth * 100).ToString() + "%";
 
             Death();
         }
@@ -183,6 +181,7 @@ public class CharacterStats : MonoBehaviour
                 animator.SetTrigger("damaged");
             }
             if (hpValueUi != null) hpValueUi.text = health.ToString();
+            if (hpPercentUi != null) hpPercentUi.text = Mathf.RoundToInt(health / maxHealth * 100).ToString() + "%";
         }
 
         healthBarFill.fillAmount = health / maxHealth;
@@ -208,6 +207,7 @@ public class CharacterStats : MonoBehaviour
         }
 
         if (hpValueUi != null) hpValueUi.text = health.ToString();
+        if (hpPercentUi != null) hpPercentUi.text = Mathf.RoundToInt(health / maxHealth * 100).ToString() + "%";
         healthBarFill.fillAmount = health / maxHealth;
     }
 

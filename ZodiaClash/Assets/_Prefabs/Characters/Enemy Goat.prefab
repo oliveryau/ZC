@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 813487967176509868}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 1.25, z: 0}
+  m_LocalPosition: {x: 4.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -234,6 +234,8 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}
   aoeTargetPosition: {fileID: 0}
+  enemyTeamCamPoint: {fileID: 0}
+  playerTeamCamPoint: {fileID: 0}
   canHeal: 0
   rageAura: {fileID: 4764812924231262537, guid: c1c6adbf250c88946933eb6852d348d6, type: 3}
   skill4Prefab: {fileID: 8995874818723517444}
@@ -366,7 +368,7 @@ SpriteRenderer:
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &2022592937639407165
