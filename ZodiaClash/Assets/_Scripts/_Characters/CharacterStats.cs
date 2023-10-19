@@ -12,8 +12,8 @@ public class CharacterStats : MonoBehaviour
     [HideInInspector] public Animator animator;
 
     [Header("HUD")]
-    public Transform uniqueTurnHud;
     public Sprite uniqueCharacterAvatar;
+    public Transform uniqueTurnHud;
     public GameObject characterHpHud;
     public GameObject statusEffectPanel;
     [SerializeField] private Image healthBarFill;
@@ -121,21 +121,21 @@ public class CharacterStats : MonoBehaviour
         if (hoverHudCheck)
         {
             characterName.SetActive(true);
-            //uniqueTurnHud.transform.Find("Arrow").gameObject.SetActive(true);
+            uniqueTurnHud.GetComponent<Animator>().SetBool("hover", true);
 
             if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
             {
-                //healthPanel.transform.Find("Arrow").gameObject.SetActive(true);
+                healthPanel.GetComponent<Animator>().SetBool("hover", true);
             }
         }
         else
         {
             characterName.SetActive(false);
-            //uniqueTurnHud.transform.Find("Arrow").gameObject.SetActive(false);
+            uniqueTurnHud.GetComponent<Animator>().SetBool("hover", false);
 
             if (gameObject.CompareTag("Enemy") && !gameObject.GetComponent<_EnemyAction>().enemyStartTurn)
             {
-                //healthPanel.transform.Find("Arrow").gameObject.SetActive(false);
+                healthPanel.GetComponent<Animator>().SetBool("hover", false);
             }
         }
     }

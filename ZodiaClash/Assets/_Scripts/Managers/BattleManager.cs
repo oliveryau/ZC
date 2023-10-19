@@ -169,12 +169,17 @@ public class BattleManager : MonoBehaviour
 
         DetermineTurnOrder();
 
-        turnOrder.SetActive(true);
         playerHud.SetActive(true);
         enemyHud.SetActive(true);
         statusEffectIndicator.SetActive(true);
-
+        
         battleStateHud.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(nextDelay);
+
+        turnOrder.SetActive(true);
+
+        yield return new WaitForSeconds(startDelay);
 
         battleState = BattleState.NEWROUND;
     }
@@ -265,13 +270,13 @@ public class BattleManager : MonoBehaviour
                 }
                 else
                 {
-                    //first move the other avatars up
-                    MoveAvatarNormal(1, avatarListContainer);
+                    ////first move the other avatars up
+                    //MoveAvatarNormal(1, avatarListContainer);
 
-                    //then move the current avatar to the back
-                    Transform lastAvatarTransform = avatarListContainer.GetChild(turnOrderList.Count - 1);
-                    Vector3 currentAvatarTargetPosition = lastAvatarTransform.transform.localPosition;
-                    StartCoroutine(LerpTurn(currentAvatarTransform, currentAvatarTargetPosition));
+                    ////then move the current avatar to the back
+                    //Transform lastAvatarTransform = avatarListContainer.GetChild(turnOrderList.Count - 1);
+                    //Vector3 currentAvatarTargetPosition = lastAvatarTransform.transform.localPosition;
+                    //StartCoroutine(LerpTurn(currentAvatarTransform, currentAvatarTargetPosition));
 
                     //finally set the current avatar as the last one
                     currentAvatarTransform.SetAsLastSibling();
@@ -305,13 +310,13 @@ public class BattleManager : MonoBehaviour
                             //first set the currentAvatar to the target's turn avatar
                             currentAvatarTransform = target.uniqueTurnHud;
 
-                            //move other avatars that are not target
-                            MoveAvatarSpeed(1, avatarListContainer, i);
+                            ////move other avatars that are not target
+                            //MoveAvatarSpeed(1, avatarListContainer, i);
 
-                            //move target avatar to first child
-                            Transform nextAvatarTransform = avatarListContainer.GetChild(1);
-                            Vector3 speedupAvatarTargetPosition = nextAvatarTransform.transform.position;
-                            StartCoroutine(LerpTurn(currentAvatarTransform, speedupAvatarTargetPosition));
+                            ////move target avatar to first child
+                            //Transform nextAvatarTransform = avatarListContainer.GetChild(1);
+                            //Vector3 speedupAvatarTargetPosition = nextAvatarTransform.transform.position;
+                            //StartCoroutine(LerpTurn(currentAvatarTransform, speedupAvatarTargetPosition));
 
                             //set index of avatar to next one
                             currentAvatarTransform.Find("SpeedUp").gameObject.SetActive(true);

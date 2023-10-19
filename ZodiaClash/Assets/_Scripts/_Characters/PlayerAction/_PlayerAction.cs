@@ -161,7 +161,7 @@ public class _PlayerAction : MonoBehaviour
                 //hud
                 characterAvatar.GetComponent<Animator>().SetTrigger("decrease");
                 turnIndicator.SetActive(false);
-                StartCoroutine(cam.ZoomOut());
+                //StartCoroutine(cam.ZoomOut());
 
                 //skill
                 selectedSkillPrefab = null;
@@ -266,6 +266,7 @@ public class _PlayerAction : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
                 characterStats.animator.SetBool("moveBack", true);
+                StartCoroutine(cam.ZoomOut());
 
                 GetComponent<SpriteRenderer>().sortingOrder = originalSort;
 
@@ -334,6 +335,7 @@ public class _PlayerAction : MonoBehaviour
 
         yield return new WaitForSeconds(endDelay); //delay to play animation
 
+        StartCoroutine(cam.ZoomOut());
         endingTurn = true;
     }
 
