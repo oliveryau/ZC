@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public enum GameState
 {
-    WAIT, PLAY, PAUSE, EFFECTS
+    WAIT, PLAY, PAUSE, INFO, LOSE
 }
 
 public class GameManager : MonoBehaviour
@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour
     [Header("HUD")]
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject effectsScreen;
+    [SerializeField] private GameObject loseScreen;
 
     [SerializeField] private bool isPaused;
     [SerializeField] private bool isEffectDisplayed;
+    [HideInInspector] public bool lostBattle;
 
     private ScenesManager scenesManager;
 
@@ -52,7 +54,14 @@ public class GameManager : MonoBehaviour
             {
                 effectsScreen.SetActive(true);
 
-                gameState = GameState.EFFECTS;
+                gameState = GameState.INFO;
+            }
+
+            if (lostBattle)
+            {
+                loseScreen.SetActive(true);
+
+                gameState = GameState.LOSE;
             }
         }
 
@@ -73,7 +82,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        else if (gameState == GameState.EFFECTS) //effects list screen
+        else if (gameState == GameState.INFO) //effects screen
         {
             Time.timeScale = 0f;
 
@@ -89,6 +98,11 @@ public class GameManager : MonoBehaviour
                 gameState = GameState.PLAY;
             }
         }
+
+        else if (gameState == GameState.LOSE) //lose screen
+        {
+            Time.timeScale = 0f;
+        }
     }
 
     private IEnumerator StartDelay()
@@ -98,7 +112,7 @@ public class GameManager : MonoBehaviour
         gameState = GameState.PLAY;
     }
 
-    #region Pause Menu Buttons
+    #region Pause/Lose Screen Buttons
     public void ResumeGame()
     {
         isPaused = false;
@@ -129,7 +143,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region Status Effects Buttons
+    #region Info Screen Buttons
     public void ShowEffectsInfo()
     {
         isEffectDisplayed = true;

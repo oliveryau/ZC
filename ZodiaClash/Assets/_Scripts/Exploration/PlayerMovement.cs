@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Others")]
     [SerializeField] private DialogueUi dialogueUi;
+    [SerializeField] private SceneTransition sceneTransition;
 
     public DialogueUi DialogueUi => dialogueUi;
     public IInteractable Interactable { get; set; }
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        transform.position = sceneTransition.prevPosition;
     }
 
     private void Update()

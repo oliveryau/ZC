@@ -14,7 +14,7 @@ public class CameraBattle : MonoBehaviour
         cam = Camera.main;
         startPosition = cam.transform.position;
         startOrthoSize = cam.orthographicSize;
-        duration = 0.1f;
+        duration = 0.25f;
     }
 
     public IEnumerator ZoomIn(Transform pos, float targetOrthoSize = 5f)

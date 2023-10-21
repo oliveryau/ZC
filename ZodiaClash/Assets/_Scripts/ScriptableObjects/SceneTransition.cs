@@ -5,5 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SceneTransition", menuName = "Scene Persistent Data")]
 public class SceneTransition : ScriptableObject
 {
-    public bool clearedLevelOne;
+    public bool clearedLevel;
+    public int levelIndex;
+
+    [Header("Map Specific")]
+    public Vector3 prevPosition;
+    public string enemyNpc;
+    public List<string> defeatedEnemyNpcs;
+
+    private void OnEnable()
+    {
+        clearedLevel = false;
+        levelIndex = 0;
+        prevPosition = new Vector3(-10.5f, -3.5f, 0f);
+        enemyNpc = null;
+        defeatedEnemyNpcs = new List<string>();
+    }
 }

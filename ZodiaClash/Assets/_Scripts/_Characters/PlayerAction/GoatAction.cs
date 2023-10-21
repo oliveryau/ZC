@@ -16,17 +16,14 @@ public class GoatAction : _PlayerAction
         if (selectedSkillPrefab == skill1Prefab)
         {
             TargetSelectionUi(true, "enemy", "taunt"); //single target
-            StartCoroutine(cam.ZoomIn(enemyTeamCamPoint));
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
             TargetSelectionUi(true, "ally", "speedBuff"); //ally target excluding self
-            StartCoroutine(cam.ZoomIn(playerTeamCamPoint));
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
             TargetSelectionUi(true, "ally"); //ally target
-            StartCoroutine(cam.ZoomIn(playerTeamCamPoint));
         }
     }
 
@@ -174,14 +171,16 @@ public class GoatAction : _PlayerAction
         #region Movement Skills
         if (selectedSkillPrefab == skill1Prefab)
         {
-            targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
+            targetPosition = selectedTarget.transform.Find("Target Position");
             movingToTarget = true;
+            StartCoroutine(cam.ZoomIn(enemyTeamCamPoint));
         }
         #endregion
         #region Non-Movement Skills
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
             AttackAnimation();
+            StartCoroutine(cam.ZoomIn(playerTeamCamPoint));
         }
         #endregion
     }

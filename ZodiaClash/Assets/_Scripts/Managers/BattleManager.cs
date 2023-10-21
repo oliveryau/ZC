@@ -14,6 +14,8 @@ public class BattleManager : MonoBehaviour
 {
     public BattleState battleState;
     
+    private ScenesManager scenesManager;
+    private GameManager gameManager;
     private CharacterStats activeCharacter;
     private bool roundInProgress;
 
@@ -39,9 +41,16 @@ public class BattleManager : MonoBehaviour
     public List<CharacterStats> originalTurnOrderList = new List<CharacterStats>();
     [HideInInspector] public bool revertingTurn;
 
+    [Header("Others")]
+    [SerializeField] private SceneTransition sceneTransition;
+
     private void Start()
     {
         battleState = BattleState.NEWGAME;
+
+        scenesManager = FindObjectOfType<ScenesManager>();
+        gameManager = FindObjectOfType<GameManager>();
+        sceneTransition.clearedLevel = false;
 
         roundInProgress = false;
         characterCount = 0;
@@ -103,6 +112,9 @@ public class BattleManager : MonoBehaviour
 
                 battleStateHud.GetComponentInChildren<TextMeshProUGUI>().text = "Battle Over";
                 battleStateHud.gameObject.SetActive(true);
+
+                sceneTransition.clearedLevel = true;
+                StartCoroutine(scenesManager.LoadMap());
             }
             //then check if enemy has won
             else if (GameObject.FindGameObjectsWithTag("Player").Length <= 0) //no players left
@@ -115,6 +127,8 @@ public class BattleManager : MonoBehaviour
                 enemyHud.SetActive(false);
                 skillChiHud.SetActive(false);
                 statusEffectIndicator.SetActive(false);
+
+                gameManager.lostBattle = true;
             }
             //continue battle
             else

@@ -184,3 +184,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
+  dialogueUi: {fileID: 0}
+  sceneTransition: {fileID: 11400000, guid: 7b1370ffacc356841a0889615577f4c8, type: 2}

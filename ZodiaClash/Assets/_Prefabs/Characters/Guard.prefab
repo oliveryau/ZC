@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6864980515097437753}
-  - component: {fileID: 8997806280776237434}
   m_Layer: 0
   m_Name: Target Position
   m_TagString: Untagged
@@ -32,18 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6791500705078951300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8997806280776237434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6930136671378343061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac3970d16bf61a40af7457dde0cae03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6987179757459714258
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,11 +193,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  uniqueTurnHud: {fileID: 0}
   uniqueCharacterAvatar: {fileID: 21300000, guid: 166ba14ce09ca5846af7be0aa0ea0093, type: 3}
+  uniqueTurnHud: {fileID: 0}
   characterHpHud: {fileID: 0}
-  healthBarFill: {fileID: 0}
   statusEffectPanel: {fileID: 0}
+  healthBarFill: {fileID: 0}
   characterName: {fileID: 3589583847494702253}
   floatingText: {fileID: 2068786622573946671, guid: e017fbf3857542b4ea83a0dd74f44b20, type: 3}
   statusEffectText: {fileID: 2068786622573946671, guid: b01e450bd9545674089be56db3033593, type: 3}
@@ -224,12 +211,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   healthPanel: {fileID: 0}
-  healthPanelOriginalColor:
-    serializedVersion: 2
-    rgba: 0
-  healthPanelTargetColor:
-    serializedVersion: 2
-    rgba: 0
+  hpPercentUi: {fileID: 0}
   maxHealth: 100
   health: 100
   attack: 10
@@ -274,6 +256,8 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}
   aoeTargetPosition: {fileID: 0}
+  enemyTeamCamPoint: {fileID: 0}
+  playerTeamCamPoint: {fileID: 0}
 --- !u!1001 &2155880667090977777
 PrefabInstance:
   m_ObjectHideFlags: 0

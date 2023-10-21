@@ -8,6 +8,7 @@ public class DialogueUi : MonoBehaviour
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TextMeshProUGUI speakerText;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private SceneTransition sceneTransition;
 
     public bool IsOpen { get; private set; }
 
@@ -38,7 +39,7 @@ public class DialogueUi : MonoBehaviour
             dialogueText.text = dialogueLine.dialogue;
 
             yield return null;
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.F));
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0));
 
             speakerText.text = null;
         }
@@ -54,7 +55,7 @@ public class DialogueUi : MonoBehaviour
         {
             yield return null;
 
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0))
             {
                 dialogueTypewriter.Stop();
             }
@@ -67,9 +68,15 @@ public class DialogueUi : MonoBehaviour
         dialogueBox.SetActive(false);
         dialogueText.text = null;
 
-        if (id != 0)
+        if (id == 2)
         {
-            StartCoroutine(scenesManager.LoadLevelFromMap(id + 1));
+            sceneTransition.prevPosition = GameObject.FindWithTag("Player").transform.position;
+            StartCoroutine(scenesManager.LoadLevelFromMap(id));
+        }
+        else if (id == 3)
+        {
+            sceneTransition.prevPosition = GameObject.FindWithTag("Player").transform.position;
+            StartCoroutine(scenesManager.LoadLevelFromMap(id));
         }
     }
 }

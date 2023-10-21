@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d64c86fd0cb324f42940402ea7ed0ecd, type: 3}
   m_Name: SceneTransition
   m_EditorClassIdentifier: 
+  clearedLevel: 0
+  levelIndex: 2
+  prevPosition: {x: -10.5, y: -3.5, z: 0}
+  enemyNpc: 
+  defeatedEnemyNpcs: []

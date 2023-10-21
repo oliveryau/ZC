@@ -156,8 +156,7 @@ public class GuardAction : _EnemyAction
         #region Movement Skills
         if (selectedSkillPrefab == skill1Prefab)
         {
-            targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
-
+            targetPosition = selectedTarget.transform.Find("Target Position");
             movingToTarget = true;
         }
         #endregion

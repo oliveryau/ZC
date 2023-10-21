@@ -22,7 +22,7 @@ public class EnemyGoatAction : _EnemyAction
         UpdateEnemyState();
     }
 
-    #region Guard State
+    #region Goat Boss State
     protected override void UpdateEnemyState()
     {
         if (enemyState == EnemyState.START)
@@ -260,8 +260,7 @@ public class EnemyGoatAction : _EnemyAction
         #region Movement Skills
         if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill4Prefab)
         {
-            targetPosition = selectedTarget.GetComponentInChildren<TargetPosition>().transform;
-
+            targetPosition = selectedTarget.transform.Find("Target Position");
             movingToTarget = true;
         }
         #endregion

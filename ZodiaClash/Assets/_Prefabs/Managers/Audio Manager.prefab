@@ -435,9 +435,11 @@ MonoBehaviour:
   ambienceSource: {fileID: 6668565214620823095}
   effectsSource: {fileID: 709716952276088609}
   musicSounds:
+  - name: Exploration BGM
+    clip: {fileID: 8300000, guid: 28a04944345e0f540b6871fe5c765b5d, type: 3}
   - name: Battle BGM
     clip: {fileID: 8300000, guid: ef10ab8cba6510d4c9ecb7cef5ee3c89, type: 3}
   ambienceSounds:
-  - name: Battle Ambience
+  - name: Forest Ambience
     clip: {fileID: 8300000, guid: cb01b025f40d0444f8618ac2b708e076, type: 3}
   effectsSounds: []

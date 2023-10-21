@@ -12,7 +12,7 @@ public class FloatingText : MonoBehaviour
     private void Start()
     {
         destroyTime = 0.75f;
-        offset = new Vector3(0, 1f, 0);
+        offset = new Vector3(0, 1.25f, 0);
         randomIntensity = new Vector3(0.2f, 0.5f, 0);
 
         Destroy(gameObject, destroyTime); //destroy after a certain time

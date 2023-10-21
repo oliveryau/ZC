@@ -7,27 +7,61 @@ public class ScenesManager : MonoBehaviour
 {
     public Scene scene;
     private FadeManager fadeManager;
+    private BattleManager battleManager;
+    private _ExplorationManager explorationManager;
+
+    [SerializeField] private SceneTransition sceneTransition;
 
     private void Start()
     {
         scene = SceneManager.GetActiveScene();
         fadeManager = FindObjectOfType<FadeManager>();
+        battleManager = FindObjectOfType<BattleManager>();
 
         switch (scene.name)
         {
-            case "BattleScene 1":
+            case "1_Exploration Map":
 
-                AudioManager.Instance.PlayMusic("Battle BGM");
-                AudioManager.Instance.PlayAmbienceMusic("Battle Ambience");
+                explorationManager = FindObjectOfType<_ExplorationManager>();
+                explorationManager.FindAllEnemyNpcs();
+                AudioManager.Instance.PlayMusic("Exploration BGM");
+                AudioManager.Instance.PlayAmbienceMusic("Forest Ambience");
+
+                if (sceneTransition.clearedLevel)
+                {
+                    sceneTransition.enemyNpc = explorationManager.GetSpecificNpc(sceneTransition.levelIndex);
+                    sceneTransition.defeatedEnemyNpcs.Add(sceneTransition.enemyNpc);
+                }
+
+                if (sceneTransition.defeatedEnemyNpcs != null)
+                {
+                    foreach (string enemyName in sceneTransition.defeatedEnemyNpcs)
+                    {
+                        foreach (GameObject enemy in explorationManager.enemyNpcs)
+                        {
+                            if (enemy.name == enemyName)
+                            {
+                                enemy.SetActive(false);
+                                break;
+                            }
+                        }
+                    }
+                }
                 break;
-            case "BattleScene 2":
+            case "2_BattleScene":
 
                 AudioManager.Instance.PlayMusic("Battle BGM");
-                AudioManager.Instance.PlayAmbienceMusic("Battle Ambience");
+                AudioManager.Instance.PlayAmbienceMusic("Forest Ambience");
+                break;
+            case "3_BattleScene":
+
+                AudioManager.Instance.PlayMusic("Battle BGM");
+                AudioManager.Instance.PlayAmbienceMusic("Forest Ambience");
                 break;
             default:
                 break;
         }
+        sceneTransition.levelIndex = scene.buildIndex;
     }
 
     private void Update()
@@ -35,31 +69,37 @@ public class ScenesManager : MonoBehaviour
         #region Cheat Codes
         switch (scene.name)
         {
-            case "Exploration Map":
+            case "1_Exploration Map":
 
                 if (Input.GetKeyDown(KeyCode.F1))
                 {
-                    SceneManager.LoadScene(1);
+                    StartCoroutine(LoadMap());
                 }
                 break;
 
-            case "BattleScene 1":
+            case "2_BattleScene":
 
                 if (Input.GetKeyDown(KeyCode.F1))
                 {
-                    SceneManager.LoadScene(1);
+                    StartCoroutine(LoadMap());
                 }
                 else if (Input.GetKeyDown(KeyCode.F2))
                 {
                     SceneManager.LoadScene(2);
                 }
+
+                if (battleManager.battleState == BattleState.WIN)
+                {
+                    sceneTransition.clearedLevel = true;
+                }
+                
                 break;
 
-            case "BattleScene 2":
+            case "3_BattleScene":
 
                 if (Input.GetKeyDown(KeyCode.F1))
                 {
-                    SceneManager.LoadScene(1);
+                    StartCoroutine(LoadMap());
                 }
                 else if (Input.GetKeyDown(KeyCode.F2))
                 {
@@ -98,11 +138,11 @@ public class ScenesManager : MonoBehaviour
 
         switch (scene.name)
         {
-            case "BattleScene 1":
+            case "2_BattleScene":
 
                 SceneManager.LoadScene(2);
                 break;
-            case "BattleScene 2":
+            case "3_BattleScene":
 
                 SceneManager.LoadScene(3);
                 break;

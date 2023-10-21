@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene:
     m_Handle: 0
+  sceneTransition: {fileID: 11400000, guid: 7b1370ffacc356841a0889615577f4c8, type: 2}

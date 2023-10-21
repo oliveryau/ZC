@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4643494610350307382}
-  - component: {fileID: 5015577987408273558}
   m_Layer: 0
   m_Name: EnemyTeam's AOE Point
   m_TagString: Untagged
@@ -32,18 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1111451150403525344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5015577987408273558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 230888449257297871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac3970d16bf61a40af7457dde0cae03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &449562272827728200
 GameObject:
   m_ObjectHideFlags: 0
@@ -53,7 +40,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6536634600452847800}
-  - component: {fileID: 3819818068079793538}
   m_Layer: 0
   m_Name: PlayerTeam's AOE Point
   m_TagString: Untagged
@@ -76,18 +62,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1111451150403525344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3819818068079793538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449562272827728200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac3970d16bf61a40af7457dde0cae03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2116636225945797738
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +106,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2232195928745642667}
-  - component: {fileID: 3991920807331599571}
   m_Layer: 0
   m_Name: EnemyTeam's Cam Point
   m_TagString: Untagged
@@ -155,18 +128,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1111451150403525344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3991920807331599571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2587778190775696409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac3970d16bf61a40af7457dde0cae03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6393988718661955342
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +137,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4221619953528582005}
-  - component: {fileID: 3627620995372037192}
   m_Layer: 0
   m_Name: PlayerTeam's Cam Point
   m_TagString: Untagged
@@ -199,15 +159,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1111451150403525344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3627620995372037192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6393988718661955342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac3970d16bf61a40af7457dde0cae03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
