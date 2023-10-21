@@ -9,6 +9,7 @@ public class ScenesManager : MonoBehaviour
     private FadeManager fadeManager;
     private BattleManager battleManager;
     private _ExplorationManager explorationManager;
+    private PlayerMovement playerMovement;
 
     [SerializeField] private SceneTransition sceneTransition;
 
@@ -22,15 +23,35 @@ public class ScenesManager : MonoBehaviour
         {
             case "1_Exploration Map":
 
-                explorationManager = FindObjectOfType<_ExplorationManager>();
-                explorationManager.FindAllEnemyNpcs();
                 AudioManager.Instance.PlayMusic("Exploration BGM");
                 AudioManager.Instance.PlayAmbienceMusic("Forest Ambience");
 
+                #region Unique Save Loads
+                explorationManager = FindObjectOfType<_ExplorationManager>();
+                explorationManager.FindAllEnemyNpcs();
+
                 if (sceneTransition.clearedLevel)
                 {
-                    sceneTransition.enemyNpc = explorationManager.GetSpecificNpc(sceneTransition.levelIndex);
-                    sceneTransition.defeatedEnemyNpcs.Add(sceneTransition.enemyNpc);
+                    sceneTransition.enemyNpc = explorationManager.GetSpecificNpc(sceneTransition.levelIndex); //get npc that is just defeated
+                    sceneTransition.defeatedEnemyNpcs.Add(sceneTransition.enemyNpc); //add it to the defeated enemies list
+
+                    #region Unique Dialogues
+                    switch (sceneTransition.levelIndex)
+                    {
+                        case 2:
+                            //normal guard level
+                            playerMovement = FindObjectOfType<PlayerMovement>();
+                            playerMovement.DialogueUi.ShowDialogue(explorationManager.defeatedFirstGuardDialogue); 
+                            break;
+                        case 3:
+                            //goat level
+                            playerMovement = FindObjectOfType<PlayerMovement>();
+                            playerMovement.DialogueUi.ShowDialogue(explorationManager.defeatedGoatDialogue);
+                            break;
+                        default:
+                            break;
+                    }
+                    #endregion
                 }
 
                 if (sceneTransition.defeatedEnemyNpcs != null)
@@ -41,12 +62,13 @@ public class ScenesManager : MonoBehaviour
                         {
                             if (enemy.name == enemyName)
                             {
-                                enemy.SetActive(false);
+                                enemy.SetActive(false); //hide defeated enemy npcs
                                 break;
                             }
                         }
                     }
                 }
+                #endregion
                 break;
             case "2_BattleScene":
 
@@ -62,6 +84,7 @@ public class ScenesManager : MonoBehaviour
                 break;
         }
         sceneTransition.levelIndex = scene.buildIndex;
+        sceneTransition.enemyNpc = null;
     }
 
     private void Update()

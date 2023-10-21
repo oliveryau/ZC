@@ -64,19 +64,30 @@ public class DialogueUi : MonoBehaviour
 
     private void CloseDialogueBox(int id = 0)
     {
-        IsOpen = false;
         dialogueBox.SetActive(false);
         dialogueText.text = null;
 
-        if (id == 2)
+        switch (id)
         {
-            sceneTransition.prevPosition = GameObject.FindWithTag("Player").transform.position;
-            StartCoroutine(scenesManager.LoadLevelFromMap(id));
+            case 2:
+            case 3:
+
+                sceneTransition.prevPosition = GameObject.FindWithTag("Player").transform.position;
+                StartCoroutine(scenesManager.LoadLevelFromMap(id));
+                StartCoroutine(CloseDialogueDelay());
+                break;
+            case 0:
+            case 93:
+            default:
+
+                IsOpen = false;
+                break;
         }
-        else if (id == 3)
-        {
-            sceneTransition.prevPosition = GameObject.FindWithTag("Player").transform.position;
-            StartCoroutine(scenesManager.LoadLevelFromMap(id));
-        }
+    }
+
+    private IEnumerator CloseDialogueDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        IsOpen = false;
     }
 }

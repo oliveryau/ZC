@@ -560,11 +560,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &832902686 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1625020718292314491, guid: d3d127e79d8e6b54cb6e50462f1f7d44, type: 3}
-  m_PrefabInstance: {fileID: 8419104040817726212}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1064403453 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4247593083015273558, guid: 1c0341b4a5cdb444abcc9acad1788d10, type: 3}
@@ -1105,8 +1100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyNpcs: []
-  guard: {fileID: 832902686}
-  goat: {fileID: 0}
+  defeatedFirstGuardDialogue: {fileID: 11400000, guid: e6197afd09170204081e55b6833b719a, type: 2}
+  defeatedGoatDialogue: {fileID: 11400000, guid: 52554d408e7f9a9448082155e955bb91, type: 2}
+  defeatedOxDialogue: {fileID: 0}
 --- !u!4 &1209587292
 Transform:
   m_ObjectHideFlags: 0

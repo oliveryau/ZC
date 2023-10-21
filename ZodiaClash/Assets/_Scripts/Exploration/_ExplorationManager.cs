@@ -5,8 +5,11 @@ using UnityEngine;
 public class _ExplorationManager : MonoBehaviour
 {
     public GameObject[] enemyNpcs;
-    public GameObject guard;
-    public GameObject goat;
+
+    [Header("Unique Dialogue Objects")]
+    public DialogueObject defeatedFirstGuardDialogue;
+    public DialogueObject defeatedGoatDialogue;
+    public DialogueObject defeatedOxDialogue;
 
     public void FindAllEnemyNpcs()
     {
@@ -15,28 +18,6 @@ public class _ExplorationManager : MonoBehaviour
 
     public string GetSpecificNpc(int index)
     {
-        //foreach (GameObject enemy in enemyNpcs)
-        //{
-        //    switch (index)
-        //    {
-        //        case 2:
-        //            if (enemy.name == "Guard Exploration")
-        //            {
-        //                return enemy;
-        //            }
-        //        break;
-        //        case 3:
-        //            if (enemy.name == "Enemy Goat Exploration")
-        //            {
-        //                return enemy;
-        //            }
-        //            break;
-        //        default:
-        //            Debug.Log("No NPCS found, BUG!");
-        //        break;
-        //    }
-        //}
-
         switch (index)
         {
             case 2:

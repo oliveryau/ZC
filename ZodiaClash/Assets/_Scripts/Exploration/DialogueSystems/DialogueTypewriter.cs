@@ -11,8 +11,8 @@ public class DialogueTypewriter : MonoBehaviour
 
     private readonly List<Punctuation> punctuations = new List<Punctuation>()
     {
-        new Punctuation(new HashSet<char>() {'.', '!', '?'}, 0.6f),
-        new Punctuation(new HashSet<char>() {','}, 0.3f)
+        new Punctuation(new HashSet<char>() {'.', '!', '?'}, 0.3f),
+        new Punctuation(new HashSet<char>() {','}, 0.1f)
     };
 
     private Coroutine typingCoroutine;

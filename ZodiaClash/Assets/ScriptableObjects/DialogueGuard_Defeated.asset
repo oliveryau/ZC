@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f1157749f40cdb44973b8f3e0f56c61, type: 3}
-  m_Name: DialogueGuard
+  m_Name: DialogueGuard_Defeated
   m_EditorClassIdentifier: 
   id: 2
   dialogueLines:
-  - speaker: Jade Statue Guard
+  - speaker: Jade Statue
     dialogue: ...
   - speaker: Guiying
-    dialogue: ...
-  - speaker: Jade Statue Guard
+    dialogue: '?'
+  - speaker: Jade Statue
     dialogue: Proceed no further!
   - speaker: Guiying
-    dialogue: '!!! These statues can talk?'
-  - speaker: Jade Statue Guard
-    dialogue: Proceed no further!
+    dialogue: '!!!'

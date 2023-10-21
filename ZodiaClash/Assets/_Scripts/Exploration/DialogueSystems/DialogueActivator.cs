@@ -10,12 +10,14 @@ public interface IInteractable
 public class DialogueActivator : MonoBehaviour, IInteractable
 {
     public DialogueObject dialogueObject;
+    [SerializeField] private GameObject canSpeakIndicator;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && collision.TryGetComponent(out PlayerMovement playerMovement))
         {
             playerMovement.Interactable = this;
+            canSpeakIndicator.SetActive(true);
         }
     }
 
@@ -26,6 +28,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
             if (playerMovement.Interactable is DialogueActivator dialogueActivator && dialogueActivator == this)
             {
                 playerMovement.Interactable = null;
+                canSpeakIndicator.SetActive(false);
             }
         }
     }
