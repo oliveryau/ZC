@@ -118,7 +118,8 @@ MonoBehaviour:
   shatterIcon: {fileID: 1554564938126959776, guid: 877bafee7f6fd504ebf01b08cc14e4d8, type: 3}
   stunIcon: {fileID: 6126166109037537968, guid: 9cfc435301132084a8795f637296297d, type: 3}
   tauntIcon: {fileID: 8486654821120690224, guid: c09e508f33b971743be698a98e014390, type: 3}
-  atkBuffIcon: {fileID: 561189915271357867, guid: da57b9ffee9bf5a4bb9e0d889c54854f, type: 3}
+  cleanseIcon: {fileID: 561189915271357867, guid: 922558dcf1b87b346afe7b43f309c4d7, type: 3}
+  enrageIcon: {fileID: 561189915271357867, guid: da57b9ffee9bf5a4bb9e0d889c54854f, type: 3}
   armorIcon: {fileID: 3373990890109378416, guid: 146415a4dbb282a4e801e9d402f43000, type: 3}
   rageGoatBuffIcon: {fileID: 561189915271357867, guid: 879d21fa3768fb2498b7d5403e6326db, type: 3}
 --- !u!114 &6204437302020011797

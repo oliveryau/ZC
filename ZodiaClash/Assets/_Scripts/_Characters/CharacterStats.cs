@@ -262,32 +262,42 @@ public class CharacterStats : MonoBehaviour
     {
         TextMeshProUGUI popup = statusEffectText.GetComponentInChildren<TextMeshProUGUI>();
         popup.color = Color.white;
+        Image popupImage = statusEffectText.transform.Find("Image").GetComponent<Image>();
+        popupImage.sprite = null;
 
         switch (effect)
         {
             case "bleed":
                 popup.text = "Bleed";
+                popupImage.sprite = statusEffectHud.bleedIcon.GetComponent<Image>().sprite;
                 break;
             case "shatter":
                 popup.text = "Shatter";
+                popupImage.sprite = statusEffectHud.shatterIcon.GetComponent<Image>().sprite;
                 break;
             case "stun":
                 popup.text = "Stun";
+                popupImage.sprite = statusEffectHud.stunIcon.GetComponent<Image>().sprite;
                 break;
             case "taunt":
                 popup.text = "Taunt";
-                break;
-            case "enrage":
-                popup.text = "Enrage";
-                break;
-            case "armor":
-                popup.text = "Armor";
+                popupImage.sprite = statusEffectHud.tauntIcon.GetComponent<Image>().sprite;
                 break;
             case "cleanse":
                 popup.text = "Cleanse";
+                popupImage.sprite = statusEffectHud.cleanseIcon.GetComponent<Image>().sprite;
+                break;
+            case "enrage":
+                popup.text = "Enrage";
+                popupImage.sprite = statusEffectHud.enrageIcon.GetComponent<Image>().sprite;
+                break;
+            case "armor":
+                popup.text = "Armor";
+                popupImage.sprite = statusEffectHud.armorIcon.GetComponent<Image>().sprite;
                 break;
             case "rage":
                 popup.text = "Rage";
+                popupImage.sprite = statusEffectHud.rageGoatBuffIcon.GetComponent<Image>().sprite;
                 break;
             default:
                 popup.text = null;

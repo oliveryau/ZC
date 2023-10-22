@@ -9,15 +9,16 @@ public class _StatusEffectHud : MonoBehaviour
     private Transform effectsPanel;
 
     [Header("Debuffs")]
-    [SerializeField] private GameObject bleedIcon;
-    [SerializeField] private GameObject shatterIcon;
-    [SerializeField] private GameObject stunIcon;
-    [SerializeField] private GameObject tauntIcon;
+    public GameObject bleedIcon;
+    public GameObject shatterIcon;
+    public GameObject stunIcon;
+    public GameObject tauntIcon;
 
     [Header("Buffs")]
-    [SerializeField] private GameObject atkBuffIcon;
-    [SerializeField] private GameObject armorIcon;
-    [SerializeField] private GameObject rageGoatBuffIcon;
+    public GameObject cleanseIcon;
+    public GameObject enrageIcon;
+    public GameObject armorIcon;
+    public GameObject rageGoatBuffIcon;
 
     public void SpawnEffectsBar(CharacterStats target, int count, string effect)
     {
@@ -199,9 +200,9 @@ public class _StatusEffectHud : MonoBehaviour
 
                 if (!atkBuffExist)
                 {
-                    TextMeshProUGUI newAtkBuffText = atkBuffIcon.GetComponentInChildren<TextMeshProUGUI>();
+                    TextMeshProUGUI newAtkBuffText = enrageIcon.GetComponentInChildren<TextMeshProUGUI>();
                     newAtkBuffText.text = count.ToString();
-                    Instantiate(atkBuffIcon, effectsPanel.position, Quaternion.identity, effectsPanel);
+                    Instantiate(enrageIcon, effectsPanel.position, Quaternion.identity, effectsPanel);
                 }
 
                 break;
