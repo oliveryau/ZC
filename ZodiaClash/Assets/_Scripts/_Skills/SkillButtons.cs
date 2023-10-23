@@ -151,7 +151,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
                     skillDescription.text = "<color=#00FFFF>" + catSkill3.gameObject.name + "</color>\n\n" +
                         "Deals damage to all enemies. " +
-                        "If an enemy already has Bleed, all Bleed on that enemy immediately produces damage.";
+                        "If an enemy already has Bleed, all Bleed on that enemy immediately produces damage and resets.";
                 }
 
                 break;
@@ -172,14 +172,14 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     B_AttackBuff goatSkill2 = FindObjectOfType<B_AttackBuff>();
 
                     skillDescription.text = "<color=#00FFFF>" + goatSkill2.gameObject.name + "</color>\n\n" +
-                        "Allows An ally (except yourself) to take action immediately and grants Enrage (Max " + enrage.enrageLimit + ") for " + goatSkill2.enrageTurns + " turns.";
+                        "Allows an ally (except yourself) to take action immediately and grants Enrage (Max " + enrage.enrageLimit + ") for " + goatSkill2.enrageTurns + " turns.";
                 }
                 else if (gameObject.name == "GoatSkill3Btn")
                 {
                     C_SingleHeal goatSkill3 = FindObjectOfType<C_SingleHeal>();
 
                     skillDescription.text = "<color=#00FFFF>" + goatSkill3.gameObject.name + "</color>\n\n" +
-                        "Heals and removes all negative effects from an ally.";
+                        "Heals an ally and grants Cleanse.";
                 }
 
                 break;
