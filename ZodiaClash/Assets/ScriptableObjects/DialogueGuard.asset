@@ -19,8 +19,10 @@ MonoBehaviour:
   - speaker: Guiying
     dialogue: ...
   - speaker: Jade Statue Guard
-    dialogue: Proceed no further!
+    dialogue: Intruder! Seize her!
   - speaker: Guiying
-    dialogue: '!!! These statues can talk?'
+    dialogue: '! These statues can talk?'
   - speaker: Jade Statue Guard
-    dialogue: Proceed no further!
+    dialogue: Intruder! Seize her!
+  - speaker: Guiying
+    dialogue: What a headache.

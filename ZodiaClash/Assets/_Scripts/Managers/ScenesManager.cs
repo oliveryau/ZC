@@ -21,6 +21,12 @@ public class ScenesManager : MonoBehaviour
 
         switch (scene.name)
         {
+            case "0_StartMenu":
+
+                AudioManager.Instance.PlayMusic("Menu BGM"); 
+                
+                sceneTransition.ResetSceneData();
+                break;
             case "1_Exploration Map":
 
                 AudioManager.Instance.PlayMusic("Exploration BGM");
@@ -96,11 +102,7 @@ public class ScenesManager : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.F1))
                 {
-                    sceneTransition.clearedLevel = false;
-                    sceneTransition.levelIndex = 0;
-                    sceneTransition.prevPosition = new Vector3(-10.5f, -3.5f, 0f);
-                    sceneTransition.enemyNpc = null;
-                    sceneTransition.defeatedEnemyNpcs = new List<string>();
+                    sceneTransition.ResetSceneData();
 
                     StartCoroutine(LoadMap());
                 }

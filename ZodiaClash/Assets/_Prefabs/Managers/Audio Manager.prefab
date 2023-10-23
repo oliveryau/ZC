@@ -435,6 +435,8 @@ MonoBehaviour:
   ambienceSource: {fileID: 6668565214620823095}
   effectsSource: {fileID: 709716952276088609}
   musicSounds:
+  - name: Menu BGM
+    clip: {fileID: 8300000, guid: 2bdb6134322dba348a5a3d216e795775, type: 3}
   - name: Exploration BGM
     clip: {fileID: 8300000, guid: 28a04944345e0f540b6871fe5c765b5d, type: 3}
   - name: Battle BGM

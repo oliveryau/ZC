@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f1157749f40cdb44973b8f3e0f56c61, type: 3}
   m_Name: DialogueGuard_Defeated
   m_EditorClassIdentifier: 
-  id: 2
+  id: 92
   dialogueLines:
-  - speaker: Jade Statue
-    dialogue: ...
+  - speaker: Jade Statue Guard
+    dialogue: '*Grunts'
   - speaker: Guiying
-    dialogue: '?'
-  - speaker: Jade Statue
-    dialogue: Proceed no further!
+    dialogue: ... Looks like what the woodland creatures said was true.
   - speaker: Guiying
-    dialogue: '!!!'
+    dialogue: There's something wrong with this place. I must find and save my friends.

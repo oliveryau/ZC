@@ -13,7 +13,7 @@ public class SceneTransition : ScriptableObject
     public string enemyNpc;
     public List<string> defeatedEnemyNpcs;
 
-    private void OnEnable()
+    public void ResetSceneData()
     {
         clearedLevel = false;
         levelIndex = 0;
