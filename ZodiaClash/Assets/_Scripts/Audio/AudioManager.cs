@@ -63,28 +63,17 @@ public class AudioManager : MonoBehaviour
         effectsSource.PlayOneShot(s.clip);
     }
 
-    public void ToggleMusic()
-    {
-        musicSource.mute = !musicSource.mute;
-    }
-
     public void MusicVolume(float volume)
     {
         musicSource.volume = volume;
+        ambienceSource.volume = volume;
         PlayerPrefs.SetFloat("musicVolume", volume);
-    }
-
-    public void ToggleEffects()
-    {
-        ambienceSource.mute = !ambienceSource.mute;
-        effectsSource.mute = !effectsSource.mute;
+        PlayerPrefs.SetFloat("ambienceVolume", volume);
     }
 
     public void EffectsVolume(float volume)
     {
-        ambienceSource.volume = volume;
         effectsSource.volume = volume;
-        PlayerPrefs.SetFloat("ambienceVolume", volume);
         PlayerPrefs.SetFloat("effectsVolume", volume);
     }
 }

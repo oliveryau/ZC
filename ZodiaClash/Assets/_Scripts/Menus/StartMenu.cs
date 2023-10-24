@@ -24,7 +24,7 @@ public class StartMenu : MonoBehaviour
 
     public void SettingsButton()
     {
-        StartCoroutine(DelaySettingsButton());
+        settingsPanel.SetActive(true);
     }
 
     public void QuitButton()
@@ -41,13 +41,6 @@ public class StartMenu : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         SceneManager.LoadScene(scene.buildIndex + 1);
-    }
-
-    private IEnumerator DelaySettingsButton()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        settingsPanel.SetActive(true);
     }
 
     private IEnumerator DelayQuitButton()

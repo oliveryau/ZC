@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public enum GameState
 {
-    WAIT, PLAY, PAUSE, INFO, LOSE
+    WAIT, PLAY, PAUSE, SETTINGS, INFO, LOSE
 }
 
 public class GameManager : MonoBehaviour
@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour
 
     [Header("HUD")]
     [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject settingsScreen;
     [SerializeField] private GameObject effectsScreen;
     [SerializeField] private GameObject loseScreen;
 
     [SerializeField] private bool isPaused;
+    [SerializeField] private bool isSettingsDisplayed;
     [SerializeField] private bool isEffectDisplayed;
     [HideInInspector] public bool lostBattle;
 
@@ -74,11 +76,33 @@ public class GameManager : MonoBehaviour
                 isPaused = false;
             }
 
+            if (isSettingsDisplayed)
+            {
+                settingsScreen.SetActive(true);
+
+                gameState = GameState.SETTINGS;
+            }
+
             if (!isPaused)
             {
                 pauseScreen.SetActive(false);
 
                 gameState = GameState.PLAY;
+            }
+        }
+
+        else if (gameState == GameState.SETTINGS)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                isSettingsDisplayed = false;
+            }
+
+            if (!isSettingsDisplayed)
+            {
+                settingsScreen.SetActive(false);
+
+                gameState = GameState.PAUSE;
             }
         }
 
@@ -124,6 +148,16 @@ public class GameManager : MonoBehaviour
         gameState = GameState.WAIT;
 
         StartCoroutine(scenesManager.LoadLevel());
+    }
+
+    public void ShowSettings()
+    {
+        isSettingsDisplayed = true;
+    }
+
+    public void HideSettings()
+    {
+        isSettingsDisplayed = false;
     }
 
     public void ExitBattle()

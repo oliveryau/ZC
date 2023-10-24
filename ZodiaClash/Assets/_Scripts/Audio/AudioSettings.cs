@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class AudioSettings : MonoBehaviour
 {
-    public Button musicToggle;
-    public Button effectsToggle;
-
     public Slider musicSlider;
     public Slider effectsSlider;
 
@@ -24,19 +21,9 @@ public class AudioSettings : MonoBehaviour
         }
     }
 
-    public void ToggleMusicVolume()
-    {
-        AudioManager.Instance.ToggleMusic();
-    }
-
     public void SetMusicVolume()
     {
         AudioManager.Instance.MusicVolume(musicSlider.value);
-    }
-
-    public void ToggleEffectsVolume()
-    {
-        AudioManager.Instance.ToggleEffects();
     }
 
     public void SetEffectsVolume()
@@ -46,8 +33,6 @@ public class AudioSettings : MonoBehaviour
 
     public void LoadVolume()
     {
-        //musicToggle = PlayerPrefs.
-
         musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
         effectsSlider.value = PlayerPrefs.GetFloat("ambienceVolume");
         effectsSlider.value = PlayerPrefs.GetFloat("effectsVolume");
