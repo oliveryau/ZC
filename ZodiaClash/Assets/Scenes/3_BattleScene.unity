@@ -980,17 +980,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1947357656 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6743857169482185287, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-  m_PrefabInstance: {fileID: 197414479760093572}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1954951629 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3884250835272338897, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
@@ -1482,6 +1471,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3595296223679201912, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+      propertyPath: m_Name
+      value: CatSkill3Cost
+      objectReference: {fileID: 0}
     - target: {fileID: 3744977368654627425, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_Name
       value: GoatSkill2Cost
@@ -1753,6 +1746,17 @@ PrefabInstance:
       addedObject: {fileID: 446577227006848087}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+--- !u!114 &197414479760093573 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 534140609702361630, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
+  m_PrefabInstance: {fileID: 197414479760093572}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &197414479760093576 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7511861578841583328, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
@@ -2225,7 +2229,7 @@ PrefabInstance:
     - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skill3ChiCostUi
       value: 
-      objectReference: {fileID: 1947357656}
+      objectReference: {fileID: 197414479760093573}
     - target: {fileID: 8005021990409564651, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: characterSkillUi
       value: 

@@ -93,6 +93,15 @@ public class CharacterStats : MonoBehaviour
     {
         if (battleManager.battleState != BattleState.NEWGAME)
         {
+            #region Temp Cheat Code
+            if (Input.GetKeyUp(KeyCode.F10) && gameObject.CompareTag("Enemy"))
+            {
+                health = 1;
+                if (hpPercentUi != null) hpPercentUi.text = Mathf.RoundToInt(health / maxHealth * 100).ToString() + "%";
+                healthBarFill.fillAmount = health / maxHealth;
+            }
+            #endregion
+
             if (gameManager.gameState != GameState.PLAY)
             {
                 hoverHudCheck = false;

@@ -138,21 +138,21 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     A_SingleBleed catSkill1 = FindObjectOfType<A_SingleBleed>();
 
                     skillTitle.text = catSkill1.gameObject.name;
-                    skillDescription.text = "Deals damage to a single enemy and inflicts <u>Bleed</u> (Maximum " + bleed.bleedLimit + ") for " + catSkill1.bleedTurns + " turns.";
+                    skillDescription.text = "Deals damage to a single enemy and inflicts <color=red>Bleed</color> (Max " + bleed.bleedLimit + " turns) for " + catSkill1.bleedTurns + " turns.";
                 }
                 else if (gameObject.name == "CatSkill2Btn")
                 {
                     B_AoeBleed catSkill2 = FindObjectOfType<B_AoeBleed>();
 
                     skillTitle.text = catSkill2.gameObject.name;
-                    skillDescription.text = "Deals damage to all enemies and inflicts <u>Bleed</u> (Maximum " + bleed.bleedLimit + ") for " + catSkill2.bleedTurns + " turns.";
+                    skillDescription.text = "Deals damage to all enemies and inflicts <color=red>Bleed</color> (Max " + bleed.bleedLimit + " turns) for " + catSkill2.bleedTurns + " turns.";
                 }
                 else if (gameObject.name == "CatSkill3Btn")
                 {
                     C_AoeActivateBleed catSkill3 = FindObjectOfType<C_AoeActivateBleed>();
 
                     skillTitle.text = catSkill3.gameObject.name;
-                    skillDescription.text = "Deals damage to all enemies. If an enemy already has <u>Bleed</u>, all <u>Bleed</u> on that enemy is immediately consumed and reset.";
+                    skillDescription.text = "Deals damage to all enemies. If an enemy already has <color=red>Bleed</color>, all <color=red>Bleed</color> on that enemy is consumed and reset immediately.";
                 }
 
                 break;
@@ -165,7 +165,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     A_AttackDefBreak goatSkill1 = FindObjectOfType<A_AttackDefBreak>();
 
                     skillTitle.text = goatSkill1.gameObject.name;
-                    skillDescription.text = "Deals damage to a single enemy and inflicts <u>Shatter</u> (Maximum " + defense.shatterLimit + ") for " + goatSkill1.shatterTurns + " turns.";
+                    skillDescription.text = "Deals damage to a single enemy and inflicts <color=red>Shatter</color> (Max " + defense.shatterLimit + " turns) for " + goatSkill1.shatterTurns + " turns.";
                 }
                 else if (gameObject.name == "GoatSkill2Btn")
                 {
@@ -173,14 +173,14 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     B_AttackBuff goatSkill2 = FindObjectOfType<B_AttackBuff>();
 
                     skillTitle.text = goatSkill2.gameObject.name;
-                    skillDescription.text = "Allows an ally (except Yangsheng) to take action immediately and grants <u>Enrage</u> (Maximum " + enrage.enrageLimit + ") for " + goatSkill2.enrageTurns + " turns.";
+                    skillDescription.text = "Allows an ally (except Yangsheng) to take action immediately and grants <color=green>Enrage</color> for " + goatSkill2.enrageTurns + " turns.";
                 }
                 else if (gameObject.name == "GoatSkill3Btn")
                 {
                     C_SingleHeal goatSkill3 = FindObjectOfType<C_SingleHeal>();
 
                     skillTitle.text = goatSkill3.gameObject.name;
-                    skillDescription.text = "Heals an ally and grants <u>Cleanse</u>.";
+                    skillDescription.text = "Heals an ally and grants <color=green>Cleanse</color>.";
                 }
 
                 break;
@@ -200,7 +200,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     B_SingleStun oxSkill2 = FindObjectOfType<B_SingleStun>();
 
                     skillTitle.text = oxSkill2.gameObject.name;
-                    skillDescription.text = "Deals damage to a single enemy and inflicts <u>Stun</u> (Maximum " + stun.stunLimit + ") for " + oxSkill2.stunTurns + " turns.";
+                    skillDescription.text = "Deals damage to a single enemy and inflicts <color=green>Stun</color> for " + oxSkill2.stunTurns + " turns.";
                 }
                 else if (gameObject.name == "OxSkill3Btn")
                 {
@@ -209,7 +209,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     C_AoeTaunt oxSkill3 = FindObjectOfType<C_AoeTaunt>();
 
                     skillTitle.text = oxSkill3.gameObject.name;
-                    skillDescription.text = "Inflicts <u>Taunt</u> (Max " + taunt.tauntLimit + ") on all enemies for " + oxSkill3.tauntTurns + " turns. Grants <u>Armor</u> (Max " + defense.armorLimit + ") on Leishou for " + oxSkill3.armorTurns + " turns.";
+                    skillDescription.text = "Inflicts <color=red>Taunt</color> on all enemies for " + oxSkill3.tauntTurns + " turns. Grants <color=green>Armor</color> on Leishou for " + oxSkill3.armorTurns + " turns.";
                 }
 
                 break;
