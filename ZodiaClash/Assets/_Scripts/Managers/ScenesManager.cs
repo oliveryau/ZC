@@ -23,8 +23,9 @@ public class ScenesManager : MonoBehaviour
         {
             case "0_StartMenu":
 
-                AudioManager.Instance.PlayMusic("Menu BGM"); 
-                
+                AudioManager.Instance.PlayMusic("Menu BGM");
+                AudioManager.Instance.MusicFadeIn(true);
+
                 sceneTransition.ResetSceneData();
                 break;
             case "1_Exploration Map":
@@ -83,6 +84,7 @@ public class ScenesManager : MonoBehaviour
 
                 AudioManager.Instance.PlayMusic("Battle BGM");
                 AudioManager.Instance.PlayAmbienceMusic("Forest Ambience");
+                AudioManager.Instance.MusicFadeIn(true);
                 break;
             default:
                 break;
@@ -107,23 +109,6 @@ public class ScenesManager : MonoBehaviour
                 break;
 
             case "2_BattleScene":
-
-                if (Input.GetKeyDown(KeyCode.F1))
-                {
-                    StartCoroutine(LoadMap());
-                }
-                else if (Input.GetKeyDown(KeyCode.F2))
-                {
-                    SceneManager.LoadScene(2);
-                }
-
-                if (battleManager.battleState == BattleState.WIN)
-                {
-                    sceneTransition.clearedLevel = true;
-                }
-                
-                break;
-
             case "3_BattleScene":
 
                 if (Input.GetKeyDown(KeyCode.F1))
@@ -132,7 +117,12 @@ public class ScenesManager : MonoBehaviour
                 }
                 else if (Input.GetKeyDown(KeyCode.F2))
                 {
-                    SceneManager.LoadScene(3);
+                    StartCoroutine(LoadLevel());
+                }
+
+                if (battleManager.battleState == BattleState.WIN)
+                {
+                    sceneTransition.clearedLevel = true;
                 }
                 break;
             default:
@@ -144,6 +134,7 @@ public class ScenesManager : MonoBehaviour
     public IEnumerator LoadMenu()
     {
         fadeManager.SpawnFadeOutPanel();
+        AudioManager.Instance.MusicFadeIn(false);
 
         yield return new WaitForSeconds(1f);
 
@@ -153,7 +144,8 @@ public class ScenesManager : MonoBehaviour
     public IEnumerator LoadMap()
     {
         fadeManager.SpawnFadeOutPanel();
-        
+        AudioManager.Instance.MusicFadeIn(false);
+
         yield return new WaitForSeconds(1f);
 
         SceneManager.LoadScene(1);
@@ -162,6 +154,7 @@ public class ScenesManager : MonoBehaviour
     public IEnumerator LoadLevel()
     {
         fadeManager.SpawnFadeOutPanel();
+        AudioManager.Instance.MusicFadeIn(false);
 
         yield return new WaitForSeconds(1f);
 
@@ -189,6 +182,7 @@ public class ScenesManager : MonoBehaviour
     public IEnumerator LoadLevelFromMap(int index)
     {
         fadeManager.SpawnFadeOutPanel();
+        AudioManager.Instance.MusicFadeIn(false);
 
         yield return new WaitForSeconds(1f);
 

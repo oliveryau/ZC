@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 92
   dialogueLines:
-  - speaker: Jade Statue Guard
-    dialogue: '*Grunts'
   - speaker: Guiying
     dialogue: ... Looks like what the woodland creatures said was true.
   - speaker: Guiying

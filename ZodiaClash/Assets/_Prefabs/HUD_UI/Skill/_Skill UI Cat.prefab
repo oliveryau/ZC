@@ -918,9 +918,9 @@ RectTransform:
   - {fileID: 2924246591457820804}
   m_Father: {fileID: 4924587840686277885}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 550, y: -350}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 60, y: 60}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1889361711439365618
@@ -1233,7 +1233,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5418897345180888430, guid: b1b39750c859ff249b5b9432f4151c6e, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6406105705127918573, guid: b1b39750c859ff249b5b9432f4151c6e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8760241045518139801, guid: b1b39750c859ff249b5b9432f4151c6e, type: 3}
       propertyPath: m_Name

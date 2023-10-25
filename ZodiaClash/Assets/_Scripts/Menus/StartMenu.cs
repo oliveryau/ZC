@@ -50,6 +50,7 @@ public class StartMenu : MonoBehaviour
     private IEnumerator DelayStartButton()
     {
         scene = SceneManager.GetActiveScene();
+        AudioManager.Instance.MusicFadeIn(false);
 
         yield return new WaitForSeconds(1f);
 
