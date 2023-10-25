@@ -103,6 +103,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3643820232310952929, guid: a621eaaae89ec59408dad02e0223abda, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5133956287085704005, guid: a621eaaae89ec59408dad02e0223abda, type: 3}
       propertyPath: characterUi
       value: 
@@ -233,6 +237,10 @@ PrefabInstance:
     - target: {fileID: 7065966559389496999, guid: fdb930144ad93e4469b58404268777cd, type: 3}
       propertyPath: buffTurns
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292177431009156151, guid: fdb930144ad93e4469b58404268777cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

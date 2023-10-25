@@ -76,4 +76,36 @@ public class AudioManager : MonoBehaviour
         effectsSource.volume = volume;
         PlayerPrefs.SetFloat("effectsVolume", volume);
     }
+
+    public IEnumerator AudioFade(bool fadeIn, AudioSource source, float duration, float targetVolume)
+    {
+        if (!fadeIn)
+        {
+            float sourceLength = source.clip.samples / source.clip.frequency;
+            yield return new WaitForSecondsRealtime(sourceLength - duration);
+        }
+
+        float time = 0f;
+        float startVol = 0;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            source.volume = Mathf.Lerp(startVol, targetVolume, time/duration);
+            yield return null;
+        }
+
+        yield break;
+    }
+
+    public void MusicFadeIn(bool fadeIn)
+    {
+        if (fadeIn)
+        {
+            StartCoroutine(AudioFade(true, musicSource, 1f, 1f));
+        }
+        else if (!fadeIn)
+        {
+            StartCoroutine(AudioFade(false, musicSource, 1f, 0f));
+        }
+    }
 }

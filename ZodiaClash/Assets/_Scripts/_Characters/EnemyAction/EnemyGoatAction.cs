@@ -169,7 +169,7 @@ public class EnemyGoatAction : _EnemyAction
 
                     if (!transform.Find("Rage Aura(Clone)"))
                     {
-                        Vector3 offset = new(0f, -0.5f, 0f);
+                        Vector3 offset = new(0f, -0.6f, 0f);
                         Instantiate(rageAura, transform.position + offset, Quaternion.identity, transform);
                     }
 

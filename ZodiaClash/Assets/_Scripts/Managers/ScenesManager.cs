@@ -31,6 +31,7 @@ public class ScenesManager : MonoBehaviour
 
                 AudioManager.Instance.PlayMusic("Exploration BGM");
                 AudioManager.Instance.PlayAmbienceMusic("Forest Ambience");
+                AudioManager.Instance.MusicFadeIn(true);
 
                 #region Unique Save Loads
                 explorationManager = FindObjectOfType<_ExplorationManager>();
@@ -77,11 +78,8 @@ public class ScenesManager : MonoBehaviour
                 #endregion
                 break;
             case "2_BattleScene":
-
-                AudioManager.Instance.PlayMusic("Battle BGM");
-                AudioManager.Instance.PlayAmbienceMusic("Forest Ambience");
-                break;
             case "3_BattleScene":
+            case "4_BattleScene":
 
                 AudioManager.Instance.PlayMusic("Battle BGM");
                 AudioManager.Instance.PlayAmbienceMusic("Forest Ambience");
@@ -176,6 +174,10 @@ public class ScenesManager : MonoBehaviour
             case "3_BattleScene":
 
                 SceneManager.LoadScene(3);
+                break;
+            case "4_BattleScene":
+
+                SceneManager.LoadScene(4);
                 break;
             default:
 

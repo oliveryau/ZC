@@ -34,7 +34,7 @@ public class AudioSettings : MonoBehaviour
     public void LoadVolume()
     {
         musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
-        effectsSlider.value = PlayerPrefs.GetFloat("ambienceVolume");
+        musicSlider.value = PlayerPrefs.GetFloat("ambienceVolume");
         effectsSlider.value = PlayerPrefs.GetFloat("effectsVolume");
 
         SetMusicVolume();

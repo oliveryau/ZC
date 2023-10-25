@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum EnemyState
 {
@@ -234,13 +235,15 @@ public class _EnemyAction : MonoBehaviour
     protected void EnemyToggleSkillText(bool display, string specialCase = null)
     {
         TextMeshProUGUI skillText = skillTextIndicator.GetComponentInChildren<TextMeshProUGUI>();
+        Image skillTextImage = skillTextIndicator.GetComponent<Image>();
 
         if (display && specialCase != null)
         {
             switch (specialCase)
             {
                 case "goat":
-                    skillText.text = "Last Stand";
+                    skillText.text = "Wrath of the Cursed Celestial";
+                    skillTextImage.color = new Color32(140, 40, 40, 100);
                     skillTextIndicator.SetActive(true);
                     break;
                 default:
@@ -250,12 +253,14 @@ public class _EnemyAction : MonoBehaviour
         else if (display)
         {
             skillText.text = selectedSkillPrefab.gameObject.name;
+            skillTextImage.color = new Color32(140, 40, 40, 100);
             skillTextIndicator.SetActive(true);
         }
         else if (!display)
         {
             skillTextIndicator.SetActive(false);
             skillText.text = null;
+            skillTextImage.color = new Color32(0, 0, 0, 100);
         }
     }
 
@@ -266,7 +271,7 @@ public class _EnemyAction : MonoBehaviour
         switch (specialCase)
         {
             case "goat":
-                warningText.text = "Damned Desolation will be used next!";
+                warningText.text = "Celestial Annihilation will be used next!";
                 warningTextIndicator.SetActive(true);
                 break;
             default:

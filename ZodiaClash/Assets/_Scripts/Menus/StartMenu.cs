@@ -15,6 +15,14 @@ public class StartMenu : MonoBehaviour
         fadeManager = FindObjectOfType<FadeManager>();
     }
 
+    private void Update()
+    {
+        if (settingsPanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+            settingsPanel.SetActive(false);
+        }
+    }
+
     public void StartButton()
     {
         Destroy(Instantiate(fadeManager.fadeOutPanel, transform.position, Quaternion.identity, fadeManager.transform), 2f);
@@ -25,6 +33,11 @@ public class StartMenu : MonoBehaviour
     public void SettingsButton()
     {
         settingsPanel.SetActive(true);
+    }
+
+    public void HideSettings()
+    {
+        settingsPanel.SetActive(false);
     }
 
     public void QuitButton()

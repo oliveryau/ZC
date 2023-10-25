@@ -491,16 +491,19 @@ public class _PlayerAction : MonoBehaviour
     protected void ToggleSkillText(bool display)
     {
         TextMeshProUGUI skillText = skillTextIndicator.GetComponentInChildren<TextMeshProUGUI>();
+        Image skillTextImage = skillTextIndicator.GetComponent<Image>();
 
         if (display)
         {
             skillText.text = selectedSkillPrefab.gameObject.name;
+            skillTextImage.color = new Color32(0, 20, 150, 100);
             skillTextIndicator.SetActive(true);
         }
         else if (!display)
         {
             skillTextIndicator.SetActive(false);
             skillText.text = null;
+            skillTextImage.color = new Color32(0, 0, 0, 100);
         }
     }
     #endregion

@@ -1546,10 +1546,6 @@ PrefabInstance:
       propertyPath: hover
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4987867947297171501, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5141545801072785662, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2460,12 +2456,20 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1101585307244242732, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1420340614609029711, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -1626597601535657343, guid: bf1a4340fb5b3c24785825f7ac68b4d8, type: 2}
     - target: {fileID: 1420340614609029711, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127066488040719247, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4282169098367958259, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
@@ -3563,8 +3567,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3643,7 +3647,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -35}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &9139628318396432602
 RectTransform:
