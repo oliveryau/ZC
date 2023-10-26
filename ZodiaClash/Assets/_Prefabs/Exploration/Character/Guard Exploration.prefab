@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 543f3f27da458254084ab866fadd436d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueObject: {fileID: 11400000, guid: 3eb5c41186f08a04eba53025e3273f98, type: 2}
+  dialogueObject: {fileID: 0}
   canSpeakIndicator: {fileID: 2334652415482267744}
 --- !u!1 &4085068468296555607
 GameObject:

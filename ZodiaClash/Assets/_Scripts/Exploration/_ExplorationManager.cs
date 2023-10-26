@@ -24,6 +24,8 @@ public class _ExplorationManager : MonoBehaviour
                 return "Guard Exploration";
             case 3:
                 return "Enemy Goat Exploration";
+            case 4:
+                return "Guard2 Exploration";
         }
         return null;
     }

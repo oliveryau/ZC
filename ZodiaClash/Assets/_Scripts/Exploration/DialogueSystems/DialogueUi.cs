@@ -71,6 +71,7 @@ public class DialogueUi : MonoBehaviour
         {
             case 2:
             case 3:
+            case 4:
 
                 sceneTransition.prevPosition = GameObject.FindWithTag("Player").transform.position;
                 StartCoroutine(scenesManager.LoadLevelFromMap(id));
