@@ -51,7 +51,6 @@ public class GoatAction : _PlayerAction
                         else
                         {
                             selectedTarget.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-                            //selectedTarget.GetComponent<CharacterStats>().healthPanel.color = selectedTarget.GetComponent<CharacterStats>().healthPanelTargetColor;
 
                             if (Input.GetMouseButtonDown(0))
                             {
@@ -60,7 +59,6 @@ public class GoatAction : _PlayerAction
                                 playerState = PlayerState.ATTACKING;
 
                                 TargetSelectionUi(false, null);
-                                //selectedTarget.GetComponent<CharacterStats>().healthPanel.color = selectedTarget.GetComponent<CharacterStats>().healthPanelOriginalColor;
                             }
                         }
                     }
@@ -154,7 +152,6 @@ public class GoatAction : _PlayerAction
                 foreach (GameObject enemy in enemyTargets)
                 {
                     enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
-                    //enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
                 }
 
                 foreach (GameObject player in playerTargets)

@@ -21,6 +21,7 @@ public class CatAction : _PlayerAction
         {
             TargetSelectionUi(true, "enemy");
         }
+
         StartCoroutine(cam.ZoomIn(enemyTeamCamPoint));
     }
 
@@ -92,7 +93,7 @@ public class CatAction : _PlayerAction
                     foreach (GameObject enemy in enemyTargets)
                     {
                         enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-                        //enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelTargetColor;
+                        enemy.GetComponent<CharacterStats>().healthPanel.GetComponent<Animator>().SetBool("hover", true);
                     }
 
                     if (Input.GetMouseButtonDown(0))
@@ -106,7 +107,7 @@ public class CatAction : _PlayerAction
                             TargetSelectionUi(false, null);
                             foreach (GameObject enemy in enemyTargets)
                             {
-                                //enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
+                                enemy.GetComponent<CharacterStats>().healthPanel.GetComponent<Animator>().SetBool("hover", false);
                             }
                         }
                     }
@@ -114,13 +115,12 @@ public class CatAction : _PlayerAction
             }
             else if (selectedSkillPrefab == skill3Prefab) //aoe targeting
             {
-                //StartCoroutine(cam.ZoomIn(aoeTargetPosition));
                 if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                 {
                     foreach (GameObject enemy in enemyTargets)
                     {
                         enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-                        //enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelTargetColor;
+                        enemy.GetComponent<CharacterStats>().healthPanel.GetComponent<Animator>().SetBool("hover", true);
                     }
 
                     if (Input.GetMouseButtonDown(0))
@@ -134,7 +134,7 @@ public class CatAction : _PlayerAction
                             TargetSelectionUi(false, null);
                             foreach (GameObject enemy in enemyTargets)
                             {
-                                //enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
+                                enemy.GetComponent<CharacterStats>().healthPanel.GetComponent<Animator>().SetBool("hover", false);
                             }
                         }
                     }
@@ -148,7 +148,6 @@ public class CatAction : _PlayerAction
                 foreach (GameObject enemy in enemyTargets)
                 {
                     enemy.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(false);
-                    //enemy.GetComponent<CharacterStats>().healthPanel.color = enemy.GetComponent<CharacterStats>().healthPanelOriginalColor;
                 }
             }
             #endregion
@@ -170,7 +169,6 @@ public class CatAction : _PlayerAction
             targetPosition = aoeTargetPosition; //aoe target pos
         }
 
-        //StartCoroutine(cam.ZoomIn(enemyTeamCamPoint));
         movingToTarget = true; //movement is triggered
         #endregion
     }
@@ -191,6 +189,7 @@ public class CatAction : _PlayerAction
         {
             //single target DoT skill
             selectedSkillPrefab.GetComponent<A_SingleBleed>().Attack(selectedTarget);
+            AudioManager.Instance.PlayEffectsOneShot("Cat 1");
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {

@@ -444,4 +444,8 @@ MonoBehaviour:
   ambienceSounds:
   - name: Forest Ambience
     clip: {fileID: 8300000, guid: cb01b025f40d0444f8618ac2b708e076, type: 3}
-  effectsSounds: []
+  effectsSounds:
+  - name: Cat 1
+    clip: {fileID: 8300000, guid: a3fcd75a95cf6bc4bacb43c5a665e658, type: 3}
+  - name: Skill Select
+    clip: {fileID: 8300000, guid: c0168b7720564e947a383395e340aca7, type: 3}

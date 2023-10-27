@@ -211,6 +211,7 @@ public class _PlayerAction : MonoBehaviour
             selectedSkillPrefab = skill3Prefab;
         }
 
+        AudioManager.Instance.PlayEffectsOneShot("Skill Select");
         Debug.Log("Player Skill Chosen: " + selectedSkillPrefab.name);
     }
 
