@@ -158,8 +158,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.33392167, y: -0.15450108}
-  m_Size: {x: 1.9469419, y: 2.368809}
+  m_Offset: {x: 0.21487695, y: -0.15450108}
+  m_Size: {x: 1.7088524, y: 2.368809}
   m_Direction: 0
 --- !u!95 &3452263423381633223
 Animator:
@@ -564,7 +564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1196019324432383770, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1196019324432383770, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
       propertyPath: m_LocalPosition.z
@@ -603,12 +603,16 @@ PrefabInstance:
       value: Targeting Indicator
       objectReference: {fileID: 0}
     - target: {fileID: 2099321719976376782, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2413806693520163455, guid: eade1a9cb606451418ee9ca7ec5e2549, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099321719976376782, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2099321719976376782, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

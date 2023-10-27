@@ -512,7 +512,9 @@ public class _PlayerAction : MonoBehaviour
     public void HighlightTargetIndicator(bool highlight)
     {
         SpriteRenderer targetSelect = targetIndicator.GetComponent<SpriteRenderer>();
+        Animator targetSelectAnimator = targetIndicator.GetComponent<Animator>();
         targetSelect.color = highlight ? Color.green : Color.white;
+        targetSelectAnimator.SetBool("hovered", highlight);
     }
     #endregion
 }

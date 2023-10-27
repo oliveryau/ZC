@@ -2385,10 +2385,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3481919433478977517, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 3481919433478977517, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
@@ -2456,10 +2452,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 6726892825931508904, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 6726892825931508904, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -2592,10 +2584,6 @@ PrefabInstance:
       propertyPath: selfAoeTargetPosition
       value: 
       objectReference: {fileID: 1365253893}
-    - target: {fileID: 8507160554011735986, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8507160554011735986, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

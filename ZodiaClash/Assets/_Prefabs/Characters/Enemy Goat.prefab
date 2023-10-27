@@ -780,7 +780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1196019324432383770, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1196019324432383770, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
       propertyPath: m_LocalPosition.z
@@ -818,10 +818,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Targeting Indicator
       objectReference: {fileID: 0}
-    - target: {fileID: 2099321719976376782, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 2099321719976376782, guid: 07a0d1e5b435c624b96e247805302e13, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

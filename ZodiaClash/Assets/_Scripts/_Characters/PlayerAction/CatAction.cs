@@ -21,6 +21,7 @@ public class CatAction : _PlayerAction
         {
             TargetSelectionUi(true, "enemy");
         }
+        StartCoroutine(cam.ZoomIn(enemyTeamCamPoint));
     }
 
     protected override void SelectTarget()
@@ -68,7 +69,6 @@ public class CatAction : _PlayerAction
                     if (hit.collider != null && hit.collider.CompareTag("Enemy"))
                     {
                         hit.collider.GetComponent<_EnemyAction>().EnemyHighlightTargetIndicator(true);
-                        //hit.collider.GetComponent<CharacterStats>().healthPanel.color = hit.collider.GetComponent<CharacterStats>().healthPanelTargetColor;
 
                         if (Input.GetMouseButtonDown(0))
                         {
@@ -78,7 +78,6 @@ public class CatAction : _PlayerAction
                             playerState = PlayerState.ATTACKING;
 
                             TargetSelectionUi(false, null);
-                            //hit.collider.GetComponent<CharacterStats>().healthPanel.color = hit.collider.GetComponent<CharacterStats>().healthPanelOriginalColor;
                         }
                     }
                 }
@@ -171,7 +170,7 @@ public class CatAction : _PlayerAction
             targetPosition = aoeTargetPosition; //aoe target pos
         }
 
-        StartCoroutine(cam.ZoomIn(enemyTeamCamPoint));
+        //StartCoroutine(cam.ZoomIn(enemyTeamCamPoint));
         movingToTarget = true; //movement is triggered
         #endregion
     }

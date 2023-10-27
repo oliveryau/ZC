@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 6666728556759058435}
   - component: {fileID: 2374975141201869636}
   - component: {fileID: 3645011500360661860}
-  - component: {fileID: 2865652621228472362}
+  - component: {fileID: 4699942720747304935}
   m_Layer: 5
   m_Name: Arrow
   m_TagString: Untagged
@@ -286,7 +286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: 0}
+  m_AnchoredPosition: {x: 30, y: 0}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2374975141201869636
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &2865652621228472362
+--- !u!95 &4699942720747304935
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -337,7 +337,7 @@ Animator:
   m_GameObject: {fileID: 4940843622714499156}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dafc1a8ad1dd6184baa951e4a4c15564, type: 2}
+  m_Controller: {fileID: 9100000, guid: 33e2704f8e1d11748bf9a7edc172d1e0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -383,7 +383,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 10, y: 0}
-  m_SizeDelta: {x: 10, y: -70}
+  m_SizeDelta: {x: 10, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5580346854251271619
 CanvasRenderer:
@@ -413,8 +413,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
