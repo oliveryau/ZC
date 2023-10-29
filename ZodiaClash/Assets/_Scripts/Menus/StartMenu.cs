@@ -25,6 +25,7 @@ public class StartMenu : MonoBehaviour
 
     public void StartButton()
     {
+        AudioManager.Instance.PlayEffectsOneShot("Paper Flip");
         Destroy(Instantiate(fadeManager.fadeOutPanel, transform.position, Quaternion.identity, fadeManager.transform), 2f);
 
         StartCoroutine(DelayStartButton());
@@ -32,6 +33,7 @@ public class StartMenu : MonoBehaviour
 
     public void SettingsButton()
     {
+        AudioManager.Instance.PlayEffectsOneShot("Paper Flip");
         settingsPanel.SetActive(true);
     }
 
@@ -42,6 +44,7 @@ public class StartMenu : MonoBehaviour
 
     public void QuitButton()
     {
+        AudioManager.Instance.PlayEffectsOneShot("Paper Flip");
         Destroy(Instantiate(fadeManager.fadeOutPanel, transform.position, Quaternion.identity, fadeManager.transform), 2f);
 
         StartCoroutine(DelayQuitButton());

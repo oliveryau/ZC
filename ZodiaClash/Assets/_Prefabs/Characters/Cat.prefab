@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: -1722746847
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 88ccbef3b3cfaf148ba450c02eaa6d55, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc94663a2a97fbc42940bc03524e3423, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -183,9 +183,9 @@ MonoBehaviour:
     rgba: 0
   healthPanel: {fileID: 0}
   hpPercentUi: {fileID: 0}
-  maxHealth: 200
-  health: 200
-  attack: 20
+  maxHealth: 150
+  health: 150
+  attack: 15
   defense: 20
   speed: 4
   increasedAttackValue: 0

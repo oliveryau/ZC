@@ -195,6 +195,7 @@ public class CatAction : _PlayerAction
         {
             //aoe target DoT skill
             selectedSkillPrefab.GetComponent<B_AoeBleed>().Attack(enemyTargets);
+            AudioManager.Instance.PlayEffectsOneShot("Cat 2");
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {

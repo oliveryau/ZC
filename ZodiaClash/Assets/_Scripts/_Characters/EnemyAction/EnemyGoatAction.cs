@@ -294,16 +294,19 @@ public class EnemyGoatAction : _EnemyAction
         {
             //single target attack
             selectedSkillPrefab.GetComponent<NormalAttack>().Attack(selectedTarget);
+            AudioManager.Instance.PlayEffectsOneShot("Goat 1");
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
             //ally attack buff skill
             selectedSkillPrefab.GetComponent<B_AttackBuff>().AttackBuff(selectedTarget);
+            AudioManager.Instance.PlayEffectsOneShot("Goat 2");
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
             //ally heal cleanse skill
             selectedSkillPrefab.GetComponent<C_SingleHeal>().Heal(selectedTarget);
+            AudioManager.Instance.PlayEffectsOneShot("Goat 3");
         }
 
         StartCoroutine(EnemyEndTurnDelay(0.5f));

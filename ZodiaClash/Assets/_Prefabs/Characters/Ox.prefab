@@ -115,7 +115,7 @@ SpriteRenderer:
   m_SortingLayerID: -1722746847
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 28571973df651d64494f2e0402dd7432, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7660b9520074004eb40dadea2b0e34e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  uniqueCharacterAvatar: {fileID: 21300000, guid: a331f3d53a202374db2e03bf756752dc, type: 3}
+  uniqueCharacterAvatar: {fileID: 21300000, guid: bc15000b4b3ae3f47b14bba4a6fbb25d, type: 3}
   uniqueTurnHud: {fileID: 0}
   characterHpHud: {fileID: 0}
   statusEffectPanel: {fileID: 0}
@@ -214,8 +214,8 @@ MonoBehaviour:
     rgba: 0
   healthPanel: {fileID: 0}
   hpPercentUi: {fileID: 0}
-  maxHealth: 100
-  health: 100
+  maxHealth: 160
+  health: 160
   attack: 10
   defense: 25
   speed: 3

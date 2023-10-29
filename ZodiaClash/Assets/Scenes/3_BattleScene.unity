@@ -170,33 +170,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3284625333095502260, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
   m_PrefabInstance: {fileID: 197414479760093572}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &306121340 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3485641134712261229, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-  m_PrefabInstance: {fileID: 197414479760093572}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &307805810 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6532385801588890274, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
   m_PrefabInstance: {fileID: 197414479760093572}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &352543392 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6191198771279301522, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-  m_PrefabInstance: {fileID: 197414479760093572}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &419218314 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1276047981829709871, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
@@ -355,17 +333,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 987120943128325254, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
   m_PrefabInstance: {fileID: 197414479760093572}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &588526131 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4740672973107396645, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-  m_PrefabInstance: {fileID: 197414479760093572}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,17 +561,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &823304896 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2196362051869689515, guid: d62c38ae2ccc81d4aa574dd1b3df2f0a, type: 3}
-  m_PrefabInstance: {fileID: 197414479760093572}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &893817572 stripped
@@ -2061,11 +2017,11 @@ PrefabInstance:
     - target: {fileID: 3087089328109663894, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skill2ChiCostUi
       value: 
-      objectReference: {fileID: 588526131}
+      objectReference: {fileID: 0}
     - target: {fileID: 3087089328109663894, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skill3ChiCostUi
       value: 
-      objectReference: {fileID: 823304896}
+      objectReference: {fileID: 0}
     - target: {fileID: 3087089328109663894, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: characterSkillUi
       value: 
@@ -2157,11 +2113,11 @@ PrefabInstance:
     - target: {fileID: 6529977956850793600, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skill2ChiCostUi
       value: 
-      objectReference: {fileID: 588526131}
+      objectReference: {fileID: 0}
     - target: {fileID: 6529977956850793600, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skill3ChiCostUi
       value: 
-      objectReference: {fileID: 823304896}
+      objectReference: {fileID: 0}
     - target: {fileID: 6529977956850793600, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: characterSkillUi
       value: 
@@ -2281,11 +2237,11 @@ PrefabInstance:
     - target: {fileID: 8280137639503927606, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skill2ChiCostUi
       value: 
-      objectReference: {fileID: 306121340}
+      objectReference: {fileID: 0}
     - target: {fileID: 8280137639503927606, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: skill3ChiCostUi
       value: 
-      objectReference: {fileID: 352543392}
+      objectReference: {fileID: 0}
     - target: {fileID: 8280137639503927606, guid: 32371454cf5022949a7cf3e9c5b71724, type: 3}
       propertyPath: characterSkillUi
       value: 
@@ -2334,7 +2290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2535,11 +2491,11 @@ PrefabInstance:
     - target: {fileID: 7545407281963594616, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: skill2ChiCostUi
       value: 
-      objectReference: {fileID: 588526131}
+      objectReference: {fileID: 0}
     - target: {fileID: 7545407281963594616, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: skill3ChiCostUi
       value: 
-      objectReference: {fileID: 823304896}
+      objectReference: {fileID: 0}
     - target: {fileID: 7545407281963594616, guid: 807f9b10db9f8f5498146e7d9d33a321, type: 3}
       propertyPath: characterSkillUi
       value: 
@@ -3478,7 +3434,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3adb16ef04fb59c4a806b55db96e0f1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c26d1d2f42b6fa442b786756c5d477d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -178,6 +178,7 @@ public class GuardAction : _EnemyAction
         {
             //single target attack
             selectedSkillPrefab.GetComponent<NormalAttack>().Attack(selectedTarget);
+            AudioManager.Instance.PlayEffectsOneShot("Guard 1");
         }
 
         StartCoroutine(EnemyEndTurnDelay(0.5f));

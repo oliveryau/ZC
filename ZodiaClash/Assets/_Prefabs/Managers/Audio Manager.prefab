@@ -445,7 +445,19 @@ MonoBehaviour:
   - name: Forest Ambience
     clip: {fileID: 8300000, guid: cb01b025f40d0444f8618ac2b708e076, type: 3}
   effectsSounds:
-  - name: Cat 1
-    clip: {fileID: 8300000, guid: a3fcd75a95cf6bc4bacb43c5a665e658, type: 3}
+  - name: Paper Flip
+    clip: {fileID: 8300000, guid: b03b7b1b31f3f1944b5726b71386be70, type: 3}
   - name: Skill Select
     clip: {fileID: 8300000, guid: c0168b7720564e947a383395e340aca7, type: 3}
+  - name: Cat 1
+    clip: {fileID: 8300000, guid: a3fcd75a95cf6bc4bacb43c5a665e658, type: 3}
+  - name: Cat 2
+    clip: {fileID: 8300000, guid: 9d84782b24ad6a54ea5a19b0d377f408, type: 3}
+  - name: Goat 1
+    clip: {fileID: 8300000, guid: f2998294d8e80d14c817119a5c51d839, type: 3}
+  - name: Goat 2
+    clip: {fileID: 8300000, guid: eca46bd7058b89d4fbcbda6fb0c31b47, type: 3}
+  - name: Goat 3
+    clip: {fileID: 8300000, guid: cf743015371f06f468678951ed200dd3, type: 3}
+  - name: Guard 1
+    clip: {fileID: 8300000, guid: 96fe5b993da53404ba140c095e797f4d, type: 3}
