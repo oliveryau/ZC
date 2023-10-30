@@ -204,7 +204,7 @@ public class GoatAction : _PlayerAction
         if (selectedSkillPrefab == skill1Prefab)
         {
             //single target def break skill
-            selectedSkillPrefab.GetComponent<A_AttackDefBreak>().Attack(selectedTarget);
+            selectedSkillPrefab.GetComponent<A_AttackBleed>().Attack(selectedTarget);
             AudioManager.Instance.PlayEffectsOneShot("Goat 1");
         }
         else if (selectedSkillPrefab == skill2Prefab)

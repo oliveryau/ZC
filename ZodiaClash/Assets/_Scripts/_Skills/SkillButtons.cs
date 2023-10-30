@@ -161,7 +161,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 if (gameObject.name == "GoatSkill1Btn")
                 {
                     Bleed goatBleed = FindObjectOfType<Bleed>();
-                    A_AttackDefBreak goatSkill1 = FindObjectOfType<A_AttackDefBreak>();
+                    A_AttackBleed goatSkill1 = FindObjectOfType<A_AttackBleed>();
 
                     skillTitle.text = goatSkill1.gameObject.name;
                     skillDescription.text = "Deals damage to a single enemy and has a " + (goatSkill1.bleedRate * 100) + "% chance to inflict <color=red>Bleed</color> (Max " + goatBleed.bleedLimit + " turns) for " + goatSkill1.bleedTurns + " turns.";
