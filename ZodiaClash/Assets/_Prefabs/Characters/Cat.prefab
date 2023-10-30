@@ -187,7 +187,7 @@ MonoBehaviour:
   health: 150
   attack: 15
   defense: 20
-  speed: 4
+  speed: 3
   increasedAttackValue: 0
   decreasedDefenseValue: 0
   increasedDefenseValue: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   skill3Prefab: {fileID: 6277926731226478307}
   selectedSkillPrefab: {fileID: 0}
   skill2ChiCost: 2
-  skill3ChiCost: 0
+  skill3ChiCost: 3
   playerTargets: []
   enemyTargets: []
   selectedTarget: {fileID: 0}

@@ -269,10 +269,6 @@ PrefabInstance:
       propertyPath: characterUi
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 748038080333493805, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
-      propertyPath: skill3ChiCost
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 904211530649164793, guid: 6a354214f0053e54aa2ecd46411b5273, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.5

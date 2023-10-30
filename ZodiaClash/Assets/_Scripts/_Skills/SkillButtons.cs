@@ -131,28 +131,27 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             case "Guiying":
 
-                Bleed bleed = FindObjectOfType<Bleed>();
-
+                Bleed catBleed = FindObjectOfType<Bleed>();
                 if (gameObject.name == "CatSkill1Btn")
                 {
                     A_SingleBleed catSkill1 = FindObjectOfType<A_SingleBleed>();
 
                     skillTitle.text = catSkill1.gameObject.name;
-                    skillDescription.text = "Deals damage to a single enemy and inflicts <color=red>Bleed</color> (Max " + bleed.bleedLimit + " turns) for " + catSkill1.bleedTurns + " turns.";
+                    skillDescription.text = "Deals damage to a single enemy and inflicts <color=red>Bleed</color> (Max " + catBleed.bleedLimit + " turns) for " + catSkill1.bleedTurns + " turns.";
                 }
                 else if (gameObject.name == "CatSkill2Btn")
                 {
                     B_AoeBleed catSkill2 = FindObjectOfType<B_AoeBleed>();
 
                     skillTitle.text = catSkill2.gameObject.name;
-                    skillDescription.text = "Deals damage to all enemies and inflicts <color=red>Bleed</color> (Max " + bleed.bleedLimit + " turns) for " + catSkill2.bleedTurns + " turns.";
+                    skillDescription.text = "Deals damage to all enemies and inflicts <color=red>Bleed</color> (Max " + catBleed.bleedLimit + " turns) for " + catSkill2.bleedTurns + " turns.";
                 }
                 else if (gameObject.name == "CatSkill3Btn")
                 {
                     C_AoeActivateBleed catSkill3 = FindObjectOfType<C_AoeActivateBleed>();
 
                     skillTitle.text = catSkill3.gameObject.name;
-                    skillDescription.text = "Deals damage to all enemies. If an enemy already has <color=red>Bleed</color>, all <color=red>Bleed</color> on that enemy is consumed and reset immediately.";
+                    skillDescription.text = "Deals damage to all enemies. If an enemy already has <color=red>Bleed</color>, all <color=red>Bleed</color> on that enemy is activated and reset immediately.";
                 }
 
                 break;
@@ -161,11 +160,11 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
                 if (gameObject.name == "GoatSkill1Btn")
                 {
-                    Defense defense = FindObjectOfType<Defense>();
+                    Bleed goatBleed = FindObjectOfType<Bleed>();
                     A_AttackDefBreak goatSkill1 = FindObjectOfType<A_AttackDefBreak>();
 
                     skillTitle.text = goatSkill1.gameObject.name;
-                    skillDescription.text = "Deals damage to a single enemy and inflicts <color=red>Shatter</color> (Max " + defense.shatterLimit + " turns) for " + goatSkill1.shatterTurns + " turns.";
+                    skillDescription.text = "Deals damage to a single enemy and has a " + (goatSkill1.bleedRate * 100) + "% chance to inflict <color=red>Bleed</color> (Max " + goatBleed.bleedLimit + " turns) for " + goatSkill1.bleedTurns + " turns.";
                 }
                 else if (gameObject.name == "GoatSkill2Btn")
                 {
@@ -180,7 +179,7 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     C_SingleHeal goatSkill3 = FindObjectOfType<C_SingleHeal>();
 
                     skillTitle.text = goatSkill3.gameObject.name;
-                    skillDescription.text = "Heals an ally and grants <color=green>Cleanse</color>.";
+                    skillDescription.text = "Heals and grants <color=green>Cleanse</color> to an ally.";
                 }
 
                 break;
@@ -189,10 +188,11 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
                 if (gameObject.name == "OxSkill1Btn")
                 {
+                    Defense defense = FindObjectOfType<Defense>();
                     A_SingleLifesteal oxSkill1 = FindObjectOfType<A_SingleLifesteal>();
 
                     skillTitle.text = oxSkill1.gameObject.name;
-                    skillDescription.text = "Deals damage to a single enemy and heals partially based on the damage dealt.";
+                    skillDescription.text = "Deals damage to a single enemy and has a chance to inflict <color=red>Shatter</color> (Max " + defense.shatterLimit + " turns) for ";
                 }
                 else if (gameObject.name == "OxSkill2Btn")
                 {

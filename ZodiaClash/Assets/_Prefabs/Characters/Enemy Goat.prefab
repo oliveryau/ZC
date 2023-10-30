@@ -502,8 +502,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 813487967176509868}
     - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: bleedRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
+      propertyPath: bleedTurns
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: shatterRate
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: defBreakRate
@@ -519,7 +527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6752634862961264834, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: m_Name
-      value: Yin-Yang Blast
+      value: Yin-Yang Strike
       objectReference: {fileID: 0}
     - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
       propertyPath: m_LocalPosition.x

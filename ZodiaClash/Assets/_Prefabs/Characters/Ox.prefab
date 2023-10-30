@@ -218,7 +218,7 @@ MonoBehaviour:
   health: 160
   attack: 10
   defense: 25
-  speed: 3
+  speed: 4
   increasedAttackValue: 0
   decreasedDefenseValue: 0
   increasedDefenseValue: 0

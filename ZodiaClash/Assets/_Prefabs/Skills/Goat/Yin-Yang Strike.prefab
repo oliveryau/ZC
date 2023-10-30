@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8494059275483551111}
   - component: {fileID: 3592213873890911898}
   m_Layer: 0
-  m_Name: Yin-Yang Blast
+  m_Name: Yin-Yang Strike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,6 +51,5 @@ MonoBehaviour:
   critRate: 1
   critMultiplier: 1.5
   critCheck: 0
-  shatterRate: 1
-  shatterTurns: 2
-  shatterPercent: 50
+  bleedRate: 0.5
+  bleedTurns: 1

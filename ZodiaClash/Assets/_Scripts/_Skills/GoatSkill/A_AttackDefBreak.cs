@@ -5,35 +5,61 @@ using UnityEngine;
 public class A_AttackDefBreak : NormalAttack
 {
     [Header("Effects")]
-    [SerializeField] private float shatterRate;
-    public int shatterTurns;
-    public int shatterPercent;
+    //[SerializeField] private float shatterRate;
+    //public int shatterTurns;
+    //public int shatterPercent;
+    public float bleedRate;
+    public int bleedTurns;
 
     public override void Attack(GameObject target)
     {
-        //owner.GetComponent<Animator>().Play(animationName);
+        CalculateDamage(target);
+
+        //float randomValue = Random.Range(0f, 1f);
+        //if (randomValue <= shatterRate)
+        //{
+        //    Defense shatter = FindObjectOfType<Defense>();
+
+        //    targetStats.TakeDamage(damage, critCheck, "shatter"); //actual damage
+
+        //    if (targetStats.shatterCounter <= 0) //dont overstack shatter
+        //    {
+        //        shatter.ShatterCalculation(targetStats, shatterPercent);
+        //    }
+
+        //    _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>(); //status effect icons
+        //    statusEffect.SpawnEffectsBar(targetStats, shatterTurns, "shatter");
+
+        //    targetStats.shatterCounter += shatterTurns;
+        //    if (targetStats.shatterCounter > shatter.shatterLimit) //dont overstack shatter turns
+        //    {
+        //        targetStats.shatterCounter = shatter.shatterLimit;
+        //    }
+        //}
+        //else
+        //{
+        //    targetStats.TakeDamage(damage, critCheck, null);
+        //}
 
         CalculateDamage(target);
 
         float randomValue = Random.Range(0f, 1f);
-        if (randomValue <= shatterRate)
+        if (randomValue <= bleedRate)
         {
-            Defense shatter = FindObjectOfType<Defense>();
+            Bleed bleed = FindObjectOfType<Bleed>();
 
-            targetStats.TakeDamage(damage, critCheck, "shatter"); //actual damage
+            targetStats.TakeDamage(damage, critCheck, "bleed"); //actual damage
 
-            if (targetStats.shatterCounter <= 0) //dont overstack shatter
+            if (targetStats.bleedStack < bleed.bleedLimit)
             {
-                shatter.ShatterCalculation(targetStats, shatterPercent);
-            }
+                _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>(); //status effect icon
+                statusEffect.SpawnEffectsBar(targetStats, bleedTurns, "bleed");
 
-            _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>(); //status effect icons
-            statusEffect.SpawnEffectsBar(targetStats, shatterTurns, "shatter");
-
-            targetStats.shatterCounter += shatterTurns;
-            if (targetStats.shatterCounter > shatter.shatterLimit) //dont overstack shatter turns
-            {
-                targetStats.shatterCounter = shatter.shatterLimit;
+                targetStats.bleedStack += bleedTurns;
+                if (targetStats.bleedStack > bleed.bleedLimit) //dont overstack bleed
+                {
+                    targetStats.bleedStack = bleed.bleedLimit;
+                }
             }
         }
         else

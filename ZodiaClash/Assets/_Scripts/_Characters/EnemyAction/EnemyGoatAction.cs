@@ -203,7 +203,7 @@ public class EnemyGoatAction : _EnemyAction
                 for (int i = 0; i < enemyTargets.Length; i++)
                 {
                     CharacterStats enemy = enemyTargets[i].GetComponent<CharacterStats>();
-                    if (enemy.health / enemy.maxHealth <= 0.8f && enemy.gameObject != this.gameObject) //if enemy ally is less than 80% hp -> heal
+                    if (enemy.health / enemy.maxHealth <= 0.9f && enemy.gameObject != this.gameObject) //if enemy ally is less than 90% hp -> heal
                     {
                         selectedTarget = enemy.gameObject;
                         Debug.Log("Enemy Selected Target (Heal): " + selectedTarget.name);

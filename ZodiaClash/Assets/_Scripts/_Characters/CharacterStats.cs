@@ -246,25 +246,27 @@ public class CharacterStats : MonoBehaviour
 
     public void BuffText(float value, string effect)
     {
-        TextMeshProUGUI popup = floatingText.transform.Find("Text").GetComponent<TextMeshProUGUI>();
-        popup.color = Color.green;
+        TextMeshProUGUI critText = floatingText.transform.Find("Crit Text").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI healText = floatingText.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+        critText.gameObject.SetActive(false);
+        healText.color = Color.green;
 
         switch (effect)
         {
             case "cleanse":
-                popup.text = "+" + value.ToString();
+                healText.text = "+" + value.ToString();
                 break;
             case "heal":
-                popup.text = "+" + value.ToString();
+                healText.text = "+" + value.ToString();
                 break;
             default:
-                popup.text = null;
+                healText.text = null;
                 break;
         }
 
         Instantiate(floatingText, transform.position, Quaternion.identity, transform);
 
-        popup.text = null;
+        healText.text = null;
     }
 
     public void StatusText(string effect)
