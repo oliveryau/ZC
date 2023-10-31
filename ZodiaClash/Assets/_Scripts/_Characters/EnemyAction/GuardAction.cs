@@ -107,6 +107,7 @@ public class GuardAction : _EnemyAction
 
                 //target
                 playerTargets = null;
+                enemyTargets = null;
 
                 //others
                 targetPosition = null;
@@ -138,10 +139,78 @@ public class GuardAction : _EnemyAction
         #endregion
         else
         {
-            int randomIndex = Random.Range(0, playerTargets.Length);
-            selectedTarget = playerTargets[randomIndex];
-            Debug.Log("Enemy Selected Target: " + selectedTarget.name);
+            #region Target Selection Aggression Values
+            float randomValue = Random.Range(0f, 1f);
+            if (playerTargetsList.Count >= 3)
+            {
+                #region 3 Player Characters: Ox 45%, Cat 35%, Goat 20%
+                if (randomValue <= 0.25f)
+                {
+                    selectedTarget = goat;
+                }
+                else if (randomValue <= 0.55f)
+                {
+                    selectedTarget = cat;
+                }
+                else
+                {
+                    selectedTarget = ox;
+                }
+                #endregion
+            }
+            else if (playerTargetsList.Count >= 2)
+            {
+                #region No Cat: Ox 69%, Goat 31%
+                if (cat == null)
+                {
+                    if (randomValue <= 0.31f)
+                    {
+                        selectedTarget = goat;
+                    }
+                    else
+                    {
+                        selectedTarget = ox;
+                    }
+                }
+                #endregion
 
+                #region No Goat: Ox 56%, Cat 44%
+                else if (goat == null)
+                {
+                    if (randomValue <= 0.44f)
+                    {
+                        selectedTarget = cat;
+                    }
+                    else
+                    {
+                        selectedTarget = ox;
+                    }
+                }
+                #endregion
+
+                #region No Ox: Cat 64%, Goat 36%
+                else if (ox == null)
+                {
+                    if (randomValue <= 0.36f)
+                    {
+                        selectedTarget = goat;
+                    }
+                    else
+                    {
+                        selectedTarget = cat;
+                    }
+                }
+                #endregion
+            }
+            else
+            {
+                #region Solo Target
+                selectedTarget = playerTargetsList[0];
+                #endregion
+            }
+            #endregion
+
+            Debug.Log("Enemy Selected Target: " + selectedTarget.name);
             selectedSkillPrefab = skill1Prefab;
 
             enemyState = EnemyState.ATTACKING;

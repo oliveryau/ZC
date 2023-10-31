@@ -161,7 +161,6 @@ public class _PlayerAction : MonoBehaviour
                 //hud
                 characterAvatar.GetComponent<Animator>().SetTrigger("decrease");
                 turnIndicator.SetActive(false);
-                //StartCoroutine(cam.ZoomOut());
 
                 //skill
                 selectedSkillPrefab = null;
@@ -169,6 +168,10 @@ public class _PlayerAction : MonoBehaviour
                 {
                     selectedTarget = null;
                 }
+
+                //target
+                playerTargets = null;
+                enemyTargets = null;
 
                 //others
                 targetPosition = null;

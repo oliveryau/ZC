@@ -10,7 +10,7 @@ public class _ExplorationManager : MonoBehaviour
     [Header("Unique Dialogue Objects")]
     public DialogueObject defeatedFirstGuardDialogue;
     public DialogueObject defeatedGoatDialogue;
-    public DialogueObject defeatedOxDialogue;
+    public DialogueObject tempOxDialogue;
 
     private GameManager gameManager;
 

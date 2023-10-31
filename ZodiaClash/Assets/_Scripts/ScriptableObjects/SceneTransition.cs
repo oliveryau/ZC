@@ -17,7 +17,7 @@ public class SceneTransition : ScriptableObject
     {
         clearedLevel = false;
         levelIndex = 0;
-        prevPosition = new Vector3(-10.5f, -3.5f, 0f);
+        prevPosition = new Vector3(-8f, -3f, 0f);
         enemyNpc = null;
         defeatedEnemyNpcs = new List<string>();
     }

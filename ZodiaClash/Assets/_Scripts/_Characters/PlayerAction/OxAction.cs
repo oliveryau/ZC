@@ -226,7 +226,7 @@ public class OxAction : _PlayerAction
         if (selectedSkillPrefab == skill1Prefab)
         {
             //single target lifesteal skill
-            selectedSkillPrefab.GetComponent<A_SingleLifesteal>().Attack(selectedTarget);
+            selectedSkillPrefab.GetComponent<A_SingleDefBreak>().Attack(selectedTarget);
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {

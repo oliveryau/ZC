@@ -30,7 +30,9 @@ public class _EnemyAction : MonoBehaviour
     [Header("Target Selection")]
     [SerializeField] protected GameObject[] enemyTargets;
     [SerializeField] protected GameObject[] playerTargets;
+    [SerializeField] protected List<GameObject> playerTargetsList;
     public GameObject selectedTarget;
+    protected GameObject cat, goat, ox;
 
     [Header("Movements")]
     [SerializeField] protected Vector3 startPosition;
@@ -99,8 +101,29 @@ public class _EnemyAction : MonoBehaviour
 
     protected void EnemyRefreshTargets()
     {
+        cat = null;
+        goat = null;
+        ox = null;
+
         enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
         playerTargets = GameObject.FindGameObjectsWithTag("Player");
+
+        playerTargetsList.AddRange(playerTargets);
+        foreach (GameObject player in playerTargetsList)
+        {
+            if (player.gameObject.name.Contains("Guiying"))
+            {
+                cat = player;
+            }
+            else if (player.gameObject.name.Contains("Yangsheng"))
+            {
+                goat = player;
+            }
+            else if (player.gameObject.name.Contains("Leishou"))
+            {
+                ox = player;
+            }
+        }
     }
 
     protected virtual void EnemySelection()

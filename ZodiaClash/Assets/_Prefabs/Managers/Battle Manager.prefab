@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bleedLimit: 5
-  bleedPercent: 15
+  bleedPercent: 10
   bleedDamage: 0
 --- !u!114 &443097011561100355
 MonoBehaviour:

@@ -8,6 +8,9 @@ public class DialogueUi : MonoBehaviour
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TextMeshProUGUI speakerText;
     [SerializeField] private TextMeshProUGUI dialogueText;
+
+    [Header("Others")]
+    public GameObject joinIndicator;
     [SerializeField] private SceneTransition sceneTransition;
 
     public bool IsOpen { get; private set; }
@@ -77,8 +80,12 @@ public class DialogueUi : MonoBehaviour
                 StartCoroutine(scenesManager.LoadLevelFromMap(id));
                 StartCoroutine(CloseDialogueDelay());
                 break;
-            case 0:
             case 93:
+
+                joinIndicator.GetComponentInChildren<TextMeshProUGUI>().text = "Yangsheng has joined your team.";
+                StartCoroutine(StepThroughJoinIndicatorDelay());
+                break;
+            case 0:
             default:
 
                 IsOpen = false;
@@ -86,9 +93,22 @@ public class DialogueUi : MonoBehaviour
         }
     }
 
+    public IEnumerator StepThroughJoinIndicatorDelay()
+    {
+        joinIndicator.SetActive(true);
+
+        yield return null;
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0));
+
+        joinIndicator.SetActive(false);
+        joinIndicator.GetComponentInChildren<TextMeshProUGUI>().text = null;
+        IsOpen = false;
+    }
+
     private IEnumerator CloseDialogueDelay()
     {
         yield return new WaitForSeconds(1f);
+
         IsOpen = false;
     }
 }

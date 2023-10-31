@@ -796,7 +796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4876709622397399212, guid: ad8a2b0f7cfb8d04eb58a93957585232, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 130
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4876709622397399212, guid: ad8a2b0f7cfb8d04eb58a93957585232, type: 3}
       propertyPath: m_SizeDelta.y
@@ -850,10 +850,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6484556650548209083, guid: ad8a2b0f7cfb8d04eb58a93957585232, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7975833188263230381, guid: ad8a2b0f7cfb8d04eb58a93957585232, type: 3}
       propertyPath: m_Name
       value: Skill Desc HUD
@@ -868,7 +864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8118739357015685636, guid: ad8a2b0f7cfb8d04eb58a93957585232, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 65
+      value: 87.5
       objectReference: {fileID: 0}
     - target: {fileID: 8118739357015685636, guid: ad8a2b0f7cfb8d04eb58a93957585232, type: 3}
       propertyPath: m_AnchoredPosition.y

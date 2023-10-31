@@ -189,10 +189,10 @@ public class SkillButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 if (gameObject.name == "OxSkill1Btn")
                 {
                     Defense defense = FindObjectOfType<Defense>();
-                    A_SingleLifesteal oxSkill1 = FindObjectOfType<A_SingleLifesteal>();
+                    A_SingleDefBreak oxSkill1 = FindObjectOfType<A_SingleDefBreak>();
 
                     skillTitle.text = oxSkill1.gameObject.name;
-                    skillDescription.text = "Deals damage to a single enemy and has a chance to inflict <color=red>Shatter</color> (Max " + defense.shatterLimit + " turns) for ";
+                    skillDescription.text = "Deals damage to a single enemy and has a chance to inflict <color=red>Shatter</color> (Max " + defense.shatterLimit + " turns) for " + oxSkill1.shatterTurns + " turns.";
                 }
                 else if (gameObject.name == "OxSkill2Btn")
                 {

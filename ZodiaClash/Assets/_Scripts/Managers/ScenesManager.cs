@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -44,17 +45,21 @@ public class ScenesManager : MonoBehaviour
                     sceneTransition.defeatedEnemyNpcs.Add(sceneTransition.enemyNpc); //add it to the defeated enemies list
 
                     #region Unique Dialogues
+                    playerMovement = FindObjectOfType<PlayerMovement>();
                     switch (sceneTransition.levelIndex)
                     {
                         case 2:
                             //normal guard level
-                            playerMovement = FindObjectOfType<PlayerMovement>();
                             playerMovement.DialogueUi.ShowDialogue(explorationManager.defeatedFirstGuardDialogue); 
                             break;
                         case 3:
                             //goat level
-                            playerMovement = FindObjectOfType<PlayerMovement>();
                             playerMovement.DialogueUi.ShowDialogue(explorationManager.defeatedGoatDialogue);
+                            break;
+                        case 4:
+                            //last level before final boss
+                            playerMovement.DialogueUi.joinIndicator.GetComponentInChildren<TextMeshProUGUI>().text = "The game will be expanded soon.";
+                            StartCoroutine(playerMovement.DialogueUi.StepThroughJoinIndicatorDelay());
                             break;
                         default:
                             break;

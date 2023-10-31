@@ -51,4 +51,6 @@ MonoBehaviour:
   critRate: 0.5
   critMultiplier: 1.5
   critCheck: 0
-  lifestealPercent: 30
+  shatterPercent: 40
+  shatterRate: 0.5
+  shatterTurns: 2

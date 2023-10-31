@@ -126,6 +126,7 @@ public class EnemyGoatAction : _EnemyAction
 
                 //target
                 playerTargets = null;
+                enemyTargets = null;
 
                 //others
                 targetPosition = null;
