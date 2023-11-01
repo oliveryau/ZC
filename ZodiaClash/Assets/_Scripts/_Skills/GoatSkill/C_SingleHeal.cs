@@ -12,7 +12,7 @@ public class C_SingleHeal : _BaseBuff
         GetTargets(target);
 
         Healing healing = FindObjectOfType<Healing>();
-        healAmount = healing.HealCalculation(targetStats, skillBuffPercent);
+        healAmount = healing.HealCalculation(ownerStats, skillBuffPercent);
 
         targetStats.HealBuff(healAmount, true);
 

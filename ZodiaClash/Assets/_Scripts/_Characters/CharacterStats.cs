@@ -280,35 +280,35 @@ public class CharacterStats : MonoBehaviour
         {
             case "bleed":
                 popup.text = "Bleed";
-                popupImage.sprite = statusEffectHud.bleedIcon.GetComponent<Image>().sprite;
+                popupImage.sprite = statusEffectHud.bleedIcon.transform.Find("Icon").GetComponent<Image>().sprite;
                 break;
             case "shatter":
                 popup.text = "Shatter";
-                popupImage.sprite = statusEffectHud.shatterIcon.GetComponent<Image>().sprite;
+                popupImage.sprite = statusEffectHud.shatterIcon.transform.Find("Icon").GetComponent<Image>().sprite;
                 break;
             case "stun":
                 popup.text = "Stun";
-                popupImage.sprite = statusEffectHud.stunIcon.GetComponent<Image>().sprite;
+                popupImage.sprite = statusEffectHud.stunIcon.transform.Find("Icon").GetComponent<Image>().sprite;
                 break;
             case "taunt":
                 popup.text = "Taunt";
-                popupImage.sprite = statusEffectHud.tauntIcon.GetComponent<Image>().sprite;
+                popupImage.sprite = statusEffectHud.tauntIcon.transform.Find("Icon").GetComponent<Image>().sprite;
                 break;
             case "cleanse":
                 popup.text = "Cleanse";
-                popupImage.sprite = statusEffectHud.cleanseIcon.GetComponent<Image>().sprite;
+                popupImage.sprite = statusEffectHud.cleanseIcon.transform.Find("Icon").GetComponent<Image>().sprite;
                 break;
             case "enrage":
                 popup.text = "Enrage";
-                popupImage.sprite = statusEffectHud.enrageIcon.GetComponent<Image>().sprite;
+                popupImage.sprite = statusEffectHud.enrageIcon.transform.Find("Icon").GetComponent<Image>().sprite;
                 break;
             case "armor":
                 popup.text = "Armor";
-                popupImage.sprite = statusEffectHud.armorIcon.GetComponent<Image>().sprite;
+                popupImage.sprite = statusEffectHud.armorIcon.transform.Find("Icon").GetComponent<Image>().sprite;
                 break;
             case "rage":
-                popup.text = "Rage";
-                popupImage.sprite = statusEffectHud.rageGoatBuffIcon.GetComponent<Image>().sprite;
+                popup.text = "Berserk";
+                popupImage.sprite = statusEffectHud.rageGoatBuffIcon.transform.Find("Icon").GetComponent<Image>().sprite;
                 break;
             default:
                 popup.text = null;

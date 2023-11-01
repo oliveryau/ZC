@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bleed : MonoBehaviour
 {
     public int bleedLimit;
-    [SerializeField] private int bleedPercent;
+    public int bleedPercent;
 
     [HideInInspector] public float bleedDamage;
     private CharacterStats catStats;

@@ -166,6 +166,7 @@ public class _EnemyAction : MonoBehaviour
                 if (reachedTarget)
                 {
                     GetComponent<SpriteRenderer>().sortingOrder = 10;
+                    if (transform.Find("Rage Aura(Clone)")) transform.Find("Rage Aura(Clone)").GetComponent<SpriteRenderer>().sortingOrder = 11;
 
                     movingToTarget = false;
 
@@ -180,6 +181,7 @@ public class _EnemyAction : MonoBehaviour
                 //characterStats.animator.SetBool("moveBack", true);
 
                 GetComponent<SpriteRenderer>().sortingOrder = originalSort;
+                if (transform.Find("Rage Aura(Clone)")) transform.Find("Rage Aura(Clone)").GetComponent<SpriteRenderer>().sortingOrder = 5;
 
                 if (reachedStart)
                 {
@@ -260,20 +262,7 @@ public class _EnemyAction : MonoBehaviour
         TextMeshProUGUI skillText = skillTextIndicator.GetComponentInChildren<TextMeshProUGUI>();
         Image skillTextImage = skillTextIndicator.GetComponent<Image>();
 
-        if (display && specialCase != null)
-        {
-            switch (specialCase)
-            {
-                case "goat":
-                    skillText.text = "Wrath of the Cursed Celestial";
-                    skillTextImage.color = new Color32(140, 40, 40, 100);
-                    skillTextIndicator.SetActive(true);
-                    break;
-                default:
-                    break;
-            }
-        }
-        else if (display)
+        if (display)
         {
             skillText.text = selectedSkillPrefab.gameObject.name;
             skillTextImage.color = new Color32(140, 40, 40, 100);

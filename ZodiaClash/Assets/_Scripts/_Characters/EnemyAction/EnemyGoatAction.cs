@@ -55,9 +55,13 @@ public class EnemyGoatAction : _EnemyAction
 
             else if (enemyState == EnemyState.CHECKSTATUS)
             {
-                if (characterStats.health <= 0.4f * characterStats.maxHealth)
+                if (characterStats.health <= 0.3f * characterStats.maxHealth)
                 {
                     rageState = true;
+                }
+                else
+                {
+                    rageState = false;
                 }
 
                 if (!characterStats.checkedStatus && !checkingStatus)
@@ -127,6 +131,7 @@ public class EnemyGoatAction : _EnemyAction
                 //target
                 playerTargets = null;
                 enemyTargets = null;
+                playerTargetsList.Clear();
 
                 //others
                 targetPosition = null;
@@ -165,7 +170,6 @@ public class EnemyGoatAction : _EnemyAction
                     rageApplied = true;
 
                     characterStats.StatusText("rage");
-                    EnemyToggleSkillText(true, "goat");
                     StartCoroutine(EnemyToggleWarningText("goat"));
 
                     if (!transform.Find("Rage Aura(Clone)"))
@@ -199,6 +203,15 @@ public class EnemyGoatAction : _EnemyAction
             }
             else
             {
+                //if lifesteal back
+                if (transform.Find("Rage Aura(Clone)"))
+                {
+                    Destroy(transform.Find("Rage Aura(Clone)").gameObject);
+                    characterStats.attack -= 10;
+                    _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>();
+                    statusEffect.UpdateEffectsBar(characterStats, "rageGoat");
+                }
+
                 bool healingAlly = false;
 
                 for (int i = 0; i < enemyTargets.Length; i++)
@@ -291,10 +304,10 @@ public class EnemyGoatAction : _EnemyAction
 
     protected override void EnemyApplySkill()
     {
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill4Prefab)
+        if (selectedSkillPrefab == skill1Prefab)
         {
             //single target attack
-            selectedSkillPrefab.GetComponent<NormalAttack>().Attack(selectedTarget);
+            selectedSkillPrefab.GetComponent<A_AttackBleed>().Attack(selectedTarget);
             AudioManager.Instance.PlayEffectsOneShot("Goat 1");
         }
         else if (selectedSkillPrefab == skill2Prefab)
@@ -308,6 +321,12 @@ public class EnemyGoatAction : _EnemyAction
             //ally heal cleanse skill
             selectedSkillPrefab.GetComponent<C_SingleHeal>().Heal(selectedTarget);
             AudioManager.Instance.PlayEffectsOneShot("Goat 3");
+        }
+        else if (selectedSkillPrefab == skill4Prefab)
+        {
+            //strong single target lifesteal attack
+            selectedSkillPrefab.GetComponent<D_StrongAttackBleed>().Attack(selectedTarget);
+            AudioManager.Instance.PlayEffectsOneShot("Goat 1");
         }
 
         StartCoroutine(EnemyEndTurnDelay(0.5f));

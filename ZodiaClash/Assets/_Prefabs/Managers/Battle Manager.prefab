@@ -61,6 +61,8 @@ MonoBehaviour:
   charactersList: []
   turnOrderList: []
   originalTurnOrderList: []
+  playerIndicator: {fileID: 21300000, guid: b6a5620dad86dad42b63a605f4e85eec, type: 3}
+  enemyIndicator: {fileID: 21300000, guid: 6e6507bfecf13b64a9e5ec198039ffe0, type: 3}
   revertingTurn: 0
   sceneTransition: {fileID: 11400000, guid: 7b1370ffacc356841a0889615577f4c8, type: 2}
 --- !u!1 &7251663232612195149

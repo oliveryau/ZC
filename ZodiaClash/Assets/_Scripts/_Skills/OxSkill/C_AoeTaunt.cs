@@ -7,13 +7,11 @@ public class C_AoeTaunt : AoeAttack
     [Header("Effects")]
     [SerializeField] private float tauntRate;
     public int tauntTurns;
-    [SerializeField] private int armorPercent;
+    public int armorPercent;
     public int armorTurns;
 
     public override void Attack(GameObject[] targets)
     {
-        //owner.GetComponent<Animator>().Play(animationName);
-
         Taunt(targets);
 
         Armor();

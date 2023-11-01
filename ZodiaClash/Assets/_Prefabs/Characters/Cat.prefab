@@ -185,8 +185,8 @@ MonoBehaviour:
   hpPercentUi: {fileID: 0}
   maxHealth: 150
   health: 150
-  attack: 15
-  defense: 20
+  attack: 30
+  defense: 30
   speed: 3
   increasedAttackValue: 0
   decreasedDefenseValue: 0

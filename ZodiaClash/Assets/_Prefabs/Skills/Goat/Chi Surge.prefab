@@ -45,6 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  animationName: 
-  skillBuffPercent: 0
+  skillBuffPercent: 30
   enrageTurns: 1

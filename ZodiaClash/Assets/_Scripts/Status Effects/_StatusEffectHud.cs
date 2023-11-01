@@ -254,7 +254,7 @@ public class _StatusEffectHud : MonoBehaviour
                 {
                     GameObject status = effectsPanel.GetChild(i).gameObject;
 
-                    if (status.CompareTag("RageGoat"))
+                    if (status.CompareTag("Rage"))
                     {
                         rageGoatBuffExist = true;
 
@@ -409,6 +409,20 @@ public class _StatusEffectHud : MonoBehaviour
                     GameObject status = effectsPanel.GetChild(i).gameObject;
 
                     if (status.CompareTag("Bleed") || status.CompareTag("Shatter") || status.CompareTag("Stun") || status.CompareTag("Taunt"))
+                    {
+                        Destroy(status);
+                    }
+                }
+
+                break;
+
+            case "rage": //remove rage
+
+                for (int i = 0; i < effectsPanel.childCount; i++)
+                {
+                    GameObject status = effectsPanel.GetChild(i).gameObject;
+
+                    if (status.CompareTag("Rage"))
                     {
                         Destroy(status);
                     }

@@ -214,8 +214,8 @@ MonoBehaviour:
   hpPercentUi: {fileID: 0}
   maxHealth: 120
   health: 120
-  attack: 10
-  defense: 15
+  attack: 7
+  defense: 30
   speed: 1
   increasedAttackValue: 0
   decreasedDefenseValue: 0
@@ -252,6 +252,7 @@ MonoBehaviour:
   selectedSkillPrefab: {fileID: 0}
   enemyTargets: []
   playerTargets: []
+  playerTargetsList: []
   selectedTarget: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}

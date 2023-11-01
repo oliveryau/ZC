@@ -40,8 +40,8 @@ public class _StatusEffectHover : MonoBehaviour, IPointerEnterHandler, IPointerE
                 hoverText.text = "Armor";
                 break;
 
-            case "RageGoat(Clone)":
-                hoverText.text = "Rage";
+            case "Rage(Clone)":
+                hoverText.text = "Berserk";
                 break;
 
             default:

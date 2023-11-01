@@ -39,6 +39,8 @@ public class BattleManager : MonoBehaviour
     public List<CharacterStats> charactersList = new List<CharacterStats>();
     public List<CharacterStats> turnOrderList = new List<CharacterStats>();
     public List<CharacterStats> originalTurnOrderList = new List<CharacterStats>();
+    [SerializeField] private Sprite playerIndicator;
+    [SerializeField] private Sprite enemyIndicator;
     [HideInInspector] public bool revertingTurn;
 
     [Header("Others")]
@@ -248,11 +250,13 @@ public class BattleManager : MonoBehaviour
             Image characterIndicator = avatarContainer.transform.Find("Unique Indicator").GetComponent<Image>();
             if (character.gameObject.CompareTag("Player"))
             {
-                characterIndicator.color = Color.green;
+                //characterIndicator.color = Color.green;
+                characterIndicator.sprite = playerIndicator;
             }
             else if (character.gameObject.CompareTag("Enemy"))
             {
-                characterIndicator.color = Color.red;
+                //characterIndicator.color = Color.red;
+                characterIndicator.sprite = enemyIndicator;
             }
             #endregion
 

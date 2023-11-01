@@ -6,10 +6,10 @@ public class Healing : MonoBehaviour
 {
     private float healValue;
 
-    public float HealCalculation(CharacterStats healTarget, int healPercent)
+    public float HealCalculation(CharacterStats goat, int healPercent)
     {
         healValue = Mathf.RoundToInt
-            ((healPercent / 100f) * healTarget.maxHealth);
+            ((healPercent / 100f) * goat.maxHealth);
 
         return healValue;
     }

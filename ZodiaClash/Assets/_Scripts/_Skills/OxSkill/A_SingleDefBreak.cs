@@ -5,7 +5,7 @@ using UnityEngine;
 public class A_SingleDefBreak : NormalAttack
 {
     [Header("Effects")]
-    [SerializeField] private int shatterPercent;
+    public int shatterPercent;
     public float shatterRate;
     public int shatterTurns;
 

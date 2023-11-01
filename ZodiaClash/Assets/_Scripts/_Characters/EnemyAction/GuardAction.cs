@@ -108,6 +108,7 @@ public class GuardAction : _EnemyAction
                 //target
                 playerTargets = null;
                 enemyTargets = null;
+                playerTargetsList.Clear();
 
                 //others
                 targetPosition = null;
@@ -144,17 +145,20 @@ public class GuardAction : _EnemyAction
             if (playerTargetsList.Count >= 3)
             {
                 #region 3 Player Characters: Ox 45%, Cat 35%, Goat 20%
-                if (randomValue <= 0.25f)
+                if (randomValue <= 0.2f)
                 {
                     selectedTarget = goat;
+                    Debug.Log("Enemy Selected Target: " + selectedTarget.name);
                 }
                 else if (randomValue <= 0.55f)
                 {
                     selectedTarget = cat;
+                    Debug.Log("Enemy Selected Target: " + selectedTarget.name);
                 }
                 else
                 {
                     selectedTarget = ox;
+                    Debug.Log("Enemy Selected Target: " + selectedTarget.name);
                 }
                 #endregion
             }
@@ -166,10 +170,12 @@ public class GuardAction : _EnemyAction
                     if (randomValue <= 0.31f)
                     {
                         selectedTarget = goat;
+                        Debug.Log("Enemy Selected Target: " + selectedTarget.name);
                     }
                     else
                     {
                         selectedTarget = ox;
+                        Debug.Log("Enemy Selected Target: " + selectedTarget.name);
                     }
                 }
                 #endregion
@@ -180,10 +186,12 @@ public class GuardAction : _EnemyAction
                     if (randomValue <= 0.44f)
                     {
                         selectedTarget = cat;
+                        Debug.Log("Enemy Selected Target: " + selectedTarget.name);
                     }
                     else
                     {
                         selectedTarget = ox;
+                        Debug.Log("Enemy Selected Target: " + selectedTarget.name);
                     }
                 }
                 #endregion
@@ -194,10 +202,12 @@ public class GuardAction : _EnemyAction
                     if (randomValue <= 0.36f)
                     {
                         selectedTarget = goat;
+                        Debug.Log("Enemy Selected Target: " + selectedTarget.name);
                     }
                     else
                     {
                         selectedTarget = cat;
+                        Debug.Log("Enemy Selected Target: " + selectedTarget.name);
                     }
                 }
                 #endregion
@@ -206,11 +216,11 @@ public class GuardAction : _EnemyAction
             {
                 #region Solo Target
                 selectedTarget = playerTargetsList[0];
+                Debug.Log("Enemy Selected Target: " + selectedTarget.name);
                 #endregion
             }
             #endregion
 
-            Debug.Log("Enemy Selected Target: " + selectedTarget.name);
             selectedSkillPrefab = skill1Prefab;
 
             enemyState = EnemyState.ATTACKING;

@@ -143,10 +143,6 @@ PrefabInstance:
       value: Skill UI Ox
       objectReference: {fileID: 0}
     - target: {fileID: 5943347807186235254, guid: af79361b4ca11cf41ac46f269c8efdbb, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5d00d96128305b94eb4e8aaef700234a, type: 2}
-    - target: {fileID: 5943347807186235254, guid: af79361b4ca11cf41ac46f269c8efdbb, type: 3}
       propertyPath: m_fontSizeBase
       value: 40
       objectReference: {fileID: 0}
@@ -1455,10 +1451,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4628346551844222268, guid: 13d2c9bf922aabf489f38d0372c02722, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5d00d96128305b94eb4e8aaef700234a, type: 2}
-    - target: {fileID: 4628346551844222268, guid: 13d2c9bf922aabf489f38d0372c02722, type: 3}
       propertyPath: m_fontSizeBase
       value: 40
       objectReference: {fileID: 0}
@@ -1739,13 +1731,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3332890644665260930, guid: bf97bfd28367de9438ca79b36aa68a3b, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5d00d96128305b94eb4e8aaef700234a, type: 2}
-    - target: {fileID: 3332890644665260930, guid: bf97bfd28367de9438ca79b36aa68a3b, type: 3}
       propertyPath: m_fontSizeBase
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 3332890644665260930, guid: bf97bfd28367de9438ca79b36aa68a3b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3788110576322237249, guid: bf97bfd28367de9438ca79b36aa68a3b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1777,6 +1769,10 @@ PrefabInstance:
     - target: {fileID: 4130239517446328231, guid: bf97bfd28367de9438ca79b36aa68a3b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437183886810549505, guid: bf97bfd28367de9438ca79b36aa68a3b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4924587840686277885, guid: bf97bfd28367de9438ca79b36aa68a3b, type: 3}
       propertyPath: m_Pivot.x

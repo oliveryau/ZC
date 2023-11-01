@@ -184,9 +184,9 @@ MonoBehaviour:
     rgba: 0
   healthPanel: {fileID: 0}
   hpPercentUi: {fileID: 0}
-  maxHealth: 100
-  health: 100
-  attack: 10
+  maxHealth: 150
+  health: 150
+  attack: 15
   defense: 20
   speed: 10
   increasedAttackValue: 0
@@ -224,6 +224,7 @@ MonoBehaviour:
   selectedSkillPrefab: {fileID: 0}
   enemyTargets: []
   playerTargets: []
+  playerTargetsList: []
   selectedTarget: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {fileID: 0}
@@ -268,6 +269,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6699813660680686428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1021788355510489201
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6699813660680686428}
+    m_Modifications:
+    - target: {fileID: 2203928975233133101, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 813487967176509868}
+    - target: {fileID: 3355838915476179938, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 813487967176509868}
+    - target: {fileID: 6534445079917386032, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534445079917386032, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534445079917386032, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534445079917386032, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534445079917386032, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534445079917386032, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534445079917386032, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534445079917386032, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534445079917386032, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534445079917386032, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284894213010670709, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+      propertyPath: m_Name
+      value: Celestial Annihilation
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+--- !u!4 &6089179187775736129 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6534445079917386032, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+  m_PrefabInstance: {fileID: 1021788355510489201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8995874818723517444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8284894213010670709, guid: 4abe3413988d85e408bd5f0be32d80c5, type: 3}
+  m_PrefabInstance: {fileID: 1021788355510489201}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2022592937639407165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -338,89 +414,6 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8987391991611993712, guid: cde38a178c29e86418d1160e8c759e24, type: 3}
   m_PrefabInstance: {fileID: 2022592937639407165}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &2405460814700747974
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6699813660680686428}
-    m_Modifications:
-    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 813487967176509868}
-    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: defBreakRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: defBreakCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3592213873890911898, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: defBreakPercent
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6752634862961264834, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: m_Name
-      value: Celestial Annihilation
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
---- !u!4 &6089179187775736129 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8494059275483551111, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-  m_PrefabInstance: {fileID: 2405460814700747974}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8995874818723517444 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6752634862961264834, guid: 7f669220360a1c34991ff6ea0de14228, type: 3}
-  m_PrefabInstance: {fileID: 2405460814700747974}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2735475130155682227
 PrefabInstance:

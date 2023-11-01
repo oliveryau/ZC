@@ -46,10 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   skillAttackPercent: 80
-  minAttackMultiplier: 0.8
-  maxAttackMultiplier: 1.2
-  critRate: 0.5
-  critMultiplier: 1.5
+  minAttackMultiplier: 0.9
+  maxAttackMultiplier: 1.1
+  critRate: 0.3
+  critMultiplier: 1.2
   critCheck: 0
   bleedRate: 1
   bleedTurns: 2

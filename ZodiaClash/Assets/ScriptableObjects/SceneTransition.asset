@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clearedLevel: 0
   levelIndex: 2
-  prevPosition: {x: -10.5, y: -3.5, z: 0}
+  prevPosition: {x: 8.86624, y: -2.3281994, z: 0}
   enemyNpc: 
   defeatedEnemyNpcs: []
