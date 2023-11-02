@@ -210,13 +210,13 @@ public class OxAction : _PlayerAction
         #region Movement Skills
         if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab)
         {
-            StartCoroutine(AttackStartDelay(0.5f, 1f));
+            StartCoroutine(AttackStartDelay(0.5f, 0.5f));
         }
         #endregion
         #region Non-Movement Skills
         else if (selectedSkillPrefab = skill3Prefab)
         {
-            StartCoroutine(BuffStartDelay(0.5f, 1f));
+            StartCoroutine(BuffStartDelay(0.5f, 0.5f));
         }
         #endregion
     }

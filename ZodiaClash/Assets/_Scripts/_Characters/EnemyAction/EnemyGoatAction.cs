@@ -55,7 +55,7 @@ public class EnemyGoatAction : _EnemyAction
 
             else if (enemyState == EnemyState.CHECKSTATUS)
             {
-                if (characterStats.health <= 0.3f * characterStats.maxHealth)
+                if (characterStats.health <= 0.5f * characterStats.maxHealth)
                 {
                     rageState = true;
                 }
@@ -209,7 +209,7 @@ public class EnemyGoatAction : _EnemyAction
                     Destroy(transform.Find("Rage Aura(Clone)").gameObject);
                     characterStats.attack -= 10;
                     _StatusEffectHud statusEffect = FindObjectOfType<_StatusEffectHud>();
-                    statusEffect.UpdateEffectsBar(characterStats, "rageGoat");
+                    statusEffect.UpdateEffectsBar(characterStats, "rage");
                 }
 
                 bool healingAlly = false;
@@ -291,13 +291,13 @@ public class EnemyGoatAction : _EnemyAction
         #region Movement Skills
         if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill4Prefab)
         {
-            StartCoroutine(EnemyAttackStartDelay(0.5f, 1f));
+            StartCoroutine(EnemyAttackStartDelay(0.5f, 0.5f));
         }
         #endregion
         #region Non-Movement Skills
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
-            StartCoroutine(EnemyBuffStartDelay(0.5f, 1f));
+            StartCoroutine(EnemyBuffStartDelay(0.5f, 0.5f));
         }
         #endregion
     }
@@ -336,8 +336,6 @@ public class EnemyGoatAction : _EnemyAction
     {
         yield return new WaitUntil(() => enemyEndingTurn);
 
-        yield return new WaitForSeconds(seconds);
-
         enemyState = EnemyState.ENDING;
 
         yield return new WaitForSeconds(seconds);
@@ -350,14 +348,17 @@ public class EnemyGoatAction : _EnemyAction
     {
         gameObject.tag = "Dead";
 
+        yield return new WaitForSeconds(1f);
+
         #region Goat Death State
         Enrage enrage = FindObjectOfType<Enrage>();
         B_AttackBuff atkBuff = GetComponentInChildren<B_AttackBuff>();
-        EnemyRefreshTargets();
-        
+        EnemyRefreshTargets(false);
+
         if (!dead)
         {
             dead = true;
+
             for (int i = 0; i < enemyTargets.Length; i++)
             {
                 CharacterStats enemyStats = enemyTargets[i].GetComponent<CharacterStats>();
@@ -378,6 +379,10 @@ public class EnemyGoatAction : _EnemyAction
                     enemyStats.enrageCounter = enrage.enrageLimit;
                 }
             }
+
+            float healthToAddToCat = characterStats.maxHealth * 0.5f;
+            cat = FindObjectOfType<CatAction>().gameObject;
+            cat.GetComponent<CharacterStats>().HealBuff(healthToAddToCat, false);
         }
         #endregion
 
@@ -390,14 +395,11 @@ public class EnemyGoatAction : _EnemyAction
         battleManager.originalTurnOrderList.Remove(characterStats);
         #endregion
 
-        yield return new WaitForSeconds(1f);
-
         characterStats.characterHpHud.SetActive(false);
-
-        enemyState = EnemyState.ENDING;
 
         yield return new WaitForSeconds(0.5f);
 
+        enemyState = EnemyState.ENDING;
         gameObject.SetActive(false);
     }
 }

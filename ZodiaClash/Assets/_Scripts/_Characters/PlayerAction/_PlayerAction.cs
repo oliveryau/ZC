@@ -16,6 +16,7 @@ public class _PlayerAction : MonoBehaviour
     [Header("HUD")]
     [SerializeField] protected GameObject characterAvatar;
     [SerializeField] protected GameObject characterSkillUi;
+    [SerializeField] protected TextMeshProUGUI skill1ChiCostUi;
     [SerializeField] protected TextMeshProUGUI skill2ChiCostUi;
     [SerializeField] protected TextMeshProUGUI skill3ChiCostUi;
     [SerializeField] protected Button skill2Enable;
@@ -35,6 +36,7 @@ public class _PlayerAction : MonoBehaviour
     [Header("Skill Chi Cost")]
     [SerializeField] protected int skill2ChiCost;
     [SerializeField] protected int skill3ChiCost;
+    private int skill1ChiAmount = 1;
 
     [Header("Target Selection")]
     [SerializeField] protected GameObject[] playerTargets;
@@ -358,8 +360,9 @@ public class _PlayerAction : MonoBehaviour
     {
         if (display == true)
         {
-            skill2ChiCostUi.text = skill2ChiCost.ToString();
-            skill3ChiCostUi.text = skill3ChiCost.ToString();
+            skill1ChiCostUi.text = "+" + skill1ChiAmount.ToString();
+            skill2ChiCostUi.text = "-" + skill2ChiCost.ToString();
+            skill3ChiCostUi.text = "-" + skill3ChiCost.ToString();
 
             if (playerChi.currentChi < skill2ChiCost)
             {

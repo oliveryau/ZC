@@ -214,6 +214,7 @@ MonoBehaviour:
   playerState: 0
   characterAvatar: {fileID: 0}
   characterSkillUi: {fileID: 0}
+  skill1ChiCostUi: {fileID: 0}
   skill2ChiCostUi: {fileID: 0}
   skill3ChiCostUi: {fileID: 0}
   skill2Enable: {fileID: 0}
@@ -408,10 +409,6 @@ PrefabInstance:
     - target: {fileID: 403067043154318739, guid: f8857c289b1a34046aa804a0275e7ec3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 403067043154318739, guid: f8857c289b1a34046aa804a0275e7ec3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 403067043154318739, guid: f8857c289b1a34046aa804a0275e7ec3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

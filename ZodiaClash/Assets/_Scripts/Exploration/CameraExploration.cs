@@ -13,8 +13,12 @@ public class CameraExploration : MonoBehaviour
     [SerializeField] private Vector2 minPosition;
     [SerializeField] private Vector2 maxPosition;
 
+    [SerializeField] private SceneTransition sceneTransition;
+
     private void Start()
     {
+        transform.position = sceneTransition.camPrevPosition;
+
         player = GameObject.FindWithTag("Player").transform;
 
         offset = new(0f, 0f, -10f);

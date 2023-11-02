@@ -176,9 +176,17 @@ public class CatAction : _PlayerAction
     protected override void AttackAnimation()
     {
         #region Movement Skills
-        if (selectedSkillPrefab == skill1Prefab || selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
+        if (selectedSkillPrefab == skill1Prefab)
         {
-            StartCoroutine(AttackStartDelay(0.5f, 1f));
+            StartCoroutine(AttackStartDelay(0.5f, 0.5f));
+        }
+        else if (selectedSkillPrefab == skill2Prefab)
+        {
+            StartCoroutine(AttackStartDelay(0.5f, 0.5f));
+        }
+        else if (selectedSkillPrefab == skill3Prefab)
+        {
+            StartCoroutine(AttackStartDelay(0.5f, 0.5f));
         }
         #endregion
     }

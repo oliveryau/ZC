@@ -188,13 +188,13 @@ public class GoatAction : _PlayerAction
         #region Movement Skills
         if (selectedSkillPrefab == skill1Prefab)
         {
-            StartCoroutine(AttackStartDelay(0.5f, 1f));
+            StartCoroutine(AttackStartDelay(0.5f, 0.5f));
         }
         #endregion
         #region Non-Movement Skills
         else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
         {
-            StartCoroutine(BuffStartDelay(0.5f, 1f));
+            StartCoroutine(BuffStartDelay(0.5f, 0.5f));
         }
         #endregion
     }

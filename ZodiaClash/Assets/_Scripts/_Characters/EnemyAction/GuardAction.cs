@@ -236,6 +236,8 @@ public class GuardAction : _EnemyAction
         if (selectedSkillPrefab == skill1Prefab)
         {
             targetPosition = selectedTarget.transform.Find("Target Position");
+            characterStats.animator.SetTrigger("skill1");
+
             movingToTarget = true;
         }
         #endregion
@@ -246,7 +248,7 @@ public class GuardAction : _EnemyAction
         #region Movement Skills
         if (selectedSkillPrefab == skill1Prefab)
         {
-            StartCoroutine(EnemyAttackStartDelay(0.5f, 1f));
+            StartCoroutine(EnemyAttackStartDelay(0.5f, 0.5f));
         }
         #endregion
     }

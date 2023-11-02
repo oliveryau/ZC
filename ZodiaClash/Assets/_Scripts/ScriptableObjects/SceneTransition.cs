@@ -9,6 +9,7 @@ public class SceneTransition : ScriptableObject
     public int levelIndex;
 
     [Header("Map Specific")]
+    public Vector3 camPrevPosition;
     public Vector3 prevPosition;
     public string enemyNpc;
     public List<string> defeatedEnemyNpcs;
@@ -17,6 +18,8 @@ public class SceneTransition : ScriptableObject
     {
         clearedLevel = false;
         levelIndex = 0;
+
+        camPrevPosition = new Vector3(0f, 0f, -10f);
         prevPosition = new Vector3(-8f, -3f, 0f);
         enemyNpc = null;
         defeatedEnemyNpcs = new List<string>();

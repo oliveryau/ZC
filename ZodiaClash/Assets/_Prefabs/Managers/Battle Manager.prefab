@@ -124,6 +124,8 @@ MonoBehaviour:
   enrageIcon: {fileID: 561189915271357867, guid: da57b9ffee9bf5a4bb9e0d889c54854f, type: 3}
   armorIcon: {fileID: 3373990890109378416, guid: 146415a4dbb282a4e801e9d402f43000, type: 3}
   rageGoatBuffIcon: {fileID: 561189915271357867, guid: 879d21fa3768fb2498b7d5403e6326db, type: 3}
+  normalHitEffect: {fileID: 968621701961115164, guid: 22eefe5cc9c17064cad7d9a6e64b0455, type: 3}
+  bleedHitEffect: {fileID: 8947968618072539023, guid: 03d8812e1add32e478cf0d832c9f345c, type: 3}
 --- !u!114 &6204437302020011797
 MonoBehaviour:
   m_ObjectHideFlags: 0

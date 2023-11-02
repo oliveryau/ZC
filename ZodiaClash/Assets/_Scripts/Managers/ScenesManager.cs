@@ -115,6 +115,7 @@ public class ScenesManager : MonoBehaviour
 
             case "2_BattleScene":
             case "3_BattleScene":
+            case "4_BattleScene":
 
                 if (Input.GetKeyDown(KeyCode.F1))
                 {

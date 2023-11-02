@@ -112,11 +112,12 @@ public class BattleManager : MonoBehaviour
                 skillChiHud.SetActive(false);
                 statusEffectIndicator.SetActive(false);
 
-                battleStateHud.GetComponentInChildren<TextMeshProUGUI>().text = "Battle Over";
-                battleStateHud.gameObject.SetActive(true);
+                StartCoroutine(WinBattle());
+                //battleStateHud.GetComponentInChildren<TextMeshProUGUI>().text = "Battle Over";
+                //battleStateHud.gameObject.SetActive(true);
 
-                sceneTransition.clearedLevel = true;
-                StartCoroutine(scenesManager.LoadMap());
+                //sceneTransition.clearedLevel = true;
+                //StartCoroutine(scenesManager.LoadMap());
             }
             //then check if enemy has won
             else if (GameObject.FindGameObjectsWithTag("Player").Length <= 0) //no players left
@@ -198,6 +199,18 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(startDelay);
 
         battleState = BattleState.NEWROUND;
+    }
+
+    private IEnumerator WinBattle()
+    {
+        battleStateHud.GetComponentInChildren<TextMeshProUGUI>().text = "Battle Over";
+        battleStateHud.gameObject.SetActive(true);
+        
+        sceneTransition.clearedLevel = true;
+
+        yield return new WaitForSeconds(0.5f);
+        
+        StartCoroutine(scenesManager.LoadMap());
     }
 
     #region Turn Management

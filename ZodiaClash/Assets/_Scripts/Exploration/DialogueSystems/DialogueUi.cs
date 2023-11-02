@@ -76,9 +76,28 @@ public class DialogueUi : MonoBehaviour
             case 3:
             case 4:
 
+                sceneTransition.camPrevPosition = Camera.main.transform.position;
                 sceneTransition.prevPosition = GameObject.FindWithTag("Player").transform.position;
                 StartCoroutine(scenesManager.LoadLevelFromMap(id));
                 StartCoroutine(CloseDialogueDelay());
+                break;
+            case 5:
+
+                sceneTransition.defeatedEnemyNpcs.Add("Temp Ox");
+                _ExplorationManager explorationManager = FindObjectOfType<_ExplorationManager>();
+                foreach (string enemyName in sceneTransition.defeatedEnemyNpcs)
+                {
+                    foreach (GameObject enemy in explorationManager.enemyNpcs)
+                    {
+                        if (enemy.name == "Temp Ox")
+                        {
+                            enemy.SetActive(false); //hide defeated enemy npcs
+                            break;
+                        }
+                    }
+                }
+                joinIndicator.GetComponentInChildren<TextMeshProUGUI>().text = "Leishou has joined your team.";
+                StartCoroutine(StepThroughJoinIndicatorDelay());
                 break;
             case 93:
 

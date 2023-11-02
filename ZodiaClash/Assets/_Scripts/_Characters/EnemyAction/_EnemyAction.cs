@@ -99,7 +99,7 @@ public class _EnemyAction : MonoBehaviour
         }
     }
 
-    protected void EnemyRefreshTargets()
+    protected void EnemyRefreshTargets(bool alive = true)
     {
         cat = null;
         goat = null;
@@ -108,20 +108,24 @@ public class _EnemyAction : MonoBehaviour
         enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
         playerTargets = GameObject.FindGameObjectsWithTag("Player");
 
-        playerTargetsList.AddRange(playerTargets);
-        foreach (GameObject player in playerTargetsList)
+        if (alive)
         {
-            if (player.gameObject.name.Contains("Guiying"))
+            playerTargetsList.AddRange(playerTargets);
+            
+            foreach (GameObject player in playerTargetsList)
             {
-                cat = player;
-            }
-            else if (player.gameObject.name.Contains("Yangsheng"))
-            {
-                goat = player;
-            }
-            else if (player.gameObject.name.Contains("Leishou"))
-            {
-                ox = player;
+                if (player.gameObject.name.Contains("Guiying"))
+                {
+                    cat = player;
+                }
+                else if (player.gameObject.name.Contains("Yangsheng"))
+                {
+                    goat = player;
+                }
+                else if (player.gameObject.name.Contains("Leishou"))
+                {
+                    ox = player;
+                }
             }
         }
     }
@@ -178,14 +182,14 @@ public class _EnemyAction : MonoBehaviour
             else if (movingToStart && !movingToTarget)
             {
                 transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
-                //characterStats.animator.SetBool("moveBack", true);
+                characterStats.animator.SetBool("moveBack", true);
 
                 GetComponent<SpriteRenderer>().sortingOrder = originalSort;
                 if (transform.Find("Rage Aura(Clone)")) transform.Find("Rage Aura(Clone)").GetComponent<SpriteRenderer>().sortingOrder = 5;
 
                 if (reachedStart)
                 {
-                    //characterStats.animator.SetBool("moveBack", true);
+                    characterStats.animator.SetBool("moveBack", false);
                     movingToStart = false;
 
                     enemyEndingTurn = true;

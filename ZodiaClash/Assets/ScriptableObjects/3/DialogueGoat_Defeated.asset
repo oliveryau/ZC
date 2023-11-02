@@ -17,15 +17,15 @@ MonoBehaviour:
   - speaker: Yangsheng
     dialogue: '*Grunts'
   - speaker: Guiying
-    dialogue: Yangsheng, can you hear me?
+    dialogue: Yangsheng, are you alright?
   - speaker: Yangsheng
-    dialogue: Yeah, looks like I was under a spell.
+    dialogue: Urgh, I was under a spell.
   - speaker: Guiying
     dialogue: Who cast this spell on you? The Emperor?
   - speaker: Yangsheng
-    dialogue: Looks like it.
+    dialogue: Looks like it. There's something strange about him.
   - speaker: Yangsheng
-    dialogue: Listen, there are others under his control. We must stop him!
+    dialogue: Listen, there are others under his control. We must stop him.
   - speaker: Yangsheng
     dialogue: Now that I'm free of the curse, I shall aid you.
   - speaker: Guiying

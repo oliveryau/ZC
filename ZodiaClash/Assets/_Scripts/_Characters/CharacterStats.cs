@@ -173,6 +173,7 @@ public class CharacterStats : MonoBehaviour
 
         DamageText(damage, critCheck);
         StatusText(debuff);
+        statusEffectHud.DisplayVfx(this.gameObject, debuff);
 
         //set damage text
         if (health <= 0)

@@ -17,6 +17,10 @@ MonoBehaviour:
   - speaker: Guiying
     dialogue: Yangsheng?
   - speaker: Yangsheng
-    dialogue: I don't know you. Guards, stop the intruder!
+    dialogue: Who are you? What are you doing here?
   - speaker: Guiying
-    dialogue: No...
+    dialogue: I've come to investigate this strange place.
+  - speaker: Yangsheng
+    dialogue: I see.
+  - speaker: Yangsheng
+    dialogue: Guards, stop her!

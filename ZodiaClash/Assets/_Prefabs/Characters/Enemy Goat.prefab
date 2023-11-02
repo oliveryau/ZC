@@ -187,7 +187,7 @@ MonoBehaviour:
   maxHealth: 150
   health: 150
   attack: 15
-  defense: 20
+  defense: 35
   speed: 10
   increasedAttackValue: 0
   decreasedDefenseValue: 0
@@ -648,10 +648,6 @@ PrefabInstance:
     - target: {fileID: 403067043154318739, guid: f8857c289b1a34046aa804a0275e7ec3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 403067043154318739, guid: f8857c289b1a34046aa804a0275e7ec3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 403067043154318739, guid: f8857c289b1a34046aa804a0275e7ec3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

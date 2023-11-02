@@ -212,10 +212,10 @@ MonoBehaviour:
     rgba: 0
   healthPanel: {fileID: 0}
   hpPercentUi: {fileID: 0}
-  maxHealth: 120
-  health: 120
-  attack: 7
-  defense: 30
+  maxHealth: 90
+  health: 90
+  attack: 8
+  defense: 25
   speed: 1
   increasedAttackValue: 0
   decreasedDefenseValue: 0
@@ -340,7 +340,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 869803160032126477, guid: 249c404c5ced6a34e928edbbcd8ed08e, type: 3}
       propertyPath: m_Name
-      value: Jade Thrust
+      value: Jade Slash
       objectReference: {fileID: 0}
     - target: {fileID: 2240264357507610230, guid: 249c404c5ced6a34e928edbbcd8ed08e, type: 3}
       propertyPath: owner
@@ -579,10 +579,6 @@ PrefabInstance:
     - target: {fileID: 403067043154318739, guid: f8857c289b1a34046aa804a0275e7ec3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 403067043154318739, guid: f8857c289b1a34046aa804a0275e7ec3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 403067043154318739, guid: f8857c289b1a34046aa804a0275e7ec3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

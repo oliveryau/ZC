@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatusText : MonoBehaviour
+public class DestroyPrefab : MonoBehaviour
 {
-    private float destroyTime;
+    [SerializeField] private float destroyTime;
 
     private void Start()
     {
-        destroyTime = 0.7f;
-
         Destroy(gameObject, destroyTime); //destroy after a certain time
     }
 }

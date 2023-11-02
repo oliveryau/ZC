@@ -20,6 +20,23 @@ public class _StatusEffectHud : MonoBehaviour
     public GameObject armorIcon;
     public GameObject rageGoatBuffIcon;
 
+    [Header("VFX")]
+    public GameObject normalHitEffect;
+    public GameObject bleedHitEffect;
+
+    public void DisplayVfx(GameObject character, string effect)
+    {
+        switch (effect)
+        {
+            case "bleed":
+                Instantiate(bleedHitEffect, character.transform.position, Quaternion.identity, character.transform);
+                break;
+            default:
+                Instantiate(normalHitEffect, character.transform.position, Quaternion.identity, character.transform);
+                break;
+        }
+    }
+
     public void SpawnEffectsBar(CharacterStats target, int count, string effect)
     {
         effectsPanel = target.statusEffectPanel.transform;
