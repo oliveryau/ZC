@@ -436,9 +436,9 @@ MonoBehaviour:
   effectsSource: {fileID: 709716952276088609}
   musicSounds:
   - name: Menu BGM
-    clip: {fileID: 8300000, guid: 2bdb6134322dba348a5a3d216e795775, type: 3}
+    clip: {fileID: 8300000, guid: a2ba0732f39694b4e95c7a70eaa55470, type: 3}
   - name: Exploration BGM
-    clip: {fileID: 8300000, guid: 28a04944345e0f540b6871fe5c765b5d, type: 3}
+    clip: {fileID: 8300000, guid: 97de7d04c8e116e4a9171d834a2eeb4a, type: 3}
   - name: Battle BGM
     clip: {fileID: 8300000, guid: ef10ab8cba6510d4c9ecb7cef5ee3c89, type: 3}
   ambienceSounds:
@@ -446,18 +446,28 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: cb01b025f40d0444f8618ac2b708e076, type: 3}
   effectsSounds:
   - name: Paper Flip
-    clip: {fileID: 8300000, guid: b03b7b1b31f3f1944b5726b71386be70, type: 3}
+    clip: {fileID: 8300000, guid: aa3b7522cf456ff4aa5d4143fdffa1d1, type: 3}
   - name: Skill Select
     clip: {fileID: 8300000, guid: c0168b7720564e947a383395e340aca7, type: 3}
   - name: Cat 1
     clip: {fileID: 8300000, guid: a3fcd75a95cf6bc4bacb43c5a665e658, type: 3}
   - name: Cat 2
     clip: {fileID: 8300000, guid: 9d84782b24ad6a54ea5a19b0d377f408, type: 3}
+  - name: Cat 3
+    clip: {fileID: 8300000, guid: ad5c37ca924b31243ac139be7a1eb806, type: 3}
   - name: Goat 1
-    clip: {fileID: 8300000, guid: f2998294d8e80d14c817119a5c51d839, type: 3}
+    clip: {fileID: 8300000, guid: a2635a3dc1edbc24e95a1f0d192960be, type: 3}
   - name: Goat 2
-    clip: {fileID: 8300000, guid: eca46bd7058b89d4fbcbda6fb0c31b47, type: 3}
+    clip: {fileID: 8300000, guid: 382465c8a8da5ea4f8c9fc24427e8f88, type: 3}
   - name: Goat 3
     clip: {fileID: 8300000, guid: cf743015371f06f468678951ed200dd3, type: 3}
+  - name: Goat 4
+    clip: {fileID: 8300000, guid: 14284178fb67f0c47a4494b2743a7c5f, type: 3}
+  - name: Ox 1
+    clip: {fileID: 8300000, guid: f8cecd0bf2e605142a741efd6faf07de, type: 3}
+  - name: Ox 2
+    clip: {fileID: 8300000, guid: 887ca4a1e232bfa4880095f75f29483d, type: 3}
+  - name: Ox 3
+    clip: {fileID: 8300000, guid: ccd84c9a02bfea046b022396789b90f3, type: 3}
   - name: Guard 1
-    clip: {fileID: 8300000, guid: 96fe5b993da53404ba140c095e797f4d, type: 3}
+    clip: {fileID: 8300000, guid: 981b518ae2a5b094f8741831984d6eae, type: 3}

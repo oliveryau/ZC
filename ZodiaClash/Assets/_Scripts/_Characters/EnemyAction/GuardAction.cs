@@ -268,7 +268,7 @@ public class GuardAction : _EnemyAction
     protected override IEnumerator EnemyDeath()
     {
         gameObject.tag = "Dead";
-        //characterStats.animator.SetTrigger("Death");
+        characterStats.animator.SetTrigger("death");
 
         #region Update Turn Order
         battleManager.UpdateTurnOrderUi("death", characterStats);

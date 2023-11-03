@@ -227,16 +227,19 @@ public class OxAction : _PlayerAction
         {
             //single target lifesteal skill
             selectedSkillPrefab.GetComponent<A_SingleDefBreak>().Attack(selectedTarget);
+            AudioManager.Instance.PlayEffectsOneShot("Ox 1");
         }
         else if (selectedSkillPrefab == skill2Prefab)
         {
             //single target stun skill
             selectedSkillPrefab.GetComponent<B_SingleStun>().Attack(selectedTarget);
+            AudioManager.Instance.PlayEffectsOneShot("Ox 2");
         }
         else if (selectedSkillPrefab == skill3Prefab)
         {
             //aoe target taunt skill
             selectedSkillPrefab.GetComponent<C_AoeTaunt>().Attack(enemyTargets);
+            AudioManager.Instance.PlayEffectsOneShot("Ox 3");
         }
 
         StartCoroutine(EndTurnDelay(0.5f));

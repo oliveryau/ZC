@@ -503,7 +503,7 @@ public class _PlayerAction : MonoBehaviour
         if (display)
         {
             skillText.text = selectedSkillPrefab.gameObject.name;
-            skillTextImage.color = new Color32(0, 20, 150, 100);
+            skillTextImage.color = new Color32(0, 150, 50, 100);
             skillTextIndicator.SetActive(true);
         }
         else if (!display)

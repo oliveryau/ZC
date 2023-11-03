@@ -183,8 +183,8 @@ MonoBehaviour:
     rgba: 0
   healthPanel: {fileID: 0}
   hpPercentUi: {fileID: 0}
-  maxHealth: 125
-  health: 125
+  maxHealth: 120
+  health: 120
   attack: 15
   defense: 20
   speed: 2

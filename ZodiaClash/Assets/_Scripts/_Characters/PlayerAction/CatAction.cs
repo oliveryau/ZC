@@ -209,6 +209,7 @@ public class CatAction : _PlayerAction
         {
             //aoe activate bleed skill
             selectedSkillPrefab.GetComponent<C_AoeActivateBleed>().Attack(enemyTargets);
+            AudioManager.Instance.PlayEffectsOneShot("Cat 3");
         }
 
         StartCoroutine(EndTurnDelay(0.5f));

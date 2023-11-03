@@ -223,9 +223,8 @@ public class EnemyGoatAction : _EnemyAction
                         Debug.Log("Enemy Selected Target (Heal): " + selectedTarget.name);
                         selectedSkillPrefab = skill3Prefab;
 
-                        healingAlly = true;
-
                         enemyState = EnemyState.ATTACKING;
+                        healingAlly = true;
 
                         break;
                     }
@@ -234,18 +233,18 @@ public class EnemyGoatAction : _EnemyAction
                         continue;
                     }
                 }
-            
+
                 if (!healingAlly)
                 {
                     if (battleManager.roundCounter == 1 || (enemyTargets.Length > 1 && battleManager.roundCounter % 3 == 0)) //speedup character at first round and at every 3 rounds
                     {
-                        int randomIndex = Random.Range(0, enemyTargets.Length);
-                        while (enemyTargets[randomIndex] == this.gameObject)
+                        int randomIndexSpeed = Random.Range(0, enemyTargets.Length);
+                        while (enemyTargets[randomIndexSpeed] == this.gameObject)
                         {
-                            randomIndex = Random.Range(0, enemyTargets.Length);
+                            randomIndexSpeed = Random.Range(0, enemyTargets.Length);
                         }
 
-                        selectedTarget = enemyTargets[randomIndex];
+                        selectedTarget = enemyTargets[randomIndexSpeed];
                         Debug.Log("Enemy Selected Target (Speedup): " + selectedTarget.name);
 
                         selectedSkillPrefab = skill2Prefab;
@@ -326,7 +325,7 @@ public class EnemyGoatAction : _EnemyAction
         {
             //strong single target lifesteal attack
             selectedSkillPrefab.GetComponent<D_StrongAttackBleed>().Attack(selectedTarget);
-            AudioManager.Instance.PlayEffectsOneShot("Goat 1");
+            AudioManager.Instance.PlayEffectsOneShot("Goat 4");
         }
 
         StartCoroutine(EnemyEndTurnDelay(0.5f));
@@ -380,7 +379,7 @@ public class EnemyGoatAction : _EnemyAction
                 }
             }
 
-            float healthToAddToCat = characterStats.maxHealth * 0.5f;
+            float healthToAddToCat = characterStats.maxHealth * 0.3f;
             cat = FindObjectOfType<CatAction>().gameObject;
             cat.GetComponent<CharacterStats>().HealBuff(healthToAddToCat, false);
         }

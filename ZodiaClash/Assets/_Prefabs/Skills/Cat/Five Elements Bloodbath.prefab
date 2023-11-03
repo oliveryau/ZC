@@ -48,6 +48,6 @@ MonoBehaviour:
   skillAttackPercent: 80
   minAttackMultiplier: 0.9
   maxAttackMultiplier: 1.1
-  critRate: 0.5
+  critRate: 1
   critMultiplier: 1.35
   critCheck: 0
