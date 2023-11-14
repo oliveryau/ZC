@@ -164,7 +164,12 @@ public class CatAction : _PlayerAction
             targetPosition = selectedTarget.transform.Find("Target Position");
             characterStats.animator.SetTrigger("skill1");
         }
-        else if (selectedSkillPrefab == skill2Prefab || selectedSkillPrefab == skill3Prefab)
+        else if (selectedSkillPrefab == skill2Prefab)
+        {
+            targetPosition = aoeTargetPosition; //aoe target pos
+            characterStats.animator.SetTrigger("skill2");
+        }
+        else if (selectedSkillPrefab == skill3Prefab)
         {
             targetPosition = aoeTargetPosition; //aoe target pos
         }
