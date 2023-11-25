@@ -9,6 +9,11 @@ public class GoatAction : _PlayerAction
         UpdatePlayerState();
     }
 
+    protected override void StartVoice()
+    {
+        //AudioManager.Instance.PlayEffectsOneShot("Goat Start");
+    }
+
     public override void SelectSkill(string btn)
     {
         base.SelectSkill(btn);

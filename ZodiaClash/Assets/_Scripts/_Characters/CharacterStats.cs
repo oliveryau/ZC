@@ -149,6 +149,22 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    private void DamagedSound()
+    {
+        switch (gameObject.name)
+        {
+            case "Guiying":
+                AudioManager.Instance.PlayEffectsOneShot("Cat Damaged");
+                break;
+            default:
+                if (gameObject.name.Contains("Guard"))
+                {
+                    AudioManager.Instance.PlayEffectsOneShot("Guard Damaged");
+                }
+                break;
+        }
+    }
+
     private void Death()
     {
         if (gameObject.CompareTag("Player"))
@@ -186,6 +202,8 @@ public class CharacterStats : MonoBehaviour
         }
         else
         {
+            DamagedSound();
+
             if (animator != null)
             {
                 animator.SetTrigger("damaged");

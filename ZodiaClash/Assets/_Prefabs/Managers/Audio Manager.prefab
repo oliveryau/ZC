@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -440,21 +440,27 @@ MonoBehaviour:
   - name: Exploration BGM
     clip: {fileID: 8300000, guid: 97de7d04c8e116e4a9171d834a2eeb4a, type: 3}
   - name: Battle BGM
-    clip: {fileID: 8300000, guid: ef10ab8cba6510d4c9ecb7cef5ee3c89, type: 3}
+    clip: {fileID: 8300000, guid: 4c420da689d98b4458fe40cbc67f0d96, type: 3}
   ambienceSounds:
-  - name: Forest Ambience
+  - name: Exploration Ambience
+    clip: {fileID: 8300000, guid: 61632389e32ae484c8f27b70dbd8a061, type: 3}
+  - name: Battle Ambience
     clip: {fileID: 8300000, guid: cb01b025f40d0444f8618ac2b708e076, type: 3}
   effectsSounds:
   - name: Paper Flip
     clip: {fileID: 8300000, guid: aa3b7522cf456ff4aa5d4143fdffa1d1, type: 3}
   - name: Skill Select
     clip: {fileID: 8300000, guid: c0168b7720564e947a383395e340aca7, type: 3}
+  - name: Cat Start
+    clip: {fileID: 8300000, guid: ce6814a0a438867448b65024f14770ca, type: 3}
   - name: Cat 1
     clip: {fileID: 8300000, guid: a3fcd75a95cf6bc4bacb43c5a665e658, type: 3}
   - name: Cat 2
     clip: {fileID: 8300000, guid: 9d84782b24ad6a54ea5a19b0d377f408, type: 3}
   - name: Cat 3
     clip: {fileID: 8300000, guid: ad5c37ca924b31243ac139be7a1eb806, type: 3}
+  - name: Cat Damaged
+    clip: {fileID: 8300000, guid: a80306bf1668650438d828d0a4ec4876, type: 3}
   - name: Goat 1
     clip: {fileID: 8300000, guid: a2635a3dc1edbc24e95a1f0d192960be, type: 3}
   - name: Goat 2
@@ -471,3 +477,5 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ccd84c9a02bfea046b022396789b90f3, type: 3}
   - name: Guard 1
     clip: {fileID: 8300000, guid: 981b518ae2a5b094f8741831984d6eae, type: 3}
+  - name: Guard Damaged
+    clip: {fileID: 8300000, guid: b8cfd3d082b14d44588e3b03cb5adbf6, type: 3}

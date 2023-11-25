@@ -32,7 +32,7 @@ public class ScenesManager : MonoBehaviour
             case "1_Exploration Map":
 
                 AudioManager.Instance.PlayMusic("Exploration BGM");
-                AudioManager.Instance.PlayAmbienceMusic("Forest Ambience");
+                AudioManager.Instance.PlayAmbienceMusic("Exploration Ambience");
                 AudioManager.Instance.MusicFadeIn(true);
 
                 #region Unique Save Loads
@@ -88,7 +88,7 @@ public class ScenesManager : MonoBehaviour
             case "4_BattleScene":
 
                 AudioManager.Instance.PlayMusic("Battle BGM");
-                AudioManager.Instance.PlayAmbienceMusic("Forest Ambience");
+                AudioManager.Instance.PlayAmbienceMusic("Battle Ambience");
                 AudioManager.Instance.MusicFadeIn(true);
                 break;
             default:

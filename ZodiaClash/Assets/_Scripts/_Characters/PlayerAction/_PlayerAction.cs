@@ -90,6 +90,7 @@ public class _PlayerAction : MonoBehaviour
             {
                 turnIndicator.SetActive(true);
                 characterAvatar.GetComponent<Animator>().SetTrigger("increase");
+                StartVoice();
 
                 #region Taunted Behaviour
                 if (characterStats.tauntCounter > 0)
@@ -197,6 +198,11 @@ public class _PlayerAction : MonoBehaviour
     {
         playerTargets = GameObject.FindGameObjectsWithTag("Player");
         enemyTargets = GameObject.FindGameObjectsWithTag("Enemy");
+    }
+
+    protected virtual void StartVoice()
+    {
+        //animal start sound
     }
 
     public virtual void SelectSkill(string btn)

@@ -9,6 +9,11 @@ public class OxAction : _PlayerAction
         UpdatePlayerState();
     }
 
+    protected override void StartVoice()
+    {
+        //AudioManager.Instance.PlayEffectsOneShot("Ox Start");
+    }
+
     public override void SelectSkill(string btn)
     {
         base.SelectSkill(btn);

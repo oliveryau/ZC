@@ -9,6 +9,11 @@ public class CatAction : _PlayerAction
         UpdatePlayerState();
     }
 
+    protected override void StartVoice()
+    {
+        AudioManager.Instance.PlayEffectsOneShot("Cat Start");
+    }
+
     public override void SelectSkill(string btn)
     {
         base.SelectSkill(btn);
@@ -172,6 +177,7 @@ public class CatAction : _PlayerAction
         else if (selectedSkillPrefab == skill3Prefab)
         {
             targetPosition = aoeTargetPosition; //aoe target pos
+            characterStats.animator.SetTrigger("skill3");
         }
 
         movingToTarget = true; //movement is triggered
